@@ -9,11 +9,7 @@
 session_start();
 ob_start();
 
-<<<<<<< HEAD
-// extract($_REQUEST); //bunu silebilirim
-=======
-extract($_REQUEST); //bunu silebilirim
->>>>>>> 4ae409c30bfbc5232ce60d2b0f46ace348b33a4a
+//extract($_REQUEST); //bunu silebilirim
 //error_reporting(E_ALL);
 error_reporting(E_ALL ^ E_NOTICE);
 
@@ -1897,23 +1893,6 @@ if (($isMobile == 1) && ($kullaniciAdi == "") )
 //REKLAM YERİ
 ?>
 <center>
-<<<<<<< HEAD
-<a href="https://www.facebook.com/BolSozluk" target="_blank"><font size=1>fb</font></a>
- | 
-<a href="https://www.twitter.com/BolSozluk" target="_blank"><font size=1>twt</font></a>
- | 
-<a href="https://www.youtube.com/BolSozluk" target="_blank"><font size=1>youtube</font></a>
- | 
- <a href="https://www.instagram.com/bolsozluk" target="_blank"><font size=1>insta</font></a>
- | 
-<a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank"><font size=1>spotify</font></a>
- | 
-<a href="https://anket.bolsozluk.com" target="_blank"><font size=1>anket</font></a>
- | 
-<a href="https://www.bolsozluk.com/sozlesme.html" target="_blank"><font size=1>uyarı</font></a>
- | 
-<a href="https://www.bolsozluk.com/devlog.txt" target="_blank"><font size=1>devlog</font></a></center>
-=======
 <a href="https://chat.bolsozluk.com" target="_blank"><font size=1>bolchat</font></a>
  | 
 <a href="http://www.twitter.com/BolSozluk" target="_blank"><font size=1>x</font></a>
@@ -1931,9 +1910,6 @@ if (($isMobile == 1) && ($kullaniciAdi == "") )
 <a href="/sozlesme.html" target="_blank"><font size=1>uyarı</font></a>
  | 
 <a href="/devlog.txt" target="_blank"><font size=1>devlog</font></a></center>
- 
->>>>>>> 4ae409c30bfbc5232ce60d2b0f46ace348b33a4a
-
 <br>
 <center>
 <font size=1>
