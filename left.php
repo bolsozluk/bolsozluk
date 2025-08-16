@@ -9,11 +9,7 @@
 session_start();
 ob_start();
 
-<<<<<<< HEAD
-// extract($_REQUEST); //bunu silebilirim
-=======
-extract($_REQUEST); //bunu silebilirim
->>>>>>> 4ae409c30bfbc5232ce60d2b0f46ace348b33a4a
+//extract($_REQUEST); //bunu silebilirim
 //error_reporting(E_ALL);
 error_reporting(E_ALL ^ E_NOTICE);
 
