@@ -1,7 +1,7 @@
 <?php
 session_start();
 ob_start();
-extract($_REQUEST);
+//extract($_REQUEST);
 error_reporting(E_ALL ^ E_NOTICE);
 
 include "icerik/firstsettings.php";
