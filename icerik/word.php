@@ -529,7 +529,7 @@ exit;
 
 getPrivateMessages();
 //if($notice)echo "<script>alert('$notice okunmayan mesajınız var. panelden kontrol edebilirsiniz.');</script>";
-extract($_REQUEST); //bunu silebilirim
+//extract($_REQUEST); //bunu silebilirim
 $mod = guvenlikKontrol($_REQUEST["mod"],"hard");
 $aranacak = guvenlikKontrol($_REQUEST["aranacak"],"hard");
 $q = guvenlikKontrol($_REQUEST["q"],"hard");
