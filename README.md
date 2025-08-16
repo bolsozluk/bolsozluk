@@ -24,7 +24,7 @@ Bol Sözlük, Hiphop ve Türkçe Rap odaklı, kullanıcıların başlıklar ve e
 
 ## Katkı
 
-Katkıda bulunmak için lütfen bir fork oluşturun ve pull request gönderin.
+Katkıda bulunmak için lütfen bir fork oluşturun ve pull request gönderin. Kabul edilen her pull request, bolsozluk.com'a otomatik olarak deploy edilmektedir.
 
 ## Lisans
 
@@ -32,4 +32,4 @@ Bu proje MIT License ile lisanslanmıştır. Ayrıntılar için [LICENSE](LICENS
 
 ---
 
-**Not:** Bu yazılım PHP 5 için yazılmış olup en son PHP 5.4.45'e uyumlu hale getirilmiştir. Modern PHP sürümlerine uyumluluk için güncelleme gerekebilir.
+**Not:** Bu yazılım PHP 5 için yazılmış olup en son PHP 5.4.45'e uyumlu hale getirilmiştir. Daha ileri PHP sürümlerine uyumluluk için güncelleme gerekmektedir.
