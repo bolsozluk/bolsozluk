@@ -22,6 +22,16 @@ Bol Sözlük, Hiphop ve Türkçe Rap odaklı, kullanıcıların başlıklar ve e
 - `smtp/` : E-posta gönderimi için kütüphane
 - `bolrozet/`, `raple/` : Ek modüller
 
+## Kod İstatistikleri (v0.9.2)
+
+| Metrik         | Sayı    |
+| -------------- | ------- |
+| Dosya          | 296     |
+| Toplam Satır    | 49,922  |
+| Boş Satır     | 6,822   |
+| Yorum Satırı  | 5,805   |
+| Kod Satırı  | 37,295  |
+
 ## Katkı
 
 Katkıda bulunmak için lütfen bir fork oluşturun ve pull request gönderin. Kabul edilen her pull request, bolsozluk.com'a otomatik olarak deploy edilmektedir.
