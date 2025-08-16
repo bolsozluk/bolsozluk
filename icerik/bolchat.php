@@ -45,7 +45,7 @@ ini_set('display_errors', 1);
                         name="message" 
                         placeholder="Mesajınızı yazın..." 
                         rows="1" 
-                        maxlength="500"
+                        maxlength="255"
                         autocomplete="off"
                     ></textarea>
                     <button type="submit" id="send-button" aria-label="Mesaj Gönder">

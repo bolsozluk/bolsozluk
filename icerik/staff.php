@@ -35,7 +35,7 @@
             <b>teşekkürler</b><br />
             sedat "ssg" kapanoğlu<br /> 
             olgar "caesar" verim<br />
-            zeykur valekov<br />
+            yalowa<br />
             iwgu<br />          
             suuulh<br />          
             fifiri
