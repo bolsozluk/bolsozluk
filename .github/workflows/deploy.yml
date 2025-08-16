@@ -26,4 +26,5 @@ jobs:
           exclude: |
             /icerik/bolgpt.php
             /icerik/bolgptnb.php
+            /.git/**
           log-level: verbose       # detaylı log, hata varsa gösterir
