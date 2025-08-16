@@ -1,28 +1,29 @@
-name: Deploy to FTP (Safe Mode)
+name:  Deploy to FTPS (Safe Mode)
 
 on:
   push:
     branches:
-      - main   # sadece main branch push edilince çalışır
+      - main  # sadece main branch push edilince çalışır
 
 jobs:
-  ftp-deploy:
+  ftps-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Upload to FTP
+      - name: Upload to FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          protocol: ftp
-          local-dir: ./                # GitHub’daki kök klasör
-          server-dir: /httpdocs/       # FTP’deki hedef klasör
-          dangerous-clean-slate: false #  extra dosyaları silmez
-          log-level: verbose
+          protocol: ftps          # FTPS explicit SSL kullan
+          port: 21                # FTP/FTPS port
+          local-dir: ./           # GitHub repo kökü
+          server-dir: /httpdocs/  # FTP hedef klasör
+          dangerous-clean-slate: false  # ekstra dosyaları silmez
           exclude: |
-            /icerik/bolgpt.php 
+            /icerik/bolgpt.php
             /icerik/bolgptnb.php
+          log-level: verbose       # detaylı log, hata varsa gösterir
