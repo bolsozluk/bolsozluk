@@ -60,6 +60,30 @@ ini_set('display_errors', 1);
 </div>
 
 <style>
+
+    .message-content a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.message-content a:hover {
+    text-decoration: underline;
+}
+
+.own-message .message-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Dark mode için */
+.dark-mode .message-content a {
+    color: #3498db;
+}
+
+.dark-mode .own-message .message-content a {
+    color: #fff;
+}
+
 /* Dark Mode Temel Stilleri */
 
 .dark-mode .verified-badge {
@@ -488,6 +512,18 @@ function buildMessageHtml(msg, isHidden) {
     var isOwn = (msg.username === username);
     var isVerified = parseInt(msg.is_verified) === 1;
     var verifiedBadge = isVerified ? ' <span class="verified-badge">✓</span>' : '';
+
+        // URL'leri hyperlink'e çeviren fonksiyon
+    function linkifyUrls(text) {
+        // URL regex pattern
+        var urlPattern = /(https?:\/\/[^\s<]+[^\s<\.)])/gi;
+        
+        // URL'leri link etiketine çevir
+        return text.replace(urlPattern, function(url) {
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
+        });
+    }
+
     var html = 
         '<div class="message ' + (isOwn ? 'own-message' : '') + 
         (isHidden ? ' hidden-message' : '') + '" data-message-id="' + msg.id + '">' +
@@ -497,7 +533,7 @@ function buildMessageHtml(msg, isHidden) {
                 (isHidden && msg.ip ? '<span class="ip-display">IP:' + escapeHtml(msg.ip) + '</span>' : '') +
                 '<span class="message-time">' + escapeHtml(msg.created_at.substring(11,16)) + '</span>' +
             '</div>' +
-            '<div class="message-content">' + escapeHtml(msg.message);
+            '<div class="message-content">' + linkifyUrls(escapeHtml(msg.message));
         
         if (isAdmin) {
             if (isHidden) {
