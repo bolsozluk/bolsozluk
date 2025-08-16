@@ -18,10 +18,11 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          protocol: ftps
+          protocol: ftp
           local-dir: ./                # GitHub’daki kök klasör
           server-dir: /httpdocs/       # FTP’deki hedef klasör
           dangerous-clean-slate: false #  extra dosyaları silmez
+          log-level: verbose
           exclude: |
             /icerik/bolgpt.php 
             /icerik/bolgptnb.php
