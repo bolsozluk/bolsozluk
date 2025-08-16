@@ -1,0 +1,312 @@
+.araclass {
+
+	position:fixed;
+	left: 212px; 
+	top:70px;
+	width:21px;
+	overflow: hidden;
+}
+
+.aradetay {
+	background-color: #cccccc;
+	border: outset 1px;
+	font-weight:bold;
+	font-size:11px;
+	padding:5px;
+	padding-top:6px;
+	text-align:left;
+	height:120px;
+	cursor:pointer;
+	color: #333;
+	
+}
+.yazilar{
+	background-color: #cccccc;
+
+}
+.araasilformcls {
+	background-color: #cccccc;
+	border: outset 1px;
+	font-size:9px;
+	color:#000066;
+}
+
+
+
+.arakututar{
+	border: 0px;
+	font-size:9px; 
+}
+.arakutukonu{
+	font-size:12px; 
+}
+
+body {
+background-color:#EDD4C9;
+color:Black;
+font-size: 14px;
+font-family: "Trebuchet MS";
+}
+html{
+	scrollbar-3dlight-color : #C987D8;
+	scrollbar-arrow-color : #F4E4F6;
+	scrollbar-base-color : #C85FA6;
+	scrollbar-darkshadow-color : #C987D8;
+	scrollbar-highlight-color : #C987D8;
+	scrollbar-shadow-color : #3E1646;
+	scrollbar-track-color : #EDD4C9;
+}
+#badi{
+background-color:#F5F5F5;
+border: #FF2600 1px solid;
+}
+#badi a{
+color:#8E0000;
+font-family:Verdana;
+font-size: 9px;
+font-weight:bold;
+}
+#badi a:hover {
+background-color:#8E0000;
+color:White;
+text-decoration:none;
+}
+select, input, .input{
+border: solid #8A131C 1px;
+}
+.copyright{
+color:#d18b95;
+font-size:9px;
+}
+#d{ //entry yazma yeri
+}
+a{
+color:#D20000;
+}
+a:hover{
+background-color:#D20000;
+color:white;
+}
+/* hayvan ara tab (orjinalinden birebir)*/
+
+.adiv {
+  display:block;
+  position:fixed;
+  top:20px;
+  left:215px;
+  width:18px;
+  overflow:hidden;
+}
+
+.amain {
+	background-color: #ED9AB3;
+	border: 2px outset #F295B3;
+	border: 2px outset;
+	border-left: 0;
+	padding: 4px;
+}
+
+.aup {
+  border-right:1px inset F295B3;
+  height:30px
+}
+
+.amid {
+	background-image: url(dilekin_odasi_hay1.jpg);
+	background-attachment: fixed;
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-color: #ED9AB3;
+	border: 2px outset #F295B3;
+	border-right:0px;
+	width:20px;
+	height: 150px;
+	line-height:8pt;
+	font-size:0pt;
+	cursor:hand;
+	color: #ED9AB3;
+	text-align: center;
+}
+
+.abot {
+  border-right:1px inset F295B3;
+  height:140px
+}
+/*hayvan ara'nin sonu*/
+/*zutons*/
+.but {
+	background-color:#AC0038;
+	border:#FF6C9C 2px outset;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size: 9px;
+	font-weight:bold;
+	cursor: pointer;
+}
+#butOver{
+	background-color:#950007;
+	border:#D4000B 2px outset;
+cursor: pointer;
+}
+/*end of zutons*/
+input{
+}
+.input{
+}
+label{
+}
+.timer {
+text-transform:capitalize;
+font-size:11px;
+}
+b{
+color: #131E79;
+}
+b a{
+color: #5B002E;
+}
+b a:hover{
+background-color: transparent;
+color: #BB005E;
+}
+.infosec{
+}
+legend{
+font-weight:bold;
+}
+/*orjinalinden bire bir!*/
+.title{
+	color: #D2006A;
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 20px;
+	border: none;
+}
+.title a{
+	color: #D2006A;
+	font-family: "Trebuchet MS";
+	}
+	
+.title a:hover{
+	background-color: transparent;
+	color: #FF2090;
+	font-family: "Trebuchet MS";
+	}
+
+.pmsg a, .pbin a, .pevt a, .pmsghi a, .pbinhi a, .pevthi a{
+	color: Black;
+	}
+.pmsg {
+  background-color: #E796A2;
+}
+.pmsghi {
+  background-color: #D13048;
+}
+.pbin {
+  background-color: #E796A2;
+}
+.pbinhi {
+  background-color: #D13048;
+}
+.pevt {
+  background-color: #E796A2;
+}
+.pevthi {
+  background-color: #D13048;
+}
+/*msj, cop ve olay kisminin sonu*/
+.marker{
+background-color:#00E4FF;
+color:#2e303d;
+font-weight:bold;
+border-bottom:black 2px solid;
+}
+hr{
+color:#FF75CC;
+height: 2px;
+}
+/* yan "tab"lar */
+.vtab {
+}
+.vtab DIV {
+ }
+.vtab DIV A {
+ }
+.vtab A:Hover {
+}
+.vtabin{
+}
+.vtabsel{
+}
+/*end of tabs*/
+.highlight{
+background-color:#F5E9E3;
+border:gray 1px solid;
+}
+/*ek$i sözlük logosu*/
+.logo {
+
+  background-image: url(pembe.png);
+  background-repeat: no-repeat;
+  width:132px;
+  height:45px;
+  cursor:hand;
+
+}
+/*ek$i sözlük logosu sonu*/
+/*"tab"lar*/
+.tabsel{
+}
+.tab DIV{
+}
+.tab A:Hover{
+}
+.tabin{
+}
+/*"tab"larýn sonu*/
+textarea{
+background-color:White;
+	scrollbar-3dlight-color : #C987D8;
+	scrollbar-arrow-color : #F4E4F6;
+	scrollbar-base-color : #C85FA6;
+	scrollbar-darkshadow-color : #C987D8;
+	scrollbar-highlight-color : #C987D8;
+	scrollbar-shadow-color : #3E1646;
+	scrollbar-track-color : white;
+}
+ol{
+margin-top:3px;
+}
+#daskapital{
+display:none;
+}
+.bgtop{
+background-image: none;
+}
+.aul a{
+font-weight:normal;
+}
+/*bgleft*/
+.bgleft{
+background-image: none;
+}
+.bgleft a{
+}
+.bgleft a:hover{
+text-decoration:none;
+}
+/*bgleft*/
+i{
+color:#0030CC;
+}
+small{
+}
+fieldset{
+border:gray 1px solid;
+color: black
+}
+.nav TD {
+  padding:2px;
+  height:16px;
+  margin:0;
+  vertical-align:middle;

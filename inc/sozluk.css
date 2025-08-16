@@ -1,0 +1,235 @@
+body,html {	text-transform:lowercase; }
+
+.bodyTopFrame {margin:0px; padding:0px;}
+.bodyMainFrame {margin:0px; padding:0px;}
+
+.entryDiv {	display:inline; visibility:hidden; }
+.oySonuc {	visibility:inherit;	}
+
+#listLeftFrame { margin:0px; padding:0px; list-style-type:none; font-size:13px;}
+#listLeftFrame li { margin:0px; margin-bottom: 3px; list-style-type:none; text-indent:-8px; overflow:hidden; padding:0 0 0 8px;}
+#listLeftFrame lix { margin:0px; list-style-type:none; font-size:13px; text-indent:-8px; overflow:hidden; padding:0 0 0 8px;}
+
+#controlPanel { margin:10px; }
+.tab { font-size: 7pt; padding-TOP: 2px; border-BOTTOM: 2px inset; WHITE-SPACE: nowrap }
+.tab div { border-right: 1px outset; padding-right: 4px; border-TOP: 2px outset; padding-left: 4px; padding-BOTTOM: 0px; MARGIN-left: 1px; border-left: 2px outset; line-height: 12pt; padding-TOP: 2px; border-BOTTOM: 0px; WHITE-SPACE: nowrap}
+.tab a:hover { background-color: transparent }
+#controlPanel #menu { border-right: 2px outset; padding-right: 4px; border-TOP: 2px outset; padding-left: 4px; font-size: 7pt; padding-BOTTOM: 2px; border-left: 2px outset; CURSOR: default; line-height: 11pt; padding-TOP: 2px; border-BOTTOM: 0px; WHITE-SPACE: nowrap}
+#controlPanel #menu div {  border: 0px outset; padding: 0px; margin:0px;}
+
+/**/
+
+.loginbox {width: 220px}
+
+.lin {width: 100%}
+
+.ampul {width: 18px; BACKGROUND-REPEAT: no-repeat; height: 18px}
+
+.infosec {border-right: 1px outset; border-TOP: 1px outset; border-left: 1px outset; CURSOR: pointer; border-BOTTOM:
+1px outset
+}
+.panel {
+        width: 120px
+}
+.asl {
+        width: 109px
+}
+.spot {
+        FLOAT: right; width: 120px
+}
+.spot TD {
+        font-size: 7pt
+}
+#badi {
+        border-right: 1px inset; padding-right: 2px; border-TOP: 1px inset; padding-left: 2px; font-size: 7pt; padding-BOTTOM: 2px; OVERFLOW: hidden; border-left: 1px inset; width: 120px; padding-TOP: 2px; border-BOTTOM: 1px inset
+}
+.aratext {
+        width: 96px
+}
+.marker {
+        color: black; background-color: yellow
+}
+.pbut {
+        font-size: 7pt; width: 16px; height: 16px
+}
+.nav TD {
+        padding-right: 2px; padding-left: 2px; padding-BOTTOM: 2px; MARGIN: 0px; vertical-align: middle; padding-TOP: 2px; height: 23px
+}
+#pmsg {
+        background-color: #006000
+}
+#pmsghi {
+        background-color: #00f000
+}
+#pbin {
+        background-color: #606000
+}
+#pbinhi {
+        background-color: #f0f000
+}
+#pevt {
+        background-color: #606000
+}
+#pevthi {
+        background-color: #f0f000
+}
+.pagi {
+        font-size: 7pt; text-align: center
+}
+.pagis {
+        font-size: 6pt
+}
+.logo {
+        background-image: url(img/logo.gif); width: 132px; CURSOR: default; BACKGROUND-REPEAT: no-repeat; height: 45px
+}
+.copyright {
+        font-size: 7pt; color: #909090
+}
+.title {
+        border-right: medium none; border-TOP: medium none; font: bold 12pt Verdana, sans-serif; border-left: medium none; width: 100%; color: #000080; border-BOTTOM: medium none; background-color: transparent
+}
+.but {
+        border-right: #a6b4d4 2px outset; border-TOP: #a6b4d4 2px outset; font: 8pt Arial,sans-serif; border-left: #a6b4d4 2px outset; CURSOR: default; color: white; border-BOTTOM: #a6b4d4 2px outset; WHITE-SPACE: nowrap; background-color: #566484; text-align: center
+}
+#butOver {
+        background-color: #667494
+}
+#butDown {
+        border-right: 2px inset; border-TOP: 2px inset; border-left: 2px inset; border-BOTTOM: 2px inset
+}
+.but A {
+        color: white
+}
+.but A:hover {
+        color: white; background-color: transparent
+}
+#butOver A {
+        color: white
+}
+#butOver A:hover {
+        color: white; background-color: transparent
+}
+.icon {
+        font-size: 7pt
+}
+.timer {
+        font-size: 7pt; vertical-align: middle
+}
+.aul {
+        font-size: 8pt; line-height: 9pt; text-align: right
+}
+.pi {
+        border-right: 1px inset; padding-right: 0px; border-TOP: 1px inset; padding-left: 0px; font-size: 7pt; padding-BOTTOM: 0px; border-left: 1px inset; padding-TOP: 0px; border-BOTTOM: 1px inset; text-align: center
+}
+.pi A:hover {
+        background-color: transparent
+}
+.input {
+        font: 7pt Verdana, sans-serif; height: 16px
+}
+.msgtext {
+        font-size: 8pt
+}
+.msg {
+        padding-right: 2px; padding-left: 2px; font-size: 8pt; padding-BOTTOM: 2px; color: black; padding-TOP: 2px
+}
+.msg TD {
+        font-size: 8pt
+}
+.eol {
+        line-height: 14pt
+}
+.ei {
+        padding-right: 0px; padding-left: 0px; font-size: 7pt; padding-BOTTOM: 0px; MARGIN: 0px; color: #808080; padding-TOP: 0px
+}
+.tabsel {
+        border-right: 2px outset; padding-right: 4px; border-TOP: 2px outset; padding-left: 4px; font-size: 7pt; padding-BOTTOM: 2px; border-left: 2px outset; CURSOR: default; line-height: 11pt; padding-TOP: 2px; border-BOTTOM: 0px; WHITE-SPACE: nowrap
+}
+.tabin {
+        border-right: 2px outset; padding-right: 4px; border-TOP: 0px; padding-left: 4px; font-size: 8pt; padding-BOTTOM: 4px; border-left: 2px outset; padding-TOP: 4px; border-BOTTOM: 2px outset; height: 245px
+}
+.vtab {
+        padding-right: 2px; font-size: 7pt; border-left: 2px inset; CURSOR: pointer; WHITE-SPACE: nowrap
+}
+.vtab DIV {
+        border-right: 2px outset; padding-right: 2px; border-TOP: 1px outset; MARGIN-TOP: 1px; padding-left: 0px; padding-BOTTOM: 4px; border-left: 0px; line-height: 12pt; padding-TOP: 4px; border-BOTTOM: 2px outset; WHITE-SPACE: nowrap
+}
+.vtab A:hover {
+        background-color: transparent
+}
+.vtabsel {
+        border-right: 2px outset; padding-right: 2px; border-TOP: 2px outset; padding-left: 2px; font-size: 7pt; padding-BOTTOM: 4px; border-left: 0px; CURSOR: default; line-height: 11pt; padding-TOP: 4px; border-BOTTOM: 2px outset; WHITE-SPACE: nowrap
+}
+.vtabin {
+        border-right: 0px; padding-right: 4px; border-TOP: 2px outset; padding-left: 4px; font-size: 8pt; padding-BOTTOM: 4px; border-left: 2px outset; padding-TOP: 4px; border-BOTTOM: 2px outset; height: 245px
+}
+.adiv {
+        DISPLAY: block; left: 215px; OVERFLOW: hidden; width: 18px; POSITION: absolute; TOP: 44px
+}
+.amain {
+        border-right: 1px outset; padding-right: 4px; border-TOP: 1px outset; padding-left: 4px; padding-BOTTOM: 4px; border-left: 0px; width: 100%; padding-TOP: 4px; border-BOTTOM: 1px outset; background-color: #cccccc
+}
+TD.amain {
+        font-size: 8pt
+}
+.aup {
+        border-right: 1px inset; height: 18px
+}
+.amid {
+        border-right: 0px; padding-right: 4px; border-TOP: 1px outset; padding-left: 4px; font-WEIGHT: bold; font-size: 8pt; padding-BOTTOM: 4px; border-left: 1px outset; CURSOR: pointer; line-height: 8pt; padding-TOP: 4px; border-BOTTOM: 1px outset; WRITING-MODE: tb-rl; background-color: #cccccc
+}
+.abot {
+        border-right: 1px inset; height: 140px
+}
+UL {
+        line-height: 12pt; LIST-STYLE-TYPE: lower-roman
+}
+A {
+        color: #000000; TEXT-DECORATION: none
+}
+
+SELECT {
+        font: 8pt Verdana, sans-serif
+}
+INPUT {
+        font: 8pt Verdana, sans-serif
+}
+OPTGROUP {
+        font: 8pt Verdana, sans-serif
+}
+TEXTAREA {
+        font: 9pt Verdana, sans-serif; width: 100%
+}
+HR {
+        
+}
+TH {
+        font-size: 9pt
+}
+TD {
+        font-size: 9pt; vertical-align: top; line-height: 12pt
+}
+P {
+        font-size: 9pt; vertical-align: top; line-height: 14pt
+}
+IMG {
+        border-right: 0px; padding-right: 0px; border-TOP: 0px; padding-left: 0px; padding-BOTTOM: 0px; MARGIN: 0px; border-left: 0px; padding-TOP: 0px; border-BOTTOM: 0px
+}
+FORM {
+        border-right: 0px; padding-right: 0px; border-TOP: 0px; padding-left: 0px; padding-BOTTOM: 0px; MARGIN: 0px; border-left: 0px; padding-TOP: 0px; border-BOTTOM: 0px
+}
+TABLE {
+        border-right: 0px; padding-right: 0px; border-TOP: 0px; padding-left: 0px; padding-BOTTOM: 0px; MARGIN: 0px; border-left: 0px; padding-TOP: 0px; border-BOTTOM: 0px
+}
+DD {
+        padding-right: 0px; padding-left: 0px; padding-BOTTOM: 0px; MARGIN: 0px; padding-TOP: 0px
+}
+FIELDSET {
+        padding-right: 2px; padding-left: 2px; padding-BOTTOM: 2px; MARGIN: 0px; padding-TOP: 2px
+}
+.checkbox {
+        border-right: medium none; border-TOP: medium none; border-left: medium none; border-BOTTOM: medium none; background-color: transparent
+}
+.radio {
+        border-right: medium none; border-TOP: medium none; border-left: medium none; border-BOTTOM: medium none; background-color: transparent
+}

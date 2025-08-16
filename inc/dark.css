@@ -1,0 +1,777 @@
+/* 	
+	///	lost in lost by ciémori
+		(bkz: lost in lost/@ciémori)
+	/// 08.04.2006 SAT 22:49:17
+	/// update log:
+		i. 	09.04.2006 SUN 19:40
+		ii. 11.04.2006 TUE 16:55 ~ 15:47
+		iii. 12.04.2006 WED 21:42 ~ 22:27
+		iv. 18.04.2006 TUE 16:23
+	///	[/css/lost.css]
+		i. 	based on default sozluk.css
+		ii. used diablo2.css xf.css yles.css
+	/// i adore michelle rodriguez. :)
+-----------------------------------------------*/
+
+
+/* login box */
+.loginbox {
+  width: 220px;
+}
+
+/* login inputs */
+.lin {
+	width: 100%;
+}
+
+/* ampul abi */
+.ampul {
+	background-image: url(lost_amp.jpg);
+	background-repeat: no-repeat;
+	width:18px;
+	height:18px;
+}
+/* info section headers */
+.infosec {
+	border: 1px solid #1c1c1c;
+	cursor: pointer;
+	color: #999;
+	background-color: #060709;
+	background-image: url(lost_but.jpg);
+	background-repeat: repeat-x;
+	padding: 1px;
+	font: 8pt Verdana;
+}
+
+/* right panel */
+.panel {
+	width:120px;
+}
+/* arastir dropdown select */
+.asl
+{
+	width:109px;
+}
+/* ad box */
+.spot {
+  width: 120px;
+  float: right;
+}
+
+.spot TD {
+  font-size: 7pt;
+}
+
+/* badilist */
+#badi
+{
+  background-color: #060709;
+  background-image: url(lost_badi.jpg);
+  background-position: top center;
+  background-repeat: no-repeat;
+  border: 1px solid #111;
+  width: 120px;
+  padding: 2px;
+  padding-top: 17px;
+  font-size: 7pt;
+  overflow: hidden;
+}
+#badi a {color: #888; background-color: transparent; border: 0px;}
+#badi a:hover {color: #bb7b7c; background-color: transparent; border: 0px;}
+
+/* inline search textbox */
+.aratext
+{
+  width: 96px;
+}
+/* left frame background class */
+.bgleft {
+	background-image: url(lost_bg.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: top;
+	color: #666;
+}
+.bgleft a {background-color: transparent; color: #999; border: 0px;}
+.bgleft a:hover {border-bottom: 1px dashed #333; background-color: transparent; color: #bb7b7c;}
+
+/* top frame background class */
+.bgtop {
+	margin:0;
+	padding:0;
+	background-color: #000;
+	background-image: url(lost_top.jpg);
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+/* inline search marker */
+.marker
+{
+	background-color: yellow;
+	color: black;
+}
+/* pager buttons */
+.pbut {
+  font-size: 7pt;
+  width:16px;
+  height:16px;
+}
+/* top buttons */
+.nav TD {
+  padding: 2px;
+  height: 16px;
+  margin:0;
+  vertical-align:middle;
+cursor: pointer;
+}
+
+/* panel leds */
+
+.pmsg {
+background-color: #000;
+
+border-top: 1px #111 solid;
+border-left: 1px #111 solid;
+border-bottom: 1px #111 solid;
+border-right: 0px;
+}
+
+.pmsghi {
+background-color: #000;
+
+border-top: 1px #111 solid;
+border-left: 1px #111 solid;
+border-bottom: 1px #111 solid;
+border-right: 0px;
+}
+
+.pmsghi A {
+color: #bb7b7c;
+border: 0px;
+text-transform: uppercase;
+}
+
+.pbin {
+background-color: #000;
+border-top: 1px #111 solid;
+border-left: 0px;
+border-bottom: 1px #111 solid;
+border-right: 0px;
+}
+
+.pbinhi {
+background-color: #000;
+background-image: url(lost_108.jpg);
+border-top: 1px #111 solid;
+border-left: 0px;
+border-bottom: 1px #111 solid;
+border-right: 0px;
+}
+
+.pbinhi A {
+color: #888;
+border: 0px; 
+text-transform: uppercase;
+}
+
+.pevt {
+background-color: #000;
+
+border-top: 1px #111 solid;
+border-left: 0px;
+border-bottom: 1px #111 solid;
+border-right: 1px #111 solid;
+}
+
+.pevthi {
+background-color: #000;
+
+border-top: 1px #111 solid;
+border-left: 0px;
+border-bottom: 1px #111 solid;
+border-right: 1px #111 solid;
+}
+
+.pevthi A {
+color: #ad9;
+border: 0px;
+text-transform: uppercase;
+}
+
+.pmsg A, .pbin A, .pevt A {
+color: #000; 
+border: 0px;
+text-transform: uppercase;
+}
+
+/* page browser text */
+.pagi {
+  font-size: 7pt;
+  text-align: center;
+}
+.pagi a {color: #777; border: 0px;}
+.pagi a:hover {color: #999; border: 0px;}
+
+/* page selector (select) */
+.pagis {
+  font-size: 6pt;
+}
+
+/* ek$isozluk logo! */
+.logo {
+  background-image: url(dark.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  padding-left: 0px;
+  width: 250px;
+  height: 45px;
+  cursor: default;
+}
+
+/* highlight color */
+.highlight
+{
+  background-color: #0E1216;
+  color: #999;
+}
+
+/* copyright line */
+.copyright
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 7pt;
+  color: #333;
+}
+
+/* topic title */
+.title {
+  font: 12pt Lucida Sans Unicode;
+  text-transform: lowercase;
+  background-color: transparent;
+  width: 100%;
+  color: transparent;
+  border: 0px;
+}
+
+.title a {color: #777; border: 0px;}
+.title a:hover {color: #999; border: 0px}
+
+/* buttons */
+.but {
+  background-image: url(lost_but.jpg);
+  background-repeat: repeat;
+  font: 8pt Arial,sans-serif;
+  text-align:center;
+  white-space:nowrap;
+  cursor: pointer;
+  background-color: transparent;
+  color: #999;
+  border: 2px outset #1c1c1c;
+}
+
+/* button mouse over */
+#butOver {
+  background-image: url(lost_buto.jpg);
+  background-repeat: repeat;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* button pressed */
+#butDown {
+  background-image: url(lost_butp.jpg);
+  background-repeat: repeat;
+  border: 2px inset #1c1c1c;
+  cursor: pointer;
+}
+
+/* button link adjustments */
+.but A {
+  color: #999;
+  border: 0px;
+}
+
+.but A:Hover {
+  background-color: transparent;
+  color: #999;
+  border: 0px;
+}
+
+#butOver A {
+  color: #999;
+}
+
+#butOver A:Hover {
+  background-color: transparent;
+  color: #999;
+}
+
+/* entry buttons (derived from but) */
+.icon {
+  font-size: 7pt;
+}
+
+.timer {
+  font-size: 7pt;
+  vertical-align: middle;
+  color: #777;
+  font: Arial;
+  background-color: transparent;
+}
+
+/* entry author line */
+.aul {
+  font-size: 8pt;
+  line-height: 10pt;
+  text-align: right;
+  padding-top: 1px;
+  color: #666;
+}
+.aul a {color: #888; background-color: transparent; border: 0px;}
+.aul a:hover {color: #bb7b7c; background-color: transparent; border: 0px;}
+
+/* panel classes */
+.pi {
+  border: 0px;
+  font-size: 7pt;
+  padding: 0px;
+  text-align: center;
+}
+
+.pi A:Hover {
+  background-color: transparent;
+}
+
+/* top inputtexts */
+.input {
+  height: 16px;
+  font: 7pt Verdana, sans-serif;
+  text-align: center;
+}
+
+/* message textarea */
+.msgtext {
+  font-size: 9pt;
+  color: #999;
+  background-image: url(lost_black.jpg);
+  background-repeat: repeat;
+  scrollbar-arrow-color: #666;
+  padding: 1px;
+}
+
+/* messages table */
+.msg {
+  padding: 2px;
+  font-size: 8pt;
+  color: #999;
+}
+
+.msg TD {
+  font-size: 8pt;
+}
+
+/* entry text */
+.eol {
+	line-height: 14pt;
+	background-color: #000;
+}
+
+/* entry id */
+.ei {
+  color: #666;
+  margin: 0;
+  padding: 0;
+  font-size: 7pt;
+  border: 0px;
+}
+.ei a {border: 0px;}
+.ei a:hover {border: 0px;}
+
+/* tabs */
+.tab {
+  padding-top: 2px;
+  border-bottom: 1px inset #1c1c1c;
+  font-size: 7pt;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tab DIV {
+  line-height: 12pt;
+  white-space: nowrap;
+  margin-left: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 0;
+  border: 1px outset #1c1c1c;
+  border-right: 1px outset #1c1c1c;
+  border-bottom: 0;
+  background-image: url(lost_but.jpg); 
+  background-repeat: repeat;
+  text-align: center;
+}
+
+.tab a {
+text-transform: uppercase; 
+border: 0px; 
+color: #777;
+}
+
+.tab A:Hover {
+  background-color: transparent;
+  text-transform: uppercase;
+  border: 0px;
+  color: #999;
+}
+
+/* selected tab */
+.tabsel {
+  border: 1px outset #1c1c1c;
+  line-height: 11pt;
+  white-space: nowrap;
+  font-size: 7pt;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: default;
+  border-bottom:0;
+  white-space: nowrap;
+  background-image: url(lost_butp.jpg); 
+  background-repeat: repeat;
+  background-color: transparent;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* tab contents */
+.tabin {
+  border: 1px outset #1c1c1c;
+  border-top: 0;
+  padding: 4px;
+  height: 245px;
+  font-size: 8pt;
+}
+
+/* vertical tab */
+.vtab {
+  padding-right: 2px;
+  border-left: 1px inset #1c1c1c;
+  font-size: 7pt;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.vtab DIV {
+  line-height: 12pt;
+  white-space: nowrap;
+  margin-top: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 2px;
+  padding-left: 0;
+  border: 1px outset #1c1c1c;
+  border-top: 1px outset #1c1c1c;
+  border-left: 0;
+  text-align: center;
+  background-image: url(lost_but.jpg); 
+  background-repeat: repeat-x;
+}
+
+.vtab a {
+  text-transform: uppercase; 
+  border: 0px;
+  color: #777; 
+  text-align: center;
+}
+  
+.vtab A:Hover {
+  background-color: transparent;
+  text-transform: uppercase;
+  border: 0px;
+  color: #999;
+  text-align: center;
+}
+
+/* vertical selected tab */
+.vtabsel {
+  border: 1px outset #1c1c1c;
+  line-height: 11pt;
+  white-space: nowrap;
+  font-size: 7pt;
+  padding-right: 2px;
+  padding-left: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: default;
+  border-left:0;
+  white-space: nowrap;
+  background-image: url(lost_butp.jpg); 
+  background-repeat: repeat-x;
+  background-color: transparent;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* vertical tab contents */
+.vtabin {
+  border: 1px outset #1c1c1c;
+  border-right: 0;
+  padding: 4px;
+  height: 245px;
+  font-size: 8pt;
+}
+
+/* hayvan ara */
+#aradiv {
+	COLOR: #fff
+}
+.araclass {
+	DISPLAY: block; LEFT: 212px; OVERFLOW: hidden; TEXT-TRANSFORM: lowercase; WIDTH: 21px; COLOR: #fff; POSITION: absolute; TOP: 70px
+}
+.aradetay {
+	BORDER-RIGHT: #9babb3 1px outset;
+	PADDING-RIGHT: 5px;
+	BORDER-TOP: #9babb3 1px outset;
+	PADDING-LEFT: 5px;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	PADDING-BOTTOM: 5px;
+	BORDER-LEFT: #9babb3 1px outset;
+	CURSOR: pointer;
+	COLOR: #888;
+	PADDING-TOP: 6px;
+	BORDER-BOTTOM: #9babb3 1px outset;
+	HEIGHT: 120px;
+	BACKGROUND-COLOR: Black;
+	TEXT-ALIGN: left;
+}
+#araasilform TD {
+	COLOR: #888
+}
+.araasilformcls {
+	BORDER-RIGHT: #9babb3 1px outset;
+	BORDER-TOP: #9babb3 1px outset;
+	FONT-SIZE: 9px;
+	BORDER-LEFT: 0px;
+	COLOR: #888;
+	BORDER-BOTTOM: #9babb3 1px outset;
+	BACKGROUND-COLOR: Black;
+}
+.arakututar {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-SIZE: 9px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.arakutukonu {
+	FONT-SIZE: 12px
+}
+#arabuton {
+	BORDER-RIGHT: #036 1px outset;
+	BORDER-TOP: #036 1px outset;
+	FONT-SIZE: 12px;
+	BORDER-LEFT: #036 1px outset;
+	COLOR: #888;
+	BORDER-BOTTOM: #036 1px outset;
+	FONT-FAMILY: Arial, Verdana, sans-serif;
+	BACKGROUND-COLOR: Black;
+}
+.adiv {
+	DISPLAY: block; LEFT: 215px; OVERFLOW: hidden; WIDTH: 18px; POSITION: absolute; TOP: 44px
+}
+
+.amain {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 4px; BORDER-TOP: #9babb3 1px outset; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; BORDER-LEFT: 0px; WIDTH: 100%; COLOR: #111; PADDING-TOP: 4px; BORDER-BOTTOM: 0px
+}
+
+TD.amain {
+  font-size: 8pt;
+}
+
+.aup {
+	BORDER-RIGHT: #9babb3 1px inset; HEIGHT: 18px
+}
+
+/* 4 8 15 16 23 42 */
+.amid {
+	BORDER-RIGHT: 0px;
+	PADDING-RIGHT: 4px;
+	BORDER-TOP: #9babb3 1px outset;
+	PADDING-LEFT: 4px;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 8pt;
+	PADDING-BOTTOM: 4px;
+	BORDER-LEFT: #9babb3 1px outset;
+	CURSOR: hand;
+	LINE-HEIGHT: normal;
+	PADDING-TOP: 4px;
+	BORDER-BOTTOM: #9babb3 1px outset;
+	FONT-STYLE: normal;
+	WRITING-MODE: tb-rl;
+	BACKGROUND-COLOR: #000;
+}
+
+.abot {
+	BORDER-RIGHT: #9babb3 2px outset; HEIGHT: 140px
+}
+
+/* default styles */
+body {
+ 	font: 9pt Lucida Sans Unicode;
+ 	background-color: #000;
+	background-image: url(lost_body.jpg);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+ 	color: #B9B9B9;
+	/* [/css/xf.css] */
+	scrollbar-face-color: #111;
+	scrollbar-highlight-color: #191919;
+	scrollbar-3dlight-color: #000;
+	scrollbar-darkshadow-color:#000;
+	scrollbar-shadow-color: #000;
+	scrollbar-arrow-color: #999;
+	scrollbar-track-color: #060709;
+}
+
+ul {
+	list-style-type: lower-roman;
+  	line-height: 12pt;
+}
+
+a {
+  color: #788493; /* <! */
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: transparent;
+  color: #bb7b7c;
+  border-bottom: 1px dashed #333;
+}
+
+select {
+background-color: #060709;
+color: #ccc;}
+
+input {
+background-color: #000;
+background-image: url(lost_inp.jpg);
+background-repeat: repeat-y;
+color: #999;
+border: 1px inset #494949; /* [/css/xf.css] */
+font-size: 7pt;
+}
+
+optgroup {
+  font: 7pt Verdana, sans-serif;
+
+}
+textarea {
+  font: 10pt "Trebuchet MS";
+  width:100%;
+  color: #609C2E;
+  background-image: url(lost_prom.jpg);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-color: #000;
+  border: 1px inset #222;
+  padding-top: 12px;
+  padding-left: 35px;
+  	scrollbar-face-color:#000;
+	scrollbar-highlight-color:#000;
+	scrollbar-3dlight-color:#000;
+	scrollbar-darkshadow-color:#000;
+	scrollbar-shadow-color:#000;
+	scrollbar-arrow-color:#426A20;
+	scrollbar-track-color:#000;
+}
+
+/* yolla [/css/diablo2.css] */
+#ssg div #b {
+	background-image: url(lost_exec.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+	background-color: transparent;
+	border: 0px;
+	color: transparent;
+	vertical-align: bottom;
+	xfloat: right;
+	width: 75px;
+    height: 25px;
+    font-size: 12px;
+    margin-top: 3px;
+	padding-top: 75px; /* <! */
+}
+
+/* gammaz textarea [/css/diablo2.css] */
+#rt {
+  font: 8pt Verdana;
+  width:100%;
+  color: #ccc;
+  background-image: url(lost_black.jpg);
+  background-color: #000;
+  border: 1px inset #222;
+  padding-top: 1px;
+  padding-left: 1px;
+  scrollbar-arrow-color: #666;
+  }
+
+/* mesaj gönder text area [/css/diablo2.css] */
+#allah {  
+  font: 8pt Verdana;
+  width:100%;
+  color: #ccc;
+  background-image: url(lost_black.jpg);
+  background-color: #000;
+  border: 1px inset #222;
+  padding-top: 1px;
+  padding-left: 1px;
+  scrollbar-arrow-color: #666;   
+}
+
+hr {
+  color: #0e1319;
+  border: 1px dashed transparent;
+}
+
+th {
+	font-size: 9pt;
+}
+
+td {
+	font-size: 9pt;
+	line-height: 12pt;
+	vertical-align: top;
+}
+
+p {
+  font-size: 9pt;
+  line-height: 14pt;
+  vertical-align: top;
+}
+
+img, form, table {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+fieldset {
+	margin: 0;
+	padding: 2;
+	border: 1px solid #31303C; /* [/css/xf.css]  */
+}
+
+.checkbox, .radio {
+	border: none;
+	background-color: transparent;
+} 
+
+/*
+	"see you in another life." 
+--------------------------------*/

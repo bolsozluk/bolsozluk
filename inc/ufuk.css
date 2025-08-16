@@ -1,0 +1,337 @@
+/*
+ * (c) 1999-2012 SourTimes Entertainment d? per
+ *     tum haklari michael jackson'a aittir
+ */
+
+/* panel leds */
+
+.pmsg {
+  background-color: #C0D0E5;
+}
+
+.pmsghi {
+  background-color: Lime;
+}
+
+.pbin {
+  background-color: #C0D0E5;
+}
+
+.pbinhi {
+  background-color: #f0f000;
+}
+
+.pevt {
+  background-color: #C0D0E5;
+}
+
+.pevthi {
+  background-color: #f0f000;
+}
+
+/* page picker */
+
+.piki {
+  visibility: hidden;
+  position: absolute;
+  font-size: 7pt;
+  width: 25px;
+  border: 1px outset;
+}
+
+/* entry page browser line */
+
+.pagi {
+  font-size: 8pt;
+  text-align: center;
+}
+
+/* ek$isozluk logo! */
+
+.logo {
+  background-image: url(ufuk.png);
+  background-repeat: no-repeat;
+}
+
+/* highlight color */
+
+.highlight
+{
+  background-color: #BCCDE2;
+}
+
+.copyright
+{
+  font-size: 8pt;
+  color: #5B6C7B;
+}
+
+
+/* topic title */
+.title {
+color: #1F324B;
+background-color: transparent;
+font-weight: bold;
+font-size: 12pt;
+font-family: verdana;
+border: none;
+}
+/* badilist */
+.au {
+  font-size: 8pt;
+  color: #1F324B;
+}
+
+/* buttons */
+.but {
+    border : 1px outset #B0C4DE;
+    background-color : #556575;
+    color : #F0FFF0;
+    cursor: hand;
+    font: 8pt Verdana;
+
+}
+/* buttons highlighted */
+#butOver {
+    background-color : #778899;
+    border : 1px outset #B0C4DE;
+    color : #F0FFF0;
+    cursor: hand;
+    font: 8pt verdana;
+}
+
+/* button link adjustments */
+.but A {
+  color: #F0FFF0;
+}
+
+.but A:Hover {
+  background-color: transparent;
+  color: #F0FFF0;
+}
+
+#butOver A {
+  color: #F0FFF0;
+}
+
+#butOver A:Hover {
+  background-color: transparent;
+  color: #F0FFF0;
+}
+
+/* entry buttons (derived from but) */
+.icon {
+  font: 80% Verdana, "sans-serif";
+}
+
+.msgtext {
+  font-size: 8pt;
+}
+
+.timer {
+  font-size: 7pt;
+  vertical-align: middle;
+}
+
+/* author link */
+.aul {
+  font-size: 8pt;
+}
+
+/* panel classes */
+.pi {
+  border: 1px inset;
+  font-size: 8pt;
+  padding: 1px;
+  text-align: center;
+}
+
+.pi A:Hover {
+  background-color: transparent;
+}
+
+/* top inputtexts */
+.input {
+  height:16px;
+}
+
+/* entry table */
+.e {
+  table-layout:fixed;
+  border-collapse:collapse;
+  margin: 0;
+  padding: 0;
+
+}
+
+.e TD {
+  line-height: 14pt;
+}
+
+
+/* alphabet chars */
+.alpha {
+  font: 7pt Verdana, sans-serif;
+}
+
+/* entry menu hidden */
+.emHidden {
+  visibility:hidden;
+}
+
+/* entry menu visible */
+.emVisible {
+  visibility:visible;
+}
+
+/* checkbox & radiobuttons */
+.cbrb {
+}
+
+/* entry id */
+.ei {
+  color: #4D5B68;
+  margin: 0;
+  padding: 0;
+  font-size: 8pt;
+}
+
+/* text input boxes (except TEXTAREA) */
+.tedit {
+  font: 8pt Verdana, sans-serif;
+  border: inset 1px;
+}
+
+/* regular tab */
+
+.tab {
+  padding-top:2px;
+  border-bottom: 2px inset;
+  font-size: 8pt;
+}
+
+.tab DIV {
+  
+width: 80%;
+  margin-left: 1px;
+  padding: 4px;
+  padding-top: 2px;
+  padding-bottom: 0;
+  border: 2px outset;
+  border-right: 1px outset;
+  border-bottom: 0;
+}
+
+.tab A:Hover {
+  background-color: transparent;
+}
+
+/* selected tab */
+
+.tabsel {
+  border: 2px outset;
+  font-size: 8pt;
+  padding: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: default;
+  border-bottom:0;
+}
+
+/* tab contents */
+
+.tabin {
+  border: 2px outset;
+  border-top: 0;
+  padding: 4px;
+  height: 300px;
+  font-size: 8pt;
+}
+
+/* hayvan ara tab */
+
+.adiv {
+  display:block;
+  position:absolute;
+  top:20px;
+  left:215px;
+  width:18px;
+  overflow:hidden
+}
+
+.amain {
+  background-color: #b0c4dd;
+  border:2px outset;
+  border-left:0;
+  padding:4px
+}
+
+.aup {
+  border-right:1px inset;
+  height:30px
+}
+
+.amid {
+  background-color:#556575;
+  border:2px outset #B0C4DE;
+  border-right:0;
+  padding:4px;
+  line-height:8pt;
+  font:bold 8pt;
+   
+  cursor:hand;
+  color: white;
+}
+
+.abot {
+  border-right:1px inset;
+  height:140px
+}
+
+/* global tag styles */
+
+BODY {
+    background-color : #B0C4DD;
+    font-family : Verdana;
+    font-size : 8pt;
+    color : Black;
+    scrollbar-base-color : #b0c4dd;
+}
+
+A {
+    color : #2E587C;
+    text-decoration : none;
+}
+
+A:Hover {
+    background-color : #b4cde5;
+    color : #191970;
+}
+
+
+TEXTAREA {
+  font-family: Verdana, sans-serif;
+  width: 90%;
+  border: 1px inset;
+  background-color: #D7E4F0;
+}
+
+HR {
+  color: #708090;
+  height: 1px;
+}
+
+TR {
+  vertical-align:top;
+}
+
+TD {
+  font-size: 8pt;
+  line-height: 12pt;
+  vertical-align: top;
+}
+.nav TD {
+  padding:2px;
+  height:16px;
+  margin:0;
+  vertical-align:middle;

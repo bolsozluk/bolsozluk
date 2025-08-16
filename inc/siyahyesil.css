@@ -1,0 +1,526 @@
+/* sozluk.css - komplike stylesheet
+ * el degmeden hazirlanmi$tir
+ */
+
+/* login box */
+.loginbox {
+  width: 220px;
+}
+
+/* login inputs */
+.lin {
+	width: 100%;
+}
+
+/* ampul abi */
+.ampul {
+	background-image: url(/img/ampul.gif);
+	background-repeat: no-repeat;
+	width:18px;
+	height:18px;
+	cursor: hand;
+}
+/* info section headers */
+.infosec {
+	color:#CCFF00;
+	background-color:#3B4D00;
+	border:1px solid #CCFF00;
+	cursor:pointer;
+	height:18px;
+	padding-top:0.5px;
+	padding-left:5px;
+}
+/* right panel */
+.panel {
+	width:120px;
+}
+/* arastir dropdown select */
+.asl
+{
+	width:109px;
+}
+/* ad box */
+.spot {
+  width: 120px;
+  float:right;
+}
+.spot TD {
+  font-size: 7pt;
+}
+
+/* badilist */
+#badi
+{
+  width: 120px;
+  padding: 2px;
+  font-size: 7pt;
+  overflow: hidden;
+  border: 1px solid #CCFF00;
+  background-color: #3B4D00;
+}
+#badi A:Hover {
+  background-color: #3B4D00;
+  color: #CCFF00;
+  text-decoration:underline;
+}
+/* inline search textbox */
+.aratext
+{
+  width:96px;
+}
+/* left frame background class */
+.bgleft {
+}
+/* top frame background class */
+.bgtop {
+	margin:0;
+	padding:0;
+}
+/* inline search marker */
+.marker
+{
+	background-color: yellow;
+	color: black;
+}
+/* pager buttons */
+.pbut {
+  font-size: 7pt;
+  width:16px;
+  height:16px;
+}
+/* top buttons */
+.nav TD {
+  padding:2px;
+  height:16px;
+  margin:0;
+  vertical-align:middle;
+}
+/* panel leds */
+.pmsg {
+  background-color: #3B4D00;
+  border: 1px solid #CCFF00;
+  border-right: 0;
+}
+.pmsg A:Hover {
+  text-decoration: underline;
+}
+.pmsghi {
+  background-color: #CCFF00;
+  color: #000000;
+  border: 1px solid #CCFF00;
+  border-right: 0;
+}
+.pmsghi A {
+  color: #000000;
+  font-weight: bold;
+}
+.pbin {
+  background-color: #3B4D00;
+  border: 1px solid #CCFF00;
+}
+.pbin A:Hover {
+  color: #CCFF00;
+  text-decoration: underline;
+}
+.pbinhi {
+  background-color: #CCFD00;
+  border: 1px solid #CCFF00;
+color: #000000;
+}
+.pbinhi A {
+color: #000000;
+  font-weight: bold;
+}
+.pevt {
+  background-color: #3B4D00;
+  border: 1px solid #CCFF00;
+  border-left: 0;
+}
+.pevt A:Hover {
+  color: #CCFF00;
+  text-decoration:underline;
+}
+.pevthi {
+  background-color: #CCFF00;
+  border: 1px solid #CCFF00;
+  border-left: 0; 
+}
+.pevthi A {
+  color: #3B4D00;
+  font-weight: bold;
+}
+
+/* page browser text */
+.pagi {
+  font-size: 7pt;
+  text-align: center;
+}
+/* page selector (select) */
+.pagis {
+  font-size: 6pt;
+}
+/* dpusozluk logo! */
+.logo {
+  background-image: url(yesil.png);
+  background-repeat: no-repeat;
+  width:132px;
+  height:45px;
+  cursor:hand;
+}
+/* highlight color */
+.highlight
+{
+  background-color: black; 
+  color: #759900;
+  border: 1px solid #87BA00;
+}
+/* copyright line */
+.copyright
+{
+  font-size: 7pt;
+  color: #87BA00;
+}
+/* topic title */
+.title {
+  font: bold 12pt Verdana, sans-serif;
+  background-color: transparent;
+  width: 100%;
+  color: #000080;
+  border: none;
+}
+/* buttons */
+.but {
+  font: 8pt Arial,sans-serif;
+  text-align: center;
+  white-space:nowrap;
+  cursor: default;
+  background-color: #3B4D00;
+  color: #CCFF00;
+  border: 1px solid #CCFF00;
+}
+/* button mouse over */
+#butOver {
+  background-color: #CCFF00;
+}
+/* button pressed */
+#butDown {
+	border: 1px solid;
+}
+/* button link adjustments */
+.but A {
+  color: #CCFF00;
+}
+.but A:Hover {
+  background-color: CCFF00;
+  color: black;
+}
+#butOver A {
+  color:#3B4D00;
+}
+#butOver A:Hover {
+  background-color: #CCFF00;
+  color: black;
+}
+/* entry buttons (derived from but) */
+.icon {
+  font-size: 7pt;
+}
+.timer {
+  font-size: 7pt;
+  vertical-align: middle;
+}
+/* entry author line */
+.aul {
+  font-size: 8pt;
+  line-height: 9pt;
+  text-align: right;
+}
+/* panel classes */
+.pi {
+  border: 1px solid;
+  font-size: 7pt;
+  padding: 0px;
+  text-align: center;
+}
+.pi A:Hover {
+  background-color: transparent;
+}
+/* top inputtexts */
+.input {
+  height:16px;
+  font: 7pt Verdana, sans-serif;
+}
+/* message textarea */
+.msgtext {
+  font-size: 8pt;
+}
+/* messages table */
+.msg {
+  padding: 2px;
+  font-size: 8pt;
+  color: #759900;
+}
+.msg TD {
+  font-size: 8pt;
+}
+/* entry text */
+.eol {
+	line-height: 14pt;
+}
+/* entry id */
+.ei {
+  color: #759900;
+  margin: 0;
+  padding: 0;
+  font-size: 7pt;
+}
+/* regular tab */
+.tab {
+  padding-top:2px;
+  border-bottom: 1px solid #87BA00;
+  font-size: 7pt;
+  white-space: nowrap;
+}
+.tab DIV {
+  line-height: 12pt;
+  white-space: nowrap;
+  margin-left: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 0;
+  border: 1px solid #87BA00;
+  border-right: 1px solid #87BA00;
+  border-bottom: 0;
+}
+.tab A:Hover {
+  background-color: transparent;
+  color: #CCFF00;
+  text-decoration:underline;
+}
+/* selected tab */
+.tabsel {
+  border: 1px solid #87BA00;
+  line-height: 11pt;
+  white-space: nowrap;
+  font-size: 7pt;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: default;
+  border-bottom:0;
+  white-space: nowrap;
+  color: #CCFF00;
+  font-weight: bold;
+}
+/* tab contents */
+.tabin {
+  border: 1px solid #87BA00;
+  border-top: 0;
+  padding: 4px;
+  height: 245px;
+  font-size: 8pt;
+}
+
+/* vertical tab */
+.vtab {
+  padding-right:2px;
+  border-left: 1px solid #87BA00;
+  font-size: 7pt;
+  white-space: nowrap;
+  cursor:pointer;
+}
+.vtab DIV {
+  line-height: 12pt;
+  white-space: nowrap;
+  margin-top: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 2px;
+  padding-left: 0;
+  border: 1px solid #87BA00;
+  border-top: 1px solid #87BA00;
+  border-left: 0;
+}
+.vtab A:Hover {
+  background-color: transparent;
+  color: #CCFF00;
+  text-decoration:underline;
+}
+
+/* vertical selected tab */
+.vtabsel {
+  border: 1px solid #87BA00;
+  line-height: 11pt;
+  white-space: nowrap;
+  font-size: 7pt;
+  padding-right: 2px;
+  padding-left: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: default;
+  border-left:0;
+  white-space: nowrap;
+  font-weight: bold;
+  color: #CCFF00;
+}
+/* vertical tab contents */
+.vtabin {
+  border: 1px solid #87BA00;
+  border-right: 0;
+  padding: 4px;
+  height: 245px;
+  font-size: 8pt;
+}
+
+
+/* hayvan ara */
+.adiv {
+  display:block;
+  position:fixed;
+  top:44px;
+  left:215px;
+  width:18px;
+  overflow:hidden
+}
+.amain {
+  background-color: black;
+  border:1px solid #87BA00;;
+  border-left:0;
+  width:100%;
+  padding:4px
+}
+TD.amain {
+  font-size: 8pt;
+}
+.aup {
+  border-right:1px solid #87BA00;
+  height:18px
+}
+.amid {
+  background-color:#000000;
+  border:1px solid #87BA00;
+  border-right:0;
+  padding:4px;
+  line-height:8pt;
+  font-weight:bold;
+  font-size:8pt;
+  writing-mode: tb-rl;
+  cursor:pointer;
+}
+.abot {
+  border-right:1px solid #87BA00;
+  height:140px
+}
+/* default styles */
+body {
+  font: 9pt Verdana, sans-serif;
+  background-color: #000000;
+  color: #759900;
+  scrollbar-face-color: #3B4D00;
+  scrollbar-arrow-color: #CCFF00;
+  scrollbar-track-color: #3B4D00;
+  scrollbar-shadow-color: #3B4D00;
+  scrollbar-highlight-color: #3B4D00;
+  scrollbar-3dlight-color: #CCFF00;
+  scrollbar-darkshadow-color: #CCFF00;
+}
+ul {
+  list-style-type: lower-roman;
+  line-height: 12pt;
+}
+a {
+  color : #CCFF00;
+  text-decoration:none;
+}
+a:hover {
+  background-color: #CCFF00;
+  color:#000000;
+}
+select, input, optgroup {
+  font: 8pt Verdana, sans-serif;
+  border: 1px solid #CCFF00;
+  background-color: #3B4D00;
+  color: #CCFF00;
+}
+textarea {
+  font: 9pt Verdana, sans-serif;
+  width:100%;
+  border: 1px solid #CCFF00;
+  background-color: #3B4D00;
+  color: #CCFF00
+}
+hr {
+  color: #87BA00;
+}
+th {
+	font-size: 9pt;
+}
+td {
+	font-size: 9pt;
+	line-height: 12pt;
+	vertical-align: top;
+	color: #759900;
+}
+p {
+  font-size: 9pt;
+  line-height: 14pt;
+  vertical-align: top;
+}
+img, form, table {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+dd {
+  margin: 0;
+  padding: 0;
+}
+fieldset {
+	margin: 0;
+	padding: 2;
+	border: 1px solid #87BA00;
+}
+.checkbox, .radio {
+	border: none;
+	background-color: transparent;
+} 
+/* yenihayvan ara */
+.araclass {
+
+	position:fixed;
+	left: 212px; 
+	top:70px;
+	width:21px;
+	overflow: hidden;
+}
+.aradetay {
+	background-color: #cccccc;
+	border: outset 1px;
+	font-weight:bold;
+	font-size:11px;
+	padding:5px;
+	padding-top:6px;
+	text-align:left;
+	height:120px;
+	cursor:pointer;
+	color: #333;
+	
+}
+.yazilar{
+	background-color: #cccccc;
+
+}
+.araasilformcls {
+	background-color: #cccccc;
+	border: outset 1px;
+	font-size:9px;
+	color:#000066;
+}
+.arakututar{
+	border: 0px;
+	font-size:9px; 
+}
+.arakutukonu{
+	font-size:12

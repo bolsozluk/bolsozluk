@@ -1,0 +1,319 @@
+d.loginbox {
+    WIDTH: 220px
+}
+.lin {
+    WIDTH: 100%
+}
+.url {
+    
+}
+.b {
+    
+}
+.ara {
+    
+}
+.gb {
+    
+}
+.ab {
+    
+}
+.ampul {
+    BACKGROUND-IMAGE: url(ampul.gif); WIDTH: 18px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 18px
+}
+.infosec {
+    BORDER-BOTTOM: 1px outset; BORDER-LEFT: 1px outset; BORDER-TOP: 1px outset; CURSOR: pointer; BORDER-RIGHT: 1px outset
+}
+.panel {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 120px; PADDING-RIGHT: 0px; FONT-SIZE: x-small; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.asl {
+    MARGIN: 0px; WIDTH: 100%
+}
+.spot {
+    WIDTH: 120px; FLOAT: right
+}
+.spot TD {
+    FONT-SIZE: 7pt
+}
+#badi {
+    BORDER-BOTTOM: 1px inset; BORDER-LEFT: 1px inset; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; WIDTH: 120px; PADDING-RIGHT: 2px; FONT-SIZE: 7pt; OVERFLOW: hidden; BORDER-TOP: 1px inset; BORDER-RIGHT: 1px inset; PADDING-TOP: 2px
+}
+.aratext {
+    WIDTH: 100%
+}
+.bgleft {
+    BACKGROUND-IMAGE: url(olmayansaçma.jpg); BACKGROUND-ATTACHMENT: fixed;
+    overflow-x: hidden;
+}
+.bgtop {
+    PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;
+    BACKGROUND-IMAGE: url(olmayansaçma.jpg); BACKGROUND-ATTACHMENT: fixed;
+    overflow: hidden;
+    background-color:#0079ba;
+}
+.marker {
+    BACKGROUND-COLOR: yellow; COLOR: black
+}
+.pbut {
+    WIDTH: 16px; HEIGHT: 16px; FONT-SIZE: 7pt
+}
+.nav TD {
+    PADDING-BOTTOM: 2px; MARGIN: 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; HEIGHT: 16px; VERTICAL-ALIGN: middle; CURSOR: pointer; PADDING-TOP: 2px
+}
+.pmsg {
+    BACKGROUND-COLOR: #7faf7f
+}
+.pmsghi {
+    BACKGROUND-COLOR: #00f000
+}
+.pbin {
+    BACKGROUND-COLOR: #afaf7f
+}
+.pbinhi {
+    BACKGROUND-COLOR: #f0f000
+}
+.pevt {
+    BACKGROUND-COLOR: #afaf7f
+}
+.pevthi {
+    BACKGROUND-COLOR: #f0f000
+}
+.pagi {
+    TEXT-ALIGN: center; FONT-SIZE: 7pt
+}
+.pagis {
+    FONT-SIZE: 6pt
+}
+.logo {
+  background-image: url(asut.png);
+  background-repeat: no-repeat;
+  width:192px;
+  height:43px;
+  cursor:default;
+}
+.highlight {
+    BACKGROUND-COLOR: #c0c0c0
+}
+.copyright {
+    COLOR: #909090; FONT-SIZE: 7pt
+}
+.title {
+    BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent; WIDTH: 100%; FONT: bold 12pt Verdana, sans-serif; COLOR: #000080; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+.but {
+    BORDER-BOTTOM: #a9a9a9 2px solid; TEXT-ALIGN: center; BORDER-LEFT: #a9a9a9 2px solid; BACKGROUND-COLOR: #0569af; FONT: 8pt Arial, sans-serif; WHITE-SPACE: nowrap; COLOR: white; BORDER-TOP: #a9a9a9 2px solid; CURSOR: default; BORDER-RIGHT: #a9a9a9 2px solid
+}
+#butOver {
+    BORDER-BOTTOM-COLOR: #0a3e62; BACKGROUND-COLOR: #08568d; BORDER-TOP-COLOR: #0a3e62; BORDER-RIGHT-COLOR: #0a3e62; BORDER-LEFT-COLOR: #0a3e62
+}
+#butDown {
+    BORDER-BOTTOM-COLOR: #a9a9a9; BORDER-TOP-COLOR: #a9a9a9; BORDER-RIGHT-COLOR: #a9a9a9; BORDER-LEFT-COLOR: #a9a9a9
+}
+.but A {
+    COLOR: white
+}
+.but A:hover {
+    BACKGROUND-COLOR: transparent; COLOR: white
+}
+#butOver A {
+    COLOR: white
+}
+#butOver A:hover {
+    BACKGROUND-COLOR: transparent; COLOR: white
+}
+.icon {
+    FONT-SIZE: 7pt
+}
+.timer {
+    FONT-SIZE: 7pt; VERTICAL-ALIGN: middle
+}
+.aul {
+    TEXT-ALIGN: right; LINE-HEIGHT: 9pt; FONT-SIZE: 8pt
+}
+.pi {
+    BORDER-BOTTOM: 1px inset; TEXT-ALIGN: center; BORDER-LEFT: 1px inset; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 7pt; BORDER-TOP: 1px inset; BORDER-RIGHT: 1px inset; PADDING-TOP: 0px
+}
+.pi A:hover {
+    BACKGROUND-COLOR: transparent
+}
+.input {
+    FONT: 7pt Verdana, sans-serif; HEIGHT: 12px
+}
+.msgtext {
+    FONT-SIZE: 8pt
+}
+.msg {
+    PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; COLOR: black; FONT-SIZE: 8pt; PADDING-TOP: 2px
+}
+.msg TD {
+    FONT-SIZE: 8pt
+}
+.eol {    
+    LINE-HEIGHT: 14pt
+}
+.ei {
+    PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; COLOR: #808080; FONT-SIZE: 7pt; PADDING-TOP: 0px
+}
+.tab {
+    BORDER-BOTTOM: 2px inset; WHITE-SPACE: nowrap; FONT-SIZE: 7pt; PADDING-TOP: 2px
+}
+.tab DIV {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 2px outset; PADDING-BOTTOM: 0px; LINE-HEIGHT: 12pt; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; MARGIN-LEFT: 1px; BORDER-TOP: 2px outset; BORDER-RIGHT: 1px outset; PADDING-TOP: 2px
+}
+.tab A:hover {
+    BACKGROUND-COLOR: transparent
+}
+.tabsel {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 2px outset; PADDING-BOTTOM: 2px; LINE-HEIGHT: 11pt; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; FONT-SIZE: 7pt; BORDER-TOP: 2px outset; CURSOR: default; BORDER-RIGHT: 2px outset; PADDING-TOP: 2px
+}
+.tabin {
+    BORDER-BOTTOM: 2px outset; BORDER-LEFT: 2px outset; PADDING-BOTTOM: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; HEIGHT: 245px; FONT-SIZE: 8pt; BORDER-TOP: 0px; BORDER-RIGHT: 2px outset; PADDING-TOP: 4px
+}
+.vtab {
+    BORDER-LEFT: 2px inset; PADDING-RIGHT: 2px; WHITE-SPACE: nowrap; FONT-SIZE: 7pt; CURSOR: pointer
+}
+.vtab DIV {
+    BORDER-BOTTOM: 2px outset; BORDER-LEFT: 0px; PADDING-BOTTOM: 4px; LINE-HEIGHT: 12pt; MARGIN-TOP: 1px; PADDING-LEFT: 0px; PADDING-RIGHT: 2px; WHITE-SPACE: nowrap; BORDER-TOP: 1px outset; BORDER-RIGHT: 2px outset; PADDING-TOP: 4px
+}
+.vtab A:hover {
+    BACKGROUND-COLOR: transparent
+}
+.vtabsel {
+    BORDER-BOTTOM: 2px outset; BORDER-LEFT: 0px; PADDING-BOTTOM: 4px; LINE-HEIGHT: 11pt; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; WHITE-SPACE: nowrap; FONT-SIZE: 7pt; BORDER-TOP: 2px outset; CURSOR: default; BORDER-RIGHT: 2px outset; PADDING-TOP: 4px
+}
+.vtabin {
+    BORDER-BOTTOM: 2px outset; BORDER-LEFT: 2px outset; PADDING-BOTTOM: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 10px; HEIGHT: 245px; FONT-SIZE: 8pt; BORDER-TOP: 2px outset; BORDER-RIGHT: 0px; PADDING-TOP: 4px
+}
+.arakututar {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; FONT-SIZE: 9px; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.adiv {
+    POSITION: absolute; WIDTH: 18px; DISPLAY: block; OVERFLOW: hidden; TOP: 44px; LEFT: 215px
+}
+.amain {
+    BORDER-BOTTOM: 1px outset; BORDER-LEFT: 0px; PADDING-BOTTOM: 4px; BACKGROUND-COLOR: #cccccc; PADDING-LEFT: 4px; WIDTH: 100%; PADDING-RIGHT: 4px; FONT-SIZE: 11px; BORDER-TOP: 1px outset; BORDER-RIGHT: 1px outset; PADDING-TOP: 4px
+}
+.arakutukonu {
+    FONT-SIZE: 12px
+}
+TD.amain {
+    BORDER-BOTTOM: #666666 1px outset; BORDER-LEFT: #666666 1px outset; BACKGROUND-COLOR: #127fb7; COLOR: #000066; FONT-SIZE: 9px; BORDER-TOP: #666666 1px outset; BORDER-RIGHT: #666666 1px outset
+}
+.aup {
+    HEIGHT: 18px; BORDER-RIGHT: 1px inset
+}
+.amid {
+    BORDER-BOTTOM: #a4a6b0 1px outset; TEXT-ALIGN: left; BORDER-LEFT: #a4a6b0 1px outset; PADDING-BOTTOM: 5px; LINE-HEIGHT: 10pt; BACKGROUND-COLOR: #cccccc; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; COLOR: #0e5b8b; FONT-SIZE: 11px; BORDER-TOP: #a4a6b0 1px outset; CURSOR: pointer; FONT-WEIGHT: bold; BORDER-RIGHT: #a4a6b0 0px; PADDING-TOP: 5px
+}
+.abot {
+    HEIGHT: 140px; BORDER-RIGHT: 1px inset
+}
+HTML {
+    OVERFLOW-Y: scroll
+}
+BODY {
+    background-repeat:no-repeat; background-position: center; background-attachment:fixed;BACKGROUND-COLOR: #dfdfdf; FONT: 10pt Verdana, sans-serif; COLOR: #333333
+}
+UL {
+    LINE-HEIGHT: 12pt; LIST-STYLE-TYPE: lower-roman
+}
+A {
+    COLOR: #0e5b8b; TEXT-DECORATION: none
+}
+A:hover {
+    BACKGROUND-COLOR: #c0c0c0
+}
+SELECT {
+    FONT: 8pt Verdana, sans-serif
+}
+INPUT {
+    FONT: 8pt Verdana, sans-serif
+}
+OPTGROUP {
+    FONT: 8pt Verdana, sans-serif
+}
+TEXTAREA {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; FONT: 9pt Verdana, sans-serif; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+HR {
+    COLOR: #c0c0c0
+}
+TH {
+    FONT-SIZE: 9pt
+}
+TD {
+    LINE-HEIGHT: 12pt; FONT-SIZE: 9pt; VERTICAL-ALIGN: top
+}
+P {
+    LINE-HEIGHT: 14pt; FONT-SIZE: 9pt; VERTICAL-ALIGN: top
+}
+IMG {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+FORM {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+TABLE {
+    BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+DD {
+    PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+    PADDING-BOTTOM: 2px; MARGIN: 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px
+}
+.checkbox {
+    BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+.radio {
+    BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+LI {
+    PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; MARGIN-LEFT: 14px; MARGIN-RIGHT: 4px; PADDING-TOP: 0px
+}
+.arti:hover {
+    BACKGROUND-COLOR: #00ff00
+}
+.eksi:hover {
+    BACKGROUND-COLOR: #ff6c6c
+}
+.enteresan:hover {
+    BACKGROUND-COLOR: #ffff00
+}
+#artiAjax {
+    BACKGROUND-COLOR: #00ff00
+}
+#eksiAjax {
+    BACKGROUND-COLOR: #ff6c6c
+}
+#enteresanAjax {
+    BACKGROUND-COLOR: #ffff00
+}
+#popup_container {
+    BORDER-BOTTOM: #999 5px solid; MIN-WIDTH: 300px; BORDER-LEFT: #999 5px solid; FONT-FAMILY: Arial, sans-serif; MAX-WIDTH: 600px; BACKGROUND: #fff; COLOR: #000; FONT-SIZE: 12px; BORDER-TOP: #999 5px solid; BORDER-RIGHT: #999 5px solid; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px
+}
+#popup_title {
+    BORDER-BOTTOM: #999 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #fff 1px solid; PADDING-BOTTOM: 0em; LINE-HEIGHT: 1.75em; MARGIN: 0em; PADDING-LEFT: 0em; PADDING-RIGHT: 0em; BACKGROUND: url(images/title.gif) #ccc repeat-x 50% top; COLOR: #666; FONT-SIZE: 14px; BORDER-TOP: #fff 1px solid; CURSOR: default; FONT-WEIGHT: bold; BORDER-RIGHT: #fff 1px solid; PADDING-TOP: 0em
+}
+#popup_content {
+    PADDING-BOTTOM: 1em; MARGIN: 0em; PADDING-LEFT: 1.75em; PADDING-RIGHT: 1.75em; BACKGROUND: url(images/info.gif) no-repeat 16px 16px; PADDING-TOP: 1em
+}
+.alert#popup_content {
+    BACKGROUND-IMAGE: url(images/info.gif)
+}
+.confirm#popup_content {
+    BACKGROUND-IMAGE: url(images/important.gif)
+}
+.prompt#popup_content {
+    BACKGROUND-IMAGE: url(images/help.gif); BORDER-BOTTOM: #123456 1px solid; BORDER-LEFT: #123456 1px solid; BORDER-TOP: #123456 1px solid; BORDER-RIGHT: #123456 1px solid
+}
+#popup_message {
+    PADDING-LEFT: 48px
+}
+#popup_panel {
+    TEXT-ALIGN: center; MARGIN: 1em 0em 0em 1em
+}
+#popup_prompt {
+    MARGIN: 0.5em 0em

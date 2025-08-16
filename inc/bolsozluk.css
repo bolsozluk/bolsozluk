@@ -1,0 +1,70 @@
+//** designed by soulforge&sons Inc. - (c) soulforge&sons theme-skin industries Corp. - japan**// 
+.ron {}
+.roff {color: #7B9EB9;}
+
+#badi {border:inset 1px #5C81A7;background-color:#212F38;background-image:url(absolut_badi.jpg);background-position:center center;background-attachment: fixed;background-repeat: no-repeat;}
+#pmsg,#pbin,#pevt {background-color: #1F222C}
+#pmsghi,#pevthi {background-color: #BCD6F7;background-image:url(blink.gif);}#pbinhi{background-color: #465C6D;}
+#pmsghi a,#pbinhi a,#pevthi a{color:#293036}
+input{background-color:#395E7B; border:1px inset #5C81A7; color: #BCD7F2}
+.pagi {FONT-SIZE: 7pt; text-align: center}
+.pagis {FONT-SIZE: 6pt}
+.logo {background-image: url(logo.jpg); BACKGROUND-REPEAT: no-repeat}
+.highlight {background-color: #273742;color:#BECBD4  }
+.copyright {FONT-SIZE: 7pt; color: #194262}
+.title {BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT: bold 12pt Verdana, sans-serif; BORDER-LEFT: medium none; WIDTH: 100%; color:#FFFFFF; BORDER-BOTTOM: medium none; background-color: transparent;}
+.au {FONT-SIZE: 7pt; color: #1F7AB6; TEXT-DECORATION: none}
+.but {text-decoration:none; BORDER-RIGHT: 1px outset #2A4A6B; BORDER-TOP: #B6D8F1 1px outset; FONT: 8pt Arial,sans-serif; BORDER-LEFT: #B6D8F1 1px outset; CURSOR: hand; color: #BCD7F2; BORDER-BOTTOM: #2A4A6B 1px outset; background-color: #395E7B}
+.but2 {text-decoration:none; BORDER-RIGHT: 1px outset #2A4A6B; BORDER-TOP: #B6D8F1 1px outset; FONT: 10pt Arial,sans-serif; BORDER-LEFT: #B6D8F1 1px outset; CURSOR: hand; color: #BCD7F2; BORDER-BOTTOM: #2A4A6B 1px outset; background-color: #395E7B}
+#butOver {BORDER-RIGHT: 1px inset #2A4968;text-decoration:none; BORDER-TOP: #2D76AB 1px inset; FONT: 8pt Arial,sans-serif; BORDER-LEFT: #2D76AB 1px inset; CURSOR: hand; color: #2F76AE; BORDER-BOTTOM: #1B436A 1px inset;  background-color: #3E5260}
+#butDown {BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset;background-color:#617C91}
+.but A {color: #BCD7F2;  text-decoration:none;}
+.but A:hover {color: #BCD7F2; background-color: transparent; text-decoration:none;}
+#butOver A {color: #BCD7F2;  text-decoration:none;}
+#butOver A:hover {color: #BCD7F2; background-color: transparent;  text-decoration:none;}
+.icon {FONT: 80% Verdana, sans-serif}
+.msgtext {FONT-SIZE: 8pt}
+.timer {FONT-SIZE: 7pt; vertical-align: middle}
+.aul {FONT-SIZE: 8pt; line-HEIGHT: 9pt; text-align: right}
+.pi {BORDER-RIGHT: 1px inset #5C81A7; PADDING-RIGHT: 1px; BORDER-TOP: 1px inset #5C81A7; PADDING-LEFT: 1px; FONT-SIZE: 8pt; PADDING-BOTTOM: 1px; BORDER-LEFT: 1px inset #5C81A7; PADDING-TOP: 1px; BORDER-BOTTOM: 1px inset #5C81A7; text-align: center}
+.pi a {color:#312F48;font-weight:bold;font-size:10px}.pi A:hover {background-color: transparent;color:#5C81A7}
+.input {FONT: 7pt Verdana; HEIGHT: 16px;color: #BCD7F2}
+.msg {color:#BECBD4;PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 2px; FONT-SIZE: 8pt; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; POSITION: relative; BORDER-COLLAPSE: collapse}
+.msg TD {FONT-SIZE: 8pt;}
+.spot {FLOAT: right; WIDTH: 100px;}
+.spot TR {vertical-align: top}
+.spot TD {FONT-SIZE: xx-small;}
+.e {TABLE-LAYOUT: fixed; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0px; BORDER-COLLAPSE: collapse}
+.e TD {line-HEIGHT: 14pt}
+.alpha {FONT: 8pt "Lucida Console",sans-serif}
+.emHidden {VISIBILITY: hidden}
+.emVisible {VISIBILITY: visible}
+.cbrb {background-color:transparent;border:0px}
+.ei {PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 7pt; PADDING-BOTTOM: 0px; MARGIN: 0px; color: #465C6D; PADDING-TOP: 0px}
+.tedit {FONT: 8pt Verdana, sans-serif}
+.tab {FONT-SIZE: 7pt; PADDING-TOP: 2px; BORDER-BOTTOM: 2px inset #B6D8F1;}
+.tab DIV {BORDER-RIGHT: 1px outset #365685; PADDING-RIGHT: 4px; BORDER-TOP: 2px outset #36587B; PADDING-LEFT: 4px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 1px; BORDER-LEFT: 2px outset #36587B; PADDING-TOP: 2px; BORDER-BOTTOM: 0px}
+.tab A:hover {background-color: transparent}
+.tabsel{BORDER-RIGHT: 2px inset #36587B; PADDING-RIGHT: 4px; BORDER-TOP: 2px outset #B6D8F1; PADDING-LEFT: 4px; FONT-SIZE: 7pt; PADDING-BOTTOM: 2px; BORDER-LEFT: 2px outset #B6D8F1; CURSOR: default; PADDING-TOP: 2px; BORDER-BOTTOM: 0px;font-weight:bold;}
+.tabin {BORDER-RIGHT: 1px inset #36587B; PADDING-RIGHT: 4px; BORDER-TOP: 0px;PADDING-LEFT: 4px; FONT-SIZE: 8pt; PADDING-BOTTOM: 4px; BORDER-LEFT: 2px outset #B6D8F1; PADDING-TOP: 4px; BORDER-BOTTOM: 1px inset #36587B; HEIGHT: 245px}
+.adiv  {DISPLAY: block; LEFT: 215px; OVERFLOW: hidden; WIDTH: 18px; POSITION: absolute; TOP: 44px}
+.amain {color:#8FB3C9 ;BORDER-RIGHT: 0px; PADDING-RIGHT: 4px; BORDER-TOP: 1px outset #5C96BA; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; BORDER-LEFT: 0px ; WIDTH: 100%; PADDING-TOP: 4px; BORDER-BOTTOM: 0px;background-color:#273742;background-image:url();background-attachment:fixed}
+.aup   {BORDER-RIGHT: 1px inset #36587B ; HEIGHT: 18px;}
+.amid  {BORDER-RIGHT: 0px; PADDING-RIGHT: 4px; BORDER-TOP: 1px outset #5C96BA; PADDING-LEFT: 4px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; PADDING-BOTTOM: 4px; BORDER-LEFT: 1px outset #5C96BA; CURSOR: hand; line-HEIGHT: normal; PADDING-TOP: 4px; BORDER-BOTTOM: 1px outset #8FB3C9; FONT-STYLE: normal; WRITING-MODE: tb-rl; background-color: #273742;font-style: normal;}
+.abot  {BORDER-RIGHT: 2px outset #87B2CC; HEIGHT: 140px}
+.marker{background-color:#5C81A7;color:#000000}
+BODY {FONT: 9pt Verdana, sans-serif; color: #BECBD4; background-color: #1F222C; SCROLLBAR-ARROW-color: #BDDDF6; SCROLLBAR-TRACK-color: #1F222C; SCROLLBAR-BASE-color: #36587B; background-position:left bottom;background-repeat:no-repeat;background-image:url(absolut_mbg.jpg);background-attachment:fixed}
+.bodyTopFrame{background-color: #1F222C;background-image:url();}
+.bodyLeftFrame{color:#BDD8EE; background-color: #1F222C; background-image:url(absolut_glass.jpg);background-position:center bottom;}
+.msg input {color: #BCD7F2}
+UL {line-HEIGHT: 12pt; LIST-STYLE-TYPE: lower-roman}
+A {color: #718C9F; TEXT-DECORATION: none}
+A:hover {TEXT-DECORATION: none; color: #9AB3C7;background-color:transparent}
+SELECT {FONT-FAMILY: Verdana, sans-serif; background-color:#36587B; color:#BECBD4;}
+TEXTAREA {WIDTH: 100%; FONT-FAMILY: Verdana, sans-serif; color:#04193B; background-image: url(absolut_textarea.jpg); border: 1px inset #5C81A7; background-color:#617C91;background-repeat: no-repeat;background-attachment: fixed;background-position: center center}
+HR {color: #BDDDF6}
+TR {vertical-align: top}
+P {line-HEIGHT: 14pt}
+TD {FONT-SIZE: 9pt; vertical-align: top; line-HEIGHT: 12pt; }
+DIV {WIDTH: 100%}.bodyLeftFrame legend{font-weight:bold}
+legend{color:#A4B3C2;font-weight:bold}label{color:#A4B3C2;font-size:11px}#ra,#rr,#ry,#rg,#cf,#cr{border:0px;background-color:transparent;}#b{width:87px;height:24px;margin:3 0;font-size:1px;color:#ffffff;background-image:url(absolut1.jpg);background-repeat:no-repeat;background-color:#1F222C;background-position:left center;}

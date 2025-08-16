@@ -1,0 +1,832 @@
+/* 
+rotten, mmx.
+
+"mistakes are the portals of discovery." — james joyce
+
+*/
+/* @font-face {
+ font-family: 'nixel';
+ src: url('eksilicious_n.ttf') format('truetype');
+ font-weight: normal; font-style: normal; line-height:normal;
+}*/
+/* statistics bar */
+.statbar {
+	text-align:right;
+	white-space:nowrap;
+}
+/* left frame lists */
+.index {
+	width:200px;
+	list-style-type: none;
+	margin: 0;
+	overflow:hidden;
+	padding: 0;
+	padding-left: 8px;
+	text-indent: -8px;
+}
+.index > li {
+	width: 100%;
+	margin: 0;
+}
+.index > li:before {
+	content: url(eksilicious_bllt.gif);
+
+}
+/* entry menu box */
+.entrymenu {
+	visibility:hidden;
+}
+/* share div */
+.shd {
+	width:119px;
+	padding-bottom: 2px;
+	display:none;
+	text-align:center;
+}
+/* share icons (f, tw, ff, etc) */
+.sharelink {
+	width:16px;
+	height:16px;
+	padding: 0;
+	margin: 0;
+	border:0;
+}
+/* login box */
+.loginbox {
+	width: 220px;
+	margin: 0px auto;
+}
+/* author badge */
+.badge {
+	display:inline-block;
+	border:1px outset;
+	padding:2px 5px 4px 5px;
+	margin: 2px;
+	text-align:center;
+	cursor: default;
+}
+/* author info pane */
+.infopane {
+	border: 1px solid;
+	margin: 5px;
+	overflow: hidden;
+}
+/* author info content inside infopane */
+.infocontent {
+	padding-left:3px;
+	padding-right:3px;
+	overflow:hidden;
+}
+/* infopane header left and right */
+.infopanehdr {
+	width: 100%;
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+	line-height: 2;
+}
+/* author info note text area */
+.infonote {
+	border-top:1px solid;
+	border-bottom:1px solid;
+	margin-bottom:5px;
+}
+/* author info query bar */
+.infoquerybar {
+	float :right;
+	margin-right:40px;
+	margin-top:80px;
+}
+/* history diff colors */
+ins {
+	background-color: #b1cc8e;
+	text-decoration: none;
+}
+del {
+	background-color: #c28181;
+}
+.blockdel {
+	background-color: #c28181;
+}
+.blockins {
+	background-color: #b1cc8e;
+}
+.blockedit {
+	background-color: transparent;
+}
+/* login inputs */
+.lin {
+	width: 100%;
+}
+/* http://url links */
+.url {
+	padding-right: 15px;
+	background: url(eksilicious_url.gif) no-repeat right top;
+}
+/* (bkz: ) links */
+.b {
+}
+/* (ara: ) links */
+.ara {
+}
+/* `gorunmez bkz` */
+.gb {
+}
+/* akilli bkz* */
+.ab {
+}
+/* ampul abi */
+.ampul {
+	/*list-style-image: url(eksilicious_hehe.gif);*/
+list-style-image: url(../img/ampul.png);
+	margin-left: 0px;
+
+}
+/* info section headers */
+.infosec {
+	border: 1px solid;
+	cursor: pointer;
+}
+/* right panel */
+.panel {
+	width: 160px;
+	padding: 0;
+	border: 0;
+	font-size: x-small;
+}
+/* arastir dropdown select */
+.asl {
+	width: 100%;
+	margin: 0;
+}
+/* ad box */
+.spot {
+	width: 120px;
+	float: right;
+}
+.spot TD {
+	font-size: 7pt;
+}
+/* badilist */
+#badi {
+	width: 120px;
+	padding: 2px;
+	font-size: 7pt;
+	overflow: hidden;
+	border: 1px inset;
+}
+/* inline search textbox */
+.aratext {
+	width: 100%;
+}
+/* left frame background class */
+.bgleft {
+	overflow-x: hidden;
+}
+/* top frame background class */
+.bgtop {
+	margin: 0;
+	padding: 0;
+	overflow: hidden !important;
+}
+/* inline search marker */
+.marker {
+	background-color: yellow;
+	color: black;
+}
+/* pager buttons */
+.pbut {
+	font-size: 7pt;
+	width: 16px;
+	height: 16px;
+}
+/* top buttons */
+.nav TD {
+	padding: 2px;
+	height: 16px;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+}
+/* panel classes */
+.pi {
+	border: 1px solid #c2c2c2;
+	font-family:Arial, sans-serif;
+	font-size: 9px;
+	font-weight:normal;
+	font-style:normal;
+	padding: 0px;
+	text-align: center;
+	overflow:hidden
+}
+.pi a:link, .pi a:visited {
+	background-color: transparent;
+	color:#494949;
+}
+.pi a:hover {
+	background-color: transparent;
+	color:#000;
+}
+.pi a:active {
+	background-color: transparent;
+	color:#000;
+}
+/* panel leds */
+.pmsg {
+	padding-left: 12px;
+	background:#cbcbcb url(eksilicious_msj_.gif) no-repeat left center;
+	border: 1px solid #9e9e9e;
+	background-color:#cbcbcb;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #ababab;
+	-moz-box-shadow: 0px 1px 4px #ababab;
+	box-shadow: 0px 1px 4px #ababab;
+	text-transform:uppercase;
+}
+.pmsghi {
+	padding-left: 12px;
+	background:#cbef0d url(eksilicious_msj.gif) no-repeat left center;
+	border: 1px solid #66cf01;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #66cf01;
+	-moz-box-shadow: 0px 1px 4px #66cf01;
+	box-shadow: 0px 1px 4px #66cf01;
+	text-transform:uppercase;
+}
+.pbin {
+	padding-left: 12px;
+	background:#cbcbcb url(eksilicious_cop_.gif) no-repeat left center;
+	background-color:#cbcbcb;
+	border: 1px solid #9e9e9e;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #ababab;
+	-moz-box-shadow: 0px 1px 4px #ababab;
+	box-shadow: 0px 1px 4px #ababab;
+	text-transform:uppercase;
+}
+.pbinhi {
+	padding-left: 12px;
+	background:#fff10d url(eksilicious_cop.gif) no-repeat left center;
+	border: 1px solid #cead00;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #cead00;
+	-moz-box-shadow: 0px 1px 4px #cead00;
+	box-shadow: 0px 1px 4px #cead00;
+	text-transform:uppercase;
+}
+.pevt {
+	padding-left: 12px;
+	background:#cbcbcb url(eksilicious_oly_.gif) no-repeat left center;
+	border: 1px solid #9e9e9e;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #ababab;
+	-moz-box-shadow: 0px 1px 4px #ababab;
+	box-shadow: 0px 1px 4px #ababab;
+	text-transform:uppercase;
+}
+.pevthi {
+	padding-left: 12px;
+	background:#fff10d url(eksilicious_oly.gif) no-repeat left center;
+	border: 1px solid #cead00;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #cead00;
+	-moz-box-shadow: 0px 1px 4px #cead00;
+	box-shadow: 0px 1px 4px #cead00;
+	text-transform:uppercase;
+}
+/* page browser text */
+.pagi {
+	font-size: x-small;
+	text-align: center;
+}
+.pagi select {
+	font-size: smaller;
+}
+.pagi a {
+	font-size: small;
+}
+/* ekþisözlük logo! */
+.logo {
+	background-image: url(sut.jpg);
+	background-repeat: no-repeat;
+	width: 233px;
+	height: 45px;
+	cursor: default;
+}
+/* highlight color */
+.highlight {
+	background:#ebebeb url(eksilicious_hlite.jpg) repeat-x;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+}
+/* copyright line */
+.copyright {
+	text-align:justify;
+	font-size: 9px;
+	color: #7e7e7e;
+}
+/* topic title */
+.title {
+	font-family: "lucida grande", Verdana, sans-serif;
+	font-size:14px;
+	text-shadow: 1px 1px 1px #e3e3e3;
+	filter: dropshadow(color=#e3e3e3, offx=1, offy=1);
+	background-color: transparent;
+	width: 100%;
+	color: #000 !important;
+	border: none;
+	white-space: nowrap;
+}
+/* buttons */
+.but {
+	font: 8pt Arial, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	cursor: default;
+	background-color:white;
+	background-image:url(eksilicious_but1.jpg);
+	background-repeat:repeat-x;
+	border: 1px solid #bababa;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+	color:#374555;
+}
+/* small buttons under "araþtýr" bar */
+.minibut {
+	width: 24px;
+	margin: 1px;
+	display: inline-block;
+}
+/* button mouse over */
+#butOver {
+	background-color: #667494;
+	background-image:url(eksilicious_but2.jpg);
+	background-repeat:repeat-x;
+}
+/* button pressed */
+#butDown {
+	background-image:url(eksilicious_but3.jpg);
+	border:1px solid #556b83;
+	background-repeat:repeat-x;
+}
+/* button link adjustments */
+.but A {
+	color: #374555;
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+}
+.but A:Hover {
+	background-color: transparent;
+	color: #374555;
+}
+#butOver A {
+	color: #374555;
+}
+#butOver A:Hover {
+	background-color: transparent;
+	color: #374555;
+}
+#butDown A {
+	color: #fff;
+}
+#butDown A:Hover {
+	background-color: transparent;
+	color: #fff;
+}
+/* entry buttons (derived from but) */
+.icon {
+	font-size: 7pt;
+}
+.timer {
+	font-size: 7pt;
+	vertical-align: middle;
+}
+/* entry author line */
+.aul {
+	font-size: 8pt;
+	line-height: 9pt;
+	text-align: right;
+}
+/* top inputtexts */
+.input {
+	height: 12px;
+	font: 7pt Verdana, sans-serif;
+}
+/* message textarea */
+.msgtext {
+	font-size: 11px;
+}
+/* messages table */
+.msg {
+	padding: 2px;
+	font-size: 8pt;
+	color: black;
+}
+.msg TD {
+	font-size: 8pt;
+}
+/* entry text */
+.eol {
+	line-height: 14pt;
+}
+/* entry id */
+.ei {
+	color: #808080;
+	margin: 0;
+	padding: 0;
+	font-size: 7pt;
+}
+/* regular tab */
+.tab {
+	padding: 0px 0px 2px 0px;
+	font-size: 7pt;
+	white-space: nowrap;
+}
+.tab DIV {
+	line-height: 12pt;
+	white-space: nowrap;
+	margin-left: 1px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 0;
+	border-bottom: 0;
+}
+.tab A:Hover {
+	background-color: transparent;
+}
+/* selected tab */
+.tabsel {
+	line-height: 11pt;
+	white-space: nowrap;
+	font-size: 7pt;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	cursor: default;
+	border-bottom: 0;
+	white-space: nowrap;
+}
+/* tab contents */
+.tabin {
+	border-top: 0;
+	padding: 4px;
+	height: 245px;
+	font-size: 8pt;
+}
+/* vertical tab */
+.vtab {
+	padding-right: 2px;
+	font-size: 9px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vtab DIV {
+	background:#d1d1d1 url(eksilicious_td.jpg) repeat-y;
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topright:8px;
+	-webkit-border-top-right-radius:8px;
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomright:8px;
+	-webkit-border-bottom-right-radius:8px;
+	-webkit-box-shadow: 0px 1px 2px #787878;
+	-moz-box-shadow: 0px 1px 2px #787878;
+	box-shadow: 0px 1px 2x #787878;
+	border: 1px solid #787878;
+	border-left:0;
+	line-height: 12pt;
+	white-space: nowrap;
+	margin-top: 0;
+	padding: 4px 2px 4px 3px;
+}
+.vtab A:Hover {
+	background-color: transparent;
+}
+/* vertical selected tab */
+.vtabsel {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topright:8px;
+	-webkit-border-top-right-radius:8px;
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomright:8px;
+	-webkit-border-bottom-right-radius:8px;
+	-webkit-box-shadow: 2px 1px 2px #787878;
+	-moz-box-shadow: 2px 1px 2px #787878;
+	box-shadow: 2px 1px 2x #787878;
+	border: 1px solid #787878;
+	border-left:0;
+	background-color:#ebebeb;
+	line-height: 12pt;
+	white-space: nowrap;
+	font-size: 9px;
+	padding: 4px 2px 4px 5px;
+	cursor: default;
+	white-space: nowrap;
+}
+/* vertical tab contents */
+.vtabin {
+	background-color:#ebebeb;
+	background-image:url(eksilicious_ccbg.jpg);
+	background-repeat:repeat-x;
+	background-attachment:fixed;
+	padding: 6px 12px 6px 6px;
+	-moz-border-radius-topleft:8px;
+	-webkit-border-top-left-radius:8px;
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-bottomleft:8px;
+	-webkit-border-bottom-left-radius:8px;
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-webkit-box-shadow: 1px 1px 6px #787878;
+	-moz-box-shadow: 1px 1px 6px #787878;
+	box-shadow: 1px 1px 6px #787878;
+	border: 1px solid #787878;
+	border-right:0;
+	height: 245px; /* min */
+	font-size: 11px;
+}
+td vtabin {border-right:0px}
+/* hayvan ara */
+.adiv {
+	display: block;
+	position: absolute;
+	top: 44px;
+	left: 213px;
+	width: 15px;
+	overflow: hidden;
+}
+.amain {
+
+	background:#FFF url(eksilicious_habg.jpg) repeat-x;
+	border:1px solid #9e9e9e;
+	padding: 4px;
+}
+TD.amain {
+	font-size: 8pt;
+}
+.aup {
+	height: 18px;
+}
+.amid {
+	-moz-border-radius-topleft:8px;
+	-webkit-border-top-left-radius:8px;
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-bottomleft:8px;
+	-webkit-border-bottom-left-radius:8px;
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	background:#dedede url(eksilicious_hnd.jpg) repeat-y;
+	border:1px solid #9e9e9e;
+	border-right:0;
+	padding: 10px 5px;
+	line-height: 8pt;
+	font-weight: bold;
+	font-size: 8pt;
+	cursor: pointer;
+	text-align: center;
+}
+.abot {
+	height: 140px;
+}
+.link:hover {
+	cursor: pointer;
+}
+.csseditbox {
+	width: 100%;
+	font-family: Consolas, Monospace;
+}
+/* default styles */
+body {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	background-color: #d1d1d1;
+        /*background-color:#b3b3b3;*/
+	background-image:url(eksilicious_bg.jpg);
+	background-repeat:repeat-x;
+	background-attachment:fixed;
+	color: black;
+	height: 100%;
+}
+iframe {
+	border: none;
+}
+ul {
+	line-height: 12pt;
+}
+a {
+	color: #212673;
+	text-decoration: none;
+}
+a:hover {
+	background-color: #ebebeb;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+select, optgroup {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+}
+input {
+	border: 1px solid #bababa;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+	filter: alpha(opacity=100);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity:1;
+}
+input:focus {
+	border: 1px solid #bababa;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+	filter: alpha(opacity=100);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity:1;
+}
+textarea {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	width: 99%;
+	padding: 0px 0px 0px 5px;
+	margin: 0;
+	border: 1px solid #bababa;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+}
+#b {
+	filter: alpha(opacity=100);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity:1;
+	padding-left: 15px;
+	background: url(eksilicious_gndr.gif) no-repeat left top;
+	background-color:#FFF
+}
+#b2 {
+	filter: alpha(opacity=100);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity:1;
+	padding-left: 15px;
+	background: url(eksilicious_knr.gif) no-repeat left top;
+	background-color:#FFF
+}
+td #b {
+}
+#msg {
+}
+#ssg {
+	color: #000;
+}
+.vtabin #ssg {
+	background-image: none;
+	color: #000;
+	padding-top: 0px;
+}
+#t {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	width: 187px !important;
+	height: 18px !important;
+	border: 1px solid #bababa;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+	filter: alpha(opacity=40);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+	-moz-opacity: 0.4;
+	opacity:0.4;
+	background: url(eksilicious_b.gif) no-repeat 0px 0px;
+	padding:0px 0px 0px 18px;
+}
+#t:focus {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	width: 187px !important;
+	height: 18px !important;
+	border: 1px solid #bababa;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+	filter: alpha(opacity=100);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity:1;
+	background: #fff url(eksilicious_s.gif) no-repeat 3px 2px;
+	padding:0px 0px 0px 18px;
+}
+#d {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	padding: 2px 0px 2px 5px;
+	height: 200px !important;
+background-color:#ebebeb;
+}
+#to {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	filter: alpha(opacity=40);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+	-moz-opacity: 0.4;
+	opacity:0.4;
+	width: 99%;
+	padding: 2px 0px 2px 5px;
+	border: 1px solid #bababa;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+}
+#to:focus {
+	font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	filter: alpha(opacity=100);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity:1;
+	padding: 2px 0px 2px 5px;
+	border: 1px solid #bababa;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 1px 4px #919191;
+	-moz-box-shadow: 0px 1px 4px #919191;
+	box-shadow: 0px 1px 4px #919191;
+	padding-left: 18px;
+	background: #fff url(eksilicious_to.png) no-repeat left center;
+}
+.panel table td .but {
+}
+hr {
+	color: black;
+	height: 1px;
+}
+th {
+	font-size: 9pt;
+}
+td {
+	font-size: 9pt;
+	line-height: 12pt;
+	vertical-align: top;
+}
+p {
+	font-size: 9pt;
+	line-height: 14pt;
+	vertical-align: top;
+}
+img, form, table {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+dd {
+	margin: 0;
+	padding: 0;
+}
+fieldset {
+	margin: 0;
+	padding: 2px;
+}
+.checkbox, .radio {
+	border: none;
+	background-color: transparent;
+}
+li {
+	margin-left: 14px;
+	margin-right: 4px;
+	padding: 0;
+}

@@ -1,0 +1,540 @@
+/* sozluk.css - komplike stylesheet
+ * el degmeden hazirlanmi$tir
+ */
+
+/* login box */
+.loginbox {
+  width: 220px;
+}
+
+/* login inputs */
+.lin {
+	width: 100%;
+}
+
+/* ampul abi */
+.ampul {
+	background-image: url('/img/ampul.gif');
+	background-repeat: no-repeat;
+	width:18px;
+	height:18px;
+	cursor: hand
+}
+bgleft td {
+color : black;
+}
+/* info section headers */
+.infosec {
+	border:1px outset;
+	cursor:pointer;
+}
+/* right panel */
+.panel {
+  border: 2px outset;
+  font-size: 8pt;
+  padding: 1px;
+  text-align: center;
+  background-color : #ffffff;
+}
+/* arastir dropdown select */
+.asl
+{
+	width:109px;
+	font : 11px verdana;
+}
+/* ad box */
+.spot {
+  width: 120px;
+  float:right;
+}
+.spot TD {
+  font-size: 7pt;
+}
+
+/* badilist */
+#badi
+{
+  width: 120px;
+  padding: 2px;
+  font-size: 7pt;
+  overflow: hidden;
+  border: 1px inset;
+  background-image : url("/inc/kfpbadi.jpg");
+  background-color : #efefef;
+  }
+/* inline search textbox */
+.aratext
+{
+  width:96px;
+}
+/* top frame background class */
+.bgtop {
+	background-image: url(kfptopbg.gif);
+	background-attachment : fixed;
+}
+/* inline search marker */
+.marker
+{
+	background-color: white;
+	color: black;
+}
+/* pager buttons */
+.pbut {
+  font-size: 7pt;
+  width:16px;
+  height:16px;
+  border : 0px;
+  background-color : transparent;
+  text-align : center;
+}
+
+/* panel leds */
+.pmsg, .pbin, .pevt {
+  border : 0px;
+  background-color: transparent;
+  width : 30px;
+text-align : center;
+}
+.pmsghi, .pbinhi, .pevthi {
+  border : 0px;
+  background-color: #c2d6c2;
+  width : 30px;
+}
+
+/* bin page adjustement */
+.bin {
+border : 2px outset;
+}
+/* page browser text */
+.pagi {
+  font-size: 11px;
+  color : black;
+  text-align: center;
+}
+/* page selector (select) */
+.pagis {
+  font-size: 6pt;
+}
+/* ek$isozluk logo! */
+.logo {
+  background-image:  url('kfplogo.gif');
+  background-repeat: no-repeat;
+  width:250px;
+  height:50px;
+  cursor:hand
+}
+/* highlight color */
+.highlight
+{
+  padding : 3px;
+  border : 2px outset;
+  background-color: #EFEFEF;
+}
+/* copyright line */
+.copyright
+{
+  font-size: 7pt;
+  color: #909090;
+}
+/* topic title */
+.title {
+  font: bold 14px arial, sans-serif;
+  background-color: transparent;
+  padding-left : 2px;
+  width: 100%;
+  color: #000000;
+  border: none;
+  Filter: Shadow(Color=#FFFFD7, Direction=225);
+}
+/* buttons *//* top buttons */
+.nav TD {
+  padding-top:2px;
+  margin:0px;
+  vertical-align:middle;
+}
+.but {
+  font: 11px tahoma;
+  text-align:left;
+  white-space:nowrap;
+  cursor: default;
+  background-color: transparent;
+  color:#000000;  
+  border:1px solid #D4D0C8;
+  text-transform: capitalize;
+}
+/* button mouse over */
+#butOver {
+  background-color: #b6bdd2;
+  border : 1px solid #0a246a;
+cursor : pointer;
+}
+/* button pressed */
+#butDown {
+	border: 1px solid #666666;
+}
+/* button link adjustments */
+.but A {
+  color:#000000;
+}
+.but A:Hover {
+  background-color: transparent;
+  color:black;
+}
+#butOver A {
+  color:#666666;
+}
+#butOver A:Hover {
+  background-color: transparent;
+  color: black;
+}
+/* entry buttons (derived from but) */
+.icon {
+  font-size: 7pt;
+
+}
+.timer {
+  border: 2px outset;
+  font-size: 7pt;
+  padding-right : 4px;
+  vertical-align: middle;
+  height : 25px;
+}
+/* entry author line */
+.aul {
+  font-size: 8pt;
+  line-height: 9pt;
+  text-align: right;
+}
+/* panel classes */
+.pi {
+  border: 1px inset;
+  font-size: 7pt;
+  padding: 0px;
+  text-align: center;
+  vertical-align : center;
+}
+.pi A:Hover {
+  background-color: transparent;
+}
+/* top inputtexts */
+.input {
+  height:16px;
+  font: 7pt arial, sans-serif;
+}
+/* message textarea */
+.msgtext {
+  font-size: 10pt;
+}
+/* messages table */
+.msg {
+  padding: 2px;
+  font-size: 10pt;
+  color: black;
+}
+.msg TABLE {
+padding-top:100px;
+}
+.msg TD {
+
+ font-size:12px; 
+}
+/* entry text */
+.eol {
+	line-height: 16pt;
+	padding-right : 15px;
+}
+/* entry id */
+.ei {
+  color: #808080;
+  margin: 0;
+  padding: 0;
+  font-size: 7pt;
+}
+/* regular tab */
+.tab {
+  padding-top:2px;
+  border-bottom: 2px inset;
+  font-size: 7pt;
+  white-space: nowrap;
+  color : black;
+}
+.tab DIV {
+  border-left:2px outset; 
+  border-top:2px outset; 
+  line-height: 12pt;
+  white-space: nowrap;
+  color : white;
+  margin-top: 1px;
+  margin-left: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-right: 1px outset;
+  border-bottom: 1px solid #000000;
+}
+.tab A:Hover {
+  background-color: transparent;
+}
+/* selected tab */
+.tabsel {
+  border-left:2px outset; 
+  border-right:2px outset; 
+  border-top:2px outset; 
+  line-height: 11pt;
+  white-space: nowrap;
+  font-size: 7pt;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: hand;
+  border-bottom:0px none;
+  white-space: nowrap;
+}
+/* tab contents */
+.tabin {
+  border-left:2px outset;
+   border-right:2px outset; 
+   border-bottom:2px outset; 
+   border-top:0px none; 
+   padding:4px; 
+   height: 245px;
+  font-size: 8pt;
+  
+}
+
+/* vertical tab */
+.vtab {
+background-color : #FFFFFF;
+  border:1px outset; 
+  border-left : 0px;
+  padding-right:2px;
+  border-left: 0px inset;
+  font-size: 7pt;
+  white-space: nowrap;
+  cursor:pointer;
+}
+.vtab DIV {
+text-align : right;
+background-color : #EFEFEF;
+  border-right:1px outset; 
+  border-left:1px outset; 
+  border-bottom:1px outset; 
+  line-height: 12pt;
+  white-space: nowrap;
+  margin-top: 1px;
+  padding : 4px;
+}
+.vtab A:Hover {
+  background-color: transparent;
+}
+/* vertical selected tab */
+.vtabsel {
+text-align : left;
+  border-left:2px outset; 
+  line-height: 11pt;
+  white-space: nowrap;
+  font-size: 7pt;
+  padding-right: 2px;
+  padding-left: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: default;
+  white-space: nowrap
+}
+/* vertical tab contents */
+.vtabin {
+background-color : #FFFFFF;
+  border:1px outset; 
+  border-right : 0px;
+  padding:4px; 
+  height: 245px;
+  font-size: 8pt;
+}
+
+
+/* hayvan ara */
+.adiv {
+  display:block;
+  position:absolute;
+  top:44px;
+  left:215px;
+  width:18px;
+  overflow:hidden
+}
+.amain {
+  border-right:1px outset; 
+  border-top:1px outset; 
+  border-bottom:1px outset; 
+  background-color: #dbd8d1;
+  border-left:0px none;
+  width:100%;
+  padding:4px
+}
+TD.amain {
+  font-size: 8pt;
+}
+.aup {
+  border-right:1px inset;
+  height:18px
+}
+.amid {
+  background-color: transparent;
+  font-weight: lighter;
+  font-family: verdana;
+  color: black;
+  font-size:0px;
+  border-right:0;
+  padding:12px;
+  line-height:8pt;
+  background-image: url(kfpara.gif);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 150px;
+  width:24px;
+}
+.abot {
+font : 10px verdana;
+  height:120px
+}
+/* default styles */
+.bgleft {
+	top-margin : 0px;
+	background-image : url(kfpsolbg.gif);
+	background-attachment : fixed;
+	background-postion : top;
+	background-color: #d0d4cc;
+	padding-left : 20px;
+	padding-bottom : 30px;
+}
+.bgleft a {
+color : black;
+font : 12px arial;
+}
+.bgleft a:hover {
+color : red;
+background-color : transparent;
+}
+body {
+  background-image : url("/inc/kfpbg.gif");
+  background-attachment : fixed;
+  background-postion : top left;
+  background-repeat : no-repeat;
+  background-color: #FFFFFF;
+  color: #000000; 
+  font-style:normal; 
+  font-variant:normal; 
+  font-weight:normal; 
+  font-size:15px; 
+  font-family:arial, sans-serif
+  scrollbar-base-color : #DBD8D1;
+  scrollbar-3d-light-color : #DBD8D1;
+  scrollbar-arrow-color : #DBD8D1;
+  scrollbar-dark-shadow-color : #DBD8D1;
+  scrollbar-face-color : #FFFFFF;
+  scrollbar-highlight-color : #FFFFFF;
+  scrollbar-shadow-color : #DBD8D1;
+topmargin : 10px;
+}
+ul {
+	list-style-type: lower-roman;
+  line-height: 12pt;
+}
+a {
+  color : #0101A3;
+  text-decoration: none;
+}
+a:hover {
+  color : #868DA5;
+  background-color : transparent;
+}
+select, input, optgroup {
+  font: 8pt arial, sans-serif;
+}
+textarea {
+
+  background-image : url("/inc/kfptext.gif");
+  background-attachment : fixed;
+  background-postion : top left;
+  background-repeat : no-repeat;
+border : 1px solid #999999;
+  font: bold 9pt arial, sans-serif;
+
+}
+hr {
+  color: #000000;
+  height : 1px;
+}
+li {
+  font-size:12px; 
+  }
+th {
+	font-size: 12px;
+}
+td {
+
+	font-size: 12px;
+	line-height: 12pt;
+	vertical-align: top;
+}
+p {
+  font-size:12px; 
+  line-height: 14pt;
+  vertical-align: top;
+}
+img, form, table {
+  padding: 0;
+  margin: 0;
+  border: 0px none;
+}
+dd {
+  margin: 0;
+  padding: 0;
+}
+fieldset {
+	margin: 0;
+	padding: 2;
+	border : 2px outset;
+}
+.checkbox, .radio {
+	border: none;
+	background-color: transparent;
+} 
+#aradiv {
+
+	COLOR: #d0d4cc
+}
+.araclass {
+
+	DISPLAY: block; LEFT: 212px; OVERFLOW: hidden; TEXT-TRANSFORM: lowercase; WIDTH: 21px; COLOR: #fff; POSITION: absolute; TOP: 70px
+}
+.aradetay {
+background-image: url(kfpara.gif);
+
+	BORDER-RIGHT: #9babb3 1px outset; PADDING-RIGHT: 5px; BORDER-TOP: #9babb3 1px outset; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 0px; PADDING-BOTTOM: 5px; BORDER-LEFT: #9babb3 1px outset; CURSOR: pointer; COLOR: transparent; PADDING-TOP: 6px; BORDER-BOTTOM: #9babb3 1px outset; HEIGHT: 120px; BACKGROUND-COLOR: #0C748F; TEXT-ALIGN: left
+}
+#araasilform TD {
+
+	COLOR: #fff
+}
+.araasilformcls {
+
+	BORDER-RIGHT: #9babb3 1px outset; BORDER-TOP: #9babb3 1px outset; FONT-SIZE: 9px; BORDER-LEFT: 0px; COLOR: #fff; BORDER-BOTTOM: #9babb3 1px outset; BACKGROUND-COLOR: #d0d4cc
+}
+.arakututar {
+
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-SIZE: 9px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.arakutukonu {
+
+	FONT-SIZE: 12px
+}
+#arabuton {
+background-image: url(kfpara.gif);
+	BORDER-RIGHT: #036 1px outset; BORDER-TOP: #036 1px outset; FONT-SIZE: 12px; BORDER-LEFT: #036 1px outset; COLOR: #fff; BORDER-BOTTOM: #036 1px outset; FONT-FAMILY: Arial, Verdana, sans-serif; BACKGROUND-COLOR: #d0d4cc
+}
+
+.nav TD {
+  padding:2px;
+  height:16px;
+  margin:0;
+  vertical-align:middle;

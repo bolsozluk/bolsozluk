@@ -1,0 +1,805 @@
+﻿----------yapilacaklar-----------
+-sozluk ici gelismis arama (surec: kodlama bekleniyor)
+-profillerde daha fazla kisisel bilgi, soundcloud, twitter, facebook detayi ve detayli yazar arama (surec: oneriler toplaniyor)
+-baslikta yazar ara (surec: kodlama tamamlandi, gelistirilecek)
+-basliklardaki noktalama isareti kisitlari ile ilgili aksakliklar (surec: calisma suruyor)
+-sozluk kodlarinin duzenlenerek public edilip github'a yuklenerek opensource gelisime acilmasi (surec: kismen calisiliyor)
+
+----------guncel kullanici talepleri-----------
+-gibicibicis; icerige iliskin metatag iyilestirmeleri.
+-gibicibicis; sarki basliklarinda info iceriklerine sag bolgede alan tasarimi.
+-venom, giz gvng; sarki sozleri vs. spoiler gizleme butonu.
+-gibicibicis; detayli arama sorgulari.
+-650 gayme maas; silik yazarlarin oylanmasi problemi.
+-anonim; compilation parcalari sozluge/yazar profillerine gomulsun.
+-anonim; yazar engelleme ozelligi.
+-petroll; guncel parcalar eklentisi.
+-gibicibicis; ukte.
+-moltre,3ekim2016; anlam ayrimi ozelligi.
+-booyaka; badi butonu.
+-kobaysos; noktalama isaretlerinin baslikta kullanimi problemi.
+-sulh981; @li entryler yerine yorum ozelligi getirilmesi.
+-mertd; embed sistemlerinin ui/ux odakli gelistirilmesi.
+
+----------vazgecilenler - terkedilenler----------
+-bolshit: anket, liste, ve sozluk icerigini gorsel materyal destekli editoryal suzgecten geciren bir portal projesi;
+19 mayis 2017'de yayin hayatina baslayip, kasim 2017'de kapatildi.
+-graffiti portali
+-kanal, hashtag sistemi
+-sozluk ici sag frame
+-sozluk ici soru sekmesi
+-bol duyuru
+-bol caps
+-bol dergi
+-nativespot, facebook ve adwords uzerinden sponsorlu gonderi/reklam verilmesi
+
+----------yapilanlar----------
+agustos 2025:
+-otomatik secure sifre yenileme modulu moderasyon paneline eklendi.
+-moderasyon frame moderasyon paneline tekrar eklendi.
+-kullanici duzenleme paneline mail bazli arama opsiyonu eklendi.
+-kullanici duzenleme panelindeki yetki secimi hatasi duzeltildi.
+-ozel mesajlarin mail ile bildirim sistemi SMTP ve PHPMailer altyapisina gecirilerek yeniden devreye alindi.
+-uyelik kaydında mail gonderimi kodu guncellendi.
+-kafasesi'nin onerisi uzerine bolchat kodlandi ve ajax/jquery tabanli ui gelistirildi.
+-bolchat kullanici yonetimi ve moderasyon denetimleri gelistirildi.
+-bolchat icin xss korumasi, sql injection onlemleri, rate limit ve flood kontrolu gelistirildi.
+
+haziran/temmuz 2025:
+-masaustu gorunumde arama modulunun getirebilecegi sonuc sayisi artirildi.
+
+nisan/mayis 2025:
+-alche'nin istegi uzerine ctrl+enter ile entry post fonksiyonu eklendi.
+
+subat/mart 2025:
+-bolgpt'nin baslik acabilme fonksiyonu devreye alindi.
+-sigara saran tarantula'nin bildirimi uzerine @/# cevirici fonksiyondaki hatalar giderildi.
+
+ocak 2025:
+-anonimlestirme sistemi tekrar devreye alindi.
+-bolgpt'yi gunluk cagirma limiti azaltildi.
+-session settings ve cookie parametreleri sozlukten atma sorununu cozecek sekilde guncellendi.
+-session icin xss korumasi iyilestirildi.
+-ip kontrolu fonksiyonu sozlukte atma sorununu cozmek icin sadelestirildi.
+-sozluk css'i icin yeni stiller test amacli eklendi.
+
+aralik 2024:
+-gundem basliklarini okuyuculara kapatma fonksiyonu devreye alindi.
+-bol instrumentals vol 3 yayinlandi.
+
+kasim 2024:
+-alche'nin onerisi uzerine @/# cevirici fonksiyonunda stringleri gozardi etme kodu eklendi.
+
+ekim 2024:
+-bilirkisi'nin onerisi uzerine @ ile baslayan entrylerde otomatik #entryid cevirici fonksiyon yazildi.
+
+eylul 2024:
+-htaccess ve login session timelari 72000'e yukseltildi.
+-baslik goruntuleme modulune session time +1500 kodu eklendi.
+-desktop gorunumde vignette reklamlar geri getirildi.
+-entry idleri dropdown buton tasarima gomulerek yazar girisi yapanlara gorunur hale getirildi.
+-entry idlerinin cift tiklama ile kolay secilmesi fonksiyonu yazildi.
+-entry altinda nickname gosteren satira white-space nowrap style uygulandi.
+-entry altındaki nickname nick altina linklendi.
+-edit tarihleri entry tarihi ile birlikte yeni stilde gorunume alindi.
+-alche'nin talebi uzerine ozel mesaj modulu dropdown menuye linklendi.
+-bolgpt gpt-4o-mini modeline baglanarak tekrar kullanima acildi. 
+-dragunov'un talebi uzerine entry sikayet modulunde iyilestirmeler yapildi.
+
+agustos 2024:
+-bol instrumentals vol 3 duyuruldu.
+
+temmuz 2024:
+-jbrown'un uyarisi uzerine anonimlerin kimligini acik eden bir bug duzeltildi.
+-sansar salvo'nun sikayeti uzerine anonimlestirme sistemi devre disi birakildi.
+-desktop gorunumde vignette reklamlar tamamen kaldirildi.
+-eid modulune dipnot olarak entry no bilgisi eklendi.
+-bol vol. 10 yayinlandi.
+
+haziran 2024:
+-htaccess uzerinden session.cookie_lifetime ve session.gc_maxlifetime 18000'e ayarlandi.
+
+mayis 2024:
+-entry tasima modulunde islem sonrasi yonlendirme kodlandi.
+-google search console icin https migration konfigurasyonu yapildi.
+-entry altındaki nickname nickaltina degil ozel mesaj modulune linklendi.
+-gbt modulunde nicke tıklaninca mobilde yeni sekme acilma problemi giderildi.
+-anonim entrylerin moderasyona gorunurluk stili optimize edildi.
+-listLeftFrame list itemleri icin margin-bottom: 3px olarak degistirildi.
+
+nisan 2024:
+-reklam modullerinin yazarlara gorunurlugu azaltildi.
+-sol frame reklam kodu responsive hale getirildi.
+
+mart 2024:
+-liebeistfuralleda'nin istegi uzerine arti orani yazar istatistiklerine eklendi.
+-bol vol. 10 toplanmaya basladi
+-entry id eid modulunde goruntulenecek sekilde tekrar duzenlendi.
+-ebedi entry sistemi altyapisi kodlandi.
+
+subat 2024:
+-bol vol. 10 duyuruldu. 
+-yilin enleri 2023 anketi duzenlendi.
+-6 subat 2023 anisina adanan bol vol. 9'un stream gelirleri, depremin birinci yilinda afad'a bagislandi.
+-lord voldemort'un bildirmesi uzerine mobil gorunumde copten entry silince logouta gitme problemi cozuldu.
+-istatistikler bolumune gece bekcileri ve bu ay neler oldu bolumleri eklendi.
+-istatistikler bolumunun font buyuklukleri gozden gecirildi.
+-en begenilenler bolumunun font puntolari buyutuldu.
+-online yazarlar listesi ve kontrol panelinde mobil uyumluluk duzeltmeleri yapildi.
+-istatistik gosterim modulu refactor edildi.
+-gecen ay girilen entry istatistiginde subat ayi bugi giderildi.
+-kulagina titresimler'in bildirimi uzerine oylama modulunde iyilestirmeler yapildi.
+-avatar sistemi gelistirildi ve entry bilgi arayuzu guncellendi.
+-old school pesimist beat severin onerisi uzerine baslik ici navigasyon butonlarina ilk ve son sayfa linki eklendi.
+-lord voldemort'un bildirimi uzerine entry goruntuleme modulunde eksi oylarin sayilma problemi giderildi.
+
+ocak 2024:
+-bolgpt input token limiti daraltilarak gpt-4-turbo modeliyle tekrar devreye alindi.
+-mobil gorunumde istatistik modulune son guncelleme tarihi eklendi.
+-cazmix'in talebi uzerine bol anket'te oy verildikten sonra otomatik sonuc sayfasina yonlendirme kodlandi.
+-altbilgi kisminda rastgele gururlarimiz gosterilmeye baslandi
+
+aralik 2023:
+-iletisim ve kunye modulleri guncellendi.
+-mobil ve masaustu gorunume dipnot eklendi.
+-arama modulundeki buton ve div uyumsuzluklari giderildi.
+
+agustos 2023:
+-sozluk entryleri ve gpt-4 modeli destekli bot yazar bolgpt devreye alindi.
+-logout modulu mobil ve masasutu tasarim icin guncellendi.
+-reklam verici olarak ezoic pilot uygulama olarak denendi, sozluk nameserverlari degistirildi.
+-rast getir listesinde basliklari yeni sekmede acma problemi giderildi.
+-django'nun onerisi uzerine masaustu gorunumde acilan random sayfa modulu gundemle sinirlandirildi.
+-opus magnum'un talebi uzerine benimki butonu baslik gorunum sekmesine eklendi.
+-mobil ve masaustu baslik ici gorunumunde online yazarlara reklam gosterimi minimize edildi.
+-mobil ve masaustu gundem listesi gorunumunde online yazarlara reklam gosterimi minimize edildi.
+-mobil ve masaustu baslik ici gorunumunde giris yapmayan okurlara reklam gosterimi artirildi.
+-denemeler sonucu ezoic'ten tekrar google adsense'e ve eski nameserver adreslerine donuldu.
+-entry listeleme modulunde moderasyon gorunumundaki hatalar giderildi.
+-tarihte bugun (#tb) sekmesine gun girilerek arama ozelligi eklendi.
+-dunun en begenılen entryleri (debe) sayfasinda satir boslugu problemi giderildi.
+-kenar sekmesinde yazarin begendigi entrylerin kismi dokumu de gosterilmeye baslandi.
+
+temmuz 2023:
+-entry goruntuleme modullerinde media css parametreleri guncellendi.
+-gdpr uyarisi ve ilgili duzenlemeler yapildi.
+-bol sozluk ve gpt entegrasyonu altyapisi hazirlandi. 
+
+haziran 2023:
+-yazar onay paneline dusecek caylaklar icin entry limiti azaltildi.
+
+mayis 2023:
+-yilin enleri 2022 anketi tamamlandi.
+
+nisan 2023:
+-60 gun playlist yayinlanmaya baslandi.
+
+mart 2023:
+-bol compilation vol 9 yayinlandi. maras depremine ithafen albumun bir yillik geliri ahbap'a bagislanacak.
+-eid modulunde ozel mesaj gonderme fonksiyonu entry ve baslik bilgisiyle entegre edildi.
+-sozlukle ilgili istekler basligindaki talep durum bildirim mesajlarindaki bug giderildi.
+-onaylanmis yazar badgei entry yanlarinda da gorunur hale getirildi.
+-ozel mesaj gonderme modulunde entrylerde oldugu gibi flood korumasi getirildi.
+-sol framedeki gundem basliklarinin sayisi ile ilgili anket duzenlendi.
+-onayli hesap statuleri ile ilgili anket duzenlendi.
+-hashashi'nin istegi uzerine ozel mesaj gonderince yonlendirme gelistirmesi yapildi.
+-masaustu gorunum icin sol frame font buyuklugu 14px olarak belirlendi.
+-masaustu gorunum için baslik icerigi font buyuklugu  14px olarak belirlendi.
+-mobil gorunum icin sol frame font buyuklugu  1.13 em olarak belirlendi.
+-mobil gorunum icin baslik icerigi font buyuklugu  1.1 em olarak belirlendi.
+-anonim, buyuk ortaklar listesinden cikarilip istatistiklerde ayrica gosterilmeye baslandi.
+-ebe, arge ve buyuk ortaklar istatistik sekmeleri icin table, p, tr, td etiketleri kaldirildi.
+-"alakalı olabilir" ozelligi selectboxinin bos item gostermesi bugi iyilestirildi.
+-hashashi'nin istegi uzerine "arkadas cagir" fonksiyonu gelistirildi.
+-youtube'da 2500 takipci esigi gecildi.
+-sozlugun ip ban listesi sifirlandi.
+
+subat 2023:
+-bol compilation vol 9 toplandi.
+
+ocak 2023:
+-ucuncu nesil 200 yeni yazar alimi yapildi.
+
+aralik 2022:
+-bol compilation vol 9 duyuruldu.
+
+kasim 2022:
+-toplam kayitli sayisi istatistiklere eklendi.
+
+agustos 2022:
+-bir rap dinleyicisi'nin bildirimi uzerine en begenilenlerdeki hebe9 bug'i duzeltildi.
+-anonim'in isteği üzerine entry anonimleştirmeden hesap kapatma fonksiyonu sözlüğe eklendi.
+
+temmuz 2022:
+-ssl sertifikası devreye alindi.
+-http/https gecisi icin tema cagirma kodlari duzenlendi.
+-sozlukle ilgili istekler modulunun, http/https gecisi icin kodlar uyumlandirildi.
+-650 gayme maas'in bildirimiyle; gbt, eid, haberler modul kodlari https gecisi icin uyumlandirildi.
+-anonim'in bildirimiyle, oylama modul kodlari https gecisi icin uyumlandirildi. (no-cors header)
+-moderasyon gucu istatistiklerine gozden gecirilen caylak istatistigi eklendi.
+
+haziran 2022:
+-yazarlarin kendi entrylerini sildigi bazi durumlarda siciline isleyen entry silme skoru bugi duzeltildi.
+
+mayis 2022:
+-"refere ettigi entry silinmis" ve "daha once yazilmis ki bu" sebepli entry silinmeleri, silinen sakincali entry istatistigine dahil edilmeyecek.
+-silinen sakincali entry sayisi sayacindaki bir hata duzeltildi.
+
+nisan 2022:
+-mobil gorunumde gundem/konudisi/soru bolumu font buyuklukleri tekrar duzenlendi.
+-bol rozet sistemi imececi, gececi, sevilen, bolyazar, solfc ve argeci rozetleriyle devreye alindi.
+-karma sisteminin ilanindan sonra silinen sakincali entry sayisi ve caylaklanma istatistigi gosterilmeye baslandi.
+-kullanici ayar modulu guncellendi, "motto" ozelligi profil sayfalarina eklendi.
+-"silinen sakincali entry sayisi" istatistiginin sikayete bagli olma kosulu degistirildi.
+-konu disi ve lobi bolumu basliklari sadece yazarlarin erisimine acik hale getirildi.
+
+mart 2022:
+-mobil gorunumde gundem/konudisi/soru bolumu font buyuklukleri subat degisikligi geri alindi.
+-hic'in talebi uzerine "rast getir" butonu "rast" olarak mobil gorunume eklendi.
+
+subat 2022:
+-entry silme modulune "praetor notu" bilgisi sistemi eklendi.
+-praetor notlarinin gecmise donuk okunabilecegi "praetor gunlukleri" modulu admin paneline eklendi.
+-kobaysos'un talebi uzerine, gelen ozel mesajlarin mail ile bildirilme ozelligi kodlandi.
+-bol sozluk 2022 olaganustu kurultayi toplandi.
+-abra yutpa ve dragunov moderasyona, pek de sosyal medya ekibine katildi.
+-dragunov'un tespiti uzerine akillanan entryler modulundeki yetki bug'i duzeltildi.
+-mobil gorunumde gundem/konudisi/soru bolumu font buyuklukleri duzenlendi.
+
+ocak 2022:
+-bol sozluk compilation vol. 8 yayinlandi.
+-bol yillik 2021 yayinlandi.
+-entryde smiley kullanimini otomatik swh'e donusturen fonksiyon devredisi birakildi.
+-sozlugun dogecoin cuzdani kapatildi, yerine avax cuzdani acildi. (mevcutlar: btc, eth, avax)
+
+aralik 2021:
+-basliga ayni yazarin ustuste entry girme kisiti kaldirildi.
+-bol yillik 2014,2015,2016,2017,2018,2019,2020 yayinlandi.
+
+kasım 2021:
+-soru bolumu basliklari konudisina entegre edilerek yeniden gosterime girdi.
+-billymizi diliyor'un bildirimi uzerine entry okuma modulundeki soru bolumu artik kodlari kaldirildi.
+-ssl sertifikasi maliyetini cikarmak adina sozlukteki reklam yerlesimi artirildi.
+
+ekim 2021:
+-bol sozluk kullanici sozlesmesi guncellendi.
+-bol sozluk compilation vol 8 duyuruldu.
+-mobil frame'e kullanici sozlesmesi, devlog ve sair linkler eklendi.
+-gbt modulundeki goruntulenemeyen ikonlar yenilendi.
+-ucurulan hesaplar ve reddedilen caylaklarin login arayuzunde ban sebebini gorebilmesi kodlandi.
+-karma sistemi optimize edilerek tekrar kullanima acildi.
+
+eylül 2021:
+-ihs telekom'un sozluk yayinini yogun kaynak kullanimi nedeniyle durdurmasi uzerine karma sistemi gecici olarak devredisi birakildi.
+-entry yedek modulu guncellendi, 650 gayme maas'in istegi uzerine entry numarasi da yedek ciktisina not dusuldu.
+-ustuste entry girme kisiti limiti guncellendi.
+-650 gayme maas'in onerisi uzerine son gorulme ozelligi profillere eklendi.
+
+agustos 2021:
+-lobi bolumune baslik acabilme yetkisi tum yazarlar icin tanimlandi.
+-arkadaslarim modulundeki yazim hatalari duzeltildi.
+
+temmuz 2021:
+-baslik acma, yazar onayi ve ispiyon modulunde checkbox/radiboxlarla ilgili guncel tarayicilarda ortaya cikan bug giderildi.
+-retiarius'un uyarisi uzerine, kenar sistemiyle ilgili baslik tarihi guncelleme bug'i duzeltildi.
+-lord voldemort'un talebi uzerine entry modulunun twitter card metatagleri iyilestirildi.
+
+haziran 2021:
+-entry kaydetme modulu butonlari duzenlendi, foto butonu kaldirildi.
+-kan alta ve gardiyan'in onerileri uzerine "kenar" ozelligi eklendi.
+-kenarda duran entryleri takip etmeye yarayacak "kenar" butonu ile bu ozelligin ust frame ve mobil arayuzle entegrasyonu saglandi.
+-kenar ozelliginin entry modulu (eid) ile uyumlulugu saglandi.
+-baslik "takip" sistemi yeterince kullanilmadigi gorulerek devre disi birakildi.
+-eminem'in talebi uzerine dunun en begenilenleri istatistigi limiti 5'e cikarildi. (ebe/stat)
+-son yedi gunun en begenilenleri istatistigi limiti 10'a cikarildi. (ebe/stat)
+-giz gvng'in talebi uzerine en begenilen entryler istatistigi limiti 20'ye cikarildi. (ebe/stat)
+-istatistik tablosu veritabani yapisinda sutun siralari optimize edildi.
+-ben sayfasinda 30 karakterden uzun nickli yazarlarin gbt'sine bakilamamasi problemi giderildi.
+-otomatik istatistik guncelleme algoritmasi tetikleme frekansi sozluk performansini iyilestirmek icin azaltildi.
+-istatistikler sayfasina "aylik entry gecmisi" grafigi eklendi.
+-yonetici baslik arayuzundeki butonlar yenilendi.
+-feci'nin talebi uzerine baslik icinde arama ozelligi kodlandi.
+-baslik icinde aranan metinlerin highlight edilmesi ozelligi gelistirildi.
+-sukela modu ve baslik icinde arama moduyla ilgili navbar buglari giderildi.
+-entry silindikten sonra baslik tarihinin basliktaki son silinmeyen entrye gore guncellenmesi kodlandi.
+-yonetici kontrol panelinde modlog/oylog butonlarinin gorunumuyle ilgili problem giderildi.
+-siyahyesil temasinde mesaj ve cop butonu font renkleri duzenlendi.
+-bodobora'nin uyarisi uzerine gbt sistemiyle kenar sistemi arasindaki uyumsuzluk giderildi.
+-cehennem beatz'in onerisi uzerine meta basliklar icin #lobi sekmesi acildi.
+-bodobora'nin bildirimi uzerine en begenilen entrylerdeki 17. ve 18. siradaki hatalar giderildi.
+-mobil gorunumdeki buton webkit-appearance, padding ve border degerleri css'te duzenlendi.
+-mobil gorunumde login olunmadan cikan butonlarda #tb ve #ebe'nin gorunmemesi problemi giderildi.
+-"moderator gucu" ve "arge kasanlar" istatistikleri istatistik sayfasina eklendi.
+
+mayis 2021:
+-yogun kaynak kullanimi gerekcesiyle hosting firmamiz ihs telekom tarafindan sozlugun yayini durduruldu, yapilan yazismalar sonucu sabaha karsi tekrar acildi.
+-eksi oy fonksiyonu gecici olarak kaldirildi.
+-eksi oy fonksiyonu yeniden devreye alindi.
+-ben sayfasindan toplam eksi oy sayisi ve toplam oy istatistikleri cikarildi.
+-ben sayfasindan "son anlasilamayanlari" istatistigi cikarildi.
+-yoneticiler icin kontrol panelinden erisilebilecek bir "oylog" kodlandi.
+-yonetici ekranindan basligi soru bolumune tasima butonlari silindi.
+-kullanici bilgileri duzenleme ekranindaki hatalar giderildi.
+-caylaklikla ilgili 10 entry kuralina eklemeler yapilarak yeni bilgi notu sozlukle ilgili duyurularda ve caylak entry modulunde guncellendi.
+-entry giris kutusunun dusey eksende yeniden boyutlandirilabilmesi saglandi.
+-karma puani sistemi devreye alindi.
+
+nisan 2021:
+-soru bolumu devredisi birakildi.
+-iletisim butonu mobil frame'e eklendi.
+-5651 ve 7253 sayili yasalara yonelik uyumluluk artirma calismalari gerceklestirildi.
+
+mart 2021:
+-entry silme hizi limiti fonksiyonu devredisi birakildi.
+
+subat 2021:
+-basliktaki entryleri aldiklari arti oya gore siralayan sukela modu ozelligi eklendi.
+-gundem/konudisi/soru secimi moderator modulunde iyilestirmeler yapildi.
+-sukela ile ilgili gelen geri bildirim onerileri ve bug tespitleri uzerinde calisildi.
+-yonetici panelinde iyilestirmeler yapildi.
+-silindikten sonra yonetici onayina giden "akillanan entryler" ozelligi iyilestirilerek yonetici paneline modul kisayolu eklendi.
+
+ocak 2021:
+-modlog ve bol moderasyon kaldirildi.
+-1, 3 ve 7 gun seklindeki secimli sureli caylaklik yaptirimlari 5 gun olacak sekilde tek opsiyona indirildi.
+-caylaklik yaptirimi alan yazara, caylaklik cezasi ile ilgili bildirimin ozel mesaj yoluyla gonderilmesi kodlandi.
+-uzun suredir yazarlik onayi bekleyen 119 yazarin onayi yapilarak, bundan sonraki yazarlarin 3.nesil olmasi sisteme tanimlandi.
+-bol sozluk compilation vol. 7 yayinlandi.
+-sozlugun yeni bir arayuze gecisiyle ilgili irtibatta olunan gelistiricilerle toplantilar organize edildi.
+-tekil entry goruntuleme modulundeki mobil uyumluluk eksikligi giderildi.
+-yonetici hesaplarinin cok sayfali basliklarda yanlis son sayfaya gitmesine sebep olan bug duzeltildi.
+
+aralik 2020:
+-veritabani optimizasyonu icin gecmise donuk log kayitlarinin bir bolumu silindi.
+
+kasim 2020:
+-fake tespiti icin kullanilan gecmis ip kayitlari temizlendi.
+-yazar onay paneline dusen hesaplarin entry limiti pandemi oncesi oldugu gibi 10 entry'e cikarildi.
+-ucuncu nesil yazar alimi anketi duzenlendi.
+
+ekim 2020:
+-ucurulan hesaplarin tekil ip adreslerinin yanisira ip bloklari da ip banlanmaya basladi.
+
+eylul 2020:
+-bol instrumentals vol 2. yayinlandi.
+
+agustos 2020:
+-caylakliktan reddedilenler ve aramiza yeni katilanlar basligi'nin gundemin ilk 3 basligi arasina girmemesi kodlandi.
+
+temmuz 2020:
+-yonetici arayuzu mobil uyumlandirildi ve gorunumunde iyilestirmeler yapildi.
+-entry sikayetlerinin geriye donuk takibi icin moderasyon modulu kodlandi.
+-sikayet edilen entrylerle ilgili yapilan islemler icin kullanicilara otomatik mesaj geri bildirimi kodlandi.
+-otomatik istatistik guncelleme ve caylaklik kontrol fonksiyonlarinin tetiklenme sikliklari dusuruldu.
+-yanlis sifre girisi yapilan hesaplara giris tesebbusu tarihi, kullanici adi ve ip adresleri ayri bir tabloda kayit edilmeye baslandi.
+-entry sikayet modulunde islem yapan yoneticilerin veritabaninda kaydi tutulmaya baslandi.
+-bol sozluk sam roportaji yayinlandi.
+-giden mesaj modulunde konu kisminin bos olmamasi kosulu kodlandi.
+
+haziran 2020:
+-site uzerindeki logolar gecici bir sureyle karartildi. #blacklivesmatter
+-modlog mobil ve masaustu gorunumde ayri ayri yeniden duzenlendi.
+-"en begenilen entryler" sayfa ebatlari mobil ve masaustu gorunumde yeniden duzenlendi.
+-tema istatistiklerinin dogru goruntulenmemesine sebep olan hata giderildi.
+-gundem ve konudisi framelerinin sorgu algoritmasinda turkce karakterlerle ilgili bugfix yapildi.
+-konudisi frame'i limiti son 666 konudisi ve soru basligi gosterecek sekilde guncellendi.
+-bol favicon guncellendi.
+-baslik linkini paylasma butonu algoritmasi guncellenerek hatalardan arindirildi.
+-anonim entrylerin yazar nicklerinin moderatorler tarafindan entry altinda gorulmesine dair guncelleme yapildi.
+-moderator kullanici sinifi ile admin sinifi yetkileri birlestirilerek tum yetkili kullanicilar "yonetici" olarak yetkilendirildi.
+-yonetim kadrosu deepsky, ret1arius, komutana sniper neresinden, if rap gets jealous, booyaka ve semttenbirses olarak guncellendi.
+-otomatik entry sikayet modulu devreye alindi.
+-yeni karma sistemi anketi duzenlendi.
+
+mayis 2020:
+-spotify hesabimizdan release edilen toplama album ve parcalarimiz instagram muzik'te de yerini aldi.
+-yonetici panelinden "tum entrylerini sil" butonu kaldirildi.
+-bol instrumentals vol 1 yayinlandi.
+-bolpuan sistemi devreden cikarildi.
+-sozlugun mevcut tasarimini baz alan mobil gorunum fonksiyonlari devreye alindi.
+-Mobil gorunumdeki buton dagilimi cevrimici/cevrimdisi sik kullanilabilecek butonlar gozetilerek duzenlendi.
+-Mobil gorunume kullanici girisi ve arama cubugu yerlesimleri saglandi.
+-Mobil gorunume ozel buton yerlesimlerinin masaustu surumunde gozukmesiyle ilgili ortaya cikan hatalar giderildi.
+-Mesajiniz var bildiriminin mobil gorunumde cikmama hatasi giderildi.
+-Mesaj okuma, gonderme ve giden mesajlar modulleri mobil gorunumle uyumlandirildi.
+-Entry silme ve ekleme fonksiyonlari mobil gorunume uyumlandirildi.
+-GBT modulu ile entry listeleme ozelligi yeniden kullanima acilarak mobil gorunumle uyumlandirildi.
+-Arama modulu mobil gorunumle uyumlandirildi.
+-“sayfa linki” butonuyla alinan adresi paylasilan basliklarin mobil gorunumle uyumlulugu saglandi.
+-Istatistikler sayfasi mobil gorunume entegre edildi.
+-“Tarihte bugun” ve “En Begenilen Entryler” sayfalari mobil gorunume entegre edildi.
+-entry modulundeki caylak entrylerini gorebilme acigi kapatildi
+-ozel mesajlasma sistemindeki bazi mesajlarin acilmamasina sebep olan hatalar giderildi.
+-entryde paylasilan linklerin gosterimi kisaltilarak mobil uyumluluk problemleri giderildi.
+-mesaj gonderme modulu mobil gorunumle uyumlandirildi.
+-baslik acarken buyuk harfli turkce karakter kullanimindan kaynaklanabilen problemler giderildi.
+-modlog mobil gorunumle uyumlandirildi ve tasinan entryler modulu modlogtan kaldirildi.
+
+nisan 2020:
+-caylaklik onay esigi 5 entry olacak sekilde guncellendi
+-veritabaninda optimizasyon yapilarak 20mb tasarruf saglandi. (guncel:123mb)
+-algoritmalardaki ip/feyk kontrolleri kismen esnetilerek performans artisi saglandi.
+-en son gelistirme calismasi subat 2019'da yapilan android app askiya alinarak ilgili sayfalar performans artisi icin hostingden silindi.
+-PHP 5.3.28 uzerinde calisan sozluk yazilimini PHP 5.4.45'e uyumlandirma calismalari basladi.
+
+mart 2020:
+-anonimlestirilen entryler uzerindeki moderasyon kontrolu sikilastirildi.
+
+subat 2020:
+-yeralti sohbetleri serisi ravend ile devam etti.	
+
+ocak 2020:
+-bol sozluk compilation vol. 6 yayinlandi.
+-impala roportaji yayinlandi.
+
+aralik 2019:
+-youtube'da 1500 abone esigi gecidli.
+-kodes kahra roportaji yayinlandi.
+
+kasim 2019:
+-veto fonksiyonundaki bazi aciklar giderildi.
+-yeralti sohbetleri serisi kaplan ile devam etti.
+
+ekim 2019:
+-sureye dayali otomatik caylaklik sistemi gelistirildi.
+-ip ban ve tkp kayitlari resetlendi.
+-yeralti sohbetleri serisi funye ile basladi.
+
+eylul 2019:
+-veritabani bakimlari yapildi.
+
+agustos 2019:
+-"gelecegimiz icin toplaniyoruz" sloganiyla bagis albumu toplama projesi duyuruldu.
+-uzi ve aksan roportaji yayinlandi.
+
+temmuz 2019:
+-twitter'da 1000 takipci esigi gecildi.
+-en begenilen entryler(ebe) butonu login olmadan da gorunur hale getirildi.
+-kayra roportaji yayinlandi.
+-caylaklik kosullari duzenlendi, yazarlik basvurusu reddedilenler icin otomatik entry bildirim basligi kodlandi. (bkz: caylakliktan reddedilenler)
+-site ust butonlarindan erisilebilen gururlarimiz bolumu hazirlandi.
+
+haziran 2019:
+-caylak onay panelinde cezali yazarlarin ayrica gosterimi saglandi.
+-bagis albumu icin kampanya yol haritasi belirlendi.
+-server uraz roportaji organize edildi.
+-youtube'da 1000 abone esigi gecildi.
+-bol track vol.1 yayinlandi.
+
+mayis 2019:
+-cloudflare cdn hizmetinden vazgecildi.
+-tasplak'in bildirimi uzerine bol anket'teki acik giderilip, acik sonucu sozluk veritabanindaki tahribat giderildi.
+
+nisan 2019:
+-onaylanmis hesap sistemi kodlandi.
+-oy flooduna yonelik bir tedbir mekanizmasi devreye alindi.
+-ucretsiz cloudflare cdn hizmeti kullanilmaya baslandi.
+-bol youtube icerikleri icin koordinasyon ve planlama yapildi.
+-tanik koruma programi modulune baslik takip listesi de dahil edildi.
+-sprey kutusu, nasil yapildi ve etik inceleme youtube icerik serisi planlandi.
+
+mart 2019:
+-sozlukle ilgili duyurular basliginin bilgi entrysi (@1) guncellendi
+-moderator hesaplar kullanici islemlerinde tam yetkili olarak tanimlandi.
+-admin hesabina gidecek mesajlarin kopyasinin tum sozluk yonetimine yonlendirilmesi saglandi.
+-database tablo onarimlari yapildi.
+
+subat 2019:
+-3 ayin en cok yazanlari istatistigi, "bu ay en cok yazanlar" olarak degistirildi.
+-ret1arius moderatorluk gorevine basladi.
+-sozluk ekibi icin bolsozluk.com uzantili mail hesaplari tahsis edildi.
+-iletisim formundan gonderilen taleplerin tum moderasyon mail adreslerine de iletilmesi saglandi.
+-gibicibicis'in talebi uzerine tekil entry sayfalarindan tekil entry sayfalarina bkz linki problemi giderildi.
+-sozluge erisimde problemlere sebep olan ip ban fonksiyonu gecici olarak devredisi birakildi.
+-sozlukle ilgili duyurular basliginin bilgi entrysi (@1) guncellendi
+-yazar kontrol panelinde mesaj alimini devre disi birakma ozelligi kodlandi.
+-hayki, tanerman ve ados roportajlari gerceklestirildi, bol podcast organize edildi.
+-android uygulamasi uzerinde calismalar suruyor. (guncel surum 0.0.4 https://yadi.sk/d/jgM4rgAdBiydNQ)
+
+ocak 2019:
+-aspova, cagri sinci ve kezzo roportajlari gerceklestirildi.
+-psychedelic ve 650 gayme maas'in istekleri uzerine; imgim yerine baska bir upload sitesine entegrasyon saglandi.
+-sozluk youtube hesabi kanal listeleri ve bolumleri yeniden duzenlendi.
+-hayatitelgeler youtube ve twitter sosyal medya hesaplarimizin da yonetimiyle yetkilendirildi.
+
+aralik 2018:
+-hayatitelgeler yeni sosyal medya editorumuz olarak instagram hesabinin yonetimini devraldi.
+-iletisim formundaki turkce karakter problemleri giderildi.
+-kirito'nun talebi uzerine mobil/masaustu arasinda bazi font uyusmazliklari giderildi.
+-mukerrer entry girisleri icin kontrol mekanizmasi kodlandi.
+-konu disi ve soru basliklara uyari bildirimi eklendi.
+
+kasim 2018:
+-sozlukle ilgili istekler basliginda yer alan talepler cozuldugunde otomatik ozel mesaj bildirimi saglandi.
+-performans artisi icin php kodlarindaki ana donguler gozden gecirilip optimize edildi.
+-google analytics'in verdigi "tekrarlanan ana bilgisayar adlari" problemi cozuldu.
+-arama fonksiyonundaki turkce buyuk harf girislerinden donen sonucsuz sorgular problemi cozuldu.
+-sitemap.xml generator kodu turkce karakter destekli olarak yeniden kodlandi, sitemap google'a gonderildi.
+-logout butonunun "emin misiniz?" sorusu kullanici deneyimini iyilestirmek adina kaldirildi.
+-entry edit tarihinde ayni gun soz konusuysa gun bilgisinin iki defa gosterilmemesi kodlandi.
+-caylak edilip tekrar yazar yapilan hesaplarin cop kutusundaki entrylerinin de yeniden aktif olmasi hatasi giderildi.
+-venom, old school pesimist beat sever, 26, petroll'un talepleri uzerine oy verilmis entry'de tekrar oy butonlarina basildigi takdirde oyu geri alma yordami kodlandi.
+-"en ragbet goren baslik" istatistigini hesaplayan koddan bazi topluluk basliklari muaf edildi.
+-sozluk scriptinin verdigi bazi hatalar disk kullanimini artirdigi icin hosting firmamiz ihs telekom tarafindan sitenin yayini problem cozulene kadar 1 saat sureyle durduruldu.
+-basliklarda nokta isareti kullanimi ve noktali basliklara bkz. verme problemi giderildi.
+
+ekim 2018:
+-ayin ilk gunu ortaya cikan, sol frame'deki en yogun uc baslik algoritmasindan kaynakli hatalar giderildi.
+-sol ust reklam modulu kullanici deneyimini iyilestirmek adina butonlarin bitisiginden kaldirilarak sol alta alindi.
+-yonetici paneline yazar hesaplarini anonimlestirerek kapatma modulu kodlandi.
+-baslik sayfasi basina dusen entry sayisi, performans artisi icin 25'ten 20'ye indirildi.
+-ek demek ekmek und cekirdek ve psycho deaf'in talepleri uzerine seri oylama nedeniyle otomatik ip ban tedbirinin kaldirilmasina karar verildi.
+-gundemdeki 3 buyuk basligin yerlesimiyle ilgili duzeltmeler yapildi.
+-yonetici panelinde toplu oy silme modulundeki hatalar giderildi.
+-sozlukle ilgili istekler basligina "istek durum bilgisi" ozelligi getirildi.
+-"istek durum bilgisi" dokumleri herkese acik hale getirildi.
+-yazarlarin entry dokumleri, kullanici girisi yapanlara acik hale getirildi.
+-kendini ucuran yazarlarin bilgisinin de modloga dusmesi kodlandi.
+-arama fonksiyonu iyilestirildi, rastali dervis'in acilir menu talebi bu tasarimda mumkun olmadigindan sol frame uzerinde ikame uygulamaya gidildi.
+-caylaklik kosullari duzenlendi, caylakliktan onaylanarak cikanlar icin otomatik entry bildirim basligi kodlandi. (bkz: aramiza yeni katilanlar)
+-2018 yili haziran ayinda ilan edilidigi uzere, 0 entryli inaktif 255 hesap caylak statusune alindi.
+-650 gayme maas'in talebi uzerine entry onizleme modulunde (eid) oylama ozelligi aktif edildi.
+-entry onizleme modulunde (eid) youtube gomulu linklerinin gozukme problemi cozuldu.
+-bazi basliklara erisirken ortaya cikan turkce karakter problemi giderildi. (or: olumsuz/olumsuz)
+-gecmiste acilan tum basliklarda veritabanina gecmis buyuk/kucuk harf ayrimi problemleri geriye donuk olarak duzeltildi.
+
+eylul 2018:
+-bol sozluk compilation vol 5 yayinlandi.
+-yazarlarin ben/gbt uzerinden entry dokumu almalari kisitlandi.
+-admin ve moderator yetkili hesaplar icin cok entryli basliklarda sayfa kaymasi problemi giderildi.
+-650 gayme maas'in tespitiyle giden mesaj yedek aliminda gonderilen yazar adinin gozukme problemi giderildi.
+-burada'nin tespitiyle cevrimici olmadan da baslik duzenlemeye imkan saglayan acik kapatildi.
+-oylama sisteminin calismasi yeterince denendikten sonra, otomatik ip ban siniri esnetildi.
+-eksi ve arti oy gizliligi kaldirildi.
+-yazarlarin ben/gbt uzerinden entry dokumlerini gorebilme ozelligi kendi entryleri icin geri getirildi.
+-daha saglikli gundem olusumu icin gundemdeki en yogun 3 baslik sol frame'in ustune sabitlendi.
+-yazarlarin baslik adi duzenleme yetkisi guvenlik aciklari nedeniyle kisitlandi.
+-yazarlarin entry tasima yetkisi guvenlik aciklari nedeniyle kisitlandi.
+-gibicibicis'in tespiti ile, acilan basliklardaki buyuk/kucuk harf problemi giderildi.
+
+agustos 2018:
+-26'nin sozluge geri donusu surecinde entryleri cop kutusundan silinmemis yazarlar icin admin paneline (tum entrylerini geri getir) butonu eklendi.
+-basliklar goruntulenirken gomulu youtube linkerinin kirik olup olmadigini test eden algoritma performans iyilestirmek adina kaldirildi.
+-bol sozluk compilation vol 5 spotify'a gonderildi.
+
+temmuz 2018:
+-bol sozluk compilation vol 5 toplanmaya basladi.
+-650 gayme maas'in tespiti uzerine anonim entrylere oy aktarimi problemi giderildi..
+-alta kan'in ascii karakterlerle actigi bir baslik incelenerek konuyla ilgili bir bug giderildi.
+-650 gayme maas'in tespiti uzerine soru bolumundeki oy gizliligi problemi giderildi.
+-flow radyo ile gorusme organize edildi.
+-interaktifsozlukler.com'a yazili roportaj verildi.
+
+haziran 2018:
+-veritabaninda her kullanicinin son login oldugu tarih kaydi tutulmaya baslandi.
+-aktif kullanilmayan hesaplar bir sure sonra caylak statusune alinacak.
+-baslik icerisindeki oylama butonlarinin yaninda oy adetleri de gozukecek.
+-entrylerin duzenlenme tarihi kaydi tutulmaya baslandi ve entrylerde gorunur hale getirildi.
+-cosef'in talebi uzerine gundem/konudisi/soru sol frame sekme linkleri belirgin butonlara donusturuldu.
+-thuglove'in talebi uzerine otomatik ip-ban sisteminde esneklikler saglandi.
+-(bkz: anonimlestirme sistemi) getirildi.
+
+mayis 2018:
+-moderatorluk icin anket yapildi.
+-deepsky moderatorluk gorevine basladi.
+-bol vol spotify release'leri itunes ve diger dijital mecralarda da yayinlandi.
+-oy/entry flood koruma sistemi gelistirildi.
+-eksi oylama flood koruma sistemiyle birlikte test edilmek uzere devreye alindi.
+-spotify track ve album embed fonksiyonu
+-deepsky'in tespiti ile moderator yetkili hesaplardaki yetki sorunlari giderildi.
+-admin ve moderator yetkili kullanicilar icin sozluk ici dm ile toplu duyuru ozelligi eklendi.
+-gomulu resim ozelligi imgim.com ile uyumlu calisacak sekilde yeniden duzenlendi ve foto butonu ile desteklendi.
+-w3 markup validation bugfixleri yapildi. (15/32)
+-google structered data tanimlamalari (social profile)
+-son 3 ayda emegi gecenler istatistiginin hatali hesaplanmasi duzeltildi.
+
+nisan 2018:
+-sozluge sozluk disarisindan, google uzerinden arama yaparak okur olarak gelenlere ek reklam yerlestirimi denendi.
+-yalin baslik gosterimi kodlarinda kismen mobil uyumluluk icin viewport meta tag'i eklendi.
+-sozluk frame diziliminde performans optimizasyonu yapildi.
+-apostrophe'un teklifi uzerine soru basliklarinda "anonim | soruyu soran |" eklentisi kodlandi.
+-apostrophe'un uyarisi uzerine soru basliklarinda yazarin gizliligini ihlal eden aciklar kapatildi.
+-soru ve konudisi sekmelerinde tarihten bagimsiz son 500 basligin goruntulenmesine dair kodlama yapildi.
+-bol vol 3, spotify'da yayinlandi.
+-admin panelinde caylak yazarlari detayli inceleme modulu kodlandi.
+-adblock vb. eklentiler kullananlar icin tespit modulu test edildi.
+-adblock tespit modulu her on tespitten birinde okura uyari verecek sekilde ayarlandi.
+-yeni mesaj/giden mesajlar/gelen mesajlar bolumlerinin ust buton yerlesimi problemi giderildi.
+-ozel mesaj alinmak istenmeyen yazar online listesinden, ya da gelen mesajindan (-) butonu ile engellenebilecek.
+-admin modulundeki haber duzenleme sistemi hatalari giderildi.
+-istatistik modulune ay icinde girilen guncel entry sayisi eklendi.
+-entry silme modulundeki secimlik silme sebepleri guncellendi.
+-acapella ve deepksy'in tespitleri dogrultusunda son artilananlarla ilgili gosterim hatalari giderildi.
+-bol vol 4, spotify'da yayinlandic
+
+mart 2018:
+-sol frame'le ilgili ay basi algoritmasindaki bir takim bug'lar giderildi.
+-gundem sol frame'i konudisi ve soru altgundemlerini kapsayacak sekilde kodlandi.
+-gundem/konudisi/soru sistemi veritabaniyla ve tum basliklara donuk sekilde gelistirildi.
+-gundem/konudisi/soru sisteminin gecmis basliklara da uygulanabilmesi icin baslik isaretleme yonetim modulu yazildi.
+-650 gayme maas'in tespitiyle, soru/cevap modulundeki anonimlik problemi giderildi.
+-sozluk performansini dusurdugu tespit edilen bazi modlog fonksiyonlari icin cozum gelistirilecek, not alindi.
+-modlog'ta silinen entrylerin hangi basliktan silindikleri bilgisi de gosterilmeye baslandi.
+-bol vol 2 spotify'a yollandi ve yayinlandi.
+
+subat 2018:
+-htaccess'te xml/php rewrite rule duzeltildi, bing webmaster console erisimi saglandi.
+-alta kan'in uyarisiyla mukerrer basliklara iliskin bir bug not alindi.
+-caylak onay modulunde dusuk entryli caylaklarin gozukmesine dair bir bug giderildi.
+-bol vol 1, cagrimiza geri donus saglayan yazarlarin 16 trackiyle birlikte spotify'a yollandi.
+-caylaklarin yazarlara mesaj atamamasi icin gerekli duzenleme kodlandi.
+-caylaklarin yazdigi entrylerin sol frame gundemini etkilememesine yonelik duzenleme kodlandi.
+-backlink calismasi yapildi.
+
+ocak 2018:
+-bol sozluk compilation vol 4 yayinlandi.
+-baslik ici bakinizlarda kesme isareti verilememesi problemi duzeltildi.
+-database'e ve modlog'a banlanan yazarlarin ban tarihi kaydi dusulmeye baslandi.
+-modlog'ta tarih/sebep iceren yeni kayitlardan onceki aksiyonlar yer almayacak.
+-modlog'ta entrylerin tasindigi basliklarin isimleri gosterilerek sozluk yazarlarinin entrylerinin neden/ne sekilde tasindigina dair bilgi edinme imkani saglandi.
+-650 gayme maas'in silinen entrylerin canlandirilmasi/gozukmesi ile ilgili bug tespiti not alindi/duzeltildi.
+-mobil bazi tarayicilarda yer alan entry giris kutusunun kaydet ve diger butonlari bloke edecek sekilde genislemesi hatasi duzeltildi.
+-gelen sikayetler uzerine sayfa yuklemelerinde bir takim performans iyilestirmeleri uygulandi.
+-sozluk ici alternatif reklam yerlesimi denemeleri yapildi. (9-10 ocak 2018)
+-bol anket hazirlandi. (anket.bolsozluk.com) (18 ocak 2018)
+-spotify'a sozluk sarkilarinin gonderilmesi icin distrokid'le irtibat saglandi. (20 ocak 2018)
+-sol frame linklerinde seo iyilestirmesine dair bir bugfix. (22 ocak 2018)
+-google icin entryleri cozumleyici seo uygulamasi.(23 ocak 2018)
+-zararli/spam backlink iceren 5 site google'a bildirildi.(23 ocak 2018)
+
+aralik 2017:
+-sozlukte silinen entrylerin ve ucurulan yazarlarin kim tarafindan ne saatte yapildigina dair dokumunun alinabilecegi, herkese acik bir modlog kodlanmaya baslandi.
+-kontrol merkezi/iliskiler bolumu uzerinde calisildi. (yazar engelleme sistemi icin)
+-istatistik kalemleri guncellendi. (en arananlar eklendi.)
+-editlenen basliklarin edit sebepleri ve edit bilgisinin tutulmasi icin modul kodlandi.
+-modlog editlenen basliklari ve edit sebeplerini de gosterebilecek bir sekilde test gosterimine alindi.
+-arama fonksiyonundaki bir bozukluk ve sozluk icin tehlikeli bir guvenlik acigi 650 gayme maas'in bildirimiyle tespit edildi, giderildi.
+-arama fonksiyonunu gelistirmek ve benzer basliklarin da sonuclarda cikmasina yonelik optimizasyona gidildi, like yerine match alike sql sorgulari kullanilmaya baslandi.
+-entry silme modulunde ontanimli entry silme gerekceleri zenginlestirildi, database'e entrynin silinme tarihi icin de bir sutun acildi, ilerde modlog'da silinen entryler, entry silinme tarihine gore siralanacak.
+-bir gun butonu kaldirildi, yerine yeni bir islevle getirilen tarihte bugun (#tb) butonu yerlestirildii.
+-modlog'a tasinan entrylerle ilgili modul de kodlandi. (24.12.2017'den itibaren data tutulacak.)
+
+kasim 2017:
+-eksi oy devredisi birakildi.
+-istatistiklere gecen ay girilen entry sayisi bilgisi eklendi.
+-ihbar formundan mesaj gonderme modulundeki aksakliklar giderildi.
+-guvenlik aciklarinin giderilmesi icin devredisi birakilan cop kutusu hatalari duzeltilerek geri getirildi.
+-reklam birimlerinde turkce harici dillerde goruntulenen bazi reklamlar engellendi.
+-yazarin canlandirmak icin copte editledigi entrynin canlandirma modulunde bug tespiti.
+-11 kasim 2017'den beri sitemap guncellenmedigi farkedildi, php sitemap generator kodunda bugfixler yapildi
+-sozlugun youtube hesabi atilan 3 telif ihlali sonucu kapattirildi, youtube ile yazismalar yapilarak hesap geri alindi.
+-sozlugun youtube hesabi marka hesabi olarak tanimlandi, sozlugun info maili hesap maili olarak youtube'a bildirildi.
+-resim gomme kodunda http/https problemi giderildi.
+-bolshit maddi kulfeti sebebiyle icerik yedekleri alinarak kapatildi.
+
+ekim 2017:
+-baslik karakter limitine dayali bir takim hatalar duzeltildi.
+-bol sozluk compilation 4 duyuruldu, parcalar toplanmaya baslandi.
+
+eylul 2017:
+-baslik takip sistemi devreye alindi.
+
+agustos 2017:
+-gbt sayfasi yeniden kodlanarak caylaklik sistemi entry denetleme mekanizmasi saglandi.
+-caylaklik sistemi yeni hesaplara yonelik pilot uygulama olarak devreye alindi.
+-yazar statu ve siniflari gozden gecirildi, duzenlendi.
+-entry silme sistemindeki aksakliklar duzeltildi.
+-yazar kayit ekranina sehir bilgisi girisi eklendi.
+-caylak onaylari icin takip paneli duzenlendi.
+-caylaklik sistemine tabi hesaplar ikinci nesil olarak adlandirildi.
+-debe, hebe guncellenme aksakligi giderildi.
+-istatistikler bolumune birinci ve ikinci nesil yazar istatistigi eklendi.
+-otomatik flood kalkani ve ip ban sisteminin kosullari sikilastirildi.
+-veritabanindaki butun kayitli mail adreslerine cagri maili atildi.
+-bolpuan sistemi pilot uygulama olarak devreye alindi. hatalari giderildi.
+
+temmuz 2017:
+-performansa yonelik, entrye gomulen ve bosa cikan youtube videolarinin gosterime girmemesi kodlandi. (son durum: kismen calisiyor)
+
+haziran 2017:
+-reklam yerlesimine yonelik anket duzenlendi.
+
+nisan 2017:
+-silinen entrylerin duzenlenebildigi ve yeniden canlanabildigi cop kutusu guvenlik aciklari nedeniyle bir sonraki duzenlemeye kadar devredisi birakildi.
+
+2015-2017 arasi:
+-buyuk ortaklar ilk 19'u kapsayacak sekilde genisletildi.
+-bol sozluk icin yeni tasarim onerileri alindi, ornek calisma sunuldu.(son durum: mobil uyumluluk bulunmadigindan vazgecildi)
+-moderatorluk ve caylaklik sistemine dair talepler uzerine ilgili altyapilar sozluge kodlandi (son durum: caylaklik pilot uygulamada)
+-bol sozluk compilation vol 1, bol sozluk compilation vol 2 ve bol sozluk compilation vol 3 yayinlandi, surecler koordine edildi.
+-bol roportaj ilk meyvelerini verdi. bol sozluk dj artz roportaji ve bol sozluk necip mahfuz roportaji yayinlandi.
+-tum oylarin gizliligi esas alinarak profil sayfalari guncellendi.
+-bolshit yayin hayatina basladi.
+-moderasyon frame'i modifiye edildi.
+-sozluk verileri google analytics ve yandex metrica ile izlenmeye baslandi, yandex metrica'dan daha sonra performans sebebiyle vazgecildi.
+-bol sozluk kullanici sozlesmesi ve yasal uyari metni duzenlendi.
+-bol'un ihtiyaclarinin karsilanmasi amaciyla google adsense reklamlari pilot uygulama olarak devreye alindi.
+-eksicilerin tespiti icin admin paneline ozel sekme kodlandi, algoritmaya takilan hesaplarin tek tusla oylarini silme butonu eklendi.
+-ayrica bircok bug duzeltilmis ve ve yapilan minor gelistirmeler tembellikten oturu buraya not dusulmemistir.
+
+kasim 2014:
+-debe, hebe ve ebe. (en begenilenler)
+-verilen oylarla ilgili hatali gosterimler duzeltildi.
+-entry giris modulune altbilgi eklendi
+-en cok hata duzelttiren, oneri kabul ettirenler istatistigi eklendi
+-yapilacaklar ve yapilanlar listesi sozluge eklendi
+-link verilirken karsilasilan ozel karakter sorunlari giderildi
+-gelen ve giden kutusundaki mesaj kisiti ve bug'lari giderildi, kacar mesaj biriktigi gorulur hale getirildi
+-sozlugun instagram sayfasi acildi
+
+ekim 2014:
+-bkz bozulmalari ile ilgili bug'lar duzeltildi
+-yoleaks
+-yazarin entry kulliyat dokumundeki kisit ve sorunlar giderildi
+
+eylul 2014:
+-basliklarda tire, iki nokta, kesme karakteri kullanilabilir hale getirildi
+-profil(ben) sayfasi veritabani donguleri yenibastan kuruldu, yuk optimize edildi
+-gururlari(best of)
+-ben sayfasi olmayan yazarlarin olmadigini soyleyebilecek zekaya eristi.
+-internet explorer'dan erisenler icin ortaya cikan bazi bug'lar giderildi
+-adminsiz bir hayat icin otomatik ceza puani ve autoban sistemi devreye alindi
+-basligi paylas butonu icin share.php hazirlandi
+-sitemap ve seo duzenlemeleri yapildi
+-istatistikleri otomatik guncelleyecek kod devreye alindi
+-baslikla "alakali olabilir" onerileri combobox olarak sag butonlarin altina eklendi.
+-eski eksi sozluk'teki clairvoyance'in bir benzeri kodlandi. (baslik acmak istediginizde gelen alakali olabilir onerileri)
+-kontrol merkezindeki mail update bug giderildi
+-mesaj ve cop uyari isiklari eklendi
+-edit ve tasi bug'u giderildi
+-copten daha hizli entry silmek icin otomatik sayfa yonlendirmeleri ayarlandi
+-sozlugun uc kitasinda at kosturabilecek bir moderasyon frame'i tasarlandi
+-google index icin dinamik sitemap hazirlandi
+-kontrol paneli bugfixler yapildi
+-sistemler sayfasi (bol malzeme) test surusu icin acildi
+
+agustos 2014:
+-veto sistemi getirildi
+-baslik tasima ozelligi getirildi.
+-son butonu hazirlandi
+-tekil resim gomme
+-mesajlasma sistemindeki bug'lar giderildi, (noktalama isaretleri, sql injection vs.)
+-flood koruma kalkanlari devreye alindi
+-tanik koruma programi(nick degistirme) ozelligi eklendi
+-entry tasima modulu bug'lari giderildi
+-baslik duzenleme modulu bug'lari giderildi
+-noktali bkz'lari boslukluya donusturen duzenleme yapildi
+-iletisim formu ve entry sikayet modulu hazirlandi
+-tum sayfalardaki karakter kodlamasi sorunlari tarandi
+-baslik acarken karakter kaybolmasi bug'i cozuldu
+-online listesi ile ilgili bug'lar giderildi
+-yazarlarin profil(ben) sayfasindan entry basliklarina link verildi
+-gelen kutusundaki mesajlar secimli silinebilir hale getirildi
+-gecen ay butonu duzeltildi
+-sol frame'den gidilen basligin son sayfasinin acilmasi ayarlandi
+-istatistikler ilk 15'i kapsayacak sekilde genisletildi
+-giden mesajlar da gorulebilir-silinebilir hale getirildi, karsi tarafin okuyup okumadigi bilgisi de verilir hale geldi
+-sol frame buyutuldu, baslik adedi duzenlendi
+-ben sayfasina acilir menuler eklendi
+-entrylere kalin yazi eklentisi getirildi
+-youtube linkleriyle ilgili bug'lar duzeltildi
+-yazarin ben sayfasina entry'si altindan kolay ulasim linki "?" yerlestirildi
+-sozluge suuulh'un tasarladigi logo uygulandi
+-favicon eklendi
+-random sukela baslik getirme
+-entry linkleri yeni baslikta acilir hale getirildi
+-ben sayfasi gelistirildi ve yazarin "son sozleri" eklendi
+-basliklar icin facebook twitter paylas butonlari eklendi
+-cloudflare ddos koruma sistemi denendi, ve bir sure sonra vazgecildi
+-youtube ve soundcloud gomme sistemi aktif edildi
+-spoiler butonu eklendi
+
+temmuz 2014:
+-yazarlarin kendi actiklari basligi gun icinde duzenleyebilecegi duzene gecildi
+-onur konugu ozelligi eklendi.
+-login captcha kaldirildi
+-sozluk meta etiketleri duzenlendi
+-ustten msg ve asl butonlari kaldirildi, saga msg cop olaylar butonlari eklendi.
+-gay butonu ay butonu oldu
+-facebook twitter soundcloud hesaplari ve baglantilari kuruldu
+-entry giris modulunde kaydet butonu sola digerleri saga tasindi
+-otomatik sifre tayini yerine yazarlar artik kendi sifreleriyle kayit olabiliyor
+-ozel mesajlasma sistemi optimize edildi, yonetim butonu ve sorgusu kaldirildi.
+-mesajlar icin "tumunu sil" ozelligi getirildi.
+-ozel mesajlasma sistemi kuruldu
+-oylama butonlari gorsellestirildi ve yerleri degistirildi

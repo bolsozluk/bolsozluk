@@ -1,0 +1,184 @@
+<?php
+session_start();
+
+// Tum Durumlari Kontrol Ediyoruz
+function fonksiyonlartest() 
+	{
+		echo"fonksiyonlar yüklendi.<br>";
+	}
+
+function kontrolEt(){ 
+	global $currentUserIP, $kullaniciAdi, $kulYetki, $verifyStatus, $verifyFloor, $aktifTema;
+	global $siteStatus, $registerStyle, $yuklenecekSayfa;
+
+	// Session ve IP'yi aliyoruz.
+	$kullaniciAdi = $_SESSION['kullaniciAdi_S'];
+	$kulYetki = $_SESSION['kulYetki_S'];
+	$verifyStatus = $_SESSION['verifyStatus_S'];
+	$aktifTema = $_SESSION['aktifTema_S']; 
+	if(!$_SESSION['aktifTema_S']){
+		$aktifTema="default";
+	}
+	$currentUserIP = $_SERVER['REMOTE_ADDR'];    
+
+	// Session kontrolü - sadece ilk girişte IP kontrolü yap
+	if (!isset($_SESSION['session_check'])) {
+		$_SESSION['session_check'] = true;
+		$_SESSION['user_ip'] = $currentUserIP;
+	} else if (isset($_SESSION['user_ip'])) {
+		// IP değişse bile hemen logout etme, sadece log tut
+		if ($_SESSION['user_ip'] !== $currentUserIP) {
+			error_log("IP değişikliği: Kullanıcı: $kullaniciAdi, Eski IP: " . $_SESSION['user_ip'] . ", Yeni IP: $currentUserIP");
+			$_SESSION['user_ip'] = $currentUserIP; // Yeni IP'yi kaydet
+		}
+	}
+
+	// Session'ı yenile
+	if (!isset($_SESSION['last_activity']) || (time() - $_SESSION['last_activity'] > 3600)) {
+		session_regenerate_id(false); // false parametresi eski session'ı silmez
+		$_SESSION['last_activity'] = time();
+	}
+
+	// Veritabanı kontrolü
+	if($kullaniciAdi) {
+		$mysqlSentence = "SELECT user.durum AS userverifyStatus, user.nick AS userNickName, 
+						 user.msg AS userMsg, (SELECT ip FROM ipban WHERE ip = '".$currentUserIP."') 
+						 AS bannedIP FROM user WHERE nick = '".mysql_real_escape_string($kullaniciAdi)."' LIMIT 1";
+
+		$mysqlQuery = mysql_fetch_array(mysql_query($mysqlSentence));
+		
+		if ($mysqlQuery) {
+			$bannedIP = $mysqlQuery["bannedIP"];
+			$verifyStatus = $mysqlQuery["userverifyStatus"];
+			$userNickName = $mysqlQuery["userNickName"];
+			$userHaveMsg = $mysqlQuery["userMsg"];
+			
+			$_SESSION['verifyStatus_S'] = $verifyStatus;
+			
+			if ($verifyStatus == "sus") header("Location: ban.php");
+			if ($userHaveMsg) getPrivateMessages();
+		} else {
+			// Veritabanı sorgusu başarısız olsa bile session'ı koruyalım
+			error_log("Veritabanı sorgusu başarısız: $kullaniciAdi");
+		}
+	}
+}
+
+// Online Kisileri Kontrol Ediyor
+function addMeOnlines() {
+	global $kullaniciAdi;
+	
+	if ($kullaniciAdi) {
+		$son_zaman = time() - 1800;
+		mysql_query("DELETE FROM online WHERE islem_zamani < $son_zaman"); 
+		$simdikizaman = time();
+		
+		$verifyStatus = $_SESSION['verifyStatus_S'];
+		$currentUserIP = $_SERVER['REMOTE_ADDR'];
+		
+		$select = mysql_fetch_array(mysql_query("SELECT nick FROM online WHERE nick='$kullaniciAdi'"));
+		$selectF = $select["nick"];
+		
+		if (!$selectF) {
+			mysql_query("INSERT INTO online (nick,islem_zamani,ip,ondurum) VALUES ('$kullaniciAdi','$simdikizaman','$currentUserIP','$verifyStatus')");
+		} else {
+			mysql_query("UPDATE online SET islem_zamani=$simdikizaman WHERE nick='$kullaniciAdi'");
+		}
+	}
+}
+
+// Güvenlik Kontrolü Yapiyor$mesaj = $mesaj);
+function guvenlikKontrol($variable,$style){
+	switch ($style) {
+		case "ultra":
+				$before = array("'","<",">","\"","\\","document","cookie",Chr(10),Chr(34),Chr(255));
+				$after  = array("","","","","","","","","","");
+				$variable = trim(intval(strip_tags($variable)));
+				$variable = str_replace($before, $after, $variable);
+				break;
+		case "hard":
+				$before = array("'","<",">","\"","\\",Chr(255));
+				$after  = array("","","","","","\\","");
+				$variable = str_replace($before, $after, $variable);
+				$variable = trim(strip_tags($variable));
+				break;
+		case "med":
+				$before = array("'","<",">","\"");
+				$after  = array("&#039;","&lt;","&gt;","&quot;");
+				$variable = str_replace($before, $after, $variable);
+				$variable = trim(strip_tags($variable));
+				break;
+		case "low":
+				$before = array("","","","");
+				$after  = array("","","","");
+				$variable = strip_tags($variable);
+				$variable = str_replace($before, $after, $variable);
+				break;
+	}
+	return trim($variable);
+}
+
+// Mesajları okuyoruz
+function getPrivateMessages(){
+	global $kullaniciAdi,$notice,$okunmayan;
+	
+	$connection = mysql_query("SELECT okundu,id FROM privmsg WHERE kime='$kullaniciAdi'");
+	while ($privateMessages=mysql_fetch_array($connection)) {
+		
+		$okundu = $privateMessages["okundu"];
+		$id = $privateMessages["id"];
+		
+		if ($okundu != 0) $okunmayan++;
+		
+		if ($okundu == 2) {
+			$notice++;
+			mysql_query("UPDATE privmsg SET okundu = '1' WHERE id= '$id'");
+		}
+	}
+	mysql_query("UPDATE user SET msg=0 WHERE nick='".$kullaniciAdi."'");
+}
+
+// Sayfalama yaptırıyoruz
+function navigatePage($list,$currentPage,$totalPage){
+	if ($currentPage > 1) {
+		$pageLink = $currentPage - 1;
+		echo "<a class='but' href='left.php?list=".$list."&sayfa=".$pageLink."'><<</a>";
+	}
+	echo "<select class='pagis' onchange=\"jm('self',this,0);\" name='sayfa'>";
+	for ($i=1;$i<=$totalPage;$i++) {
+		if ($currentPage == $i) {
+			echo "<option value='left.php?list=".$list."&sayfa=".$i."' selected>$i</option>";
+		}else{
+			echo "<option value='left.php?list=".$list."&sayfa=".$i."'>$i</option>";
+		}
+	}
+	echo "</select> / $totalPage ";
+	$pageLink = $currentPage + 1;
+	if ($pageLink <= $totalPage) {
+		echo "<a class='but' href='left.php?list=".$list."&sayfa=".$pageLink."'>>></a>";
+	}
+}
+
+// Session güvenlik kontrolü
+function checkSession() {
+	// Session süre kontrolü ve yenileme
+	if (!isset($_SESSION['created'])) {
+		$_SESSION['created'] = time();
+		$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+		$_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
+		session_regenerate_id(true);
+	} else if (time() - $_SESSION['created'] > 1800) { // 30 dakika
+		session_regenerate_id(true);
+		$_SESSION['created'] = time();
+	}
+
+	// Session hijacking kontrolü
+	if (!isset($_SESSION['user_agent']) || 
+		$_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT'] ||
+		$_SESSION['user_ip'] !== $_SERVER['REMOTE_ADDR']) {
+		session_destroy();
+		header("Location: logout.php");
+		exit;
+	}
+}
+?>

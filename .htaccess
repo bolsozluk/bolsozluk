@@ -1,0 +1,19 @@
+RewriteEngine ON
+
+<IfModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# www yönlendirmesi
+RewriteCond %{HTTP_HOST} ^bolsozluk.com
+RewriteRule (.*) https://www.bolsozluk.com/$1 [R=301,L]
+
+# %20 karakterlerini - ile değiştirerek yönlendirme
+# RewriteCond %{REQUEST_URI} %20
+# RewriteRule ^(.*)%20(.*)$ /$1-$2 [N,R=301,L]
+
+# URL yönlendirme kuralların
+RewriteRule ^(.*)-(.*)\.html /sozluk.php?process=word&q=$1&sayfa=$2 [NC]
+RewriteRule ^b/(.*)/(.*)$ /share.php?q=$1&sayfa=$2 [NC]
+RewriteRule sitemap.xml sitemap.php [NC]
+RewriteRule ^yoleaks/$ /yoleaks/$1.htm [L]

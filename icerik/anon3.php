@@ -1,0 +1,68 @@
+<SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
+
+<?
+extract($_REQUEST); //bunu silebilirim
+$eskinick = $kullaniciAdi;
+$sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
+$reset=$sorset["reset"];
+
+
+if ($ayb != 146)
+		{
+		$ayb = 0;
+		}
+
+$sorgu = "SELECT nick,id FROM user WHERE `nick`='$nick'";
+$sorgulama = mysql_query($sorgu);
+
+
+	$nick = strtolower($nick);
+echo "anonimleştirilen entrylerinizniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere hiçbir şekilde yazarlık hesabınızla ilişkili olarak bol sözlük'te geçmişe dönük kaydı tutulmayacaktır. bu nedenle de anonimleştirdiğiniz entry üzerinde hiçbir sorumluluk taşıyamayacak olduğunuz gibi, entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz.  yazar hesabınız da isteğiniz üzerine otomatik olarak kapatılacaktır. onaylıyor musunuz?<br>";
+
+
+		    if ($eskinick and $ayb==146)
+		    {
+					echo "değiştiriliyor"; 
+
+  $tarih = date("YmdHi");
+
+	$sorgu1 = "UPDATE mesajlar SET yazar='anonim' WHERE yazar='$eskinick'";
+	mysql_query($sorgu1);
+	$sorgu2 = "UPDATE user SET silsebep='kendini anonimleştirdi' WHERE nick='$eskinick'";
+	mysql_query($sorgu2);
+	$sorgu3 = "UPDATE oylar SET entry_sahibi='anonim' WHERE entry_sahibi='$eskinick'";
+	mysql_query($sorgu3);	
+	$sorgu4 = "UPDATE user SET durum='sus' WHERE nick='$eskinick'";
+	mysql_query($sorgu4);
+	$sorgu5 = "UPDATE user SET silen='$eskinick' WHERE nick='$eskinick'";
+	mysql_query($sorgu5);
+	$sorgu6 = "UPDATE user SET bantarih='$tarih' WHERE nick='$eskinick'";
+	mysql_query($sorgu6);
+//HELALDE BU SATIR BOŞTUR FAKAT SİLMEK ÇÖP TÜR
+
+$msg = "entryleriniz anonimleştirildi. hesabınız kapatıldı. yeni hesabınızla, yine bekleriz.";
+ echo '<script type="text/javascript">alert("' . $msg . '"); window.location="http://www.bolsozluk.com/logout.php"; </script>';
+
+			exit;
+			}
+	
+?>
+
+
+
+
+<form method="POST" action="sozluk.php?process=anon3">
+<table cellpadding="10px" border="0">
+<tr>
+<td align="right">sayıyla 145+1: </td>
+<td> <div align="left"><input name="ayb"  size="30"  type="text"></div></td>
+</tr>
+<tr>
+<td colspan="2" align="">
+<input class=but value="onaylıyorum" name="send" type="submit" id="send">
+</td>
+</tr>
+</table>
+</form>
+
