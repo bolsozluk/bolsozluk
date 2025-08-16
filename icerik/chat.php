@@ -2,10 +2,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Güvenlik önlemleri
+// Güvenlik önlemleri - IP Ban Kontrolü
 $ip = $_SERVER['REMOTE_ADDR'];
-if ($ip == "188.119.5.42") {
-    die();
+$ipBanQuery = "SELECT COUNT(*) as banned FROM ipban WHERE ip = '" . mysql_real_escape_string($ip) . "'";
+$ipBanResult = mysql_query($ipBanQuery);
+
+if ($ipBanResult && mysql_fetch_assoc($ipBanResult)['banned'] > 0) {
+    header('HTTP/1.1 403 Forbidden');
+    die('Hata.');
 }
 
 /*
