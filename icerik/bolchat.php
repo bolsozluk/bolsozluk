@@ -444,6 +444,8 @@ function checkDarkModePreference() {
 }
 
 
+
+
     function escapeHtml(text) {
         return $('<div>').text(text).html();
     }

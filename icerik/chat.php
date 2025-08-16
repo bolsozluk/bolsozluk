@@ -42,6 +42,12 @@ function convertTurkishToAscii($text) {
     return str_replace($turkish, $english, $text);
 }
 
+function makeClickableLinks($text) {
+    $pattern = '/(https?:\/\/[^\s<]+[^\s<\.)])/i';
+    $replacement = '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>';
+    return preg_replace($pattern, $replacement, $text);
+}
+
 try {
     switch ($action) {
         case 'get_messages':
@@ -56,7 +62,7 @@ try {
                 $messages[] = array(
                     'id' => $row['id'],
                     'username' => $row['username'],
-                    'message' => $row['message'],
+                    'message' => makeClickableLinks($row['message']),
                     'created_at' => $row['created_at'],
                     'is_verified' => $row['verified']
                 );
