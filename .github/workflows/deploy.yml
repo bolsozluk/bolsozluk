@@ -24,6 +24,7 @@ jobs:
           server-dir: /httpdocs/  # FTP hedef klasör
           dangerous-clean-slate: false  # ekstra dosyaları silmez
           exclude: |
+            phpinfo.php
             /icerik/bolgpt.php
             /icerik/bolgptnb.php
             /.git/**
