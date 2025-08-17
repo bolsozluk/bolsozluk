@@ -1,46 +1,46 @@
 # Bol Sözlük
 
-Bol Sözlük, Hiphop ve Türkçe Rap odaklı, kullanıcıların başlıklar ve entryler ekleyebildiği, topluluk tabanlı bir sözlük platformudur.
+Bol Sözlük is a community-based interactive social media platform focused on Hip-Hop and Turkish Rap, where users can create content.
 
 ## Özellikler
 
-- Başlık ve entry ekleme, düzenleme, silme
-- Kullanıcı yönetimi ve yetkilendirme
-- Özel mesajlaşma sistemi
-- Gündem ve popüler başlıklar
-- Mobil ve masaüstü uyumlandırılmış arayüz
-- Yönetici ve moderatör paneli
-- Favori ve en beğenilen entryler
-- İstatistikler ve analizler
+- Add, edit, and delete new topics and posts
+- User management and authorization
+- Private messaging system
+- Trending and popular topics
+- Mobile and desktop-compatible interface
+- Admin and moderator panel
+- Favorite and most liked entries
+- Statistics and analysis pages
 
 ## Klasör Yapısı
 
-- `adm/` : Yönetici/moderasyon işlemleri
-- `icerik/` : Sözlük ana işlevleri ve içerik dosyaları
-- `img/`, `images/` : Görseller
-- `inc/` : CSS ve JS dosyaları
-- `smtp/` : E-posta gönderimi için kütüphane
-- `bolrozet/`, `raple/` : Ek modüller
+- `adm/`: Admin/moderation operations
+- `icerik/`: Main functions and content files
+- `img/`, `images/`: Images
+- `inc/`: CSS and JS files
+- `smtp/`: Library for email sending
+- `bolrozet/`, `raple/`: Additional modules
 
 ## Kod İstatistikleri
 
-| Metrik         | Sayı    |
+| Metric | Number |
 | -------------- | ------- |
-| Dosya          | 296     |
-| Toplam Satır    | 49,922  |
-| Boş Satır     | 6,822   |
-| Yorum Satırı  | 5,805   |
-| Kod Satırı  | 37,295  |
+| File | 296 |
+| Total Lines | 49,922 |
+| Blank Lines | 6,822 |
+| Comment Lines | 5,805 |
+| Lines of Code | 37,295 |
 
 
 ## Katkı
 
-Katkıda bulunmak için lütfen bir fork oluşturun ve pull request gönderin. Kabul edilen her pull request, bolsozluk.com'a otomatik olarak deploy edilmektedir.
+To contribute, please create a fork and submit a pull request. Every accepted pull request is automatically deployed to bolsozluk.com.
 
 ## Lisans
 
-Bu proje MIT License ile lisanslanmıştır. Ayrıntılar için [LICENSE](LICENSE) dosyasına bakınız.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) for details.
 
 ---
 
-**Not:** Bu yazılım PHP 5 için yazılmış olup en son PHP 5.4.45'e uyumlu hale getirilmiştir. Daha ileri PHP sürümlerine uyumluluk için güncelleme gerekmektedir.
+**Note:** This software was written for PHP 5 and has been updated to the latest PHP 5.4.45. Update required for compatibility with later PHP versions.
