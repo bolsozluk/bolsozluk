@@ -14,7 +14,7 @@ Please describe:
 
 ---
 
-## 🧑‍💻 Code Quality
+## 🔎 Code Quality
 - [ ] Code is clean and readable
 - [ ] Function/variable names are descriptive
 - [ ] No unnecessary complexity or hacks
