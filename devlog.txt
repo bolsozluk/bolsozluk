@@ -1,9 +1,7 @@
 ﻿----------yapilacaklar-----------
 -sozluk ici gelismis arama (surec: kodlama bekleniyor)
--profillerde daha fazla kisisel bilgi, soundcloud, twitter, facebook detayi ve detayli yazar arama (surec: oneriler toplaniyor)
--baslikta yazar ara (surec: kodlama tamamlandi, gelistirilecek)
+-profillerde daha fazla kisisel bilgi, soundcloud, twitter, facebook detayi ve detayli yazar arama (surec: kodlama bekleniyor)
 -basliklardaki noktalama isareti kisitlari ile ilgili aksakliklar (surec: calisma suruyor)
--sozluk kodlarinin duzenlenerek public edilip github'a yuklenerek opensource gelisime acilmasi (surec: kismen calisiliyor)
 
 ----------guncel kullanici talepleri-----------
 -gibicibicis; icerige iliskin metatag iyilestirmeleri.
@@ -44,6 +42,8 @@ agustos 2025:
 -kafasesi'nin onerisi uzerine bolchat kodlandi ve ajax/jquery tabanli ui gelistirildi.
 -bolchat kullanici yonetimi ve moderasyon denetimleri gelistirildi.
 -bolchat icin xss korumasi, sql injection onlemleri, rate limit ve flood kontrolu gelistirildi.
+-bol sozluk kaynak kodu github.com/bolsozluk uzerinden yayinlandi.
+-bol sozluk github reposunda yapilan guncellemelerin site ile senkronizasyonu icin ftp ile web servera deploy action ayarlandi.
 
 haziran/temmuz 2025:
 -masaustu gorunumde arama modulunun getirebilecegi sonuc sayisi artirildi.
