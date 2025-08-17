@@ -2,7 +2,7 @@
 
 Bol Sözlük is a community-based interactive social media platform focused on Hip-Hop and Turkish Rap, where users can create content.
 
-## Özellikler
+## Features
 
 - Add, edit, and delete new topics and posts
 - User management and authorization
@@ -13,7 +13,7 @@ Bol Sözlük is a community-based interactive social media platform focused on H
 - Favorite and most liked entries
 - Statistics and analysis pages
 
-## Klasör Yapısı
+## Folder Structure
 
 - `adm/`: Admin/moderation operations
 - `icerik/`: Main functions and content files
@@ -22,7 +22,7 @@ Bol Sözlük is a community-based interactive social media platform focused on H
 - `smtp/`: Library for email sending
 - `bolrozet/`, `raple/`: Additional modules
 
-## Kod İstatistikleri
+## Code Statistics
 
 | Metric | Number |
 | -------------- | ------- |
@@ -33,11 +33,11 @@ Bol Sözlük is a community-based interactive social media platform focused on H
 | Lines of Code | 37,295 |
 
 
-## Katkı
+## Contribution
 
-To contribute, please create a fork and submit a pull request. Every accepted pull request is automatically deployed to bolsozluk.com.
+To contribute, please create a fork and submit a pull request. Every accepted pull request is automatically deployed to bolsozluk.com. See the [CONTRIBUTING](CONTRIBUTING) for details.
 
-## Lisans
+## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) for details.
 
