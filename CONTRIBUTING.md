@@ -7,10 +7,11 @@ To keep the codebase clean, stable, and future-proof, please follow these rules:
 
 ## 1. Commit Message Format
 - Use the following structure:
-
+ ```
   component: short summary
   detailed explanation
   signed-off-by: Your Name - email@example.com
+```
 
 ## 2. Pull Requests
 - Keep PRs small, focused, and logical.
