@@ -30,7 +30,7 @@ input[type=checkbox]
 
 $okmsj = guvenlikKontrol($_REQUEST["okmsj"],"hard");
 $baslik = guvenlikKontrol($_REQUEST["baslik"],"hard");
-//$gds = guvenlikKontrol($_REQUEST["gds"],"hard");
+$gds = guvenlikKontrol($_REQUEST["gds"],"hard");
 $mesaj = nl2br(guvenlikKontrol($_REQUEST["mesaj"],"med"));
 $test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
 
