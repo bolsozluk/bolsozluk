@@ -34,7 +34,7 @@ Bol Sözlük is a community-driven interactive social media platform focused on 
 
 ## Contribution
 
-To contribute, please fork the repository and submit a pull request. Every accepted pull request is automatically deployed to bolsozluk.com. See the [CONTRIBUTING](CONTRIBUTING) file for details.
+To contribute, please fork the repository and submit a pull request. Every accepted pull request is automatically deployed to bolsozluk.com. See the [CONTRIBUTING.md](CONTRIBUTING.md) file for details.
 
 ## License
 
