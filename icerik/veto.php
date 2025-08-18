@@ -1,1 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <meta name="keywords" content="bol sözlük, bol, sözlük, rap sözlük" /> <meta name="description" content="bol sözlük." /><meta property="og:locale" content="tr_TR"><meta property="og:type" content="article"><meta property="og:image" content="http://i.imgur.com/Osi2LRo.png"/><meta property="og:description" content="Hiphop ve Türkçe Rap'in kalbinin attığı sözlük."/></head><SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT><?extract($_REQUEST);$ip = getenv('REMOTE_ADDR');$vetoc= mysql_fetch_array(mysql_query("SELECT * FROM veto WHERE `baslik`='$q'"));$veto1=$vetoc["veto1"];$veto2=$vetoc["veto2"];$veto3=$vetoc["veto3"];$veto1kim=$vetoc["veto1kim"];$veto2kim=$vetoc["veto2kim"];$veto3kim=$vetoc["veto3kim"];$baslik=$vetoc["baslik"];$vetogun=$vetoc["gun"];$fake=0;$gun = date("d");	$tarih = date("YmdHi");//echo "f1, $veto1,$veto1kim,$ip,$testx";//echo "<br>";if ($vetogun != $gun){$vetola2 = "UPDATE veto SET veto1='' WHERE baslik='$q'"; mysql_query($vetola2);$vetola3 = "UPDATE veto SET veto2='' WHERE baslik='$q'"; mysql_query($vetola3);$vetola4 = "UPDATE veto SET veto3='' WHERE baslik='$q'"; mysql_query($vetola4);$vetoc= mysql_fetch_array(mysql_query("SELECT * FROM veto WHERE `baslik`='$q'"));$veto1=$vetoc["veto1"];$veto2=$vetoc["veto2"];$veto3=$vetoc["veto3"];$vetola5 = "UPDATE veto SET gun='$gun' WHERE baslik='$q'"; mysql_query($vetola5);}//echo "1:$veto1 2:$veto2 3:$veto3 ip:$ip baslik:$baslik q:$q test:$testx";if ($veto1 =='' AND $veto2=='' AND $veto3=='' AND $baslik=='' AND $testx='on'){$sorgu = "INSERT INTO veto (baslik,gun) VALUES ('$q','$gun')";mysql_query($sorgu);}if ($veto1==$ip OR $veto2==$ip OR $veto3==$ip){	$fake=1;	echo "<br>$q başlığı bir kenara yazıldı...";	die;}if ($veto1kim==$kullaniciAdi OR $veto2kim==$kullaniciAdi){	$fake=1;	echo "<br>$q başlığı bir kenara yazıldı..";	die;}if ($veto1=='' OR $veto1=='NULL' AND $fake=0 AND $testx='on') //OR $veto2!='' OR $veto3!=''{$vetola = "UPDATE veto SET veto1='$ip' WHERE baslik='$q'"; mysql_query($vetola);$vetola = "UPDATE veto SET veto1kim='$kullaniciAdi' WHERE baslik='$q'"; mysql_query($vetola);		$ipdecimal = ip2long($ip);	// IPTABLES	//$sorgu2 = "INSERT INTO iptables ";	//$sorgu2 .= "(yazar,ip,tarih,ipdecimal)";	//$sorgu2 .= " VALUES ";	//$sorgu2 .= "('$kullaniciAdi','$ip','$tarih','$ipdecimal')";	//mysql_query($sorgu2);	echo "<br>$q başlığı bir kenara yazıldı..";	die;}if ($veto1!='' AND $veto2=='' OR $veto2=='NULL' AND $veto3!='' AND $fake=0 AND $testx='on'){$vetola = "UPDATE veto SET veto2='$ip' WHERE baslik='$q'"; mysql_query($vetola);$vetola = "UPDATE veto SET veto2kim='$kullaniciAdi' WHERE baslik='$q'"; mysql_query($vetola);	// IPTABLES	//$sorgu2 = "INSERT INTO iptables ";	//$sorgu2 .= "(yazar,ip,tarih)";	//$sorgu2 .= " VALUES ";	//$sorgu2 .= "('$kullaniciAdi','$ip','$tarih')";	//mysql_query($sorgu2);	echo "<br>$q başlığı bir kenara yazıldı.";	die;}if ($veto1!='' AND $veto2!='' AND $veto3=='' OR $veto3=='NULL' AND $fake=0 AND $testx='on'){$vetola = "UPDATE veto SET veto3='$ip' WHERE baslik='$q'"; mysql_query($vetola);$vetola = "UPDATE veto SET veto3kim='$kullaniciAdi' WHERE baslik='$q'"; mysql_query($vetola);	// IPTABLES	//$sorgu2 = "INSERT INTO iptables ";	//$sorgu2 .= "(yazar,ip,tarih)";	//$sorgu2 .= " VALUES ";	//$sorgu2 .= "('$kullaniciAdi','$ip','$tarih')";	//mysql_query($sorgu2);		echo "<br>$q başlığı bir kenara yazıldı.<br>";$vetopass = "UPDATE konular SET yil='2013' WHERE baslik='$q'"; mysql_query($vetopass);	echo "<br>algoritma yürütüldü, $q başlığı sol frameden düşürüldü.";	die;}if ($veto1!='' AND $veto2!='' AND $veto3!=''){$vetola = "UPDATE veto SET veto3='$ip' WHERE baslik='$q'"; mysql_query($vetola);	echo "<br>$q başlığı bir kenara yazıldı.<br>";$vetopass = "UPDATE konular SET yil='2013' WHERE baslik='$q'"; mysql_query($vetopass);	echo "<br>algoritma yürütüldü, $q başlığı sol frameden düşürüldü.";	die;}//echo "<br>fake:$fake";
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="bol sözlük, bol, sözlük, rap sözlük" /> 
+<meta name="description" content="bol sözlük." />
+<meta property="og:locale" content="tr_TR">
+<meta property="og:type" content="article">
+<meta property="og:image" content="http://i.imgur.com/Osi2LRo.png"/>
+<meta property="og:description" content="Hiphop ve Türkçe Rap'in kalbinin attığı sözlük."/>
+</head>
+<SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
+
+<?
+$ip = getenv('REMOTE_ADDR');
+$vetoc= mysql_fetch_array(mysql_query("SELECT * FROM veto WHERE `baslik`='$q'"));
+$veto1=$vetoc["veto1"];
+$veto2=$vetoc["veto2"];
+$veto3=$vetoc["veto3"];
+$veto1kim=$vetoc["veto1kim"];
+$veto2kim=$vetoc["veto2kim"];
+$veto3kim=$vetoc["veto3kim"];
+$baslik=$vetoc["baslik"];
+$vetogun=$vetoc["gun"];
+$fake=0;
+$gun = date("d");
+	$tarih = date("YmdHi");
+
+
+//echo "f1, $veto1,$veto1kim,$ip,$testx";
+//echo "<br>";
+
+if ($vetogun != $gun)
+{
+$vetola2 = "UPDATE veto SET veto1='' WHERE baslik='$q'"; 
+mysql_query($vetola2);
+$vetola3 = "UPDATE veto SET veto2='' WHERE baslik='$q'"; 
+mysql_query($vetola3);
+$vetola4 = "UPDATE veto SET veto3='' WHERE baslik='$q'"; 
+mysql_query($vetola4);
+$vetoc= mysql_fetch_array(mysql_query("SELECT * FROM veto WHERE `baslik`='$q'"));
+$veto1=$vetoc["veto1"];
+$veto2=$vetoc["veto2"];
+$veto3=$vetoc["veto3"];
+$vetola5 = "UPDATE veto SET gun='$gun' WHERE baslik='$q'"; 
+mysql_query($vetola5);
+}
+//echo "1:$veto1 2:$veto2 3:$veto3 ip:$ip baslik:$baslik q:$q test:$testx";
+
+
+if ($veto1 =='' AND $veto2=='' AND $veto3=='' AND $baslik=='' AND $testx='on')
+{
+$sorgu = "INSERT INTO veto (baslik,gun) VALUES ('$q','$gun')";
+mysql_query($sorgu);
+}
+
+if ($veto1==$ip OR $veto2==$ip OR $veto3==$ip)
+{
+	$fake=1;
+	echo "<br>$q başlığı bir kenara yazıldı...";
+
+	die;
+}
+
+if ($veto1kim==$kullaniciAdi OR $veto2kim==$kullaniciAdi)
+{
+	$fake=1;
+	echo "<br>$q başlığı bir kenara yazıldı..";
+	die;
+}
+
+if ($veto1=='' OR $veto1=='NULL' AND $fake=0 AND $testx='on') //OR $veto2!='' OR $veto3!=''
+{
+$vetola = "UPDATE veto SET veto1='$ip' WHERE baslik='$q'"; 
+mysql_query($vetola);
+$vetola = "UPDATE veto SET veto1kim='$kullaniciAdi' WHERE baslik='$q'"; 
+mysql_query($vetola);
+		$ipdecimal = ip2long($ip);
+
+	// IPTABLES
+	//$sorgu2 = "INSERT INTO iptables ";
+	//$sorgu2 .= "(yazar,ip,tarih,ipdecimal)";
+	//$sorgu2 .= " VALUES ";
+	//$sorgu2 .= "('$kullaniciAdi','$ip','$tarih','$ipdecimal')";
+	//mysql_query($sorgu2);
+
+	echo "<br>$q başlığı bir kenara yazıldı..";
+	die;
+}
+
+if ($veto1!='' AND $veto2=='' OR $veto2=='NULL' AND $veto3!='' AND $fake=0 AND $testx='on')
+{
+$vetola = "UPDATE veto SET veto2='$ip' WHERE baslik='$q'"; 
+mysql_query($vetola);
+$vetola = "UPDATE veto SET veto2kim='$kullaniciAdi' WHERE baslik='$q'"; 
+mysql_query($vetola);
+
+	// IPTABLES
+	//$sorgu2 = "INSERT INTO iptables ";
+	//$sorgu2 .= "(yazar,ip,tarih)";
+	//$sorgu2 .= " VALUES ";
+	//$sorgu2 .= "('$kullaniciAdi','$ip','$tarih')";
+	//mysql_query($sorgu2);
+
+	echo "<br>$q başlığı bir kenara yazıldı.";
+	die;
+}
+
+if ($veto1!='' AND $veto2!='' AND $veto3=='' OR $veto3=='NULL' AND $fake=0 AND $testx='on')
+{
+$vetola = "UPDATE veto SET veto3='$ip' WHERE baslik='$q'"; 
+mysql_query($vetola);
+$vetola = "UPDATE veto SET veto3kim='$kullaniciAdi' WHERE baslik='$q'"; 
+mysql_query($vetola);
+
+	// IPTABLES
+	//$sorgu2 = "INSERT INTO iptables ";
+	//$sorgu2 .= "(yazar,ip,tarih)";
+	//$sorgu2 .= " VALUES ";
+	//$sorgu2 .= "('$kullaniciAdi','$ip','$tarih')";
+	//mysql_query($sorgu2);
+
+	
+	echo "<br>$q başlığı bir kenara yazıldı.<br>";
+
+$vetopass = "UPDATE konular SET yil='2013' WHERE baslik='$q'"; 
+mysql_query($vetopass);
+	echo "<br>algoritma yürütüldü, $q başlığı sol frameden düşürüldü.";
+	die;
+
+}
+
+if ($veto1!='' AND $veto2!='' AND $veto3!='')
+{
+$vetola = "UPDATE veto SET veto3='$ip' WHERE baslik='$q'"; 
+mysql_query($vetola);
+	echo "<br>$q başlığı bir kenara yazıldı.<br>";
+
+$vetopass = "UPDATE konular SET yil='2013' WHERE baslik='$q'"; 
+mysql_query($vetopass);
+	echo "<br>algoritma yürütüldü, $q başlığı sol frameden düşürüldü.";
+	die;
+
+}
+
+//echo "<br>fake:$fake";
