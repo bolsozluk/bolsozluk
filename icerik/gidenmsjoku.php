@@ -1,5 +1,4 @@
 <?
-extract($_REQUEST); //bunu silebilirim
 $id = guvenlikKontrol($_REQUEST["id"],"ultra");
 
 if ($id) {
@@ -26,10 +25,6 @@ if ($oku<1)
 echo "Lütfen tekrar giris yapin.";
 die;
 }
-
-//$sorgu = "UPDATE privmsg SET okundu = '0' WHERE `id` ='$id'";
-//mysql_query($sorgu);
-
 
 $mesaj = preg_replace("'\(bkz: (.*)\)'Ui","(bkz: <a href=\"sozluk.php?process=word&q=\\1\">\\1</a>)",$mesaj);
 $mesaj = preg_replace("'\(gbkz: (.*)\)'Ui","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
