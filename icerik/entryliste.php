@@ -16,11 +16,9 @@ table td {
 
 
 <?
+$kimdirbu = isset($_REQUEST["kimdirbu"]) ? guvenlikKontrol($_REQUEST["kimdirbu"], "hard") : "";
 
-//$kimdirbu =$_GET['$kimdirbu'] 
-//echo $kulYetki;
-    include "mobframe.php";
-
+include "mobframe.php";
 
 if ($kulYetki != "null")
 {
