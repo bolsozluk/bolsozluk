@@ -3,7 +3,6 @@
 //session_start();
 //extract($_POST);
 //extract($_GET);
-extract($_REQUEST); //bunu silebilirim
 
 $kime = "info@bolsozluk.com"; // Mesajın gitmesini istediğin e-posta adresin.
 $kime1 = "ufuk@bolsozluk.com"; // Mesajın gitmesini istediğin e-posta adresin.
