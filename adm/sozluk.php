@@ -3,7 +3,9 @@ session_start();
 ob_start();
 error_reporting(E_ALL ^ E_NOTICE);
 
-$oke = guvenlikKontrol($_REQUEST["oke"],"hard");
+$sozluk = isset($_REQUEST["sozluk"]) ? guvenlikKontrol($_REQUEST["sozluk"], "hard") : "";
+$gundem = isset($_REQUEST["gundem"]) ? guvenlikKontrol($_REQUEST["gundem"], "hard") : "";
+$oke = isset($_REQUEST["oke"]) ? guvenlikKontrol($_REQUEST["oke"], "hard") : "";
 
   $sorgu = "SELECT * FROM ayar WHERE `id` = '1'";
   $sorgulama = @mysql_query($sorgu);
