@@ -12,8 +12,7 @@
 <SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
 
 <?
-extract($_REQUEST);
-//bunu silebilirim
+
 $gkime = guvenlikKontrol($_REQUEST["gkime"],"hard");
 $cevap = guvenlikKontrol($_REQUEST["cevap"],"ultra");
 $gmesaj = guvenlikKontrol($_REQUEST["gmesaj"],"med");
