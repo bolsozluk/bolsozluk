@@ -1,5 +1,5 @@
 <?
-extract($_REQUEST); //bunu silebilirim
+
 /*if ($ispit != 1 and $kulYetki != "user") {
 echo "Bu işlem için gerekli yetkiye sahip değilsiniz";
 die;
