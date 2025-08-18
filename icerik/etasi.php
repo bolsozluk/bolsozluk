@@ -3,8 +3,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-
 $id = guvenlikKontrol(isset($_POST["id"]) ? $_POST["id"] : (isset($_GET["id"]) ? $_GET["id"] : ""), "ultra");
 $sira = guvenlikKontrol(isset($_POST["sira"]) ? $_POST["sira"] : (isset($_GET["sira"]) ? $_GET["sira"] : ""), "ultra");
 $sebep = guvenlikKontrol(isset($_REQUEST["sebep"]) ? $_REQUEST["sebep"] : "", "hard");
