@@ -24,6 +24,7 @@ echo "<br>";
 echo "<br>";
 
 
+$eno = isset($_POST['eno']) ? $_POST['eno'] : array();
 
 //if (!empty($_POST["sil3"])) {
 if(isset($_POST['sil3'])){
