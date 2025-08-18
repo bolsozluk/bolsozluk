@@ -2,7 +2,7 @@
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
 
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $eskinick = $kullaniciAdi;
 $sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
 $reset=$sorset["reset"];
