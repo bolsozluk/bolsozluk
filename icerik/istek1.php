@@ -5,8 +5,6 @@
 </style>
 
 <?
-extract($_REQUEST);
-//$kimdirbu =$_GET['$kimdirbu'] 
 
 $sorgu = "SELECT id,sira,mesaj,yazar,tarih,statu,istekhatti FROM mesajlar WHERE (statu != 'silindi' and statu!='wait' and sira = '120' and istekhatti = '1') ORDER by `id` desc LIMIT 0,5000";  
 echo "<strong>çözülen talepler.</strong><br><br>";
