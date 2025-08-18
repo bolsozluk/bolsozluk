@@ -40,11 +40,6 @@ table td {
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?
-extract($_REQUEST); //bunu silebilirim
-
-
-
-
 
 $sorgu = "SELECT * FROM konular WHERE `editlendi` = '1' ORDER BY `sira` DESC LIMIT 100";
 $sorgulama = @mysql_query($sorgu);
