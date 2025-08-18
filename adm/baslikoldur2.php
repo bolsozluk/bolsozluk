@@ -1,5 +1,5 @@
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $id = guvenlikKontrol($_REQUEST["id"],"ultra");
 $sira = guvenlikKontrol($_REQUEST["sira"],"ultra");
 $sebep = guvenlikKontrol($_REQUEST["sebep"],"hard");

@@ -1,6 +1,6 @@
 <LINK href="inc/<?echo "$aktiftema";?>.css" type=text/css rel=stylesheet>
 <?
-//extract($_REQUEST); //bunu silebilirim
+
 $bid = guvenlikKontrol($_REQUEST["bid"],"ultra");
 $sira = guvenlikKontrol($_REQUEST["sira"],"ultra");
 $sebep = guvenlikKontrol($_REQUEST["sebep"],"hard");

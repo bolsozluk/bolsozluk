@@ -1,8 +1,6 @@
 <?
 session_start();
 ob_start();
-extract($_REQUEST); //bunu silebilirim
-//error_reporting(E_ALL);
 error_reporting(E_ALL ^ E_NOTICE);
 
 $oke = guvenlikKontrol($_REQUEST["oke"],"hard");

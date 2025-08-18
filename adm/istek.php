@@ -1,7 +1,7 @@
 <LINK href="inc/<?echo "$aktiftema";?>.css" type=text/css rel=stylesheet>
 <SCRIPT src="inc/new.js" type=text/javascript></SCRIPT>
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $bid = guvenlikKontrol($_REQUEST["bid"],"hard");
 $a = guvenlikKontrol($_REQUEST["a"],"hard");
 $ybaslik = guvenlikKontrol($_REQUEST["ybaslik"],"hard");

@@ -1,12 +1,9 @@
 <?
-extract($_REQUEST);
-
 $id = guvenlikKontrol($_REQUEST["id"],"ultra");
 $ok = guvenlikKontrol($_REQUEST["ok"],"hard");
 $yazar = guvenlikKontrol($_REQUEST["yazar"],"hard");
 $konu = guvenlikKontrol($_REQUEST["konu"],"med");
 $aciklama = guvenlikKontrol($_REQUEST["aciklama"],"med");
-
 
 echo "haber düzenleme modülü";
 

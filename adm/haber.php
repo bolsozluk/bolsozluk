@@ -1,5 +1,5 @@
 <?
-extract($_REQUEST); //bunu silebilirim
+
 if ($haber != 1) {
 echo "Bu işlem için gerekli yetkiye sahip değilsiniz";
 die;

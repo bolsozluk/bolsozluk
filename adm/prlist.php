@@ -10,7 +10,6 @@ input[type=checkbox]
 </style>
 
 <?
-extract($_REQUEST); //bunu silebilirim
 
   $tarih = date("YmdHi");
   $gun = date("d");

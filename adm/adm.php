@@ -15,18 +15,13 @@
     height: 40px;
 }
 
-</style>
-
-<style>
 table, th, td {
   border: 1px solid black;
 }
 </style>
 <body>
-
-
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $islem = guvenlikKontrol($_REQUEST["islem"],"hard");
 $ip = guvenlikKontrol($_REQUEST["ip"],"ip");
 $ok = guvenlikKontrol($_REQUEST["ok"],"ip");
@@ -48,13 +43,6 @@ $email = guvenlikKontrol($_REQUEST["email"],"hard");
 
 include "mobframe.php";
 
-//$kullaniciAdi = guvenlikKontrol($_REQUEST["kullaniciAdi"],"hard");
-
-/*if ($kulYetki != "admin" and $kulYetki != "mod" and $kulYetki != "gammaz") {
-  echo "<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"0;URL=sozluk.php?process=refresh\">";
-  die;
-}
-*/
 echo "<b>$kullaniciAdi - yönetici paneli</b>";
 
 if (($kulYetki != "admin") and ($kulYetki != "mod")) {
@@ -78,8 +66,7 @@ $basliktasi = 1;
 $registerStyleister = 1;
 $akillananlar = 1;
 $ipban = 1;
-//<button onclick="window.location.href='sozluk.php?process=adm&islem=sozluk'">sözlük işlemleri</button>
-//
+
 ?>
 <table>
   <tr>
@@ -101,13 +88,9 @@ echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=s
 //echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=kullanici'\"class=but>kullanıcı işlemleri</button></td>";
 echo "<td><button onclick=\"window.location.href='sozluk.php?process=frame'\"class=but>moderasyon frame</button></td>";
 }
-
-
 ?>
-
 <br>
 </tr><tr>
-
 <?
 if ($kulYetki == "admin")
 {
@@ -116,10 +99,8 @@ echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=o
 echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=nickdegis'\"class=but>nick değiştir</button></td>";
 }
 ?>
-
 <br>
 </tr><tr>
-
 <?
 //echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=oluler'\"class=but>ölü entryler</button></td>";
 //echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=baslik'\"class=but>başlık işlemleri</button></td>";
@@ -131,30 +112,15 @@ echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=i
 
 
 </tr>
-
-
 <tr>
-
 <?
 echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=eksiciler'\"class=but>eksiciler</button></td>";
 echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=akillananlar'\" class=but>akıllanan entryler </button></td>";
 //echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=feyk'\"class=but>feyk kontrol</button></td>";
 echo "<td><button onclick=\"top.left.location.href='sozluk.php?process=frame'\" class=but>mod frame</button></td>";
-
 ?>
-
-
 </tr>
 <tr>
-
-<?
-
-
-//echo "<td><button onclick=\"window.location.href='sozluk.php?process=adm&islem=eksiciler'\"class=but>eksiciler</button></td>";
-//if ($kulYetki == "admin" or $kullaniciAdi=="deepsky")
-//{echo "<button onclick=\"window.location.href='sozluk.php?process=adm&islem=iptal'\">feyk dedektif</button>";}
-?>
-
 </tr>
 </table>
 <br>
@@ -175,13 +141,11 @@ else
 echo "
 Bu bölüm geçici olarak servis dışı.";
 }
-
 echo "
     </td>
   </tr>
 </table>
 ";
-
 ?>
 </body>
 </html>
