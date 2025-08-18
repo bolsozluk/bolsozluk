@@ -3,6 +3,8 @@ $id = guvenlikKontrol($_REQUEST["id"],"ultra");
 $sira = guvenlikKontrol($_REQUEST["sira"],"ultra");
 $sebep = guvenlikKontrol($_REQUEST["sebep"],"hard");
 $sr = guvenlikKontrol($_REQUEST["sr"],"ultra");
+$kullaniciAdi = $_SESSION['kullaniciAdi_S'];
+$kulYetki = $_SESSION['kulYetki_S'];
 
 	//if ($dbyazar != $kullaniciAdi and $kulYetki != "admin" and $kulYetki != "mod")  {
 		if ($kulYetki != "admin" and $kulYetki != "mod")  {
