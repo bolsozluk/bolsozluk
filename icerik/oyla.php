@@ -24,7 +24,7 @@ include("baglan.php");
 include("fonksiyonlar.php");
 vtBaglan();
 kontrolEt();
-extract($_REQUEST); //bunu silebilirim
+
 $dakika = date("i");
 //$kullaniciAdi = $_SESSION['kullaniciAdi_S'];
 
