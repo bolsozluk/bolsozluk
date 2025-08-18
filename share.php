@@ -6,7 +6,6 @@ include "icerik/baglan.php";
 include "icerik/fonksiyonlar.php";
 vtBaglan();
 
-extract($_REQUEST); //bunu silebilirim
 error_reporting(E_ALL ^ E_NOTICE);
 // Get variables
 $yuklenecekSayfa = guvenlikKontrol($_REQUEST["process"],"hard");
