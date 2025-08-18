@@ -25,7 +25,7 @@ jobs:
           dangerous-clean-slate: false  # ekstra dosyaları silmez
           exclude: |
             phpinfo.php
-            /icerik/bolgpt.php
-            /icerik/bolgptnb.php
-            /.git/**
+            icerik/bolgpt.php
+            icerik/bolgptnb.php
+            .git/**
           log-level: verbose       # detaylı log, hata varsa gösterir
