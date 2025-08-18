@@ -71,10 +71,6 @@ table tr td{
 <body>
 <div class=div1>
 <?
-
-
-
-extract($_REQUEST);
 //$kimdirbu =$_GET["kimdirbu"] 
 $aktifTema = guvenlikKontrol($_REQUEST["tema"],"hard");
 $yuklenecekSayfa = guvenlikKontrol($_REQUEST["process"],"hard");
