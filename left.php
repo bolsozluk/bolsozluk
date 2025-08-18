@@ -8,9 +8,6 @@
 <?
 session_start();
 ob_start();
-
-//extract($_REQUEST); //bunu silebilirim
-//error_reporting(E_ALL);
 error_reporting(E_ALL ^ E_NOTICE);
 
 include "icerik/firstsettings.php";
@@ -1936,93 +1933,14 @@ bol'da yer alan içeriğin doğru veya güncel olduğu hiçbir şekilde iddia ve
 }
 }
 
-
-
-
 echo "</div>";
 
 
 mysql_close($databaseConnection);
 ob_end_flush();
 
-//LEGACY PART
-
-//60 GÜN//
-/*
-echo "<li>· <a href='sen%20bir%20korkaks%C4%B1n-1.html' target='main' title='".'şafak 60: sen bir korkaksın'."'>".'şafak 60: sen bir korkaksın'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='bask%C4%B1n-1.html' target='main' title='".'şafak 59: baskın'."'>".'şafak 59: baskın'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='kin-1.html' target='main' title='".'şafak 58: kin'."'>".'şafak 58: kin'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='para%20pula%20meyil-1.html' target='main' title='".'şafak 57: para pula meyil'."'>".'şafak 57: para pula meyil'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='b1r-1.html' target='main' title='".'şafak 56: b1r'."'>".'şafak 56: b1r'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='cehaletin%20evlatlar%C4%B1-1.html' target='main' title='".'şafak 55: cehaletin evlatları'."'>".'şafak 55: cehaletin evlatları'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='aya%C4%9Fa%20kalk-1.html' target='main' title='".'şafak 54: ayağa kalk'."'>".'şafak 54: ayağa kalk'."</a> (<font color='red'>!</font>)"; 
-echo "<li>· <a href='insanlar%20%C3%B6l%C3%BC-1.html' target='main' title='".'şafak 53: insanlar ölü'."'>".'şafak 53: insanlar ölü'."</a> (<font color='red'>!</font>)"; 
-
-if (($cDay==23) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='saman%20alt%C4%B1%20sava%C5%9Flar%C4%B1-1.html' target='main' title='".'şafak 52: saman altı savaşları'."'>".'şafak 52: saman altı savaşları'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==24) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='%C3%A7%C4%B1kt%C4%B1k%20yine%20yollara-1.html' target='main' title='".'şafak 51: çıktık yine yollara'."'>".'şafak 51: çıktık yine yollara'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==25) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='barut-1.html' target='main' title='".'şafak 50: barut'."'>".'şafak 50: barut'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==26) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='proleter-1.html' target='main' title='".'şafak 49: proleter'."'>".'şafak 49: proleter'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==27) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='pazarl%C4%B1k%20yok-1.html' target='main' title='".'şafak 48: pazarlık yok'."'>".'şafak 48: pazarlık yok'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==28) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='hadi%20konu%C5%9F-1.html' target='main' title='".'şafak 47: hadi konuş'."'>".'şafak 47: hadi konuş'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==29) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='s%C4%B1f%C4%B1r%20miligram-1.html' target='main' title='".'şafak 46: sıfır miligram'."'>".'şafak 46: sıfır miligram'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==30) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='canavar%20kafanda-1.html' target='main' title='".'şafak 45: canavar kafanda'."'>".'şafak 45: canavar kafanda'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==31) && ($cMon==03) && ($cYea==2023)) echo "<li>· <a href='tek%20bir%20ihtimal%20var-1.html' target='main' title='".'şafak 44: tek bir ihtimal var'."'>".'şafak 44: tek bir ihtimal var'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==01) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='bu%20s%C3%B6zleri%20yazd%C4%B1%C4%9F%C4%B1mda%20dolar%202%20lirayd%C4%B1-1.html' target='main' title='".'şafak 43: bu sözleri yazdığımda dolar 2 liraydı'."'>".'şafak 43: bu sözleri yazdığımda dolar 2 liraydı'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==02) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='yaz%20gazeteci%20yaz-1.html' target='main' title='".'şafak 42: yaz gazeteci yaz'."'>".'şafak 42: yaz gazeteci yaz'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==03) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='unutma-1.html' target='main' title='".'şafak 41: unutma'."'>".'şafak 41: unutma'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==04) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='fele%C4%9Fin%20%C3%A7emberine%2040%20kur%C5%9Fun-1.html' target='main' title='".'şafak 40: feleğin çemberine 40 kurşun'."'>".'şafak 40: feleğin çemberine 40 kurşun'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==05) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='b%C3%B6yle%20festival-1.html' target='main' title='".'şafak 39: böyle festival'."'>".'şafak 39: böyle festival'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==06) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='rant%20hilafeti-1.html' target='main' title='".'şafak 38: rant hilafeti'."'>".'şafak 38: rant hilafeti'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==07) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='olay-1.html' target='main' title='".'şafak 37: olay'."'>".'şafak 37: olay'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==8) && ($cMon==4) && ($cYea==2023)) echo "<li>· <a href='say%C4%B1n%20t%C3%BCrk-1.html' target='main' title='".'şafak 36: sayın türk'."'>".'şafak 36: sayın türk'."</a> (<font color='red'>!</font>)"; 
-
-if (($cDay==9) && ($cMon==4) && ($cYea==2023)) echo "<li>· <a href='hep%20biz%20%C3%B6ld%C3%BCk-1.html' target='main' title='".'şafak 35: hep biz öldük'."'>".'şafak 35: hep biz öldük'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==10) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='sayg%C4%B1%20duru%C5%9Fu-1.html' target='main' title='".'şafak 34: saygı duruşu'."'>".'şafak 34: saygı duruşu'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==11) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='neoliberal%20mezbaha-1.html' target='main' title='".'şafak 33: neoliberal mezbaha'."'>".'şafak 33: neoliberal mezbaha'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==12) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='susmak%20i%C3%A7in%20yok%20bahanem-1.html' target='main' title='".'şafak 32: susmak için yok bahanem'."'>".'şafak 32: susmak için yok bahanem'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==13) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='molotoflu%20vodvil-1.html' target='main' title='".'şafak 31: molotoflu vodvil'."'>".'şafak 31: molotoflu vodvil'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==14) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='propaganda-1.html' target='main' title='".'şafak 30: propaganda'."'>".'şafak 30: propaganda'."</a> (<font color='red'>!</font>)"; 
-
-if (($cDay==15) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='kimin%20umrunda-1.html' target='main' title='".'şafak 29: kimin umurunda'."'>".'şafak 29: kimin umurunda'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==16) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='adrenalin-1.html' target='main' title='".'şafak 28: adrenalin'."'>".'şafak 28: adrenalin'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==17) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='yang%C4%B1na%20k%C3%B6r%C3%BCklen-1.html' target='main' title='".'şafak 27: yangına körüklen'."'>".'şafak 27: yangına körüklen'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==18) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='h%C4%B1rs%C4%B1z%20var-1.html' target='main' title='".'şafak 26: hırsız var'."'>".'şafak 26: hırsız var'."</a> (<font color='red'>!</font>)";  
-if (($cDay==19) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='%C4%B1rmaklar%C4%B1%20kan%C4%B1mla%20kur-1.html' target='main' title='".'şafak 25: ırmakları kanımla kur'."'>".'şafak 25: ırmakları kanımla kur'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==20) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='neyin%20fark%C4%B1ndas%C4%B1n-1.html' target='main' title='".'şafak 24: neyin farkındasın'."'>".'şafak 24: neyin farkındasın'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==21) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='a%C3%A7%C4%B1k%20artt%C4%B1rma-1.html' target='main' title='".'şafak 23: açık artırma'."'>".'şafak 23: açık artırma'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==22) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='ar%20gelir%20yak%C4%B1n-1.html' target='main' title='".'şafak 22: ar gelir yakın'."'>".'şafak 22: ar gelir yakın'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==23) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='yerin%20en%20dibine-1.html' target='main' title='".'şafak 21: yerin en dibine'."'>".'şafak 21: yerin en dibine'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==24) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='tariz-1.html' target='main' title='".'şafak 20: tariz'."'>".'şafak 20: tariz'."</a> (<font color='red'>!</font>)"; 
-
-if (($cDay==25) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='ezilmi%C5%9F%20%C3%A7ocuklar-1.html' target='main' title='".'şafak 19: ezilmiş çocuklar'."'>".'şafak 19: ezilmiş çocuklar'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==26) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='sonras%C4%B1%20yok-1.html' target='main' title='".'şafak 18: sonrası yok'."'>".'şafak 18: sonrası yok'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==27) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='katilimi%20tan%C4%B1yorum-1.html' target='main' title='".'şafak 17: katilimi tanıyorum'."'>".'şafak 17: katilimi tanıyorum'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==28) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='reddet-1.html' target='main' title='".'şafak 16: reddet'."'>".'şafak 16: reddet'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==29) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='hi%C3%A7%20sevmedim%20seni-1.html' target='main' title='".'şafak 15: hiç sevmedim seni'."'>".'şafak 15: hiç sevmedim seni'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==30) && ($cMon==04) && ($cYea==2023)) echo "<li>· <a href='bu%C4%9Fulu%20camlara%20devrik%20c%C3%BCmleler-1.html' target='main' title='".'şafak 14: buğulu camlara devrik cümleler'."'>".'şafak 14: buğulu camlara devrik cümleler'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==01) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='ic%20mihrak-1.html' target='main' title='".'şafak 13: iç mihrak'."'>".'şafak 13: iç mihrak'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==02) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='s%C4%B1ra%20kimde-1.html' target='main' title='".'şafak 12: sıra kimde'."'>".'şafak 12: sıra kimde'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==03) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='katili%20katlet-1.html' target='main' title='".'şafak 11: katili katlet'."'>".'şafak 11: katili katlet'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==04) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='manifesto-1.html' target='main' title='".'şafak 50: manifesto'."'>".'şafak 10: manifesto'."</a> (<font color='red'>!</font>)"; 
-
-if (($cDay==05) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='anlat-1.html' target='main' title='".'şafak 09: anlat'."'>".'şafak 09: anlat'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==06) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='%C3%A7are%20var-1.html' target='main' title='".'şafak 08: çare var'."'>".'şafak 08: çare var'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==07) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='karar%20bizim-1.html' target='main' title='".'şafak 07: karar bizim'."'>".'şafak 07: karar bizim'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==8) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='hani%20nerdeler-1.html' target='main' title='".'şafak 06: hani nerdeler'."'>".'şafak 06: hani nerdeler'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==9) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='%C3%B6lene%20kadar-1.html' target='main' title='".'şafak 05: ölene kadar'."'>".'şafak 05: ölene kadar'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==10) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='%C3%B6l%C3%BCler%20dirilerden%20%C3%A7alacak-1.html' target='main' title='".'şafak 04: ölüler dirilerden çalacak'."'>".'şafak 04: ölüler dirilerden çalacak'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==11) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='fkp%20se%C3%A7im%20%C5%9Fark%C4%B1s%C4%B1-1.html' target='main' title='".'şafak 03: fkp seçim şarkısı'."'>".'şafak 03: fkp seçim şarkısı'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==12) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='susamam-1.html' target='main' title='".'şafak 02: susamam'."'>".'şafak 02: susamam'."</a> (<font color='red'>!</font>)"; 
-if (($cDay==13) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='se%C3%A7im%20%C5%9Fark%C4%B1s%C4%B1-1.html' target='main' title='".'şafak 01: seçim şarkısı'."'>".'şafak 01: seçim şarkısı'."</a> (<font color='red'>!</font>)"; 
-//if (($cDay==14) && ($cMon==05) && ($cYea==2023)) echo "<li>· <a href='https://www.bolsozluk.com/60%20g%C3%BCn-1.html' target='main' title='".'şafak doğan güneş'."'>".'şafak doğan güneş'."</a> (<font color='red'>!</font>)"; 
-
-*/
-
-
 ?>
 </div>
-
-
 </body>
 
 
