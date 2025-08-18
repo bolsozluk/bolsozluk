@@ -3,7 +3,6 @@
 
 <?
 $yazar = guvenlikKontrol($_REQUEST["yazar"],"hard");
-extract($_REQUEST); //bunu silebilirim
 
 $eskinick = $yazar;
 $sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$yazar'"));
