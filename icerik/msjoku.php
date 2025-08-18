@@ -31,7 +31,6 @@ function mobara() {
 
 <?
 error_reporting(E_ALL ^ E_NOTICE);
-extract($_REQUEST); //bunu silebilirim
 $id = guvenlikKontrol($_REQUEST["id"],"ultra");
 $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
