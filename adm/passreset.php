@@ -3,7 +3,6 @@
 
 <?php
 $yazar = guvenlikKontrol($_REQUEST["yazar"],"hard");
-extract($_REQUEST); //bunu silebilirim
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
