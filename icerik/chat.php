@@ -12,33 +12,6 @@ if ($ipBanResult && mysql_fetch_assoc($ipBanResult)['banned'] > 0) {
     die('Hata.');
 }
 
-/*
-session_start();
-$kullaniciAdi = isset($_SESSION['kullaniciAdi']) ? $_SESSION['kullaniciAdi'] : '';
-$yetki = isset($_SESSION['yetki']) ? $_SESSION['yetki'] : '';
-
-// Veritabanı bağlantısı
-$host = "localhost";
-$user = "bol_db";
-$password = "1q2w3E4R";
-$name = "bol";
-
-$databaseConnection = mysql_connect($host, $user, $password);
-if (!$databaseConnection) {
-    header('HTTP/1.1 500 Internal Server Error');
-    die(json_encode(['error' => 'Veritabanı bağlantı hatası']));
-}
-
-if (!mysql_select_db($name, $databaseConnection)) {
-    header('HTTP/1.1 500 Internal Server Error');
-    die(json_encode(['error' => 'Veritabanı seçilemedi']));
-}
-
-mysql_query("SET NAMES 'utf8'");
-mysql_query("SET CHARACTER SET utf8");
-mysql_query("SET COLLATION_CONNECTION = 'utf8_general_ci'");
-*/
-
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 function convertTurkishToAscii($text) {
     $turkish = array('ı', 'ğ', 'ü', 'ş', 'ö', 'ç', 'İ', 'Ğ', 'Ü', 'Ş', 'Ö', 'Ç');
