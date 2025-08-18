@@ -10,7 +10,6 @@ input[type=checkbox]
 </style>
 
 <?
-extract($_REQUEST); //bunu silebilirim
 
   $tarih = date("YmdHi");
   $gun = date("d");
@@ -141,7 +140,6 @@ echo"
  <form action='' method='POST'>
  ";
 
-
 echo "
   <tr>
     <td><font size=1><i>$id</i></td>
@@ -155,8 +153,6 @@ echo "
 ";
 }
 
-
-
 echo " <input class=\"but\" type=\"submit\" name=\"sil3\" value=\"Seçilenleri Sil\" onclick=\"top.main.location.href='sozluk.php?process=adm&islem=ispliste'\">
  </form>
 </table>";
@@ -167,5 +163,4 @@ echo "UYARI: şimdilik tek tek seçip silelim, çoklu ispiyon silme henüz yeter
 else {
 echo "aktif şikayet kaydı bulunan herhangi bir entry mevcut değildir.";
 }
-
 ?>
