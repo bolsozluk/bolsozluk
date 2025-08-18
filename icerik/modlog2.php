@@ -39,8 +39,6 @@ table td {
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?
-extract($_REQUEST); //bunu silebilirim
-
 
 $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
