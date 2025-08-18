@@ -5,16 +5,10 @@
 $cay1sebep= guvenlikKontrol($_REQUEST["cay1sebep"],"hard");
 
 $yazar = guvenlikKontrol($_REQUEST["yazar"],"hard");
-extract($_REQUEST); //bunu silebilirim
 
 $eskinick = $yazar;
-
-
-//$tarih = date("Ymd");
 $tarih  = strtotime('now');
 
-//echo $tarih; 
-//echo "<br><br>";
 
 if ($cay1sebep == "") { echo "Çaylaklık sebebi girmediniz.";}
 
