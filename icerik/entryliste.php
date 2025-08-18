@@ -17,7 +17,6 @@ table td {
 
 <?
 
-extract($_REQUEST);
 //$kimdirbu =$_GET['$kimdirbu'] 
 //echo $kulYetki;
     include "mobframe.php";

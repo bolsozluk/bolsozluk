@@ -14,7 +14,6 @@ $sr = guvenlikKontrol($_REQUEST["sr"],"ultra");
 if (!$kullaniciAdi) {
  header("Location:sozluk.php?process=master&login=yescanim");
 } else {
-	extract($_REQUEST);} //bunu silebilirim
  //if ($_GET['id'] and $_GET['sira'] and !$_POST['tasi']) {
  ?>
  <form action="" method="POST">

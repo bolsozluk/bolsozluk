@@ -1,8 +1,7 @@
 <SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
-
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $eskinick = $kullaniciAdi;
 $sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
 $reset=$sorset["reset"];
@@ -44,10 +43,6 @@ $msg = "hesabınız kapatıldı. yeni hesabınızla, yine bekleriz.";
 			}
 	
 ?>
-
-
-
-
 <form method="POST" action="sozluk.php?process=anon3">
 <table cellpadding="10px" border="0">
 <tr>

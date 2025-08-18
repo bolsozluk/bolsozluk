@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <body class=bgleft>
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $t1=mysql_query("SELECT *, COUNT(sira) FROM mesajlar WHERE statu != 'silindi' GROUP BY sira ORDER BY COUNT(sira) desc limit 500");
 //echo "test1";
 while ($t2=mysql_fetch_array($t1)) {

@@ -27,7 +27,7 @@ function mobara() {
 
 
 <?
-//extract($_REQUEST); //bunu silebilirim
+
 $avatarURL = guvenlikKontrol($_REQUEST["avatarURL"],"hard");
 $mottoTXT = guvenlikKontrol($_REQUEST["mottoTXT"],"hard");
 $aktifTema = guvenlikKontrol($_REQUEST["tema"],"hard");

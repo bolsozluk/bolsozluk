@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <body class=bgleft>
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $s4=mysql_query("select * from mesajlar where yazar='$kullaniciAdi' and statu != 'silindi' group by sira desc limit 60");
 
 while ($o3=mysql_fetch_array($s4)) {

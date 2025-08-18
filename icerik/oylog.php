@@ -40,12 +40,6 @@ table td {
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?
-extract($_REQUEST); //bunu silebilirim
-
-
-
-
-
 $sorgu = "SELECT * FROM oylar  WHERE `oy` = 0 ORDER BY `id` DESC LIMIT 1000";
 $sorgulama = @mysql_query($sorgu);
 

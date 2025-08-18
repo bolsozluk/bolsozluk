@@ -12,7 +12,7 @@
 <SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
 
 <?
-extract($_REQUEST);
+
 $ip = getenv('REMOTE_ADDR');
 $vetoc= mysql_fetch_array(mysql_query("SELECT * FROM veto WHERE `baslik`='$q'"));
 $veto1=$vetoc["veto1"];

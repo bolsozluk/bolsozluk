@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <body class=bgleft>
 <?
-extract($_REQUEST); //bunu silebilirim
+
 $takip=mysql_query("select * from takip where nick='$kullaniciAdi'");
 while ($takip2=mysql_fetch_array($takip)){
 	$baslikid=$takip2['baslik'];
@@ -18,7 +18,6 @@ while ($takip2=mysql_fetch_array($takip)){
  echo "<li><a href='sozluk.php?process=word&q=$link#son' target='main'>$baslik </a></li>";
 //	 echo "<li><a href='/bol/$link/$goster#son' target='main'>$baslk </a><a title='entry girilmiş'>($y)</a></li>";
 }
-
 
 ?>
 

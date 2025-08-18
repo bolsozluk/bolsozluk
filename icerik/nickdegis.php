@@ -2,7 +2,6 @@
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
 
 <?
-extract($_REQUEST); //bunu silebilirim
 //$nick = guvenlikKontrol($_REQUEST["nick"],"hard");
 $eskinick = $kullaniciAdi;
 
