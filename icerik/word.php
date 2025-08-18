@@ -26,20 +26,8 @@
 if (isset($_COOKIE[session_name()])) {
     setcookie(session_name(), $_COOKIE[session_name()], time() + 1500, "/");
 }
-
-
     }
 
-
-/*
-$gid = guvenlikKontrol($_REQUEST["gid"],"ultra");
-				$eniyisorgu = mysql_query("SELECT *, (SELECT count(id) FROM oylar WHERE entry_id=mesajlar.id AND statu != 'silindi' AND statu!= 'wait') AS say FROM mesajlar WHERE sira=$gid and statu = '' ORDER BY say DESC");
-				$eniyientry = mysql_query(mysql_fetch_array($eniyisorgu));
-				$eniyiid=$eniyientry["id"];
-			    $eniyimesaj=$eniyientry["mesaj"];
-			    echo $eniyimesaj;	
-			    echo $gid;	
-			    */
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
@@ -55,31 +43,6 @@ $gid = guvenlikKontrol($_REQUEST["gid"],"ultra");
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
-<?
-/*
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-53237593-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-</script>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-53237593-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-53237593-1');
-</script>
-
-*/
-?>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Q34PEYTM8"></script>
@@ -308,19 +271,6 @@ function yt_exists($videoID) {
 //error_reporting(E_ALL);
 error_reporting(E_ALL ^ E_NOTICE);
 
-//print "----------$kullaniciAdi";
-
-/*
-$now = time();
-if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
-    // this session has worn out its welcome; kill it and start a brand new one
-    session_unset();
-    session_destroy();
-    session_start();
-}
-*/
-
-// either new or old, it should live at most for another hour
 $_SESSION['discard_after'] = $now + 3600;
 
 //DEĞİŞKEN TANIMLARI
@@ -329,12 +279,6 @@ ob_start();
 vtBaglan();
 kontrolEt();
 
-
-
-
-
-
-// either new or old, it should live at most for another hour
 $_SESSION['discard_after'] = $now + 3600;
 $msg ="";
 $linkt ="";
@@ -471,17 +415,6 @@ if(($isMobile == 1) && ($kullaniciAdi == ""))
 <?
 }
 
-
-
-
-
-
-
-//echo($isMobile);
-
-
-
-
 $caylaksin= mysql_fetch_array(mysql_query("SELECT durum FROM user WHERE `nick`='$kullaniciAdi'"));
 $yazarlik= $caylaksin["durum"];
 //if ($yazarlik = 'kurumsal'){
@@ -529,7 +462,6 @@ exit;
 
 getPrivateMessages();
 //if($notice)echo "<script>alert('$notice okunmayan mesajınız var. panelden kontrol edebilirsiniz.');</script>";
-//extract($_REQUEST); //bunu silebilirim
 $mod = guvenlikKontrol($_REQUEST["mod"],"hard");
 $aranacak = guvenlikKontrol($_REQUEST["aranacak"],"hard");
 $q = guvenlikKontrol($_REQUEST["q"],"hard");
@@ -566,31 +498,9 @@ $link = str_replace(" ","+",$q);
 $link = str_replace(" ","+",$baslik);
 $link = str_replace("%20","+",$baslik);
 
-//$linkt = str_replace("+","%2B",$link);
-//$linkt = str_replace("ü","%C3%BC",$link);
-//$linkt = urlencode($linkt);
-
-
 $tid1= mysql_fetch_array(mysql_query("SELECT id FROM konular WHERE `baslik`='$q'"));
 $tid= $tid1["id"];
-
 $linkt = $tid;
-//echo $linkt;
-
-/*
-$linkt = str_replace("ş","s",$linkt);
-$linkt = str_replace("Ş","S",$linkt);
-$linkt = str_replace("ç","c",$linkt);
-$linkt = str_replace("Ç","C",$linkt);
-$linkt = str_replace("ı","i",$linkt);
-$linkt = str_replace("İ","I",$linkt);
-$linkt = str_replace("ğ","g",$linkt);
-$linkt = str_replace("Ğ","G",$linkt);
-$linkt = str_replace("ö","o",$linkt);
-$linkt = str_replace("Ö","O",$linkt);
-$linkt = str_replace("ü","u",$linkt);
-$linkt = str_replace("Ü","U",$linkt);
-$linkt = str_replace("Ö","O",$linkt);*/
 
 ?>
 <div id="dom-target" style="display:none">https://www.bolsozluk.com/share.php?tid=<? echo $linkt; ?></div>
@@ -676,19 +586,6 @@ if ($kullaniciAdi) {
 
 	if ($notice)
 		echo "<SCRIPT>alert('$notice okunmayan mesajınız var.');</SCRIPT>";
-
-//	if ($kullaniciAdi == "admin" and $today == $date2)
-//			echo "<SCRIPT>alert('		sozlerimsilahim çaylaklığı kaldır 		');</SCRIPT>";
-
-	//	if ($kullaniciAdi == "admin" and $today == $date1)
-	//		echo "<SCRIPT>alert(' hintkumascisi çaylaklığı kaldır ');</SCRIPT>";
-
-		// if ($kullaniciAdi == "admin" and $today == $date3)
-		//	echo "<SCRIPT>alert(' canka ft saian çaylaklığı kaldır');</SCRIPT>";
-
-//	if ($kullaniciAdi)
-//		echo "<SCRIPT>alert(' 19 Mart darbe girişiminin siyasi ayağı en yakın zaman içerisinde tespit edilecektir. OHAL ilan edilmiştir. İkinci bir emre kadar sözlüğe yazar alımı yapılmayacaktır. - sent by bollock ');</SCRIPT>";
-	
 	}
 
 $q = strtrlower($q);
@@ -3046,11 +2943,5 @@ eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 <?
 }
 ?>
-
-
 </body>
-
-
-
-
 </html>
