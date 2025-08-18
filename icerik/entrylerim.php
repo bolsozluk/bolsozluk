@@ -1,4 +1,7 @@
 <?
+$kimdirbu = guvenlikKontrol(
+    isset($_REQUEST["kimdirbu"]) ? $_REQUEST["kimdirbu"] : "", "hard"
+);
 
 include "mobframe.php";
 echo "<br>";
