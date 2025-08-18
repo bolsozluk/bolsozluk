@@ -13,8 +13,6 @@
 
 
 <?
-extract($_REQUEST);
-//bunu silebilirim
 $gkonu = guvenlikKontrol($_REQUEST["gkonu"],"hard");
 //$verifyStatus = guvenlikKontrol($_REQUEST["verifyStatus"],"hard");
 $gkime = guvenlikKontrol($_REQUEST["gkime"],"hard");
