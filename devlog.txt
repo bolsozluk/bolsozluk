@@ -42,8 +42,10 @@ agustos 2025:
 -kafasesi'nin onerisi uzerine bolchat kodlandi ve ajax/jquery tabanli ui gelistirildi.
 -bolchat kullanici yonetimi ve moderasyon denetimleri gelistirildi.
 -bolchat icin xss korumasi, sql injection onlemleri, rate limit ve flood kontrolu gelistirildi.
--bol sozluk kaynak kodu github.com/bolsozluk uzerinden yayinlandi.
--bol sozluk github reposunda yapilan guncellemelerin site ile senkronizasyonu icin ftp ile web servera deploy action ayarlandi.
+-kaynak kodu github.com/bolsozluk uzerinden yayinlandi.
+-github reposunda yapilan guncellemelerin site ile senkronizasyonu icin ftp ile web servera deploy action ayarlandi.
+-admin paneli ve core functionlardaki kritik bir guvenlik acigi giderildi.
+-bolchat sozlugun ip ban sistemiyle entegre edildi.
 
 haziran/temmuz 2025:
 -masaustu gorunumde arama modulunun getirebilecegi sonuc sayisi artirildi.
