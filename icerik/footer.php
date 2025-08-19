@@ -5,19 +5,17 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
 ?>
 
 <center>
-<a href="https://chat.bolsozluk.com" target="_blank"><font size=1>bolchat</font></a>
+<a href="https://chat.bolsozluk.com" target="_blank"><font size=1>chat</font></a>
  | 
-<a href="http://www.twitter.com/BolSozluk" target="_blank"><font size=1>x</font></a>
- | 
-<a href="http://www.youtube.com/BolSozluk" target="_blank"><font size=1>yt</font></a>
- | 
- <a href="http://www.instagram.com/bolsozluk" target="_blank"><font size=1>insta</font></a>
+<a href="https://www.youtube.com/BolSozluk" target="_blank"><font size=1>youtube</font></a>
  | 
 <a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank"><font size=1>spotify</font></a>
  | 
-<a href="http://anket.bolsozluk.com" target="_blank"><font size=1>anket</font></a>
+<a href="https://anket.bolsozluk.com" target="_blank"><font size=1>anket</font></a>
  | 
- <a href="http://www.bolsozluk.com/raple" target="_blank"><font size=1>raple</font></a>
+<a href="https://www.bolsozluk.com/raple" target="_blank"><font size=1>raple</font></a>
+ | 
+<a href="https://github.com/bolsozluk/" target="_blank"><font size=1>source</font></a>
  | 
 <a href="/sozlesme.html" target="_blank"><font size=1>uyarı</font></a>
  | 
