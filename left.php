@@ -1879,43 +1879,16 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 <?php
 //echo "<div class='pagi'>$topicDate başlıkları: ($topicNum başlık)";
 echo "<br /><center>";
-
 if ($totalPage>1) navigatePage($list,$currentPage,$totalPage);
 echo "</center>";
 echo "<br>";
-
-
 if (($isMobile == 1) && ($kullaniciAdi == "") ) 
 {
 //REKLAM YERİ
-?>
-<center>
-<a href="https://chat.bolsozluk.com" target="_blank"><font size=1>bolchat</font></a>
- | 
-<a href="http://www.twitter.com/BolSozluk" target="_blank"><font size=1>x</font></a>
- | 
-<a href="http://www.youtube.com/BolSozluk" target="_blank"><font size=1>yt</font></a>
- | 
- <a href="http://www.instagram.com/bolsozluk" target="_blank"><font size=1>insta</font></a>
- | 
-<a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank"><font size=1>spotify</font></a>
- | 
-<a href="http://anket.bolsozluk.com" target="_blank"><font size=1>anket</font></a>
- | 
- <a href="http://www.bolsozluk.com/raple" target="_blank"><font size=1>raple</font></a>
- | 
-<a href="/sozlesme.html" target="_blank"><font size=1>uyarı</font></a>
- | 
-<a href="/devlog.txt" target="_blank"><font size=1>devlog</font></a></center>
-<br>
-<center>
-<font size=1>
-bol'da yer alan içeriğin doğru veya güncel olduğu hiçbir şekilde iddia veya garanti edilmemektedir. burada okuduklarınız sizi dehşete düşürürse bir de türkçe rap ansiklopedisine göz atmayı deneyebilirsiniz. hukuka aykırı içerikler titizlikle incelenip gereği düşünülmektedir. sözlüğü reklamsız görüntülemek isterseniz üye girişi yapabilirsiniz. soğuk içiniz.
-</center>
+include "footer.php";
+if (($kullaniciAdi == "") || ($list != "")) { ?>
 </font>
 <br> 
-
-<? if (($kullaniciAdi == "") || ($list != "")) { ?>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
      crossorigin="anonymous"></script>
@@ -1928,24 +1901,13 @@ bol'da yer alan içeriğin doğru veya güncel olduğu hiçbir şekilde iddia ve
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
 <?
 }
 }
-
 echo "</div>";
-
-
 mysql_close($databaseConnection);
 ob_end_flush();
-
 ?>
 </div>
 </body>
-
-
-
-
 </html>
-
-
