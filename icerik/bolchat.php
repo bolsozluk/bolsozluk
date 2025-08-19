@@ -558,8 +558,8 @@ function buildMessageHtml(msg, isHidden) {
             }
         }
 
-    if (isAdmin && !isHidden) {
-    html += ' <button class="ban-ip-button" data-ip="' + escapeHtml(msg.ip) + '">[ipban]</button>';
+ if (isAdmin && isHidden) {
+    html += ' <button class="ban-ip-button" data-message-id="' + msg.id + '">[ipban]</button>';
 }
         
         html += '</div></div>';
@@ -622,16 +622,17 @@ function updateOnlineCount() {
         });
     }
 
-    $('.ban-ip-button').off('click').click(function(e) {
+$('.ban-ip-button').off('click').click(function(e) {
     e.preventDefault();
-    var ip = $(this).data('ip');
-    if (confirm('Bu IP (' + ip + ') adresini kalıcı olarak banlamak istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) {
+    var messageId = $(this).data('message-id');
+    
+    if (confirm('Bu mesajın gönderildiği IP adresini kalıcı olarak banlamak istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) {
         $.post('sozluk.php?process=chat', {
-            action: 'ban_ip',
-            ip: ip
+            action: 'ban_ip_by_message',
+            message_id: messageId
         }, function(response) {
             if (response.trim() === 'OK') {
-                alert('IP başarıyla banlandı: ' + ip);
+                alert('IP başarıyla banlandı!');
             } else {
                 alert('Ban işlemi başarısız: ' + response);
             }
