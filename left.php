@@ -1885,7 +1885,7 @@ echo "<br>";
 if (($isMobile == 1) && ($kullaniciAdi == "") ) 
 {
 //REKLAM YERİ
-include "footer.php";
+include "icerik/footer.php";
 if (($kullaniciAdi == "") || ($list != "")) { ?>
 </font>
 <br> 
