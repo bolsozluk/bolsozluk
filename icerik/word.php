@@ -2876,18 +2876,16 @@ if ($kullaniciAdi == "")
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-<?
-include "footer.php";
-}
-
-<br>
+	<br>
 <center>
 	<br>
 	<br>
 	</div>
-
 <?
+	}
 //echo $gururlist[21];
+include "footer.php";
+echo "<br>";
 echo "<br>";
 include "bolchat.php";
 ?>
