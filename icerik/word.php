@@ -2876,61 +2876,23 @@ if ($kullaniciAdi == "")
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-
-
 <?
+include "footer.php";
 }
-?>
-<center>
-<a href="https://chat.bolsozluk.com" target="_blank"><font size=1>bolchat</font></a>
- | 
-<a href="http://www.twitter.com/BolSozluk" target="_blank"><font size=1>x</font></a>
- | 
-<a href="http://www.youtube.com/BolSozluk" target="_blank"><font size=1>yt</font></a>
- | 
- <a href="http://www.instagram.com/bolsozluk" target="_blank"><font size=1>insta</font></a>
- | 
-<a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank"><font size=1>spotify</font></a>
- | 
-<a href="http://anket.bolsozluk.com" target="_blank"><font size=1>anket</font></a>
- | 
- <a href="http://www.bolsozluk.com/raple" target="_blank"><font size=1>raple</font></a>
- | 
-<a href="/sozlesme.html" target="_blank"><font size=1>uyarı</font></a>
- | 
-<a href="/devlog.txt" target="_blank"><font size=1>devlog</font></a></center>
- 
 
 <br>
 <center>
-<font size=1>
-bol'da yer alan içeriğin doğru veya güncel olduğu hiçbir şekilde iddia veya garanti edilmemektedir. burada okuduklarınız sizi dehşete düşürürse türkçe rap ansiklopedisine de göz atmayı deneyebilirsiniz. <? if ($isMobile == 0) echo "<br>"; ?>  hukuka aykırı olabileceğini düşündüğünüz içerikler titizlikle incelenip gereği düşünülmektedir. sözlüğü reklamsız görüntülemek isterseniz üye girişi yapabilirsiniz. soğuk içiniz. (2014-2025)
-</center>
-<br>
-<center>
-<? 
+	<br>
+	<br>
+	</div>
 
-//echo "<b>rastgele gururlarımız:<br><br></b>"
-//echo $gururlist[$randomgurur];
-echo "<br>";
-echo "<br>";
-?>
-</div>
 <?
 //echo $gururlist[21];
 echo "<br>";
 include "bolchat.php";
 ?>
-
-
-
-
 </center>
 </font>
-
-
-
 <?
 $rand=rand(00,100); 
 if ($rand > 100)
