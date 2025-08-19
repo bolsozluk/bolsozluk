@@ -1,18 +1,7 @@
 <SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
-
 <?
-//$nick = guvenlikKontrol($_REQUEST["nick"],"hard");
-$eskinick = $kullaniciAdi;
-
-
-//echo "ayb:$ayb id:$id reset:$reset nick:$nick kuladi:$kullaniciAdi <br>";
-
-
-//$sorset = "SELECT reset FROM user WHERE `nick`='$kullaniciAdi";
-//$sorset1 = mysql_query($sorset);
-//$kayset=mysql_fetch_array($sorset1);
-//$siraondortx = $siraondort["sira"];
+$eskinick = $kullaniciAdi = isset($_REQUEST['kullaniciAdi']) ? $_REQUEST['kullaniciAdi'] : '';
 $sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
 $reset=$sorset["reset"];
 if ($reset >0)
@@ -21,7 +10,6 @@ if ($reset >0)
 	die;
 }
 $id=0;
-
 if ($ayb != 146)
 		{
 		$ayb = 0;
@@ -29,9 +17,7 @@ if ($ayb != 146)
 
 $sorgu = "SELECT nick,id FROM user WHERE `nick`='$nick'";
 $sorgulama = mysql_query($sorgu);
-
-
-	$nick = strtolower($nick);
+$nick = strtolower($nick);
 echo "güzel insan <i>$kullaniciAdi</i> için özel <b>t</b>anık <b>k</b>oruma <b>p</b>rogramı arayüzü: <br>";
 echo "not: bu imkanı şimdilik 1 defa kullanabilirsiniz. <br>";
 echo "izinizi kaybettirmek için yeni nickinizi girin: <br>";
@@ -40,25 +26,18 @@ echo "izinizi kaybettirmek için yeni nickinizi girin: <br>";
 	{
 		while ($kayit=mysql_fetch_array($sorgulama))
 		{
-		
 		if ($kayit["id"] > 0)
 		{
 		$id=$kayit["id"];	
 		}
-		
 	//	$bos = is_null($id);
-
 			if ($id>0 or $reset>0) // or $reset
 			{ 
 			echo "...kontenjan yetersiz";
 			exit;
 			} 
 		} 
-
-
     } 	
-
-
 	if ($ayb==146 and (!ereg ("^[' A-Za-z0-9]+$", $nick))) {
 		echo "Nickinizde;
 		<br>sadece kucuk ve ingilizce harfler,
@@ -69,19 +48,12 @@ echo "izinizi kaybettirmek için yeni nickinizi girin: <br>";
 		";
 		die();
 	}
-
 	if ($nick == "" and $ayb == 146) {
 		echo "O boşlukları neyle dolduracaksın ?";
 		exit;
 	}
-
-
-
-
-
 		    if ($id==0 and $reset==0 and $nick and $ayb==146)
 		    {
-		//    echo "ayb:$ayb id:$id reset:$reset nick:$nick kuladi:$kullaniciAdi <br>";
 			echo "değiştiriliyor"; 
 	$sorgu1 = "UPDATE mesajlar SET yazar='$nick' WHERE yazar='$eskinick'";
 	mysql_query($sorgu1);
@@ -104,38 +76,19 @@ echo "izinizi kaybettirmek için yeni nickinizi girin: <br>";
 	mysql_query($sorgu8);
 	$sorgu9 = "UPDATE takip SET nick = REPLACE('$eskinick', '$eskinick', '$nick' )";
 	mysql_query($sorgu9);
-
 //HELALDE BU SATIR BOŞTUR FAKAT SİLMEK ÇÖP TÜR
-
 $msg = "yeni yüzünüzle tekrar ortama giriş yapın";
- echo '<script type="text/javascript">alert("' . $msg . '"); window.location="http://www.bolsozluk.com/logout.php"; </script>';
-
+echo '<script type="text/javascript">alert("' . $msg . '"); window.location="http://www.bolsozluk.com/logout.php"; </script>';
 			exit;
 			}
     // echo "<br> değiştiriliyor"; 
-
-    	// BU DEĞİL		echo "id:$id reset:$reset nick:$nick kuladi:$kullaniciAdi";
-			
-//MESAJLAR YAZAR
-//OYLAR NICK
-//OYLAR ENTRY_SAHIBI
-//PRIVMSG GONDEREN
-//PRIVMSG KIME
-//REHBER KIM
-//REHBER KIMIN
-//USER NICK
-	
-	
 ?>
-
-
-
-
 <form method="POST" action="sozluk.php?process=nickdegis">
 <table cellpadding="10px" border="0">
 <tr>
 <td align="right">eskisi: </td>
-<td>             <div align="left"><input name="eskisi"  size="30" readonly=1 value="<?extract($_REQUEST); echo"$kullaniciAdi";?>" type="text"></div></td>
+<td>
+	<div align="left"><input name="eskisi" size="30" readonly="1" value="<?php echo isset($_REQUEST['kullaniciAdi']) ? htmlspecialchars($_REQUEST['kullaniciAdi']) : ''; ?>" type="text"></div>
 </tr>
 <tr>
 <td align="right">yenisi: </td>
@@ -152,4 +105,3 @@ $msg = "yeni yüzünüzle tekrar ortama giriş yapın";
 </tr>
 </table>
 </form>
-
