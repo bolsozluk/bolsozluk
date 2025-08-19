@@ -24,7 +24,7 @@ try {
     switch ($action) {
         case 'get_messages':
             // Sadece hidden=0 olan mesajları getir
-            $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 0 ORDER BY id DESC LIMIT 70");
+            $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 0 ORDER BY id DESC LIMIT 50");
             if (!$result) {
                 throw new Exception('Sorgu hatası: ' . mysql_error());
             }
@@ -56,7 +56,7 @@ try {
                 die('Yetkiniz yok');
             }
             
-             $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 1 ORDER BY id DESC LIMIT 70");
+             $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 1 ORDER BY id DESC LIMIT 10");
             if (!$result) {
                 throw new Exception('Sorgu hatası: ' . mysql_error());
             }
