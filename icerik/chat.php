@@ -80,15 +80,26 @@ try {
             echo json_encode($messages);
             exit;
 
-        case 'ban_ip':
+case 'ban_ip_by_message':
     // Sadece adminler IP banlayabilir
     if ($kulYetki !== 'admin' && $kulYetki !== 'mod') {
         header('HTTP/1.1 403 Forbidden');
         die('Yetkiniz yok');
     }
     
-    if (isset($_POST['ip']) && !empty($_POST['ip'])) {
-        $ipToBan = mysql_real_escape_string($_POST['ip']);
+    if (isset($_POST['message_id']) && is_numeric($_POST['message_id'])) {
+        $messageId = (int)$_POST['message_id'];
+        
+        // Önce mesajı bul ve IP'sini al
+        $messageQuery = "SELECT ip FROM chat_messages WHERE id = $messageId";
+        $messageResult = mysql_query($messageQuery);
+        
+        if (!$messageResult || mysql_num_rows($messageResult) === 0) {
+            die('Mesaj bulunamadı');
+        }
+        
+        $messageData = mysql_fetch_assoc($messageResult);
+        $ipToBan = mysql_real_escape_string($messageData['ip']);
         
         // IP zaten banlı mı kontrol et
         $checkQuery = "SELECT COUNT(*) as banned FROM ipban WHERE ip = '$ipToBan'";
@@ -100,17 +111,19 @@ try {
         }
         
         // IP'yi banla
-        $banQuery = "INSERT INTO ipban (ip, created_at, banned_by) VALUES ('$ipToBan', NOW(), '" . mysql_real_escape_string($kullaniciAdi) . "')";
+        $banQuery = "INSERT INTO ipban (ip, created_at, banned_by) 
+                     VALUES ('$ipToBan', NOW(), '" . mysql_real_escape_string($kullaniciAdi) . "')";
+        
         if (mysql_query($banQuery)) {
             // Loglama
-            $logMessage = date('Y-m-d H:i:s') . " - $ip - $kullaniciAdı - $ipToBan banlandı";
+            $logMessage = date('Y-m-d H:i:s') . " - $ip - $kullaniciAdi - $ipToBan banlandı (Mesaj ID: $messageId)";
             file_put_contents('chat_moderation.log', $logMessage.PHP_EOL, FILE_APPEND);
             echo 'OK';
         } else {
             throw new Exception('IP banlanamadı: ' . mysql_error());
         }
     } else {
-        throw new Exception('Geçersiz IP');
+        throw new Exception('Geçersiz mesaj ID');
     }
     break;
 
