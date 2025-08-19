@@ -528,12 +528,8 @@ function buildMessageHtml(msg, isHidden) {
     var isVerified = parseInt(msg.is_verified) === 1;
     var verifiedBadge = isVerified ? ' <span class="verified-badge">✓</span>' : '';
 
-        // URL'leri hyperlink'e çeviren fonksiyon
     function linkifyUrls(text) {
-        // URL regex pattern
         var urlPattern = /(https?:\/\/[^\s<]+[^\s<\.)])/gi;
-        
-        // URL'leri link etiketine çevir
         return text.replace(urlPattern, function(url) {
             return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
         });
@@ -549,22 +545,21 @@ function buildMessageHtml(msg, isHidden) {
                 '<span class="message-time">' + escapeHtml(msg.created_at.substring(11,16)) + '</span>' +
             '</div>' +
             '<div class="message-content">' + linkifyUrls(escapeHtml(msg.message));
-        
-        if (isAdmin) {
-            if (isHidden) {
-                html += ' <button class="restore-message">[geri getir]</button>';
-            } else {
-                html += ' <button class="delete-message">[gizle]</button>';
-            }
+    
+    // YÖNETİM BUTONLARI
+    if (isAdmin) {
+        if (isHidden) {
+            html += ' <button class="restore-message" data-message-id="' + msg.id + '">[geri getir]</button>';
+            // SADECE hidden mesajlarda IP ban butonu göster
+            html += ' <button class="ban-ip-button" data-message-id="' + msg.id + '">[ipban]</button>';
+        } else {
+            html += ' <button class="delete-message" data-message-id="' + msg.id + '">[gizle]</button>';
         }
-
- if (isAdmin && isHidden) {
-    html += ' <button class="ban-ip-button" data-message-id="' + msg.id + '">[ipban]</button>';
-}
-        
-        html += '</div></div>';
-        return html;
     }
+    
+    html += '</div></div>';
+    return html;
+}
 
 function updateOnlineCount() {
     $.get('sozluk.php?process=chat&action=get_online_count', function(count) {
@@ -573,74 +568,84 @@ function updateOnlineCount() {
         console.error('Online sayacı güncellenemedi');
     });
 }
-    function bindMessageEvents() {
-        $('.delete-message').off('click').click(function(e) {
-            e.preventDefault();
-            var messageDiv = $(this).closest('.message');
-            var messageId = messageDiv.data('message-id');
-            
-            if (confirm('Bu mesajı gizlemek istediğinize emin misiniz?')) {
-                $.post('sozluk.php?process=chat', {
-                    action: 'delete_message',
-                    message_id: messageId
-                }, function(response) {
-                    if (response.trim() === 'OK') {
-                        messageDiv.fadeOut(300, function() {
-                            $(this).remove();
-                        });
-                    } else {
-                        alert('Gizleme işlemi başarısız: ' + response);
-                    }
-                }).fail(function() {
-                    alert('Gizleme işlemi sırasında hata oluştu');
-                });
-            }
-        });
+function bindMessageEvents() {
+    // Delete butonu
+    $('.delete-message').off('click').on('click', function(e) {
+        e.preventDefault();
+        var messageDiv = $(this).closest('.message');
+        var messageId = $(this).data('message-id');
+        
+        if (confirm('Bu mesajı gizlemek istediğinize emin misiniz?')) {
+            $.post('sozluk.php?process=chat', {
+                action: 'delete_message',
+                message_id: messageId
+            }, function(response) {
+                if (response.trim() === 'OK') {
+                    messageDiv.fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                } else {
+                    alert('Gizleme işlemi başarısız: ' + response);
+                }
+            }).fail(function() {
+                alert('Gizleme işlemi sırasında hata oluştu');
+            });
+        }
+    });
 
-        $('.restore-message').off('click').click(function(e) {
-            e.preventDefault();
-            var messageDiv = $(this).closest('.message');
-            var messageId = messageDiv.data('message-id');
-            
-            if (confirm('Bu mesajı geri getirmek istediğinize emin misiniz?')) {
-                $.post('sozluk.php?process=chat', {
-                    action: 'restore_message',
-                    message_id: messageId
-                }, function(response) {
-                    if (response.trim() === 'OK') {
-                        messageDiv.fadeOut(300, function() {
-                            $(this).remove();
-                            loadMessages();
-                        });
-                    } else {
-                        alert('Geri getirme işlemi başarısız: ' + response);
-                    }
-                }).fail(function() {
-                    alert('Geri getirme işlemi sırasında hata oluştu');
-                });
-            }
-        });
-    }
+    // Restore butonu
+    $('.restore-message').off('click').on('click', function(e) {
+        e.preventDefault();
+        var messageDiv = $(this).closest('.message');
+        var messageId = $(this).data('message-id');
+        
+        if (confirm('Bu mesajı geri getirmek istediğinize emin misiniz?')) {
+            $.post('sozluk.php?process=chat', {
+                action: 'restore_message',
+                message_id: messageId
+            }, function(response) {
+                if (response.trim() === 'OK') {
+                    messageDiv.fadeOut(300, function() {
+                        $(this).remove();
+                        loadMessages();
+                    });
+                } else {
+                    alert('Geri getirme işlemi başarısız: ' + response);
+                }
+            }).fail(function() {
+                alert('Geri getirme işlemi sırasında hata oluştu');
+            });
+        }
+    });
 
-$('.ban-ip-button').off('click').click(function(e) {
-    e.preventDefault();
-    var messageId = $(this).data('message-id');
-    
-    if (confirm('Bu mesajın gönderildiği IP adresini kalıcı olarak banlamak istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) {
-        $.post('sozluk.php?process=chat', {
-            action: 'ban_ip_by_message',
-            message_id: messageId
-        }, function(response) {
-            if (response.trim() === 'OK') {
-                alert('IP başarıyla banlandı!');
-            } else {
-                alert('Ban işlemi başarısız: ' + response);
-            }
-        }).fail(function() {
-            alert('Ban işlemi sırasında hata oluştu');
-        });
-    }
-});
+    // IP Ban butonu - EN ÖNEMLİ KISIM
+    $('.ban-ip-button').off('click').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation(); // Önemli: olayın yayılmasını durdur
+        
+        var messageId = $(this).data('message-id');
+        console.log('IP Ban tıklandı, Message ID:', messageId); // Debug için
+        
+        if (confirm('Bu mesajın gönderildiği IP adresini kalıcı olarak banlamak istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) {
+            $.post('sozluk.php?process=chat', {
+                action: 'ban_ip_by_message',
+                message_id: messageId
+            }, function(response) {
+                console.log('Sunucu cevabı:', response); // Debug
+                if (response.trim() === 'OK') {
+                    alert('IP başarıyla banlandı!');
+                    // Butonu devre dışı bırak (tekrar tıklanamasın)
+                    $(this).prop('disabled', true).text('[banlandı]');
+                } else {
+                    alert('Ban işlemi başarısız: ' + response);
+                }
+            }).fail(function(xhr, status, error) {
+                console.error('Hata:', status, error); // Debug
+                alert('Ban işlemi sırasında hata oluştu: ' + error);
+            });
+        }
+    });
+}
 
     $('#toggle-hidden').click(function() {
         showingHidden = !showingHidden;
