@@ -80,6 +80,40 @@ try {
             echo json_encode($messages);
             exit;
 
+        case 'ban_ip':
+    // Sadece adminler IP banlayabilir
+    if ($kulYetki !== 'admin' && $kulYetki !== 'mod') {
+        header('HTTP/1.1 403 Forbidden');
+        die('Yetkiniz yok');
+    }
+    
+    if (isset($_POST['ip']) && !empty($_POST['ip'])) {
+        $ipToBan = mysql_real_escape_string($_POST['ip']);
+        
+        // IP zaten banlı mı kontrol et
+        $checkQuery = "SELECT COUNT(*) as banned FROM ipban WHERE ip = '$ipToBan'";
+        $checkResult = mysql_query($checkQuery);
+        $isBanned = mysql_fetch_assoc($checkResult)['banned'] > 0;
+        
+        if ($isBanned) {
+            die('Bu IP zaten banlı');
+        }
+        
+        // IP'yi banla
+        $banQuery = "INSERT INTO ipban (ip, created_at, banned_by) VALUES ('$ipToBan', NOW(), '" . mysql_real_escape_string($kullaniciAdi) . "')";
+        if (mysql_query($banQuery)) {
+            // Loglama
+            $logMessage = date('Y-m-d H:i:s') . " - $ip - $kullaniciAdı - $ipToBan banlandı";
+            file_put_contents('chat_moderation.log', $logMessage.PHP_EOL, FILE_APPEND);
+            echo 'OK';
+        } else {
+            throw new Exception('IP banlanamadı: ' . mysql_error());
+        }
+    } else {
+        throw new Exception('Geçersiz IP');
+    }
+    break;
+
         case 'get_online_count':
             $threshold = time() - 600;
             $result = mysql_query("SELECT COUNT(DISTINCT username) as count FROM chat_messages WHERE hidden = 0 AND UNIX_TIMESTAMP(created_at) > $threshold");
