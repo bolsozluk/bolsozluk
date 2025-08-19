@@ -54,11 +54,11 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
 <div class="footer">
     <div class="footer-links">
         <a href="https://chat.bolsozluk.com" target="_blank">chat</a> |
-        <a href="https://www.youtube.com/BolSozluk" target="_blank">yt</a> |
-        <a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank">spfy</a> |
+        <a href="https://www.youtube.com/BolSozluk" target="_blank">youtube</a> |
+        <a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank">spotify</a> |
         <a href="https://anket.bolsozluk.com" target="_blank">anket</a> |
         <a href="https://www.bolsozluk.com/raple" target="_blank">raple</a> |
-        <a href="https://github.com/bolsozluk/" target="_blank">src</a> |
+        <a href="https://github.com/bolsozluk/" target="_blank">source</a> |
         <a href="/sozlesme.html" target="_blank">uyarı</a> |
         <a href="/devlog.txt" target="_blank">devlog</a>
     </div>
