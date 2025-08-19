@@ -111,8 +111,8 @@ case 'ban_ip_by_message':
         }
         
         // IP'yi banla
-        $banQuery = "INSERT INTO ipban (ip, created_at, banned_by) 
-                     VALUES ('$ipToBan', NOW(), '" . mysql_real_escape_string($kullaniciAdi) . "')";
+        $banQuery = "INSERT INTO ipban (ip) 
+                     VALUES ('$ipToBan')";
         
         if (mysql_query($banQuery)) {
             // Loglama
