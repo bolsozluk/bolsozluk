@@ -1867,13 +1867,8 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		echo "</li>\n";
 	}
 	break;	
-
-
 	//SON
 }
-
-
-
 ?>
 </ul>
 <?php
@@ -1882,14 +1877,11 @@ echo "<br /><center>";
 if ($totalPage>1) navigatePage($list,$currentPage,$totalPage);
 echo "</center>";
 echo "<br>";
-if (($isMobile == 1) && ($kullaniciAdi == "") ) 
-{
-//REKLAM YERİ
+if ($isMobile == 1) {
 include "icerik/footer.php";
 if (($kullaniciAdi == "") || ($list != "")) { ?>
 </font>
 <br> 
-
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
      crossorigin="anonymous"></script>
 <!-- bolsözlük-3 -->
