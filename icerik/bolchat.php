@@ -61,6 +61,21 @@ ini_set('display_errors', 1);
 
 <style>
 
+    .ban-ip-button {
+    color: #ff4444 !important;
+    font-size: 0.8em;
+    margin-left: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.ban-ip-button:hover {
+    text-decoration: underline;
+}
+    
     .message-content a {
     color: #2980b9;
     text-decoration: none;
@@ -542,6 +557,10 @@ function buildMessageHtml(msg, isHidden) {
                 html += ' <button class="delete-message">[gizle]</button>';
             }
         }
+
+    if (isAdmin && !isHidden) {
+    html += ' <button class="ban-ip-button" data-ip="' + escapeHtml(msg.ip) + '">[ipban]</button>';
+}
         
         html += '</div></div>';
         return html;
@@ -602,6 +621,25 @@ function updateOnlineCount() {
             }
         });
     }
+
+    $('.ban-ip-button').off('click').click(function(e) {
+    e.preventDefault();
+    var ip = $(this).data('ip');
+    if (confirm('Bu IP (' + ip + ') adresini kalıcı olarak banlamak istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) {
+        $.post('sozluk.php?process=chat', {
+            action: 'ban_ip',
+            ip: ip
+        }, function(response) {
+            if (response.trim() === 'OK') {
+                alert('IP başarıyla banlandı: ' + ip);
+            } else {
+                alert('Ban işlemi başarısız: ' + response);
+            }
+        }).fail(function() {
+            alert('Ban işlemi sırasında hata oluştu');
+        });
+    }
+});
 
     $('#toggle-hidden').click(function() {
         showingHidden = !showingHidden;
