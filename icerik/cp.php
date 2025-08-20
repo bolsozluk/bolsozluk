@@ -23,6 +23,7 @@ function mobara() {
 </script>
 <?
 $okupdate = guvenlikKontrol($_REQUEST["okupdate"],"hard");
+$email = guvenlikKontrol($_REQUEST["email"], "hard");
 $avatarURL = guvenlikKontrol($_REQUEST["avatarURL"],"hard");
 $mottoTXT = guvenlikKontrol($_REQUEST["mottoTXT"],"hard");
 $aktifTema = guvenlikKontrol($_REQUEST["tema"],"hard");
@@ -47,11 +48,6 @@ if ($okupdate == "") {
 			$avatar=$kayit["avatar"];
 }
 }
-}
-if ($okupdate == "ok") {
-			$email=$email;
-			$motto=$mottoTXT;
-			$avatar=$avatarURL;
 }
 	
 	$sorgu = "SELECT tema,id FROM temalar WHERE tema = '$aktifTema'";
