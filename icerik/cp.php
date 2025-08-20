@@ -10,7 +10,6 @@ overflow-y: scroll;
         border-right: #a6b4d4 2px outset; border-TOP: #a6b4d4 2px outset; font: 10pt Arial,sans-serif; border-left: #a6b4d4 2px outset; CURSOR: default; color: white; border-BOTTOM: #a6b4d4 2px outset; WHITE-SPACE: nowrap; background-color: #242b3a; text-align: center
 }
 </style>
-
 <script>
 function mobgetir(){
     var kelime = document.getElementById('q').value.toLowerCase();
@@ -21,13 +20,9 @@ function mobara() {
     var kelime = document.getElementById('q').value;
     self.location.href='sozluk.php?process=search&q='+kelime;
 }
-
 </script>
-
-
-
 <?
-
+$okupdate = guvenlikKontrol($_REQUEST["okupdate"],"hard");
 $avatarURL = guvenlikKontrol($_REQUEST["avatarURL"],"hard");
 $mottoTXT = guvenlikKontrol($_REQUEST["mottoTXT"],"hard");
 $aktifTema = guvenlikKontrol($_REQUEST["tema"],"hard");
@@ -41,21 +36,18 @@ $yevilayet = guvenlikKontrol($_REQUEST["yevilayet"],"hard");
 if ($okupdate == "") {
 
 	$sorgu = "SELECT * FROM user WHERE `nick` = '$kullaniciAdi'";
-	$sorgulama = @mysql_query($sorgu);
+	$sorgulama = @mysql_query($sorgu);	
 	
 	if (@mysql_num_rows($sorgulama)>0){
 	
-		while ($kayit=@mysql_fetch_array($sorgulama)){
-			
+		while ($kayit=@mysql_fetch_array($sorgulama)){			
 			$userNickName=$kayit["nick"];
 			$email=$kayit["email"];
 			$motto=$kayit["motto"];
 			$avatar=$kayit["avatar"];
 }
-
 }
 }
-
 if ($okupdate == "ok") {
 			$email=$email;
 			$motto=$mottoTXT;
@@ -107,54 +99,37 @@ if ($ucur) {
 not: şifre hanesini boş bırakarak yaptığınız güncellemeler mevcut şifrenizi değiştirmez.
 <br>
 <br>
-
-				<form method="post" action="">
-
+	<form method="post" action="">
 			<fieldset>
-
-			<table width="351" border="0">
-			
+			<table width="351" border="0">			
 			  <tr> 
 			  <tr> 
               	<td width="111">Nick</td><td width="9">:</td>
 				<td width="217"><input name="nick" type="text" id="nick" value="<?php echo $kullaniciAdi; ?>" readonly></td>
 			  </tr>
-
 			  <tr>
 				<td>Şifre</td><td>:</td>
 				<td><input name="sifre" type="text" id="sifre"></td>
 			  </tr>
-
 			  <tr>
 				<td>E-Mail</td><td>:</td>
 				<td><input name="email" type="text" id="email" value="<?php echo $email; ?>"></td>
 			  </tr>
-
 			<tr><td>Motto:</td><td>:</td>
 			    <td><input name="mottoTXT" type="text" id="mottoTXT" value="<?php echo $motto; ?>"></td>
 			</tr>
-
 			<tr><td>Avatar URL:</td><td>:</td>
 			    <td><input name="avatarURL" type="text" id="avatarURL" value="<?php echo $avatar; ?>"></td>
 			</tr>
-
               <tr>
               	<td></td><td></td>
                 <input type="hidden" name="okupdate" value="ok">
     			<td><input type="submit" name="Submit" value="Apdeyt"></td>
     		</tr>
- 
-
     		</tr>
-
 			</table>
-
-
-
-				</form>
-
+			</form>
 <br>
-
 <?
 
 if ($okupdate) {
@@ -185,18 +160,6 @@ if ($okupdate) {
 	$sorgu = "UPDATE user SET motto='$mottoTXT' WHERE nick='$kullaniciAdi'";
 	mysql_query($sorgu);
 
-/*
-echo "<br>";
-echo "k.adı: ".$kullaniciAdi;
-echo "<br>";
-echo "mail: ".$email;
-echo "<br>";
-echo "motto: ".$mottoTXT;
-echo "<br>";
-	die;
-*/
-
-
 	if ($sifre) {
 		$sorgu = "UPDATE user SET sifre = '$sifre' WHERE nick='$kullaniciAdi'";
 		mysql_query($sorgu);
@@ -218,11 +181,8 @@ Hesabın Özel Mesaj Alımına: <?echo $msgdurum;?><br><br>
 <input type='button' onclick="javascript:location.href='sozluk.php?process=anon3'" value='Entrylerimi Anonimleştir ve Hesabımı Kapat' class='butx'> <br> 
 </form>
     </td>
-
   </tr>
-
 </table>
-
 </div>
 </fieldset>
 <br>
@@ -247,13 +207,6 @@ echo "<b>Toplam arti oy sayiniz:</b> $arti<br>";
 $ortalama = $arti - $eksi;
 $toplam = $arti + $eksi;
 
-
-//echo "<b>Toplam oy sayiniz:</b> $toplam<br>";
-//echo "<b>Ortalama oy sayiniz:</b> $ortalama<br>";
-
-//echo "<b>Karma puanınız:</b> $karma<br>";
-
-//echo "Karma düzeyiniz:</b> <br>"
 ?>
 </div>
 <div class=div1>
@@ -290,56 +243,34 @@ $silsebep=$kayit["silsebep"];
 $update=$kayit["update2"];
 $updatesebep=$kayit["updatesebep"];
 $ayazar = $yazar;
-
 $yazarlink = ereg_replace("&","",$yazar); // adminlerden ~ kaldırıyoruz
 $yazartitle = ereg_replace("&","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
 
-$link = ereg_replace("ş","s",$link);
-$link = ereg_replace("Ş","S",$link);
-$link = ereg_replace("ç","c",$link);
-$link = ereg_replace("Ç","C",$link);
-$link = ereg_replace("ı","i",$link);
-$link = ereg_replace("İ","I",$link);
-$link = ereg_replace("ğ","g",$link);
-$link = ereg_replace("Ğ","G",$link);
-$link = ereg_replace("ö","o",$link);
-$link = ereg_replace("Ö","O",$link);
-$link = ereg_replace("ü","u",$link);
-$link = ereg_replace("Ü","U",$link);
-$link = ereg_replace("Ö","O",$link);
-
-$mesaj = ereg_replace("Ş","ş",$mesaj);
-$mesaj = ereg_replace("Ç","ç",$mesaj);
-$mesaj = ereg_replace("İ","i",$mesaj);
-$mesaj = ereg_replace("Ğ","ğ",$mesaj);
-$mesaj = ereg_replace("Ö","ö",$mesaj);
-$mesaj = ereg_replace("Ü","ü",$mesaj);
-
+// Türkçe karakterleri normal harfe çevirme
+$lower = array(
+    "ş"=>"s","Ş"=>"S","ç"=>"c","Ç"=>"C",
+    "ı"=>"i","İ"=>"I","ğ"=>"g","Ğ"=>"G",
+    "ö"=>"o","Ö"=>"O","ü"=>"u","Ü"=>"U"
+);
+$link  = strtr($link, $lower);
+$mesaj = mb_strtolower($mesaj, "UTF-8"); // büyük Türkçe harfleri küçültür
 $mesaj = strtolower($mesaj);
-
 $mesaj = preg_replace("'\(bkz: (.*)\)'Ui","(bkz: <a href=\"sozluk.php?process=word&q=\\1\">\\1</a>)",$mesaj);
 $mesaj = preg_replace("'\(gbkz: (.*)\)'Ui","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
 $mesaj = preg_replace("'\(u: (.*)\)'Ui","<a href=\"sozluk.php?process=word&q=\\1\" title=\"\\1\">*</a>",$mesaj);
 $mesaj = preg_replace( "`((http)+(s)?:(//)|(www\.))((\w|\.|\-|_)+)(/)?(\S+)?`i", "<a target=_blank href=\"http\\3://\\5\\6\\8\\9\" title=\"\\0\">\\5\\6</a>", $mesaj);
 $mesaj = preg_replace("'\#([0-9]{1,9})'","<a href=sozluk.php?process=view&eid=\\1>#\\1</a>",$mesaj);
-
 $uzunluk = 142;
 if($mesaj && strlen($mesaj)>$uzunluk) {
 $mesaj=preg_replace("/([^\n\r -]{".$uzunluk."})/i"," \\1\n<br />",$mesaj);
 }
-
 $sorgu1 = "SELECT * FROM konular WHERE id = $sira";
 $sorgu2 = mysql_query($sorgu1);
 mysql_num_rows($sorgu2);
 $kayit2=mysql_fetch_array($sorgu2);
 $baslik=$kayit2["baslik"];
-
-
 $say++;
-
-if (!$ayazar)
-die;
-
+if (!$ayazar) die;
 echo "
   <LI value=$say>
   <DIV class=dash>
@@ -354,12 +285,8 @@ echo "
   <DIV class=div2 align=right><font size=1>(#$id) <B><A href=\"sozluk.php?process=word&q=$echoyazar\" title=\"$yazartitle\"><font size=1>$yazar</A></B>|$gun/$ay/$yil $saat
   </DIV><BR><BR>
   </li>
-";
-
+";}
 }
-}
-
-
 ?>
 </div>
 <p>&nbsp;</p>
