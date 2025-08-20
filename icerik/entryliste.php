@@ -59,11 +59,11 @@ $sorgu2 = mysql_query($sorgu1);
 mysql_num_rows($sorgu2);
 $kayit2=mysql_fetch_array($sorgu2);
 $baslik=$kayit2["baslik"];
-$kesbaslik = substr ($baslik, 0, 60);
+$kesbaslik = mb_substr($baslik, 0, 60, "UTF-8");
 $titlebaslik = $baslik;
 $baslik = str_replace(" ","+",$baslik);
 $mesaj = str_replace("<br>","",$mesaj);
-$mesaj = substr ($mesaj, 0, 250);
+$mesaj = mb_substr($mesaj, 0, 250, "UTF-8");
 $mesaj = "$mesaj...";
 
 echo "
