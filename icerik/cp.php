@@ -34,6 +34,16 @@ $moks = guvenlikKontrol($_REQUEST["moks"],"hard");
 $yemail = guvenlikKontrol($_REQUEST["yemail"],"hard");
 $yevilayet = guvenlikKontrol($_REQUEST["yevilayet"],"hard");
 
+if ($okupdate) {
+    $sorgu = "SELECT * FROM user WHERE nick='".$kullaniciAdi."' LIMIT 1";
+    $sorgulama = mysql_query($sorgu);
+    if ($kayit = mysql_fetch_array($sorgulama)) {
+        $email  = $kayit["email"];
+        $motto  = $kayit["motto"];
+        $avatar = $kayit["avatar"];
+    }
+}
+
 if ($okupdate == "") {
 
 	$sorgu = "SELECT * FROM user WHERE `nick` = '$kullaniciAdi'";
