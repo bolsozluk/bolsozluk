@@ -155,11 +155,7 @@ case 'ban_ip_by_message':
                     header('HTTP/1.1 400 Bad Request');
                     die('Nick boş olamaz.');
                 }
-                $nickInput = mysql_real_escape_string($_POST['nick']);
-
-                // Burada "kullanici_tablosu" kısmını kendi kullanıcı tablon ile değiştir
-                // Ve nick alanı senin veritabanındaki kullanıcı adı sütun adı olmalı
-                
+                $nickInput = mysql_real_escape_string($_POST['nick']);                
                 $nickAscii = convertTurkishToAscii($nickInput);
                 
                 $query = "SELECT COUNT(*) AS count FROM user WHERE nick = '$nickAscii'";
@@ -180,7 +176,7 @@ case 'ban_ip_by_message':
 
             $ipEsc = mysql_real_escape_string($ip);
 
-            // 1) Çok kısa aralık (en az 5 saniye)
+            // 1) Çok kısa aralık
             $lastMsgRes = mysql_query("
                 SELECT created_at 
                 FROM chat_messages 
@@ -189,13 +185,24 @@ case 'ban_ip_by_message':
             ");
             if ($lastMsgRes && mysql_num_rows($lastMsgRes) > 0) {
                 $lastRow = mysql_fetch_assoc($lastMsgRes);
+              if ($verified==1)
+              {
                 if (strtotime($lastRow['created_at']) > time() - 3) {
                     header('HTTP/1.1 429 Too Many Requests');
                     die('Mesajlar arasında en az 3 saniye beklemelisiniz.');
                 }
+              }
+
+              if ($verified==0)
+              {
+                if (strtotime($lastRow['created_at']) > time() - 10) {
+                    header('HTTP/1.1 429 Too Many Requests');
+                    die('Mesajlar arasında en az 10 saniye beklemelisiniz.');
+                }
+              }
             }
 
-            // 2) Saatlik limit (50 mesaj)
+            // 2) Saatlik limit 
             $lastHour = date('Y-m-d H:i:s', time() - 3600);
             $hourCountRes = mysql_query("
                 SELECT COUNT(*) AS count 
@@ -204,12 +211,22 @@ case 'ban_ip_by_message':
                 AND created_at > '$lastHour'
             ");
             $hourCountRow = mysql_fetch_assoc($hourCountRes);
-            if ($hourCountRow['count'] > 100 ) {
+            if ($verified==1)
+            {
+            if ($hourCountRow['count'] > 120 ) {
                 header('HTTP/1.1 429 Too Many Requests');
                 die('Saatlik mesaj limitine ulaştınız. Lütfen biraz bekleyin.');
+                }
+            }
+            if ($verified==0)
+            {
+            if ($hourCountRow['count'] > 10 ) {
+                header('HTTP/1.1 429 Too Many Requests');
+                die('Saatlik mesaj limitine ulaştınız. Lütfen biraz bekleyin.');
+                }
             }
 
-            // 3) Günlük limit (500 mesaj, opsiyonel)
+            // 3) Günlük limit 
             $lastDay = date('Y-m-d H:i:s', time() - 86400);
             $dayCountRes = mysql_query("
                 SELECT COUNT(*) AS count 
