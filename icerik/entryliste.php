@@ -61,8 +61,8 @@ $kayit2=mysql_fetch_array($sorgu2);
 $baslik=$kayit2["baslik"];
 $kesbaslik = substr ($baslik, 0, 60);
 $titlebaslik = $baslik;
-$baslik = ereg_replace(" ","+",$baslik);
-$mesaj = ereg_replace("<br>","",$mesaj);
+$baslik = str_replace(" ","+",$baslik);
+$mesaj = str_replace("<br>","",$mesaj);
 $mesaj = substr ($mesaj, 0, 250);
 $mesaj = "$mesaj...";
 
