@@ -2,6 +2,8 @@
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
 <?
 $eskinick = $kullaniciAdi = isset($_REQUEST['kullaniciAdi']) ? $_REQUEST['kullaniciAdi'] : '';
+$nick = isset($_REQUEST['nick']) ? $_REQUEST['nick'] : '';
+$ayb  = isset($_REQUEST['ayb'])  ? $_REQUEST['ayb']  : 0;
 $sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
 $reset=$sorset["reset"];
 if ($reset >0)
@@ -38,7 +40,7 @@ echo "izinizi kaybettirmek için yeni nickinizi girin: <br>";
 			} 
 		} 
     } 	
-	if ($ayb==146 and (!ereg ("^[' A-Za-z0-9]+$", $nick))) {
+	if ($ayb == 146 && !preg_match("/^[' A-Za-z0-9]+$/", $nick)) {
 		echo "Nickinizde;
 		<br>sadece kucuk ve ingilizce harfler,
 		<br>bosluk {space},
