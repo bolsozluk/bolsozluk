@@ -81,7 +81,7 @@ if ($id == 0 && $nick && $ayb == 146) {
 }
 ?>
 
-<form method="POST" action="./adm/nickdegis.php">
+<form method="POST" action="https://www.bolsozluk.com/sozluk.php?process=adm&islem=nickdegis">
 <table cellpadding="10px" border="0">
 <tr>
 <td align="right">eskisi (değiştirilecek nick): </td>
