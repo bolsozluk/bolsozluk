@@ -82,7 +82,7 @@ try {
 
 case 'ban_ip_by_message':
     // Sadece adminler IP banlayabilir
-    if ($kulYetki !== 'admin' && $kulYetki !== 'mod') {
+    if ($kulYetki !== 'admin') { //&& $kulYetki !== 'mod'
         header('HTTP/1.1 403 Forbidden');
         die('Yetkiniz yok');
     }
