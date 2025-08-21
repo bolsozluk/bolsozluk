@@ -1,5 +1,5 @@
-<SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
-<META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
+<SCRIPT src="inc/sozluk.js" type="text/javascript"></SCRIPT>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php
 // Formdan gelen değerler
 $eskinick = isset($_REQUEST['eskisi']) ? trim($_REQUEST['eskisi']) : '';
@@ -21,9 +21,14 @@ if ($nick == "" && $ayb == 146) {
     exit;
 }
 
+if ($eskinick == "" && $ayb == 146) {
+    echo "Eski nick boş olamaz! Lütfen değiştirmek istediğiniz nicki yazın.<br>";
+    exit;
+}
+
 // Kullanıcı varsa kontrol et
 $id = 0;
-$sorgu = "SELECT nick, id FROM user WHERE nick='$nick'";
+$sorgu = "SELECT nick, id FROM user WHERE nick='" . mysql_real_escape_string($nick) . "'";
 $sorgulama = mysql_query($sorgu);
 $nick = strtolower($nick);
 
@@ -39,22 +44,39 @@ if (mysql_num_rows($sorgulama) > 0) {
     }
 }
 
-// Update işlemleri
+// Update işlemleri (önceki SQL mantığını koruyoruz)
 if ($id == 0 && $nick && $ayb == 146) {
     echo "değiştiriliyor<br>"; 
 
-    mysql_query("UPDATE mesajlar SET yazar='$nick' WHERE yazar='$eskinick'");
-    mysql_query("UPDATE oylar SET nick='$nick' WHERE nick='$eskinick'");
-    mysql_query("UPDATE oylar SET entry_sahibi='$nick' WHERE entry_sahibi='$eskinick'");
-    mysql_query("UPDATE privmsg SET gonderen='$nick' WHERE gonderen='$eskinick'");
-    mysql_query("UPDATE privmsg SET kime='$nick' WHERE kime='$eskinick'");
-    mysql_query("UPDATE rehber SET kim='$nick' WHERE kim='$eskinick'");
-    mysql_query("UPDATE rehber SET kimin='$nick' WHERE kimin='$eskinick'");
-    mysql_query("UPDATE user SET nick='$nick' WHERE nick='$eskinick'");
-    mysql_query("UPDATE takip SET nick = REPLACE(nick, '$eskinick', '$nick')");
+    $sql1 = "UPDATE mesajlar SET yazar='" . mysql_real_escape_string($nick) . "' WHERE yazar='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql1) or die("Hata: " . mysql_error());
+
+    $sql2 = "UPDATE oylar SET nick='" . mysql_real_escape_string($nick) . "' WHERE nick='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql2) or die("Hata: " . mysql_error());
+
+    $sql3 = "UPDATE oylar SET entry_sahibi='" . mysql_real_escape_string($nick) . "' WHERE entry_sahibi='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql3) or die("Hata: " . mysql_error());
+
+    $sql4 = "UPDATE privmsg SET gonderen='" . mysql_real_escape_string($nick) . "' WHERE gonderen='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql4) or die("Hata: " . mysql_error());
+
+    $sql5 = "UPDATE privmsg SET kime='" . mysql_real_escape_string($nick) . "' WHERE kime='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql5) or die("Hata: " . mysql_error());
+
+    $sql6 = "UPDATE rehber SET kim='" . mysql_real_escape_string($nick) . "' WHERE kim='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql6) or die("Hata: " . mysql_error());
+
+    $sql7 = "UPDATE rehber SET kimin='" . mysql_real_escape_string($nick) . "' WHERE kimin='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql7) or die("Hata: " . mysql_error());
+
+    $sql8 = "UPDATE user SET nick='" . mysql_real_escape_string($nick) . "' WHERE nick='" . mysql_real_escape_string($eskinick) . "'";
+    mysql_query($sql8) or die("Hata: " . mysql_error());
+
+    $sql9 = "UPDATE takip SET nick = REPLACE(nick, '" . mysql_real_escape_string($eskinick) . "', '" . mysql_real_escape_string($nick) . "')";
+    mysql_query($sql9) or die("Hata: " . mysql_error());
 
     $msg = "Nick başarıyla değiştirildi!";
-    echo '<script type="text/javascript">alert("' . $msg . '"); window.location="https://www.bolsozluk.com/sozluk.php?process=adm"; </script>';
+    echo '<script type="text/javascript">alert("' . utf8_encode($msg) . '"); window.location="/adm/admin_panel.php";</script>';
     exit;
 }
 ?>
