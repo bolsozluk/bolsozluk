@@ -1,4 +1,4 @@
-<?
+<?php
 $sql = "
     SELECT ip, GROUP_CONCAT(DISTINCT yazar) AS yazarlar, COUNT(DISTINCT yazar) AS yazar_sayisi
     FROM iptables
@@ -9,11 +9,21 @@ $sql = "
 ";
 
 $result = mysql_query($sql);
-while ($row = mysql_fetch_assoc($result)) {
-    $ip = $row['ip'];
-    $yazarlar = $row['yazarlar'];
-    echo "<b>$yazarlar</b> birbirinin feyki olabilir. <a href='http://whatismyipaddress.com/ip/$ip' target='_blank'>$ip</a><br>";
+
+if (!$result) {
+    die("Sorgu hatası: " . mysql_error());
 }
+
+// Satır sayısını kontrol et
+$num_rows = mysql_num_rows($result);
+
+if ($num_rows > 0) {
+    echo $num_rows . " işlem incelendi.<br><br>";
+    while ($row = mysql_fetch_assoc($result)) {
+        $ip = $row['ip'];
+        $yazarlar = $row['yazarlar'];
+        echo "<b>$yazarlar</b> birbirinin feyki olabilir. <a href='http://whatismyipaddress.com/ip/$ip' target='_blank'>$ip</a><br>";
+    }
 } else {
     echo "Şüpheli IP bulunamadı.";
 }
