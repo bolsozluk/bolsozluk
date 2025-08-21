@@ -1,7 +1,7 @@
 <SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
 <?
-$kullaniciAdi = isset($_SESSION['kullaniciAdi']) ? $_SESSION['kullaniciAdi'] : '';
+$kullaniciAdi = isset($_SESSION['kullaniciAdi_S']) ? $_SESSION['kullaniciAdi_S'] : "";
 $eskinick = $kullaniciAdi;
 $nick = isset($_REQUEST['nick']) ? $_REQUEST['nick'] : '';
 $ayb  = isset($_REQUEST['ayb'])  ? $_REQUEST['ayb']  : 0;
