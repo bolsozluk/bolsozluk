@@ -76,7 +76,7 @@ if ($id == 0 && $nick && $ayb == 146) {
     mysql_query($sql9) or die("Hata: " . mysql_error());
 
     $msg = "Nick başarıyla değiştirildi!";
-    echo '<script type="text/javascript">alert("' . utf8_encode($msg) . '"); window.location="/adm/admin_panel.php";</script>';
+    echo '<script type="text/javascript">alert("' . utf8_encode($msg) . '"); window.location="https://www.bolsozluk.com/sozluk.php?process=adm";</script>';
     exit;
 }
 ?>
