@@ -91,7 +91,9 @@ echo '<script type="text/javascript">alert("' . $msg . '"); window.location="htt
 <tr>
 <td align="right">eskisi: </td>
 <td>
-	<div align="left"><input name="eskisi" size="30" readonly="1" value="<?php echo isset($_REQUEST['kullaniciAdi']) ? htmlspecialchars($_REQUEST['kullaniciAdi']) : ''; ?>" type="text"></div>
+	<div align="left">
+    <input name="eskisi" size="30" readonly="1" value="<?php echo htmlspecialchars($kullaniciAdi); ?>" type="text">
+</div>
 </tr>
 <tr>
 <td align="right">yenisi: </td>
