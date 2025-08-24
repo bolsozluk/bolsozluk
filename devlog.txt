@@ -1,9 +1,4 @@
-﻿----------yapilacaklar-----------
--sozluk ici gelismis arama (surec: kodlama bekleniyor)
--profillerde daha fazla kisisel bilgi, soundcloud, twitter, facebook detayi ve detayli yazar arama (surec: kodlama bekleniyor)
--basliklardaki noktalama isareti kisitlari ile ilgili aksakliklar (surec: calisma suruyor)
-
-----------guncel kullanici talepleri-----------
+----------(bkz: sözlükle ilgili bazi istekler )-----------
 -gibicibicis; icerige iliskin metatag iyilestirmeleri.
 -gibicibicis; sarki basliklarinda info iceriklerine sag bolgede alan tasarimi.
 -venom, giz gvng; sarki sozleri vs. spoiler gizleme butonu.
@@ -18,6 +13,9 @@
 -kobaysos; noktalama isaretlerinin baslikta kullanimi problemi.
 -sulh981; @li entryler yerine yorum ozelligi getirilmesi.
 -mertd; embed sistemlerinin ui/ux odakli gelistirilmesi.
+-anonim; sozluk ici gelismis arama.
+-anonim; profillerde daha fazla kisisel bilgi
+-anonim; basliklardaki noktalama isareti kisitlari problemleri cozumu.
 
 ----------vazgecilenler - terkedilenler----------
 -bolshit: anket, liste, ve sozluk icerigini gorsel materyal destekli editoryal suzgecten geciren bir portal projesi;
@@ -42,9 +40,9 @@ agustos 2025:
 -kafasesi'nin onerisi uzerine bolchat kodlandi ve ajax/jquery tabanli ui gelistirildi.
 -bolchat kullanici yonetimi ve moderasyon denetimleri gelistirildi.
 -bolchat icin xss korumasi, sql injection onlemleri, rate limit ve flood kontrolu gelistirildi.
--kaynak kodu github.com/bolsozluk uzerinden yayinlandi.
--github reposunda yapilan guncellemelerin site ile senkronizasyonu icin ftp ile web servera deploy action ayarlandi.
--admin paneli ve core functionlardaki kritik bir guvenlik acigi giderildi.
+-bol sozluk kaynak kodu github.com/bolsozluk uzerinden yayinlandi.
+-github reposunun site ile senkronizasyonu icin ftp ile web servera deploy action ayarlandi.
+-admin paneli ve core functionlardaki request guvenligi iyilestirildi.
 -bolchat sozlugun ip ban sistemiyle entegre edildi.
 
 haziran/temmuz 2025:
