@@ -29,3 +29,9 @@ teknik problemler ve destek talepleri için<br>
 <a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=booyaka&gkonu=">booyaka</a> - <a href="mailto:booyaka@bolsozluk.com">booyaka@bolsozluk.com</a><br></small>
 <br>
 duyuru ve gelişmeler için<a href="https://www.bolsozluk.com/s%C3%B6zl%C3%BCkle+ilgili+duyurular-1.html"> (bkz: sözlükle ilgili duyurular)</a><br>
+<?php
+include "footer.php";
+echo "<br>";
+echo "<br>";
+include "bolchat.php";
+?>
