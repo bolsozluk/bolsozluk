@@ -44,15 +44,7 @@
            echo "<b>onur konuğumuz</b><br />";
             echo "$kullaniciAdi<br /><br />";} ?>
             <b>sözlüğün sahipleri</b><br />
-            <?
-            $sorgu = "SELECT nick FROM user WHERE `durum`='on' and nick!='admin' order by nick";
-            $sorgulama = mysql_query($sorgu);
-            while ($kayit=mysql_fetch_array($sorgulama)){
-            $yazarlar = $kayit["nick"];
-            echo"tüm yazarlarımızdır.";
-            //echo"$yazarlar, ";
-            }
-            ?>
+            tüm yazarlarımızdır<br />
             <br /> <br />
             <b>bol sözlük - temmuz 2014<br /></b></center>
             <div style="width: 1px; height: 300px"></div>
