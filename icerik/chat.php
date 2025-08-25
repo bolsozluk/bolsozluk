@@ -127,15 +127,15 @@ case 'ban_ip_by_message':
     }
     break;
 
-        case 'get_online_count':
-            $threshold = time() - 600;
-            $result = mysql_query("SELECT COUNT(DISTINCT username) as count FROM chat_messages WHERE hidden = 0 AND UNIX_TIMESTAMP(created_at) > $threshold");
-            if (!$result) {
-                throw new Exception('Sorgu hatası: ' . mysql_error());
-            }
-            $row = mysql_fetch_assoc($result);            
-            echo isset($row['count']) ? (int)$row['count'] : 0;
-            break;
+
+    case 'get_online_count':
+    $result = mysql_query("SELECT COUNT(*) as count FROM online");
+    if (!$result) {
+        throw new Exception('Sorgu hatası: ' . mysql_error());
+    }
+    $row = mysql_fetch_assoc($result);            
+    echo isset($row['count']) ? ((int)$row['count'] + 1) : 1;
+    break;
 
    case 'send_message':
     $nick = mysql_real_escape_string(trim($_POST['nick']));
