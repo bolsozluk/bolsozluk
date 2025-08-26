@@ -2365,7 +2365,7 @@ if ($mod == "arabul")
 	if ($baslik == "sözlükle ilgili istekler" and $istekhatti == "1") {
 					echo "</font>
 				 <li value=".$say." class='eol'  onMouseOut='javascript:hideEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' >$mesaj";
-					echo "<img src=/check-mark-clip-art-green.png width=50 title=\"Çözüldü.\">";
+					echo "<img src=/img/green-mark.png width=50 title=\"Çözüldü.\">";
 				}
 
 	if ($baslik == "sözlükle ilgili istekler" and $istekhatti == "2") {
