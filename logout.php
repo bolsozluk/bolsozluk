@@ -58,7 +58,7 @@ session_destroy();
   </div>
   <script>
     setTimeout(function() {
-      window.parent.location.href = "http://www.bolsozluk.com";
+      window.parent.location.href = "https://www.bolsozluk.com";
     }, 2000); // 5 saniye sonra ana sayfaya yönlendirme yapar
   </script>
 
