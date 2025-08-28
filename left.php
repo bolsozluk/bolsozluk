@@ -1879,7 +1879,7 @@ echo "</center>";
 echo "<br>";
 if ($isMobile == 1) {
 include "icerik/footer.php";
-if (($kullaniciAdi == "") || ($list != "")) { ?>
+if ($kullaniciAdi == "") { ?>
 </font>
 <br> 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
