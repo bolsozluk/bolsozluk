@@ -545,16 +545,8 @@ $durum=$test22['durum'];
 
 
 //BAŞLIKTA TIRNAK
-//$q = str_replace("."," ",$q);
-//$q = str_replace("'"," ",$q);
 $q = str_replace("°"," ",$q);
 $q = str_replace("�"," ",$q);
-
-   // $entities = array('%21', '%2A', '%27', '%28', '%29', '%3B', '%3A', '%40', '%26', '%3D', '%2B', '%24', '%2C', '%2F', '%3F', '%25', '%23', '%5B', '%5D');
-   // $replacements = array('!', '*', "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "%", "#", "[", "]");
-   // $q = str_replace($entities, $replacements, urlencode($q));
-
-// $q = trim(preg_replace("'[^0-9a-zA-ZüÜşŞiİöÖçÇığĞ\'\.\´\`\-\:\& \s]'", "", $q)); //ORJİ
 $q = trim(preg_replace("'[^0-9a-zA-ZüÜşŞiİöÖçÇığĞ\'\.\´\`\-\:\& \s]'", "", $q)); //ORJİ
 $sayfa = guvenlikKontrol($_REQUEST["sayfa"],"ultra");
 $mesaj = mysql_real_escape_string($mesaj);
@@ -567,8 +559,6 @@ $mesaj = substr($mesaj, 0, 2000);
 
 $q = str_replace("İ","i",$q);
 $mesaj = str_replace("İ","i",$mesaj);
-//$mesaj = *reg_replace("<","&lt;",$mesaj);
-//$mesaj = *reg_replace(">","&gt;",$mesaj);
 $mesaj = str_replace("<","&lt;",$mesaj); 
 $mesaj = str_replace(">","&gt;",$mesaj);
 $mesaj = nl2br($mesaj);
@@ -614,8 +604,7 @@ if (mysql_num_rows($sorgulama)>0){
 			if ($kulYetki != "admin" and $kulYetki != "mod") {
 				echo "<div class=dash><center><b><img src=img/unlem.gif> Bu baslik ucurulmus!";
 				die;
-			}
-	
+			}	
 			echo "<div class=dash><center><b><img src=img/unlem.gif> Bu baslik ucurulmus! Yönetici olduğunuz için bu başlığı görüyorsunuz.</a></center>";
 		}
 	}
@@ -932,6 +921,7 @@ echo $gururlist[$randomgurur];
 echo "<br>";
 echo "<br>";
 
+include "footer.php";
 
     die;
   }
@@ -999,7 +989,7 @@ echo "<br>";
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <?
-
+include "footer.php";
     die;
   }
   
@@ -1027,7 +1017,7 @@ echo "<br>";
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <?
-
+include "footer.php";
      die;
   }
 
@@ -1416,10 +1406,6 @@ Bakmak için bakınız: (bkz: kelime)<br>
 							$yazi .= "$sayyy- #$id <br>";
 						}
 					}
-
-					$kimegitcek = "yalowa"; //DM AÇIĞI
-					$sorgu = "INSERT INTO privmsg (kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat) VALUES ('$kimegitcek','$konu','$yazi','$admtem','$tarih','1','$gun','$ay','$yil','$saat')";
-					mysql_query($sorgu);
 					die;
 				}
 
@@ -1787,13 +1773,9 @@ exit;
     echo "&nbsp;";
     echo "<a class=link href=\"/sozluk.php?process=word&q=$q&sayfa=$goster\"><font color=red face=verdana size=1><b>>|</b></font></a> ";
 				}
-
 				}
-
 			}
-
-			}
-			
+			}			
 			echo "<ol style=\"margin-inline-start: 18px;font-size:14px\">";
 
 		
@@ -1829,19 +1811,8 @@ function highlight_word( $title, $searched_word, $renk) {
 
 		if ($mod == "sukela")	
 		{
-
-
-	//$listele = mysql_query("SELECT * FROM mesajlar INNER JOIN oylar ON `oylar.entry_id` = `mesajlar.id` WHERE `sira`=$gid and `statu` = '' ORDER BY `id` asc limit 0,20");
-	//$listele = mysql_query("SELECT *, (SELECT SUM(oy) FROM oylar WHERE entry_id=mesajlar.id) AS say FROM mesajlar WHERE sira = 38245 ORDER BY say DESC LIMIT 0,20");	
-	//$listele = mysql_query("SELECT *, (SELECT SUM(oy) FROM oylar WHERE `oylar.entry_id`=`mesajlar.id`) AS oytop FROM mesajlar WHERE `sira` = $gid ORDER BY oytop DESC LIMIT 0,100");
-
 	$listele = mysql_query("SELECT *, (SELECT SUM(oy) FROM oylar WHERE oylar.entry_id=mesajlar.id) AS oytop FROM mesajlar WHERE sira = $gid  AND `statu` = '' ORDER BY oytop DESC LIMIT 0,50");
-
-	//echo "entry adedi:";
-	//echo (mysql_num_rows($listele));
-	//die;
 	    }
-
   
 //BEN MODU - AĞUSTOS 2023
 
@@ -2883,7 +2854,7 @@ if ($kullaniciAdi == "")
 	</div>
 <?
 	}
-//echo $gururlist[21];
+
 include "footer.php";
 echo "<br>";
 echo "<br>";
