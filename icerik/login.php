@@ -163,8 +163,8 @@ $karma = round($karma);
 1000 respectful: 100'den fazla artı vermiş
 
 10000 9 canlı: hiç çaylaklanmamış
-100000 sevilen: 2000'den fazla artı almış
-1000000 şafak tayfası: sabaha karşı entry giren
+100000 sevilen: 2500'den fazla artı almış
+1000000 arsivci: bulunamayan album ve parcalar basligina 10'dan fazla katki vermis
 10000000 temiz: hukuki sebeplerle hiç entrysi silinmemiş
 
 100000000 bol yazar: 2000'den fazla entry girmiş
@@ -175,43 +175,54 @@ $karma = round($karma);
 
 $rozet = "000000000000";
 
-$sorguimece = "SELECT * FROM `mesajlar` WHERE ((sira=3704) or (sira=7020) or (sira=11345) or (sira=23802) or (sira=25092) or (sira=34394) or (sira=42506)) and yazar = '$kullaniciAdi'";
-$sor = mysql_query($sorguimece);
+//imececi
+$sorgurozet = "SELECT * FROM `mesajlar` WHERE ((sira=3704) or (sira=7020) or (sira=11345) or (sira=23802) or (sira=25092) or (sira=34394) or (sira=42506)) and yazar = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
 $kac = mysql_num_rows($sor);
 if ($kac > 3) $rozet = $rozet + 1;
 
-$sorguimece = "SELECT * FROM `mesajlar` WHERE sira=137 and yazar = '$kullaniciAdi'";
-$sor = mysql_query($sorguimece);
+//gecetayfa
+$sorgurozet = "SELECT * FROM `mesajlar` WHERE sira=137 and yazar = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
 $kac = mysql_num_rows($sor);
 if ($kac > 125) $rozet = $rozet + 10;
 
+//ebe
+//respectful
+//9canli
 
-$sorguimece = "SELECT * FROM `oylar` WHERE oy=1 and entry_sahibi = '$kullaniciAdi'";
-$sor = mysql_query($sorguimece);
+//sevilen
+$sorgurozet = "SELECT * FROM `oylar` WHERE oy=1 and entry_sahibi = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
 $kac = mysql_num_rows($sor);
 if ($kac > 2500) $rozet = $rozet + 100000;
 
+//arsivci
+$sorgurozet = "SELECT * FROM `mesajlar` WHERE sira=12020 and yazar = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
+$kac = mysql_num_rows($sor);
+if ($kac > 10) $rozet = $rozet + 1000000;
 
-$sorguimece = "SELECT * FROM `mesajlar` WHERE yazar = '$kullaniciAdi'";
-$sor = mysql_query($sorguimece);
+//bol yazar
+$sorgurozet = "SELECT * FROM `mesajlar` WHERE yazar = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
 $kac = mysql_num_rows($sor);
 if ($kac > 2000) $rozet = $rozet + 100000000;
 
-$sorguimece = "SELECT * FROM `konular` WHERE sahibi = '$kullaniciAdi'";
-$sor = mysql_query($sorguimece);
+//sol frame canavari
+$sorgurozet = "SELECT * FROM `konular` WHERE sahibi = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
 $kac = mysql_num_rows($sor);
 if ($kac > 250) $rozet = $rozet + 1000000000;
 
-$sorguimece = "SELECT * FROM `mesajlar` WHERE sira=120 and yazar = '$kullaniciAdi'";
-$sor = mysql_query($sorguimece);
+//argeci
+$sorgurozet = "SELECT * FROM `mesajlar` WHERE sira=120 and yazar = '$kullaniciAdi'";
+$sor = mysql_query($sorgurozet);
 $kac = mysql_num_rows($sor);
 if ($kac > 10) $rozet = $rozet + 10000000000;
-
-
+				
 $sorgurozet = "UPDATE user SET rozet=$rozet WHERE nick='$kullaniciAdi'";
 mysql_query($sorgurozet);
-
-
 
 //ROZET SİSTEMİ SON
 
