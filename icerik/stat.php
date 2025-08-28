@@ -866,10 +866,7 @@ if (mysql_num_rows($sorgulama)>0)
 		echo "$i) <a href=\"?process=word&q=$mod\" target=main>$mod</a> - $onaypuan<br>";
 $i++;
 }
-
 }	
-
-
 
 
 echo"<small><br>bu istatistiğe şimdilik sadece belirli bir tarihten sonra silinen entryler ve gözden geçirilen çaylaklar dahil edilmiştir, gözden geçirilip şikayeti reddedilen entryler, düzeltilen başlıklar, taşınan entryler vb. parametreler de ileride hesaba katılacaktır.</b></small>" ;
@@ -882,16 +879,8 @@ if(($ismobile == 0) and ($kullaniciAdi == ""))
 
 	<?
 }
-
-
 die;
-
 }
-
-
-
-
-
 if($stat=="ebe"){
 
 	$sorgu1 = "SELECT * FROM debe";
@@ -957,43 +946,15 @@ $sorgu = "SELECT * FROM stat";
 		for ($i = 1; $i <= 20; $i++) {
 			echo "$i. <a href=?process=word&q={$basliklink[$i]} target=main>{$basliklar[$i]}</a> - <a href=?process=eid&eid={$entries[$i]} target=main>#{$entries[$i]}</a><br>";
 		}
-/*
-		$sorgu1 = mysql_query("SELECT entry_id, SUM(oy) as toplam FROM oylar GROUP BY entry_id ORDER BY toplam DESC LIMIT 20,22"); 
-$x = 20;
-
-while ($kayit2 = mysql_fetch_array($sorgu1)) {
-    $x++;
-    $entry_id = $kayit2["entry_id"];
-    $toplam = $kayit2["toplam"];
-
-    $sira11 = mysql_fetch_array(mysql_query("SELECT sira from mesajlar where id='$entry_id'"));
-    $sira1 = $sira11["sira"];
-    $eniyibaslik11 = mysql_fetch_array(mysql_query("SELECT baslik from konular where id='$sira1'"));
-    $eniyibaslik1 = $eniyibaslik11["baslik"];
-    echo "$x. <a href=?process=word&q=$eniyibaslik1 target=main>$eniyibaslik1</a> - <a href=?process=eid&eid=$entry_id target=main>#$entry_id</a><br>";
-
-
 }
-
-*/
-
-}
-
-
-
-
 	}
-
 	if(($ismobile == 0) and ($kullaniciAdi == ""))
 	{ 
 		?>
 		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
 		crossorigin="anonymous"></script>
-
 		<?
 	}
-
-
 	die();
 }
 
@@ -1055,8 +1016,6 @@ while ($kayit2 = mysql_fetch_array($sorgu1)) {
 				-- <a href="?process=stat&stat=bekciler" target="gostert">gece bekçileri</a><br>
 				-- <a href="?process=stat&stat=pmsg" target="gostert">En arananlar</a><br>
 				-- <a href="?process=stat&stat=aylik" target="gostert">bol geçmiş</a><br>
-
-
 				<td>
 					<iframe scrolling="no" name="gostert" id="gostert" width="100%" height="800" frameborder="0" src="sozluk.php?process=stat&stat=genel"></iframe>
 				</td>
@@ -1070,11 +1029,7 @@ while ($kayit2 = mysql_fetch_array($sorgu1)) {
 		$kayit=mysql_fetch_array($sorgulama);
 		$tarih=$kayit["tarih"];
 		echo "<center>Son güncelleme: $tarih</center>";
+include "footer.php";
 		?>
-
-
-
-
-
 	</body>
 	</html>
