@@ -44,6 +44,7 @@ agustos 2025:
 -github reposunun site ile senkronizasyonu icin ftp ile web servera deploy action ayarlandi.
 -admin paneli ve core functionlardaki request guvenligi iyilestirildi.
 -bolchat sozlugun ip ban sistemiyle entegre edildi.
+-ardastic'in istegi uzerine arsivci rozeti sozluge eklendi.
 
 haziran/temmuz 2025:
 -masaustu gorunumde arama modulunun getirebilecegi sonuc sayisi artirildi.
