@@ -2349,7 +2349,7 @@ if ($mod == "arabul")
 	if ($baslik == "sözlükle ilgili istekler" and $istekhatti == "3") {
 					echo "</font>
 				 <li value=".$say." class='eol'  onMouseOut='javascript:hideEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' >$mesaj";
-					echo "<img src=https://www.freeiconspng.com/uploads/checklist-icon-checklist-icon-26.png width=50 title=\"Talep Alındı.\">";
+					echo "<img src=/img/talep.png width=50 title=\"Talep Alındı.\">";
 				}
 
 	if ($baslik == "sözlükle ilgili istekler" and $istekhatti == "777") {
