@@ -2,7 +2,6 @@
 $kimdirbu = guvenlikKontrol(
     isset($_REQUEST["kimdirbu"]) ? $_REQUEST["kimdirbu"] : "", "hard"
 );
-
 include "mobframe.php";
 echo "<br>";
 
@@ -22,11 +21,7 @@ if($isMobile == 1)
 </script>
 <?
 }
-
 ?>
-
-
-
 <FORM action=sozluk.php?process=entrylerim&kimdirbu method=post>
   <table width="280" border="0">
     <tr>
@@ -122,8 +117,6 @@ if ($nesilid < "1428")
 {
   $nesil = "birinci";  
 }
-
-
 if ($yazarlik == "off")
 {
 $profilinfo = "$nesil nesil bol sözlük çaylağı ";
@@ -195,48 +188,6 @@ $arti = mysql_num_rows($sor);
 $sor = mysql_fetch_array(mysql_query("select karma from user WHERE `nick`='$kimdirbu'"));
 $karma = $sor["karma"];
 
-//GEÇİCİ DEVRE DIŞI
-
-/*
-
-$karmak0 = $arti / $kacham; 
-$karmak0 = $karmak0*100;
-$karmak0 = $karmak0*0.96;
-
-$karmak1 = $kactop / 100;
-$karmak1 = $karmak1*1.5;
-
-$sor = mysql_query("select oy from oylar WHERE `nick`='$kimdirbu' and oy = 1");
-$verarti = mysql_num_rows($sor);
-$karmak2 = $verarti / $kactop; 
-$karmak2 = $karmak2*100;
-$karmak2 = $karmak2*0.04;
-
-$karma =  $karmak0 + $karmak1 + $karmak2;
-
-$kpi = ($karmak1 / $karmak0)*5;
-if ($kpi < 1.75) $kpi = 1.75;
-$karma = $karma*$kpi;
-
-$karmaneg = (1/$karmak0)*7500;
-if ($karmaneg > $karmak0*5) $karmaneg = $karmak0*5;
-
-$karma = $karma-$karmaneg;
-$karma = $karma-($saysil*5);
-$karma = $karma-($saycaylak*50);
-$karma = round($karma);
-
-*/ 
-
-//GEÇİCİ DEVRE DIŞI
-
-
-//echo $kactop;
-//echo ".";
-//echo $kac;
-//echo ".";
-//echo $arti;
-
 if ($kulYetki == "allah") //KARMATEST
 {
 echo "--kH:";
@@ -274,8 +225,8 @@ if ($karma > 1000) $karma = 1000;
 1000 respectful: 100'den fazla artı vermiş
 
 10000 9 canlı: hiç çaylaklanmamış
-100000 sevilen: 2000'den fazla artı almış
-1000000 şafak tayfası: sabaha karşı entry giren
+100000 sevilen: 2500'den fazla artı almış
+1000000 arsivci: bulunamayan album ve parcalar basligina 10'dan fazla katki vermis
 10000000 temiz: hukuki sebeplerle hiç entrysi silinmemiş
 
 100000000 bol yazar: 2000'den fazla entry girmiş
@@ -293,18 +244,16 @@ $sevilen = 0;
 $bolyazar = 0;
 $solfc = 0;
 $argeci = 0;
+$arsivci = 0;
 
 if ($rozet>=1) $imece = substr($rozet, -1, 1); 
 if ($rozet>=10) $gececi = substr($rozet, -2, 1);
 if ($rozet>=100000) $sevilen = substr($rozet, -6, 1); 
+if ($rozet>=1000000) $arsivci = substr($rozet, -7, 1); 
 if ($rozet>=100000000) $bolyazar = substr($rozet, -9, 1); 
 if ($rozet>=1000000000) $solfc = substr($rozet, -10, 1); 
 if ($rozet>=10000000000) $argeci = substr($rozet, -11, 1);
-
 ?>
-
-
-
   <table>
   <thead>
     <tr>
@@ -342,6 +291,7 @@ if($sevilen=="1"){ echo "<img src=\"/bolrozet/sevilen.png\" title=\"sevilen\" wi
 if($bolyazar=="1"){ echo "<img src=\"/bolrozet/bolyazar.png\" title=\"bol yazar\" width=32 height=32> <font size=1>";}
 if($solfc=="1"){ echo "<img src=\"/bolrozet/solfc.png\" title=\"sol frame canavarı\" width=32 height=32> <font size=1>";}
 if($argeci=="1"){ echo "<img src=\"/bolrozet/argeci.png\" title=\"argeci\" width=32 height=32> <font size=1>";}
+if($arsivci=="1"){ echo "<img src=\"/bolrozet/arsivci.png\" title=\"arşivci\" width=32 height=32> <font size=1>";}
 }
 
 ?>
