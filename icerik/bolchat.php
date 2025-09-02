@@ -39,15 +39,31 @@ ini_set('display_errors', 1);
 
                     autocomplete="off"
                 >
+<?php if($kullaniciAdi == ""): ?>
                 <div class="input-main">
                     <textarea 
                         id="message" 
                         name="message" 
                         placeholder="Mesajınızı yazın..." 
                         rows="1" 
-                        maxlength="140"
+                        maxlength="69"
                         autocomplete="off"
                     ></textarea>
+<?php endif; ?>
+
+<?php if($kullaniciAdi != ""): ?>
+                <div class="input-main">
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Mesajınızı yazın..." 
+                        rows="1" 
+                        maxlength="255"
+                        autocomplete="off"
+                    ></textarea>
+<?php endif; ?>
+
+                    
                     <button type="submit" id="send-button" aria-label="Mesaj Gönder">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                             <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
