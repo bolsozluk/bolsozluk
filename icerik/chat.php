@@ -213,14 +213,14 @@ case 'ban_ip_by_message':
             $hourCountRow = mysql_fetch_assoc($hourCountRes);
             if ($verified==1)
             {
-            if ($hourCountRow['count'] > 120 ) {
+            if ($hourCountRow['count'] > 200 ) {
                 header('HTTP/1.1 429 Too Many Requests');
                 die('Saatlik mesaj limitine ulaştınız. Lütfen biraz bekleyin.');
                 }
             }
             if ($verified==0)
             {
-            if ($hourCountRow['count'] > 10 ) {
+            if ($hourCountRow['count'] > 7 ) {
                 header('HTTP/1.1 429 Too Many Requests');
                 die('Saatlik mesaj limitine ulaştınız. Lütfen biraz bekleyin.');
                 }
