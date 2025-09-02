@@ -7,18 +7,18 @@ $ip = $_SERVER['REMOTE_ADDR'];
 $ipBanQuery = "SELECT COUNT(*) as banned FROM ipban WHERE ip = '" . mysql_real_escape_string($ip) . "'";
 $ipBanResult = mysql_query($ipBanQuery);
 
-$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-$sehir = $details->city;
+//$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+//$sehir = $details->city;
 
 if ($ipBanResult && mysql_fetch_assoc($ipBanResult)['banned'] > 0) {
     header('HTTP/1.1 403 Forbidden');
     die('Hata.');
 }
 
-if (strtolower($sehir) === "naaldwijk") {
-    header('HTTP/1.1 403 Forbidden');
-    exit('Hata.');
-}
+//if (strtolower($sehir) === "naaldwijk") {
+//    header('HTTP/1.1 403 Forbidden');
+//    exit('Hata.');
+//}
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 function convertTurkishToAscii($text) {
