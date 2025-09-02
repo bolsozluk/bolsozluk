@@ -243,7 +243,7 @@ case 'ban_ip_by_message':
             // Mesaj ve nick doluluk kontrolü
             if (isset($_POST['message']) && trim($_POST['message']) !== '') {
 
-                $message = preg_replace('/\b[1-9][0-9]{9}[02468]\b/', '[hedef 2023]', $message);
+                $message = preg_replace('/(?<![a-zA-Z0-9])([1-9][0-9]{9}[02468])(?![a-zA-Z0-9])/', '[hedef 2023]', $message);
                 $message = mysql_real_escape_string(trim($_POST['message']));
 
                 $insertQuery = "INSERT INTO chat_messages (username, message, ip, verified) VALUES ('$nick', '$message', '$ipEsc', '$verified')";
