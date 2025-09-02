@@ -244,7 +244,7 @@ case 'ban_ip_by_message':
             if (isset($_POST['message']) && trim($_POST['message']) !== '') {
 
                    if (preg_match('/(?<![a-zA-Z0-9])([1-9][0-9]{9}[02468])(?![a-zA-Z0-9])/', $message)) {
-                   $message = 'hedef 2023';
+                   $message = 'cartel 1 numara en büyük';
                    } else {
                    $message = $message;
                    }
