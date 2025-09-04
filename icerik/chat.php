@@ -150,8 +150,9 @@ case 'ban_ip_by_message':
 
    case 'send_message':
     $nick = mysql_real_escape_string(trim($_POST['nick']));
+    $message = $_POST['message'];
     $message = str_replace("'","&#039;",$message);
-    $message = mysql_real_escape_string(trim($_POST['message']));
+    $message = mysql_real_escape_string(trim($message));
     $verified = 0;
 
             if ($kullaniciAdi) {
