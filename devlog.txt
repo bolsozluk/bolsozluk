@@ -30,6 +30,10 @@
 -nativespot, facebook ve adwords uzerinden sponsorlu gonderi/reklam verilmesi
 
 ----------yapilanlar----------
+eylul 2025:
+-bol anket icin ssl sertifikasi alindi.
+-bol anket kodundaki http/https mixed content uyumsuzluklari giderildi.
+
 agustos 2025:
 -otomatik secure sifre yenileme modulu moderasyon paneline eklendi.
 -moderasyon frame moderasyon paneline tekrar eklendi.
