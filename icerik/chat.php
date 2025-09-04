@@ -72,7 +72,7 @@ try {
             $messages = array();
             while ($row = mysql_fetch_assoc($result)) {
 
-        $mesaj = str_replace("#039;", "'",$row['message']);
+        $mesaj = str_replace("&#039;", "'",$row['message']);
 
          $messages[] = array(
         'id' => $row['id'],
