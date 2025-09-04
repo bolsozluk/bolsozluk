@@ -71,10 +71,13 @@ try {
 
             $messages = array();
             while ($row = mysql_fetch_assoc($result)) {
+
+           $mesaj = str_replace("   #039;", "'",row['message']);
+
                  $messages[] = array(
         'id' => $row['id'],
         'username' => $row['username'],
-        'message' => $row['message'],
+        'message' => $mesaj,
         'created_at' => $row['created_at'],
         'ip' => $row['ip'] // IP'yi de JSON'a ekliyoruz
                 );
@@ -147,6 +150,7 @@ case 'ban_ip_by_message':
 
    case 'send_message':
     $nick = mysql_real_escape_string(trim($_POST['nick']));
+    $message = str_replace("&#039;","'",$message);
     $message = mysql_real_escape_string(trim($_POST['message']));
     $verified = 0;
 
