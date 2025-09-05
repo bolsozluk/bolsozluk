@@ -2355,7 +2355,7 @@ if ($mod == "arabul")
 	if ($baslik == "sözlükle ilgili istekler" and $istekhatti == "777") {
 					echo "</font>
 				 <li value=".$say." class='eol'  onMouseOut='javascript:hideEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' >$mesaj";
-					echo "<img src=http://allan-kelli.com/br/wp-content/uploads/sites/2/2016/01/cropped-heart.png width=50 title=\"şimdi cennettesin tuna\">";
+					echo "<img src=/img/cropped-heart.png width=50 title=\"şimdi cennettesin tuna\">";
 				}
 
 
