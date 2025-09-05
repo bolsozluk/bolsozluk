@@ -39,10 +39,11 @@ try {
 
             $messages = array();
             while ($row = mysql_fetch_assoc($result)) {
+               $mesaj = str_replace("&#039;", "'",$row['message']);
                 $messages[] = array(
                     'id' => $row['id'],
                     'username' => $row['username'],
-                    'message' => $row['message'],
+                    'message' => $mesaj,
                     'created_at' => $row['created_at'],
                     'is_verified' => $row['verified']
                 );
