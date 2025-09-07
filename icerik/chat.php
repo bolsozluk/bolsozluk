@@ -32,7 +32,7 @@ try {
     switch ($action) {
         case 'get_messages':
             // Sadece hidden=0 olan mesajları getir
-            $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 0 ORDER BY id DESC LIMIT 50");
+            $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 0 ORDER BY id DESC LIMIT 30");
             if (!$result) {
                 throw new Exception('Sorgu hatası: ' . mysql_error());
             }
