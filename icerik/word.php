@@ -1482,6 +1482,12 @@ $base4 = $msjcheck["ilkyazar"];
 
 			if ($statu == "kenar")
 {
+
+if ($test3 == "off" || $test3 == "sus" || $yazarlik != "on" ) 
+{
+$statu = "wait";
+}
+	
 			$sorgu = "INSERT INTO mesajlar (sira,mesaj,yazar,ip,tarih,gun,ay,yil,saat,statu,dakika,ilkyazar)";
 			$sorgu .= " VALUES ('$gid','$mesaj','$yazar','$ip','$tarih','$gun','$ay','$yil','$saat','$statu','$dakika','$yazar')";
 			mysql_query($sorgu);
