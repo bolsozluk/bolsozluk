@@ -103,6 +103,14 @@ function guvenlikKontrol($variable,$style){
 	return trim($variable);
 }
 
+function guvenlikDecode($variable) {
+    // 'med' modundaki işlemlerin tam tersi
+    $before = array("&#039;", "&lt;", "&gt;", "&quot;");
+    $after  = array("'", "<", ">", "\"");
+    $variable = str_replace($before, $after, $variable);
+    return $variable;
+}
+
 // Mesajları okuyoruz
 function getPrivateMessages(){
 	global $kullaniciAdi,$notice,$okunmayan;
