@@ -2678,7 +2678,7 @@ if ($sayfa >= 1 or !$sayfa) {
 //echo $yazarlik;
 if ($kullaniciAdi and $yazarlik != "on" and $yazarlik !="kurumsal") {
 	echo "<br>";
-	echo "<b>...ç a y l a k s ı n ı z... en az 10 entry girdiğinizde entryleriniz incelenip hesabınız onaylanacaktır. 10 entryden sayıca daha çok ve çoğunlukla bilgi içerikli entryler girmeniz yazarlık onayınızı hızlandıracaktır..<b>";
+	echo "<b>...ç a y l a k s ı n ı z... en az 10 entry girdiğinizde entryleriniz incelenip hesabınız onaylanacaktır. 10 entryden sayıca daha çok ve çoğunlukla bilgi içerikli entryler girmeniz yazarlık onayınızı hızlandıracaktır..</b>";
 	echo "<br>";
 }
 
