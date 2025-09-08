@@ -108,7 +108,7 @@ function guvenlikDecode($variable) {
     $before = array("&#039;", "&lt;", "&gt;", "&quot;");
     $after  = array("'", "<", ">", "\"");
     $variable = str_replace($before, $after, $variable);
-	$variable = nl2br($variable);
+	$variable = str_replace("\n", " ", $variable);
     return $variable;
 }
 
