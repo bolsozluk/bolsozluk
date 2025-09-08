@@ -39,7 +39,8 @@ try {
 
             $messages = array();
             while ($row = mysql_fetch_assoc($result)) {
-               $mesaj = str_replace("&#039;", "'",$row['message']);
+               //$mesaj = str_replace("&#039;", "'",$row['message']);
+                $mesaj = guvenlikDecode($row['message']);
                 $messages[] = array(
                     'id' => $row['id'],
                     'username' => $row['username'],
@@ -73,7 +74,8 @@ try {
             $messages = array();
             while ($row = mysql_fetch_assoc($result)) {
 
-        $mesaj = str_replace("&#039;", "'",$row['message']);
+        //$mesaj = str_replace("&#039;", "'",$row['message']);
+            $mesaj = guvenlikDecode($row['message']);
 
          $messages[] = array(
         'id' => $row['id'],
@@ -152,7 +154,8 @@ case 'ban_ip_by_message':
    case 'send_message':
     $nick = mysql_real_escape_string(trim($_POST['nick']));
     $message = $_POST['message'];
-    $message = str_replace("'","&#039;",$message);
+    $message = guvenlikKontrol($message, "med");
+    //$message = str_replace("'","&#039;",$message);
     $message = mysql_real_escape_string(trim($message));
     $verified = 0;
 
