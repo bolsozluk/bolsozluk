@@ -929,38 +929,22 @@ include "footer.php";
 */
   
 //SANSAR ÖZEL
-/*
+
     
-    //if ($baslik =='sansar salvonun yardım çığlıkları') 
-
+//if ($baslik =='sansar salvonun yardım çığlıkları') 
 if (strpos($baslik, 'sansar') !== false || strpos($baslik, 'ekincan') !== false) {
- if  (($baslik != "13 mart 2025 sansar salvonun tahliye olması")) {
-
-//   echo '<img src="https://i.imgur.com/iLeG0Li.png" height="300" width="%100">';  
-//"<iframe width=\"100%\" height=\"200\"";
-//    echo "<br><br>";
-//    echo "<a href='https://x.com/sansar34/status/1809870353583239396' target=\"_blank\">https://x.com/sansar34/status/1809870353583239396</a>";
-//    echo "<br><br>";
+if  (($baslik != "13 mart 2025 sansar salvonun tahliye olması")) {
 
     echo "<br><br>";
-    echo "Sanatçının şikayeti üzerine içerik siteden kaldırılmıştır.";
-    if ($kullaniciAdi != "") echo " Moderasyon denetimi süresince sadece sözlük yazarlarının erişimine açıktır.";
+    echo "Moderasyon denetimi süresince sadece sözlük yazarlarının erişimine açıktır.";
+    //if ($kullaniciAdi != "") echo " Moderasyon denetimi süresince sadece sözlük yazarlarının erişimine açıktır.";
     if ($kullaniciAdi == "") die;
     echo "<br><br>";
-
-    
-// if (($kulYetki != "admin")) {
-// echo "<br><br><b>rastgele gururlarımız:<br><br></b>";
-// echo $gururlist[$randomgurur];
-// echo "<br>";
-// echo "<br>";
-//}
 
   }
 
 }
-  //SANSAR ÖZEL
-  */
+  //SANSAR ÖZEL  
 
 
 //LOBİ-KONUDIŞI ERİŞİM KISITI 17/04/2022
