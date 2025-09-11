@@ -34,6 +34,7 @@ eylul 2025:
 -bol anket icin ssl sertifikasi alindi.
 -bol anket kodundaki http/https mixed content uyumsuzluklari giderildi.
 -bolchat mysql_real_escape_string problemleri giderildi.
+-kenar fonksiyonuyla girilen entryler icin moderasyona bildirim kodlandi.
 
 agustos 2025:
 -otomatik secure sifre yenileme modulu moderasyon paneline eklendi.
