@@ -1471,7 +1471,7 @@ $statu = "wait";
 			$sorgu .= " VALUES ('$gid','$mesaj','$yazar','$ip','$tarih','$gun','$ay','$yil','$saat','$statu','$dakika','$yazar')";
 			mysql_query($sorgu);
 
-	$sorgu = "SELECT id FROM tablo_adi ORDER BY id DESC LIMIT 1";
+	$sorgu = "SELECT id FROM mesajlar ORDER BY id DESC LIMIT 1";
 	$sonuc = mysql_query($sorgu);
 if ($sonuc && mysql_num_rows($sonuc) > 0) {
     $satir = mysql_fetch_assoc($sonuc);
