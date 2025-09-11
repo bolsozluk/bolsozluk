@@ -1478,7 +1478,6 @@ if ($sonuc && mysql_num_rows($sonuc) > 0) {
     $son_id = $satir['id'];
 }
 	
-	$xgkime = "admin";
 	$tarih = date("YmdHi");
 	$gun = date("d");
 	$ay = date("m");
@@ -1489,7 +1488,19 @@ if ($sonuc && mysql_num_rows($sonuc) > 0) {
 	$xsorgu = "INSERT INTO privmsg ";
 	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
 	$xsorgu .= " VALUES ";
-	$xsorgu .= "('$xgkime','kenardan entry var!','#$son_id','$kullaniciAdi adına','$tarih','2','$gun','$ay','$yil','$saat')";
+	$xsorgu .= "('booyaka','kenardan entry var!','#$son_id','$kullaniciAdi adına','$tarih','2','$gun','$ay','$yil','$saat')";
+	mysql_query($xsorgu);
+
+	$xsorgu = "INSERT INTO privmsg ";
+	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
+	$xsorgu .= " VALUES ";
+	$xsorgu .= "('dragunov','kenardan entry var!','#$son_id','$kullaniciAdi adına','$tarih','2','$gun','$ay','$yil','$saat')";
+	mysql_query($xsorgu);
+
+	$xsorgu = "INSERT INTO privmsg ";
+	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
+	$xsorgu .= " VALUES ";
+	$xsorgu .= "('abra yutpa','kenardan entry var!','#$son_id','$kullaniciAdi adına','$tarih','2','$gun','$ay','$yil','$saat')";
 	mysql_query($xsorgu);
 	
 }
