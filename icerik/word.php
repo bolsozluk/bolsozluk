@@ -936,7 +936,7 @@ if (strpos($baslik, 'sansar') !== false || strpos($baslik, 'ekincan') !== false)
 if  (($baslik != "13 mart 2025 sansar salvonun tahliye olması")) {
 
     echo "<br><br>";
-    echo "bu başlıkta Moderasyon denetimi yapılmaktadır, lütfen daha sonra tekrar deneyiniz.";
+    echo "bu başlıkta Moderasyon denetimi yapılmaktadır.";
     if ($kullaniciAdi != "") echo " Moderasyon denetimi süresince sadece sözlük yazarlarının erişimine açıktır.";
     if ($kullaniciAdi == "") die;
     echo "<br><br>";
