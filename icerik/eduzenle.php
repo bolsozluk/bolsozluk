@@ -72,6 +72,38 @@ if (($ok and $mesaj) and ($yazar == $kullaniciAdi or $kulYetki == "admin" or $ku
 	$sorgu = "UPDATE mesajlar SET mesaj = '$mesaj' WHERE id='$id'";
 	mysql_query($sorgu);
 
+	
+	if ($statu == "kenar")
+	{
+	
+	$tarih = date("YmdHi");
+	$gun = date("d");
+	$ay = date("m");
+	$yil = date("Y");
+	$saat = date("H:i");
+	$ip = getenv('REMOTE_ADDR');
+
+	$xsorgu = "INSERT INTO privmsg ";
+	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
+	$xsorgu .= " VALUES ";
+	$xsorgu .= "('booyaka','kenardan entry var!','#$id','$kullaniciAdi bildirimi','$tarih','2','$gun','$ay','$yil','$saat')";
+	mysql_query($xsorgu);
+
+	$xsorgu = "INSERT INTO privmsg ";
+	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
+	$xsorgu .= " VALUES ";
+	$xsorgu .= "('dragunov','kenardan entry var!','#$id','$kullaniciAdi bildirimi','$tarih','2','$gun','$ay','$yil','$saat')";
+	mysql_query($xsorgu);
+
+	$xsorgu = "INSERT INTO privmsg ";
+	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
+	$xsorgu .= " VALUES ";
+	$xsorgu .= "('abra yutpa','kenardan entry var!','#$id','$kullaniciAdi bildirimi','$tarih','2','$gun','$ay','$yil','$saat')";
+	mysql_query($xsorgu);
+
+	}
+		
+
 	if ($akillandim) {
 		$sorgu = "UPDATE mesajlar SET statu = 'akillandim' WHERE id='$id'";
 		mysql_query($sorgu);
