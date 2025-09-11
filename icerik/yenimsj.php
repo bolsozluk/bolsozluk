@@ -410,7 +410,7 @@ echo "<FORM name=ok method=post action=>
   </TD></TR></TBODY></TABLE></FORM>";
   }
 
-if (($gkonu == "bol vol 10") && ($gkime == "admin"))
+if (($gkonu == "bol vol 11") && ($gkime == "lord voldemort"))
   	{
   		echo "<br>";
   		echo "<br>";
@@ -420,7 +420,7 @@ if (($gkonu == "bol vol 10") && ($gkime == "admin"))
   		echo "albüme katılımınızı ve hangi konularda destek verebileceğinizi albüm organizasyon başlığına da lütfen yazınız.";
   		echo "<br>";
   		echo "<br>";
-  		echo"<a href=\"sozluk.php?process=word&q=sözlük+yazarlarının+emeğiyle+yapılacak+onuncu+albüm\"> (bkz: sözlük yazarlarının emeğiyle yapılacak onuncu albüm) ";
+  		echo"<a href=\"sozluk.php?process=word&q=sözlük+yazarlarının+emeğiyle+yapılacak+on+birinci+albüm\"> (bkz: sözlük yazarlarının emeğiyle yapılacak on birinci albüm) ";
   		echo "<br>";
   		echo "<br>";
   	}
