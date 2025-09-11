@@ -1456,25 +1456,42 @@ $base4 = $msjcheck["ilkyazar"];
 
 //kenara gir
 
-
-   if(isset($_POST['kenar'])) {
- $statu = "kenar";
-        }
-
+if(isset($_POST['kenar'])) {
+$statu = "kenar";
+}
 
 
-
-			if ($statu == "kenar")
+if ($statu == "kenar")
 {
-
 if ($test3 == "off" || $test3 == "sus" || $yazarlik != "on" ) 
 {
 $statu = "wait";
-}
-	
+}	
 			$sorgu = "INSERT INTO mesajlar (sira,mesaj,yazar,ip,tarih,gun,ay,yil,saat,statu,dakika,ilkyazar)";
 			$sorgu .= " VALUES ('$gid','$mesaj','$yazar','$ip','$tarih','$gun','$ay','$yil','$saat','$statu','$dakika','$yazar')";
 			mysql_query($sorgu);
+
+	$sorgu = "SELECT id FROM tablo_adi ORDER BY id DESC LIMIT 1";
+	$sonuc = mysql_query($sorgu);
+if ($sonuc && mysql_num_rows($sonuc) > 0) {
+    $satir = mysql_fetch_assoc($sonuc);
+    $son_id = $satir['id'];
+}
+	
+	$xgkime = "admin";
+	$tarih = date("YmdHi");
+	$gun = date("d");
+	$ay = date("m");
+	$yil = date("Y");
+	$saat = date("H:i");
+	$ip = getenv('REMOTE_ADDR');
+
+	$xsorgu = "INSERT INTO privmsg ";
+	$xsorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";
+	$xsorgu .= " VALUES ";
+	$xsorgu .= "('$xgkime','kenardan entry var!','#$son_id','$kullaniciAdi adına','$tarih','2','$gun','$ay','$yil','$saat')";
+	mysql_query($xsorgu);
+	
 }
 
 			if ($statu !== "kenar")
