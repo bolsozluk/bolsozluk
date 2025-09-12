@@ -47,19 +47,22 @@ if ($res_user && mysql_num_rows($res_user) > 0) {
 // Dosya adı güvenliği
 $safeName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $kullaniciAdi);
 $safeName = substr($safeName, 0, 100);
-$filename = $safeName . "_mesaj_yedek.doc";
+
 
 // Word header
 header("Content-Type: application/msword; charset=utf-8");
 header('Content-Disposition: attachment; filename="' . $filename . '"');
 
-echo "<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body>";
-echo "<p>mesaj yedekleri:<br></p>";
-echo "<table border='1'>";
-
 // GET parametresi: gelen veya gönderilen mesaj
 $tip = isset($_GET['tip']) ? $_GET['tip'] : 'gelen';
 $tip = ($tip === 'giden') ? 'giden' : 'gelen';
+
+$filename = $safeName . "_" . $tip . "_mesaj_yedek.doc";
+
+echo "<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body>";
+echo "<p>$tip mesaj yedekleri:<br></p>";
+echo "<table border='1'>";
+
 
 if ($tip === 'giden') {
     // Gönderilen mesajlar
