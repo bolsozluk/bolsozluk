@@ -16,7 +16,7 @@ session_regenerate_id(true);
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1); // eğer HTTPS kullanıyorsanız açın
 
-include "icerik/baglan.php";
+//include "icerik/baglan.php";
 include "icerik/fonksiyonlar.php";
 
 /*
