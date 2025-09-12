@@ -3,9 +3,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-//session_start();
-//ob_start();
-
 // Basit session güvenlik iyileştirmeleri
 if (!isset($_SESSION['kullaniciAdi_S'])) {
     // session boşsa sonlandır
@@ -15,15 +12,6 @@ if (!isset($_SESSION['kullaniciAdi_S'])) {
 session_regenerate_id(true);
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1); // eğer HTTPS kullanıyorsanız açın
-
-//include "icerik/baglan.php";
-include "icerik/fonksiyonlar.php";
-
-/*
-if (function_exists('vtBaglan')) {
-    vtBaglan();
-}
-*/
 
 if (function_exists('kontrolEt')) {
     kontrolEt();
