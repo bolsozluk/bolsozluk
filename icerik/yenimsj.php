@@ -208,14 +208,12 @@ echo "Çağrı iletildi.";
 	$sorgu3 .= " VALUES ";
 	$sorgu3 .= "('komutana sniper neresinden','$gkonu -admin mesajı kopyası-','$gmesaj','$kullaniciAdi','$tarih','2','$gun','$ay','$yil','$saat','$ip')";
 	mysql_query($sorgu3);
-	}
 
 	$sorgu3 = "INSERT INTO privmsg ";
 	$sorgu3 .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat,ip)";
 	$sorgu3 .= " VALUES ";
 	$sorgu3 .= "('dragunov','$gkonu -admin mesajı kopyası-','$gmesaj','$kullaniciAdi','$tarih','2','$gun','$ay','$yil','$saat','$ip')";
 	mysql_query($sorgu3);
-	}
 
 	$sorgu3 = "INSERT INTO privmsg ";
 	$sorgu3 .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat,ip)";
