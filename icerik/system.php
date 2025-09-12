@@ -116,7 +116,7 @@ href=""><span>&nbsp;detaylı ara</span></b></a><br><span>henüz hazır değil</s
     <td>
 
     <img style="float:left" id=i0 border=0 src="images/online.png" alt="online" width=32 height=12>
-    <b><A href="/sozluk.php?process=mesajgyedek"><span>&nbsp;mesaj (giden) yedek</span></b></a><br><span>yedeklemekten hoşlananlara</span>
+    <b><A href="sozluk.php?process=mesajyedek&tip=giden"><span>&nbsp;mesaj (giden) yedek</span></b></a><br><span>yedeklemekten hoşlananlara</span>
 
     </td>
    </tr> 
