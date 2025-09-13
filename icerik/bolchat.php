@@ -463,6 +463,27 @@ textarea#message {
         max-width: 90%;
     }
 }
+
+    .error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #e74c3c;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 10000;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-size: 14px;
+}
+
+/* Dark mode için error mesajı stili */
+.dark-mode .error-message {
+    background: #c0392b;
+    color: #fff;
+}
+    
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -498,13 +519,41 @@ function checkDarkModePreference() {
     }
 }
 
-
-
-
     function escapeHtml(text) {
         return $('<div>').text(text).html();
     }
 
+function showError(message) {
+    // Daha güzel bir hata mesajı gösterimi
+    var errorDiv = $('<div class="error-message">')
+        .text(message)
+        .css({
+            'position': 'fixed',
+            'top': '20px',
+            'right': '20px',
+            'background': '#e74c3c',
+            'color': 'white',
+            'padding': '15px',
+            'border-radius': '5px',
+            'z-index': '10000',
+            'max-width': '300px',
+            'box-shadow': '0 4px 8px rgba(0,0,0,0.2)',
+            'font-size': '14px'
+        });
+    
+    // Eğer zaten bir hata mesajı varsa kaldır
+    $('.error-message').remove();
+    
+    $('body').append(errorDiv);
+    
+    // 5 saniye sonra hatayı otomatik kaldır
+    setTimeout(function() {
+        errorDiv.fadeOut(function() {
+            $(this).remove();
+        });
+    }, 5000);
+}
+    
     function loadMessages() {
         $.getJSON('sozluk.php?process=chat&action=get_messages', function(messages) {
         var newMessagesHtml = '';
@@ -701,24 +750,42 @@ function bindMessageEvents() {
 $('#chat-form').submit(function(e) {
     e.preventDefault();
     
-    // 1. Kullanıcı ne yazdıysa onu al (girişli olsa bile)
     var nick = $('#nick').val().trim();
     var message = $('#message').val().trim();
     
-    // 2. Mesaj boş mu kontrol et
     if(!message) return;
     
-    // 3. Direkt gönder (artık girişli kullanıcı nicki override edilmez)
+    // Gönder butonunu devre dışı bırakarak çoklu tıklamaları önle
+    var sendButton = $('#send-button');
+    sendButton.prop('disabled', true);
+    
     $.post('sozluk.php?process=chat', {
-        nick: nick, // Artık her zaman input'taki nick gider
+        nick: nick,
         message: message,
         action: 'send_message'
     }).done(function(response) {
         if(response.trim() === 'OK') {
             $('#message').val('').height('auto');
             if(!showingHidden) loadMessages();
+        } else {
+            // Sunucu OK dışında bir yanıt döndürdüyse
+            showError(response);
         }
-    }).fail(console.error);
+    }).fail(function(xhr, status, error) {
+        console.error('Mesaj gönderilemedi:', error);
+        
+        // Rate limit (429) hatasını kontrol et
+        if(xhr.status === 429) {
+            showError(xhr.responseText || 'Çok hızlı mesaj gönderiyorsunuz. Lütfen bekleyin.');
+        } else {
+            // Diğer hatalar
+            var errorMessage = xhr.responseText || 'Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.';
+            showError(errorMessage);
+        }
+    }).always(function() {
+        // İşlem tamamlandığında butonu tekrar aktif et
+        sendButton.prop('disabled', false);
+    });
 });
 
     // Dark mode kontrolü
