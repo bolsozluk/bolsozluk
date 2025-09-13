@@ -74,7 +74,7 @@ teknik problemler ve destek talepleri için<br>
 
           <DIV>
           <?
-$sorgu = "SELECT * FROM haberler ORDER BY `tarih` desc LIMIT 20"; //9
+$sorgu = "SELECT * FROM haberler ORDER BY `tarih` desc LIMIT 5";
 $sorgulama = mysql_query($sorgu);
 if (mysql_num_rows($sorgulama)>0){
 //kayÄ±tlarÄ± listele
@@ -238,3 +238,4 @@ if(($isMobile == 0) && ($kullaniciAdi != ""))
 
 </BODY>
 </HTML>
+<? include "bolchat.php"; ?>
