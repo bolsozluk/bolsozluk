@@ -213,6 +213,7 @@ echo "$iptit<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gkime=$msgnick\" 
 <br>
 
 <?
+/*
 if(($isMobile == 0) && ($kullaniciAdi != ""))
 { 
 ?>
@@ -229,6 +230,7 @@ if(($isMobile == 0) && ($kullaniciAdi != ""))
 
 <?
 }
+*/
 ?>
 
 
