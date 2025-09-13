@@ -122,16 +122,16 @@ $arti = mysql_num_rows($sor);
 
 $karmak0 = $arti / $kacham; 
 $karmak0 = $karmak0*100;
-$karmak0 = $karmak0*0.96;
+$karmak0 = $karmak0*0.90; //v1: 0.96
 
 $karmak1 = $kactop / 100;
-$karmak1 = $karmak1*1.5;
+$karmak1 = $karmak1*1.25; //v1: 1.5
 
 $sor = mysql_query("select oy from oylar WHERE `nick`='$kullaniciAdi' and oy = 1");
 $verarti = mysql_num_rows($sor);
 $karmak2 = $verarti / $kactop; 
 $karmak2 = $karmak2*100;
-$karmak2 = $karmak2*0.04;
+$karmak2 = $karmak2*0.10; //v1:0.04
 
 $karma =  $karmak0 + $karmak1 + $karmak2;
 
@@ -144,7 +144,7 @@ if ($karmaneg > $karmak0*5) $karmaneg = $karmak0*5;
 
 $karma = $karma-$karmaneg;
 $karma = $karma-($saysil*5);
-$karma = $karma-($saycaylak*50);
+$karma = $karma-($saycaylak*40);//v1:50
 $karma = round($karma);
 
 
