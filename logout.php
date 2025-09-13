@@ -2,11 +2,11 @@
 session_start();
 include "icerik/baglan.php";
 vtBaglan();
-
 $sorgu = "DELETE FROM online WHERE nick = '".$_SESSION['kullaniciAdi_S']."' LIMIT 1";
 mysql_query($sorgu);
-
 mysql_close($databaseConnection);
+setcookie("bol", "", time() - 3600, "/");
+setcookie("shit", "", time() - 3600, "/");
 session_destroy();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
