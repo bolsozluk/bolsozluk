@@ -44,12 +44,12 @@ ini_set('display_errors', 1);
                     <textarea 
                         id="message" 
                         name="message" 
-                        placeholder="Mesajınızı yazın..." 
+                        placeholder="Lütfen giriş yapın..." 
                         rows="1" 
                         maxlength="69"
                         autocomplete="off"
                     ></textarea>
-<?php endif; ?>
+<?php endif; die(); ?>
 
 <?php if($kullaniciAdi != ""): ?>
                 <div class="input-main">
