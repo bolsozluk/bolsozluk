@@ -148,7 +148,7 @@ case 'ban_ip_by_message':
         throw new Exception('Sorgu hatası: ' . mysql_error());
     }
     $row = mysql_fetch_assoc($result);            
-    echo isset($row['count']) ? ((int)$row['count'] + 1) : 1;
+    echo isset($row['count']) ? ((int)$row['count']) : 1; //opt:$row['count'] + 1 
     break;
 
    case 'send_message':
