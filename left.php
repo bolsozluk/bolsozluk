@@ -14,6 +14,7 @@ include "icerik/firstsettings.php";
 include "icerik/baglan.php";
 include "icerik/fonksiyonlar.php";
 vtBaglan();
+otomatikLogin();
 kontrolEt();
 addMeOnlines();
 
