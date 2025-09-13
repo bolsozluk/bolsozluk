@@ -167,6 +167,7 @@ case 'ban_ip_by_message':
                 $nick = mysql_real_escape_string($kullaniciAdi);
                 //$nick = mysql_real_escape_string(trim($_POST['nick'])); // Direkt formdan gelen nick
             } else {
+                die('Lütfen giriş yapınız.');
                 // Anonim kullanıcı için nick kontrolü
                 if (empty($_POST['nick'])) {
                     header('HTTP/1.1 400 Bad Request');
