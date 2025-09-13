@@ -726,7 +726,6 @@ $('#chat-form').submit(function(e) {
     
     // Dark mode toggle eventi
    // $('#toggle-dark-mode').click(toggleDarkMode);
-<?  if($kullaniciAdi == "") { die(); } ?>
     setInterval(loadMessages, 3000);
     updateOnlineCount();
     loadMessages();
