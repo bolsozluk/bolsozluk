@@ -49,7 +49,7 @@ ini_set('display_errors', 1);
                         maxlength="69"
                         autocomplete="off"
                     ></textarea>
-<?php endif; die(); ?>
+<?php endif; ?>
 
 <?php if($kullaniciAdi != ""): ?>
                 <div class="input-main">
@@ -634,7 +634,7 @@ function bindMessageEvents() {
         }
     });
 
-    // IP Ban butonu - EN ÖNEMLİ KISIM
+    // IP Ban butonu 
     $('.ban-ip-button').off('click').on('click', function(e) {
         e.preventDefault();
         e.stopPropagation(); // Önemli: olayın yayılmasını durdur
@@ -731,5 +731,6 @@ $('#chat-form').submit(function(e) {
 
     updateOnlineCount();
     loadMessages();
+    <? die(); ?>
 });
 </script>
