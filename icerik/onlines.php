@@ -240,4 +240,5 @@ if(($isMobile == 0) && ($kullaniciAdi != ""))
 
 </BODY>
 </HTML>
+<? include "footer.php"; ?>	
 <? include "bolchat.php"; ?>
