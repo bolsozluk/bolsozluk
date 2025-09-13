@@ -240,10 +240,10 @@ mysql_query($sorgurozet);
 			$_SESSION['verifyStatus_S']   = $verifyStatus;
 			$_SESSION['aktifTema_S']    = $aktifTema;
 			
-			if($rememberMe=="on"){
-				setcookie("bol", guvenlikKontrol($_REQUEST["gnick"],"hard"));
-				setcookie("shit", sha1(guvenlikKontrol($_REQUEST["gsifre"],"hard")));
-			}
+if($rememberMe=="on"){
+    setcookie("bol", guvenlikKontrol($_REQUEST["gnick"],"hard"), time()+60*60*24*30, "/");
+    setcookie("shit", sha1(guvenlikKontrol($_REQUEST["gsifre"],"hard")), time()+60*60*24*30, "/");
+}
 
 //echo $kulYetki;
 //die;
