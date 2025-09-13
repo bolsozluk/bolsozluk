@@ -136,7 +136,9 @@ $karmak2 = $karmak2*0.10; //v1:0.04
 $karma =  $karmak0 + $karmak1 + $karmak2;
 
 $kpi = ($karmak1 / $karmak0)*5;
-if ($kpi < 1.75) $kpi = 1.75;
+$kpi = ($karmak1 / $karmak0) * 3; // v1:5
+if ($kpi < 1.2) $kpi = 1.2;       // minimum çarpan
+if ($kpi > 3) $kpi = 3;           // maksimum çarpan
 $karma = $karma*$kpi;
 
 $karmaneg = (1/$karmak0)*7500;
