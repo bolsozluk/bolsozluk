@@ -2844,7 +2844,7 @@ if ($kullaniciAdi == "")
 include "footer.php";
 echo "<br>";
 echo "<br>";
-include "bolchat.php";
+//include "bolchat.php";
 ?>
 </center>
 </font>
