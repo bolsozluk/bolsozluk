@@ -1,4 +1,16 @@
 <?php
+ini_set('date.timezone', 'Europe/Istanbul');
+ini_set('session.cookie_httponly', 1); // XSS koruması
+ini_set('session.use_only_cookies', 1); // Session fixation koruması
+
+session_set_cookie_params(
+    86400,  // 1 gün
+    '/',
+    '',
+    false,
+    true
+);
+
 session_start();
 
 // Tum Durumlari Kontrol Ediyoruz
@@ -6,6 +18,26 @@ function fonksiyonlartest()
 	{
 		echo"fonksiyonlar yüklendi.<br>";
 	}
+
+// Otomatik Cookie'den Giriş Fonksiyonu (BENİ HATIRLA)
+function otomatikLogin() {
+    if (!isset($_SESSION['kullaniciAdi_S']) && isset($_COOKIE['bol']) && isset($_COOKIE['shit'])) {
+        $nick = $_COOKIE['bol'];
+        $sifre = $_COOKIE['shit'];
+        $sorgu = "SELECT * FROM user WHERE nick='$nick'";
+        $sorgulama = mysql_query($sorgu);
+        if (mysql_num_rows($sorgulama)>0){
+            $kayit = mysql_fetch_array($sorgulama);
+            // Hem eski hem yeni hash'li şifre destekli
+            if (sha1($kayit["sifre"]) == $sifre || $kayit["sifre"] == $sifre) {
+                $_SESSION['kullaniciAdi_S'] = $kayit["nick"];
+                $_SESSION['kulYetki_S'] = $kayit["yetki"];
+                $_SESSION['verifyStatus_S'] = $kayit["durum"];
+                $_SESSION['aktifTema_S'] = $kayit["tema"];
+            }
+        }
+    }
+}
 
 function kontrolEt(){ 
 	global $currentUserIP, $kullaniciAdi, $kulYetki, $verifyStatus, $verifyFloor, $aktifTema;
