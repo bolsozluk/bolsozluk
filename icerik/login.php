@@ -120,25 +120,31 @@ $sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kullaniciAdi' an
 $arti = mysql_num_rows($sor);
 
 
-// Temel katkılar
-$karmak0 = $arti / $kacham * 100;   // alınan oy
-$karmak1 = $kactop / 100;           // mesaj 
+$karmak0 = $arti / $kacham; 
+$karmak0 = $karmak0*100;
+$karmak0 = $karmak0*0.90; //v1: 0.96
+
+$karmak1 = $kactop / 100;
+$karmak1 = $karmak1*1.25; //v1: 1.5
 
 $sor = mysql_query("select oy from oylar WHERE `nick`='$kullaniciAdi' and oy = 1");
 $verarti = mysql_num_rows($sor);
-$karmak2 = $verarti / $kactop * 100; // verilen oy
+$karmak2 = $verarti / $kactop; 
+$karmak2 = $karmak2*100;
+$karmak2 = $karmak2*0.10; //v1:0.04
 
-// KPI: ters orantılı ama uçuk değil
-$kpi = 1 + log(($karmak0 + 1) / ($karmak1 + 1)); // log ile patlamayı önle
-if ($kpi < 1) $kpi = 1;
-if ($kpi > 5) $kpi = 5;  // maksimum çarpan eski sistemdeki gibi, uçurumu azaltır
+$karma =  $karmak0 + $karmak1 + $karmak2;
 
-// Karma hesaplama
-$karma = ($karmak0*0.6 + $karmak1*0.3 + $karmak2*0.1) * $kpi;
+$kpi = ($karmak1 / $karmak0)*5;
+if ($kpi < 1.75) $kpi = 1.75;
+$karma = $karma*$kpi;
 
-// Ceza
-$karma = $karma - ($saysil*2) - ($saycaylak*20); // ceza azaltıldı
+$karmaneg = (1/$karmak0)*7500;
+if ($karmaneg > $karmak0*5) $karmaneg = $karmak0*5;
 
+$karma = $karma-$karmaneg;
+$karma = $karma-($saysil*5);
+$karma = $karma-($saycaylak*40);//v1:50
 $karma = round($karma);
 
 
