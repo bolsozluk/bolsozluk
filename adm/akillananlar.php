@@ -16,28 +16,21 @@ echo "$canlandir canlandirildi.";
 }
 else {
 echo "Akillanan Entryler";
-
-
 $max = 40;
 if (!$_GET["sayfa"])  { $_GET["sayfa"]=1; }
 $alt = ($_GET["sayfa"] - 1)  * $max;
 
 $sor = mysql_query("SELECT id FROM mesajlar WHERE `statu`='akillandim'");
 $w = mysql_num_rows($sor);
-
 $goster = $w/$max;
 $goster=ceil($goster);
-
-
 
 echo "<center><p class=eol><font face=Verdana size=1>
 <b>Toplam $w adet entry listeleniyor</b><br>
 ";
+echo "</center>";
 
 if ($goster >1) {
-
-
-
 //echo "
 //<SELECT class=ksel onchange=\"jm('self',this,0);\" name=sayfa>";
 for ($i=1;$i<=$goster;$i++) {
@@ -47,31 +40,20 @@ if ($sayfa == $i) {
 } // if
 else {
 //echo "<OPTION value=sozluk.php?process=adm&islem=oluler&sayfa=$i>$i</OPTION>";
-} // new
-
+}
 }
 echo "</SELECT>";
 
 if ($sayfa >= 1 or !$sayfa) {
 if (!$sayfa)
 $sayfa = 1;
-
 $linksayfa = $sayfa + 1;
-
+      
 if ($linksayfa <= $goster) {
 //echo "<a class=link href=?process=adm&islem=oluler&sayfa=$linksayfa><font face=verdana size=1>>></font></a>";
 }
-
 }
-
-
-
-echo "</center>";
 }
-
-
-
-
 
 $sorgu = "SELECT id,statu FROM mesajlar WHERE `statu`='akillandim' ORDER by id DESC limit 0,150";
 $sorgulama = mysql_query($sorgu);
