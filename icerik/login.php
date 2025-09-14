@@ -120,31 +120,44 @@ $sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kullaniciAdi' an
 $arti = mysql_num_rows($sor);
 
 
-$karmak0 = $arti / $kacham; 
-$karmak0 = $karmak0*100;
-$karmak0 = $karmak0*0.90; //v1: 0.96
+// 1. KALİTE PUANI (Ana faktör)
+$karmak0 = ($arti - $eksi) / $kactop; 
+$karmak0 = $karmak0 * 100;
+$karmak0 = $karmak0 * 0.70; //
 
-$karmak1 = $kactop / 100;
-$karmak1 = $karmak1*1.25; //v1: 1.5
+// 2. AKTİVİTE PUANI
+$karmak1 = $kactop * 0.08; // 
 
-$sor = mysql_query("select oy from oylar WHERE `nick`='$kullaniciAdi' and oy = 1");
-$verarti = mysql_num_rows($sor);
+// 3. TOPLULUK KATKISI
 $karmak2 = $verarti / $kactop; 
-$karmak2 = $karmak2*100;
-$karmak2 = $karmak2*0.10; //v1:0.04
+$karmak2 = $karmak2 * 15; //
 
-$karma =  $karmak0 + $karmak1 + $karmak2;
+// 4. DENEYİM BONUSU
+$deneyim_bonus = 0;
+if ($kactop > 2000) {
+    $deneyim_bonus = min(($kactop - 2000) * 0.05, 50);
+}
 
-$kpi = ($karmak1 / $karmak0)*5;
-if ($kpi < 1.75) $kpi = 1.75;
-$karma = $karma*$kpi;
+// 5. KALİTE ÇARPANI
+$kpi = ($arti / $kactop) * 2;
+if ($kpi < 0.8) $kpi = 0.8;
+if ($kpi > 1.5) $kpi = 1.5;
 
-$karmaneg = (1/$karmak0)*7500;
-if ($karmaneg > $karmak0*5) $karmaneg = $karmak0*5;
+// 6. CEZALAR (Hafifletilmiş)
+$karmaneg = $saysil * 2; // 
+$caylak_ceza = $saycaylak * 10; // 
 
-$karma = $karma-$karmaneg;
-$karma = $karma-($saysil*5);
-$karma = $karma-($saycaylak*40);//v1:50
+// 7. SADAKAT İNDİRİMİ
+$sadakat_indirim = min($kactop * 0.015, 75);
+
+// NET KARMA
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus) * $kpi;
+$karma = $karma - $karmaneg - $caylak_ceza + $sadakat_indirim;
+
+// KARMA SINIRLARI
+$karma = max(-100, $karma);
+$karma = min(1000, $karma);
+
 $karma = round($karma);
 
 
