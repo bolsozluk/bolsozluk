@@ -1,29 +1,74 @@
-﻿<META http-equiv=Content-Type content="text/html; charset=utf-8">
-<SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.92">
-</HEAD>
-<BODY>
+<title>Bol Sözlük</title>
+<SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
 <style>
-html {
-overflow: -moz-scrollbars-vertical; 
-overflow-y: scroll;
+body {
+  margin: 0;
 }
 
+/* Genel container */
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px;
+}
 
+/* Sol sütun (üstbilgi, haberler) */
+.left {
+  flex: 3;
+}
+
+/* Sağ sütun (online yazarlar) */
+.right {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* Fieldset görünümü */
+fieldset {
+  border: 1px solid #999;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+/* Online yazarlar listesi */
+.online-list {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 13px;
+}
+
+/* Mobil uyum */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .right {
+    min-width: auto;
+  }
+}
 </style>
+</head>
+<body>
 <?
-
-$isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
-                    '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
-                    '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
+$isMobile = (bool)preg_match(
+    '#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'
+    .'|s(ymbian|eries60|amsung)|p(laybook|alm|pro|midp|laystation portable)|nokia|fennec|htc[\-_]'
+    .'|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i',
+    $_SERVER['HTTP_USER_AGENT']
+);
 
 $sorgu = "SELECT * FROM online ORDER BY nick asc";
 $sorgulama = mysql_query($sorgu);
 $kac = mysql_num_rows($sorgulama);
-
-
-
-
 
 if($isMobile == 0) $onlines = "<img src=img/yazarlar.gif alt=\"$kac kayitli onlayn\"> <a title=\"$kac kayitli onlayn\">($kac)</a>";
 if(($isMobile == 0) && ($okunmayan)) $pms = "&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<a title=\"$okunmayan okunmayan hede var\" href=sozluk.php?process=privmsg><img src=img/new.gif alt=\"$okunmayan okunmayan hede var\"> ($okunmayan)</a>";
@@ -31,15 +76,14 @@ if(($isMobile == 0) && ($okunmayan)) $pms = "&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&n
 if($isMobile == 1) $onlines = "on: <img src=img/yazarlar.gif alt=\"$kac kayitli onlayn\"> <a title=\"$kac kayitli onlayn\">($kac)</a>";
 if(($isMobile == 1) && ($okunmayan)) $pms = "dm: <a title=\"$okunmayan okunmayan hede var\" href=sozluk.php?process=privmsg><img src=img/new.gif alt=\"$okunmayan okunmayan hede var\"> ($okunmayan)</a>";
 ?>
-<TABLE width="95%" align=center border=0>
-  <TBODY>
-  <TR>
-    <TD vAlign=top width="100%">
-      <fieldset><LEGEND><B>üstbilgi</B></LEGEND>
-        <DIV>
-           <span style="display:block; position:relative; float:right; top:0px; right:0px; font-family:Arial, Helvetica, sans-serif;margin-top:-7px; font-size: 12px;font-weight:bold;">
-          (v0.9.2)</span>
-          <br>
+
+<div class="container">
+  <!-- Sol alan -->
+  <div class="left">
+    <fieldset>
+      <legend><b>üstbilgi</b></legend>
+      <div>
+        <span style="float:right; font-size:12px; font-weight:bold;">(v0.9.2)</span>
 duyuru ve gelişmeler için<a href="/s%C3%B6zl%C3%BCkle+ilgili+duyurular-1.html"> (bkz: sözlükle ilgili duyurular)</a><br>
 <br>
 <a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=booyaka&gkonu=">genel iletişim ADRESİ</a> - <a href="mailto:info@bolsozluk.com">info@bolsozluk.com</a><br>
@@ -68,29 +112,27 @@ emektarlar<br>
 <br>
 teknik problemler ve destek talepleri için<br>
 <a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=booyaka&gkonu=">booyaka</a> - <a href="mailto:booyaka@bolsozluk.com">booyaka@bolsozluk.com</a><br></small>
-<br></DIV>
-      <fieldset><LEGEND><B>şimdi haberler!</B></LEGEND>
+<br>
+      </div>
+    </fieldset>
 
-
-          <DIV>
-          <?
-$sorgu = "SELECT * FROM haberler ORDER BY `tarih` desc LIMIT 5";
-$sorgulama = mysql_query($sorgu);
-if (mysql_num_rows($sorgulama)>0){
-//kayÄ±tlarÄ± listele
-while ($kayit=mysql_fetch_array($sorgulama)){
-###################### var ##############################################
-$konu=$kayit["konu"];
-$aciklama=$kayit["aciklama"];
-$yazar=$kayit["yazar"];
-$tarih=$kayit["tarih"];
-$ay=$kayit["ay"];
-$gun=$kayit["gun"];
-$yil=$kayit["yil"];
-$saat=$kayit["saat"];
-
-
-
+    <fieldset>
+      <legend><b>şimdi haberler!</b></legend>
+      <div>
+      <?
+      $sorgu = "SELECT * FROM haberler ORDER BY `tarih` desc LIMIT 5";
+      $sorgulama = mysql_query($sorgu);
+      if (mysql_num_rows($sorgulama)>0){
+        while ($kayit=mysql_fetch_array($sorgulama)){
+          $konu=$kayit["konu"];
+          $aciklama=$kayit["aciklama"];
+          $yazar=$kayit["yazar"];
+          $gun=$kayit["gun"];
+          $ay=$kayit["ay"];
+          $yil=$kayit["yil"];
+          $saat=$kayit["saat"];
+          
+          // Regex işlemleri (bkz, youtube, spotify vs.)
 $aciklama = preg_replace("'\(bkz: (.*)\)'Ui","(bkz: <a href=\"sozluk.php?process=word&q=\\1\">\\1</a>)",$aciklama);
 $aciklama = preg_replace("'\(gbkz: (.*)\)'Ui","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$aciklama);
 $aciklama = preg_replace("'\`([\w öçşığüÖÇŞİĞÜ\-\.\´\:]+)\`'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$aciklama);
@@ -113,135 +155,70 @@ $aciklama = preg_replace("'\(spotrack: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","
 $aciklama = preg_replace("'\(xalbum2022x\)'","<br> <iframe width=\"70%\" height=\"50%\" src=\"https://www.youtube.com/embed/videoseries?list=PLqw9aTgi1eS5stayLpeVEZV6dTV_CRCXP\" frameborder=\"0\" allowfullscreen></iframe>",$aciklama); 
 $aciklama = preg_replace("'\(xins3x\)'","<br> <iframe width=\"70%\" height=\"50%\" src=\"https://www.youtube.com/embed/videoseries?list=PLqw9aTgi1eS6C_KQ98LaoYTEDrVIuZq58\" frameborder=\"0\" allowfullscreen></iframe>",$aciklama); 
 
-echo "
-<a class=highligth>$konu
-      [$gun/$ay/$yil $saat]</a><BR>
-      <font size=2>$aciklama</font>
-      <BR>
-      <strong>$yazar</strong>
-      <HR SIZE=1>
-      "; //$yazar
-}
-}
+          echo "
+          <a class=highligth>$konu [$gun/$ay/$yil $saat]</a><br>
+          <font size=2>$aciklama</font><br>
+          <strong>$yazar</strong>
+          <hr size=1>
+          ";
+        }
+      }
+      ?>
+      <a href="logout.php">· çıkış yap ·</a>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Sağ alan -->
+  <div class="right">
+    <fieldset>
+      <legend><b>online yazarlar</b></legend>
+      <div class="online-list">
+      <?
+      $sayac = 0;
+      $sorgu = "SELECT * FROM online ORDER BY nick asc";
+      $sorgulama = mysql_query($sorgu);
+
+      if($isMobile == 0) echo "$onlines $pms <hr>";
+      if($isMobile == 1) echo "$onlines <br> $pms <hr>";
+
+      if (($kulYetki == 'admin') or ($kulYetki == 'mod')) {
+        echo "<img src=img/unlem.gif><a href=sozluk.php?process=adm&islem=ispliste> [bol adalet sarayı]</a><hr>";
+      }
+
+      if (mysql_num_rows($sorgulama)>0){
+        while ($kayit=mysql_fetch_array($sorgulama)){
+          $userNickName=$kayit["nick"];
+          $ondurum=$kayit["ondurum"];
+          $ip=$kayit["ip"];
+          $sayac++;
+
+          if ($ondurum == "on") $echodurum = "Yazar";
+          if ($ondurum == "off") $echodurum = "Çömez";
+          if ($ondurum == "wait") $echodurum = "Yazar Adayı";
+          if ($ondurum == "sus") $echodurum = "Tekmelenmiş";
+
+          $msgnick = str_replace([".","&"],"",$userNickName);
+
+          if ($kulYetki == "admin" || $kulYetki == "mod" ) {
+            $iptit = "<a title=\"$ip blockla\" href=\"sozluk.php?process=adm&islem=ipban&ip=$ip\" class=link><img src=img/unlem.gif></a>";
+          }
+
+          echo "$iptit<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gkime=$msgnick\" title=\"$echodurum\"><font size=1> $userNickName</a> 
+          <a href='sozluk.php?process=arkadasekle&n=$msgnick' title='arkadaşım olsun'>(+)</a> 
+          <a href='sozluk.php?process=dusmanekle&n=$msgnick' title='düşmanım olsun'>(-)</a><br>";
+        }
+      }
+      ?>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<?php
+include "footer.php";
+echo "<br>";
+include "bolchat.php";
 ?>
-<a href="logout.php">· çıkış yap ·</a>
-
-        </DIV>
-      </fieldset></TD>
-    <TD vAlign=top align=left width="25%">
-
-      <fieldset noresize="noresize" style="width:100%;"><LEGEND><B>online yazarlar</B></LEGEND>
-        
-	<div style="width:100%;height:100%;overflow:scroll;overflow-x:hidden">
-
-<?
-
-$sayac = 0;
-$sorgu = "SELECT * FROM online ORDER BY nick asc";
-$sorgulama = mysql_query($sorgu);
-$kac = mysql_num_rows($sorgulama);
-
-//echo "<center>";
-if (!$statusWhere) {
-}
-if ($statusWhere == "disarida")
-$disarida = "selected";
-if ($statusWhere == "mesgul")
-$mesgul = "selected";
-if ($statusWhere == "yemekte")
-$yemekte = "selected";
-if ($statusWhere == "iceride" or !$statusWhere)
-$iceride = "selected";
-
-
-if($isMobile == 0) echo "$onlines $pms <hr>";
-if($isMobile == 1) echo "$onlines <br> $pms <hr>";
-
-if (($kulYetki == 'admin') or ($kulYetki == 'mod'))
-{
-
-  echo "<img src=img/unlem.gif><a href=sozluk.php?process=adm&islem=ispliste> [bol adalet sarayı]</a>";
-  echo "<hr>";
-
-}
-if (mysql_num_rows($sorgulama)>0){
-while ($kayit=mysql_fetch_array($sorgulama)){
-$userNickName=$kayit["nick"];
-$ondurum=$kayit["ondurum"];
-$ip=$kayit["ip"];
-$sayac++;
-
-if ($ondurum == "on")
-$echodurum = "Yazar";
-if ($ondurum == "off")
-$echodurum = "Ã‡Ã¶mez";
-if ($ondurum == "wait")
-$echodurum = "Yazar AdayÄ±";
-if ($ondurum == "sus")
-$echodurum = "TekmelenmiÅŸ";
-
-$checknick = explode("+", $userNickName);
-$checknick = $checknick[1];
-
-$msgnick = str_replace(".","",$userNickName);
-$msgnick = str_replace("&","",$userNickName);
-
-if ($checknick)
-$userNickName = "$userNickName";
-
-
-
-if ($kulYetki == "admin" || $kulYetki == "mod" ) {
-$iptit = "<a title=\"$ip blockla\" href=\"sozluk.php?process=adm&islem=ipban&ip=$ip\" class=link><img src=img/unlem.gif></a>";
-}
-
-
-if ($ondurum == "off")
-echo "$iptit<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gkime=$msgnick\" title=\"$echodurum\"><font size=1> $userNickName</a> <a href='sozluk.php?process=arkadasekle&n=$msgnick' title='arkadaşım olsun'>(+)</a> <a href='sozluk.php?process=dusmanekle&n=$msgnick' title='düşmanım olsun'>(-)</a></font><br>";
-if ($ondurum == "on" OR $ondurum =="")
-echo "$iptit<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gkime=$msgnick\" title=\"$echodurum\"><font size=1> $userNickName</a> <a href='sozluk.php?process=arkadasekle&n=$msgnick' title='arkadaşım olsun'>(+)</a> <a href='sozluk.php?process=dusmanekle&n=$msgnick' title='düşmanım olsun'>(-)</a><br>";
-if ($ondurum == "wait")
-echo "$iptit<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gkime=$msgnick\" title=\"$echodurum\"><font size=1> $userNickName</a> <a href='sozluk.php?process=arkadasekle&n=$msgnick' title='arkadaÅŸÄ±m olsun'>(+)</a> <a href='sozluk.php?process=dusmanekle&n=$msgnick' title='dÃ¼ÅŸmanÄ±m olsun'>(-)</a><br>";
-
-}
-}
-
-?>
-
-</div></FIELDSET>  
-
-<br>
-
-<?
-/*
-if(($isMobile == 0) && ($kullaniciAdi != ""))
-{ 
-?>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- bolsozluk_kp -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:1050px"
-     data-ad-client="ca-pub-7994669731946359"
-     data-ad-slot="6684398512"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<?
-}
-*/
-?>
-
-
-
-  </TD></TR>
-  </TBODY></TABLE>
-
-</BODY>
-</HTML>
-<?  echo "<br>";  ?>	
-<? include "footer.php"; ?>	
-<?  echo "<br>";  ?>	
-<?  echo "<br>";  ?>	
-<? include "bolchat.php"; ?>
+</body>
+</html>
