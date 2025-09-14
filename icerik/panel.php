@@ -6,11 +6,8 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
                 '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT']);
 
 getPrivateMessages();
-
 ${"s_".$yuklenecekSayfaSub} =  'class="" id="menu"' ;
-
 ?>
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -25,7 +22,6 @@ ${"s_".$yuklenecekSayfaSub} =  'class="" id="menu"' ;
     justify-content: flex-start; /* sola hizala */
     margin-bottom: 10px;
 }
-
 .menu-row .tab {
     flex: 0 1 auto; /* genişlik içeriğe göre */
     padding: 5px 10px;
@@ -38,14 +34,11 @@ ${"s_".$yuklenecekSayfaSub} =  'class="" id="menu"' ;
 }
 
 .menu-row .tab a { color:white; text-decoration:none; display:block; }
-
 .menu-row .tab:hover { background: #3a4354; }
-
 @media(max-width:768px) {
     .menu-row { justify-content: center; }
     .menu-row .tab { flex: 1 1 45%; } /* tablet: 2 sütun */
 }
-
 @media(max-width:480px) {
     .menu-row .tab { flex: 1 1 30%; } /* telefon: 3 sütun */
 }
@@ -84,13 +77,10 @@ function mobara() {
         <?php } ?>
     </div>
 </div>
-
-
         <?php 
         if(file_exists("icerik/$yuklenecekSayfaSub.php")) 
             include "icerik/$yuklenecekSayfaSub.php"; 
         ?>
-
 <?php if($notice) echo "<script>alert('$notice okunmayan mesajınız var.');</script>"; ?>
 </body>
 </html>
