@@ -83,7 +83,7 @@ if(($isMobile == 1) && ($okunmayan)) $pms = "dm: <a title=\"$okunmayan okunmayan
     <fieldset>
       <legend><b>üstbilgi</b></legend>
       <div>
-        <span style="float:right; font-size:12px; font-weight:bold;">(v0.9.2)</span>
+        <span style="float:right; font-size:12px; font-weight:bold;">(v1.0.9)</span>
 duyuru ve gelişmeler için<a href="/s%C3%B6zl%C3%BCkle+ilgili+duyurular-1.html"> (bkz: sözlükle ilgili duyurular)</a><br>
 <br>
 <a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=booyaka&gkonu=">genel iletişim ADRESİ</a> - <a href="mailto:info@bolsozluk.com">info@bolsozluk.com</a><br>
