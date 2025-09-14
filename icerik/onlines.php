@@ -216,7 +216,6 @@ $aciklama = preg_replace("'\(xins3x\)'","<br> <iframe width=\"70%\" height=\"50%
 </div>
 
 <?php
-
 include "footer.php";
 echo "<br>";
 include "bolchat.php";
