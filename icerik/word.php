@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,6 +27,17 @@ if (isset($_COOKIE[session_name()])) {
 }
     }
 
+getPrivateMessages();
+$mod = guvenlikKontrol($_REQUEST["mod"],"hard");
+$aranacak = guvenlikKontrol($_REQUEST["aranacak"],"hard");
+$q = guvenlikKontrol($_REQUEST["q"],"hard");
+$q = strtrlower($q);
+$mesaj = str_replace("'","&#039;",$mesaj);
+$mesaj = guvenlikKontrol($_REQUEST["mesaj"],"med");
+$ok = guvenlikKontrol($_REQUEST["ok"],"hard");
+$kenar = guvenlikKontrol($_REQUEST["kenar"],"hard");
+$test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
+
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
@@ -39,7 +49,7 @@ if (isset($_COOKIE[session_name()])) {
 <meta property="og:description" content="Hiphop ve Türkçe Rap'in kalbinin attığı sözlük."/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
+<title><?echo"$q";?> - bol sözlük</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <SCRIPT language=javascript src="inc/sozluk.js"></SCRIPT>
@@ -460,18 +470,6 @@ die;
 exit;
 }
 
-getPrivateMessages();
-//if($notice)echo "<script>alert('$notice okunmayan mesajınız var. panelden kontrol edebilirsiniz.');</script>";
-$mod = guvenlikKontrol($_REQUEST["mod"],"hard");
-$aranacak = guvenlikKontrol($_REQUEST["aranacak"],"hard");
-$q = guvenlikKontrol($_REQUEST["q"],"hard");
-$q = strtrlower($q);
-$mesaj = str_replace("'","&#039;",$mesaj);
-$mesaj = guvenlikKontrol($_REQUEST["mesaj"],"med");
-$ok = guvenlikKontrol($_REQUEST["ok"],"hard");
-$kenar = guvenlikKontrol($_REQUEST["kenar"],"hard");
-$test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
-//$konuid=$kayit["id"];
 $dakika = date("i");
 $saniye = date("s");
 if ($dakika==27 and $kullaniciAdi and $saniye>0 and $saniye<10)
