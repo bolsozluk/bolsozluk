@@ -14,15 +14,10 @@ $tarih = date("Y/m/d G:i");
 $tarih2 = date("YmdHi"); 
 $ip = getenv('REMOTE_ADDR');
 
-// server should keep session data for AT LEAST 12 hour
 ini_set('session.gc_maxlifetime', 72000);
-
-// each client should remember their session id for EXACTLY 12 hour
 session_set_cookie_params(72000);
+session_start(); 
 
-session_start(); // ready to go!
-
-//same in htaccess
 
 
 if (mysql_num_rows($sorgulama)>0){
