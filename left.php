@@ -1882,7 +1882,7 @@ if ($isMobile == 1) {
 include "icerik/footer.php";
 echo "<br>";
 echo "<br>";
-if ($kullaniciAdi) {include "bolchat.php";}
+if ($kullaniciAdi) {include "icerik/bolchat.php";}
 if ($kullaniciAdi == "") { ?>
 </font>
 <br> 
