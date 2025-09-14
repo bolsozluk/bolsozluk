@@ -1,4 +1,10 @@
 <?
+
+$id = guvenlikKontrol($_REQUEST["id"],"hard");
+$sebep = guvenlikKontrol($_REQUEST["sebep"],"hard");
+$yazar = guvenlikKontrol($_REQUEST["yazar"],"hard");
+$sira = guvenlikKontrol($_REQUEST["sira"],"hard");
+
 if ($entry != 1) {
 echo "Bu işlem için gerekli yetkiye sahip değilsiniz";
 die;
