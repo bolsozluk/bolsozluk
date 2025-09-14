@@ -35,6 +35,11 @@ eylul 2025:
 -bol anket kodundaki http/https mixed content uyumsuzluklari giderildi.
 -bolchat mysql_real_escape_string problemleri giderildi.
 -kenar fonksiyonuyla girilen entryler icin moderasyona bildirim kodlandi.
+-tamu'nun talebi uzerine deaktif bulunan beni hatirla ozelligi iyilestirilerek devreye alindi.
+-kontrol paneli tasarimi responsive uyumlu hale getirildi.
+-bolchat anonimlere kapatildi.
+-bolgpt GPT‑4.1 mini'ye gecirildi.
+-karma fonksiyonunda dagilim iyilestirmesi yapildi.
 
 agustos 2025:
 -otomatik secure sifre yenileme modulu moderasyon paneline eklendi.
