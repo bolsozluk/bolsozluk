@@ -1,6 +1,10 @@
 <? 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 $kim = guvenlikKontrol($_REQUEST["kim"],"ultra");
+
+var_dump($_REQUEST["kim"]);
 
 //KARMA UPDATE SİSTEMİ
 
