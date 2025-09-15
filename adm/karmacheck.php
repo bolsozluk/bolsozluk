@@ -4,8 +4,6 @@ error_reporting(E_ALL);
 
 $kim = guvenlikKontrol($_REQUEST["kim"],"hard");
 
-var_dump($_REQUEST["kim"]);
-
 //KARMA UPDATE SİSTEMİ
 
 //entry id çek
@@ -63,29 +61,27 @@ $karma = $karma - $karmaneg - $caylak_ceza + $sadakat_indirim;
 $karma = round($karma);
 
 
-echo "<script>
-    var message = '';
-    message += 'kactop (Onaylı Entry): ' + " . json_encode($kactop) . " + '\\\\n';
-    message += 'arti (Artı Oy): ' + " . json_encode($arti) . " + '\\\\n';
-    message += 'eksi (Eksi Oy): ' + " . json_encode($eksi) . " + '\\\\n';
-    message += 'verarti (Verilen Artı Oy): ' + " . json_encode($verarti) . " + '\\\\n';
-    message += 'saysil (Silinen Entry): ' + " . json_encode($saysil) . " + '\\\\n';
-    message += 'saycaylak (Çaylak Cezası): ' + " . json_encode($saycaylak) . " + '\\\\n\\\\n';
-    
-    message += 'HESAPLAMALAR:\\\\n';
-    message += 'karmak0 (Kalite Puanı): ' + " . json_encode(round($karmak0, 2)) . " + '\\\\n';
-    message += 'karmak1 (Aktivite Puanı): ' + " . json_encode(round($karmak1, 2)) . " + '\\\\n';
-    message += 'karmak2 (Topluluk Katkısı): ' + " . json_encode(round($karmak2, 2)) . " + '\\\\n';
-    message += 'deneyim_bonus: ' + " . json_encode(round($deneyim_bonus, 2)) . " + '\\\\n';
-    message += 'kpi (Kalite Çarpanı): ' + " . json_encode(round($kpi, 2)) . " + '\\\\n';
-    message += 'karmaneg (Silinen Ceza): ' + " . json_encode(round($karmaneg, 2)) . " + '\\\\n';
-    message += 'caylak_ceza: ' + " . json_encode(round($caylak_ceza, 2)) . " + '\\\\n';
-    message += 'sadakat_indirim: ' + " . json_encode(round($sadakat_indirim, 2)) . " + '\\\\n\\\\n';
-    
-    message += 'SONUÇ:\\\\n';
-    message += 'Karma Puanı: ' + " . json_encode($karma) . " + '\\\\n';
-    
-    alert(message);
-</script>";
+
+echo "<pre>";
+echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
+echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
+echo "eksi (Eksi Oy): " . htmlspecialchars($eksi) . "\n";
+echo "verarti (Verilen Artı Oy): " . htmlspecialchars($verarti) . "\n";
+echo "saysil (Silinen Entry): " . htmlspecialchars($saysil) . "\n";
+echo "saycaylak (Çaylak Cezası): " . htmlspecialchars($saycaylak) . "\n\n";
+
+echo "HESAPLAMALAR:\n";
+echo "karmak0 (Kalite Puanı): " . round($karmak0, 2) . "\n";
+echo "karmak1 (Aktivite Puanı): " . round($karmak1, 2) . "\n";
+echo "karmak2 (Topluluk Katkısı): " . round($karmak2, 2) . "\n";
+echo "deneyim_bonus: " . round($deneyim_bonus, 2) . "\n";
+echo "kpi (Kalite Çarpanı): " . round($kpi, 2) . "\n";
+echo "karmaneg (Silinen Ceza): " . round($karmaneg, 2) . "\n";
+echo "caylak_ceza: " . round($caylak_ceza, 2) . "\n";
+echo "sadakat_indirim: " . round($sadakat_indirim, 2) . "\n\n";
+
+echo "SONUÇ:\n";
+echo "Karma Puanı: " . $karma . "\n";
+echo "</pre>";
 
 ?>
