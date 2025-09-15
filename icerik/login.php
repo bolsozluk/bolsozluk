@@ -130,9 +130,9 @@ $verarti = mysql_num_rows($sor);
 // Katsayıları ayarla
 $aktivite_carpani = 0.07;         // Düşürüldü (0.12 → 0.07)
 $kalite_agirlik = 0.59;           // Düşürüldü (0.65 → 0.59)
-$topluluk_carpani = 12;           // Düşürüldü (18 → 12)
+$topluluk_carpani = 25;           // Artirildi (18 → 25)
 $deneyim_bonus_carpani = 0.04;    // Düşürüldü (0.07 → 0.04)
-$silinen_ceza = 5.0;              // Arttırıldı (1.2 → 5.0)
+$silinen_ceza = 4.0;              // Arttırıldı (1.2 → 4.0)
 $caylak_ceza = 30;                // Arttırıldı (7 → 30)
 $sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
 $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
@@ -146,10 +146,9 @@ $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpan
 $kpi = min(max(($arti / $kactop) * $kpi_carpani, 0.8), $kpi_max);
 $karmaneg = $saysil * $silinen_ceza;
 $caylak_ceza = $saycaylak * $caylak_ceza;
-$sadakat_indirim = min($kactop * $sadakat_indirim_carpani, 100);
 
 $karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus) * $kpi;
-$karma = $karma - $karmaneg - $caylak_ceza + $sadakat_indirim;
+$karma = $karma - $karmaneg - $caylak_ceza;
 $karma = round($karma);
 
 /*
