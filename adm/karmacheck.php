@@ -56,7 +56,7 @@ $karmaneg = $saysil * $silinen_ceza;
 $caylak_ceza = $saycaylak * $caylak_ceza;
 
 $karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus) * $kpi;
-$karma = $karma - $karmaneg - $caylak_ceza 
+$karma = $karma - $karmaneg - $caylak_ceza;
 $karma = round($karma);
 
 
