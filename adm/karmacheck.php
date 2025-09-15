@@ -61,7 +61,7 @@ $karma = $karma - $karmaneg - $caylak_ceza + $sadakat_indirim;
 $karma = round($karma);
 
 
-
+echo "<b>$kim:</b>"; 
 echo "<pre>";
 echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
 echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
