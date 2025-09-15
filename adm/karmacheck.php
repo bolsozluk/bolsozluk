@@ -38,7 +38,7 @@ $verarti = mysql_num_rows($sor);
 // Katsayıları ayarla
 $aktivite_carpani = 0.07;         // Düşürüldü (0.12 → 0.07)
 $kalite_agirlik = 0.59;           // Düşürüldü (0.65 → 0.59)
-$topluluk_carpani = 12;           // Düşürüldü (18 → 12)
+$topluluk_carpani = 20;           // Artirildi (18 → 20)
 $deneyim_bonus_carpani = 0.04;    // Düşürüldü (0.07 → 0.04)
 $silinen_ceza = 5.0;              // Arttırıldı (1.2 → 5.0)
 $caylak_ceza = 30;                // Arttırıldı (7 → 30)
