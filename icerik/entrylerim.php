@@ -297,8 +297,7 @@ if($arsivci=="1"){ echo "<img src=\"/bolrozet/arsivci.png\" title=\"arşivci\" w
 ?>
 
         <br><i><h2><? if(($kimse) and ($karma !=0)){
-//GEÇİCİ DEVRE DIŞI
-
+//KARMA DERECELERİ
 
       if ($karma <=-300) echo"wack emcee ($karma)" ;
       if (($karma >=-250) & ($karma <-200)) echo"kebo gang ($karma)" ;
@@ -310,7 +309,7 @@ if($arsivci=="1"){ echo "<img src=\"/bolrozet/arsivci.png\" title=\"arşivci\" w
       if (($karma >=50) & ($karma <100)) echo"rapin oğlu ($karma)" ;
       if (($karma >=100) & ($karma <150)) echo"baby scratch ($karma)" ;  
       if (($karma >=150) & ($karma <200)) echo"fl studio müptelası ($karma)" ;
-      if (($karma >=200) & ($karma <250)) echo"crew member ($karma)" ;  
+      if (($karma >=200) & ($karma <250)) echo"bol gang crew member ($karma)" ;  
       if (($karma >=250) & ($karma <300)) echo"gecelerin writerı ($karma)" ;
       if (($karma >=300) & ($karma <350)) echo"bol type beat ($karma)" ;  
       if (($karma >=350) & ($karma <400)) echo"sokaktan gelen ses ($karma)" ;  
@@ -327,9 +326,6 @@ if($arsivci=="1"){ echo "<img src=\"/bolrozet/arsivci.png\" title=\"arşivci\" w
       if (($karma >=900) & ($karma <950)) echo"rapüstad ($karma)" ;  
       if (($karma >=950) & ($karma <=1000)) echo"grandmaster ($karma)" ;  
  
-
-      //GEÇİCİ DEVRE DIŞI
-
 $sor = mysql_fetch_array(mysql_query("select motto from user WHERE `nick`='$kimdirbu'"));
 $motto= $sor["motto"];
 
