@@ -577,103 +577,11 @@ echo "<hr>";
 //if($isMobile == 0) echo "<li>· <a href='her+sey+cok+guzel+olacak-1.html' target='main' title='".'her şey çok güzel olacak'."'>".'her şey çok güzel olacak'."</a> (<font color='red'>!</font>)"; 
 
 
-
-//alc//
-
-//echo "<li>· <a href='ocak+2021+en+iyiler+anketi-1.html' target='main' title='".'ocak 2021 en iyiler anketi'."'>".'ocak 2021 en iyiler anketi'."</a> (<font color='red'>!</font>)"; 
-// echo "<hr>";
-//alc// N
-
-//alc//
-//echo "<li>· <font size=1><a href='sozluk.php?process=eid&eid=418884' target='main' title='".'ağustos 2023 güncellemeleri'."'>".'ağustos 2023 güncellemeleri'."</a></font> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-//alc//
-
-//alc//
-//echo "<li>· <a href='bogazici+direnisi-4.html' target='main' title='".'boğaziçi direnişi'."'>".'boğaziçi direnişi'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-//alc//
-
-//VOL 8 haz//
-//echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+sekizinci+alb%C3%BCm-4.html' target='main' title='".'sözlük yazarlarının emeğiyle yapılacak sekizinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak sekizinci albüm'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-//VOL 8 haz//
-
-//VOL 9 haz//
-//echo "<li>· <a href='6+şubat+2023+maraş+depremi-1.html' target='main' title='".'6 şubat 2023 maraş depremi'."'>".'6 şubat 2023 maraş depremi '."</a> (<font color='red'>!</font>)"; 
-//echo "<li>· <a href='21+şubat+2023+ekşi+sözlüğe+erişimin+engellenmesi-1.html' target='main' title='".'21 şubat 2023 ekşi sözlüğe erişimin engellenmesi'."'>".'21 şubat 2023 ekşi sözlüğe erişimin engellenmesi '."</a> (<font color='red'>!</font>)"; 
-//echo "<li>· <a href='s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+dokuzuncu+alb%C3%BCm-1.html' target='main' title='".'bol sözlük compilation vol 9 duyurusu'."'>".'bol sözlük compilation vol 9 duyurusu'."</a> (<font color='red'>!</font>)"; 
-//echo "<li>· <a href='2022+en+iyiler+listesi-1.html' target='main' title='".'2022 en iyiler listesi'."'>".'2022 en iyiler listesi'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-//VOL 0 haz//
-
 //VOL 10 haz//
-//if($isMobile == 1) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+onuncu+alb%C3%BCm-1.html' title='".'sözlük yazarlarının emeğiyle yapılacak onuncu albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak onuncu albüm'."</a> (<font color='red'>son gün: 14 temmuz</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+onuncu+alb%C3%BCm-1.html' target='main' title='".'sözlük yazarlarının emeğiyle yapılacak onuncu albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak onuncu albüm'."</a> (<font color='red'>son gün: 14 temmuz</font>)"; 
-//echo "<hr>";
-//VOL 10 haz//
-
-//VOL 10 haz//
-if($isMobile == 1) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+on+birinci+alb%C3%BCm-1.html' title='".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."</a> (<font color='red'>son gün: 19 eylül</font>)"; 
-if($isMobile == 0) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+on+birinci+alb%C3%BCm-1.html' target='main' title='".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."</a> (<font color='red'>son gün: 19 eylül</font>)"; 
-//echo "<hr>";
-//VOL 10 haz//
-
-
-//if($isMobile == 1) echo "<li>· <a href='pray+for+turkiye-1.html' title='".'pray for turkiye'."'>".'pray for turkiye'."</a> (<font color='red'>!</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='pray+for+turkiye-1.html' target='main' title='".'pray for turkiye'."'>".'pray for turkiye'."</a> (<font color='red'>!</font>)"; 
-
-
-//if($isMobile == 1) echo "<li>· <a href='pray+for+turkiye-1.html' title='".'pray for turkiye'."'>".'pray for turkiye'."</a> (<font color='red'>!</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='pray+for+turkiye-1.html' target='main' title='".'pray for turkiye'."'>".'pray for turkiye'."</a> (<font color='red'>!</font>)"; 
-
-
-//VOL 10 //
-//if($isMobile == 1) echo "<li>· <a href='bol+s%C3%B6zl%C3%BCk+compilation+vol+10-1.html' title='".'bol sözlük compilation vol 10'."'>".'bol sözlük compilation vol 10'."</a> (<font color='red'>!</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='bol+s%C3%B6zl%C3%BCk+compilation+vol+10-1.html' target='main' title='".'bol sözlük compilation vol 10'."'>".'bol sözlük compilation vol 10'."</a> (<font color='red'>!</font>)"; 
-
-//if($isMobile == 1) echo "<li>· <a href='bol+instrumentals+vol+3-1.html' title='".'bol instrumentals vol 3'."'>".'bol instrumentals vol 3'."</a> (<font color='red'>!</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='bol+instrumentals+vol+3-1.html' target='main' title='".'bol instrumentals vol 3'."'>".'bol instrumentals vol 3'."</a> (<font color='red'>!</font>)"; 
-
-//echo "<hr>";
-//VOL 10 //
-
-
-//VOL 8//
-//echo "<li>· <a href='bol+s%C3%B6zl%C3%BCk+compilation+vol+8-1.html' target='main' title='".'bol sözlük compilation vol 8'."'>".'bol sözlük compilation vol 8'."</a> (<font color='red'>!</font>)"; 
-//echo "<li>· <a href='y%C4%B1l%C4%B1n+enleri+2021+anketi-1.html' target='main' title='".'yılın enleri 2021 anketi'."'>".'yılın enleri 2021 anketi'."</a> (<font color='red'>!</font>)"; 
-//echo "<li>· <a href='y%C4%B1l%C4%B1n+enleri+2023+anketi-2.html' target='main' title='".'yılın enleri 2023 anketi'."'>".'yılın enleri 2023 anketi'."</a> (<font color='red'>!</font>)"; 
+if($isMobile == 1) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+on+birinci+alb%C3%BCm-1.html' title='".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."</a> (<font color='red'>!</font>)"; 
+if($isMobile == 0) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+on+birinci+alb%C3%BCm-1.html' target='main' title='".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."</a> (<font color='red'>!</font>)"; 
 //echo "<hr>";
 
-
-//echo "<hr>";
-//60 GÜN//
-
-//VOL 9//
-//echo "<li>· <a href='bol+s%C3%B6zl%C3%BCk+compilation+vol+9-1.html' target='main' title='".'bol sözlük compilation vol 9'."'>".'bol sözlük compilation vol 9'."</a> (<font color='red'>!</font>)"; 
-//VOL 9//
-
-
-//echo "<hr>";
-//VOL 8//
-
-//VOL 7//
-//echo "<li>· <a href='bol+s%C3%B6zl%C3%BCk+compilation+vol+7-1.html' target='main' title='".'bol sözlük compilation vol 7'."'>".'bol sözlük compilation vol 7'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-//VOL 7//
-
-//VOL 5//
-//echo "<li>· <a href='bol+s%C3%B6zl%C3%BCk+compilation+vol+5-1.html' target='main' title='".'bol sözlük compilation vol 5'."'>".'bol sözlük compilation vol 5'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-//VOL 5//
-
-//GELECEĞİMİZ//
-// echo "<li>· <a href='gelece%C4%9Fimiz%20i%C3%A7in%20toplan%C4%B1yoruz-1.html' target='main' title='".'geleceğimiz için toplanıyoruz'."'>".'geleceğimiz için toplanıyoruz'."</a> (<font color='red'>!</font>)"; 
-// echo "<hr>";
-//GELECEĞİMİZ//
-
-//echo "<li>· <a href='bol%20sözlük%20ados%20röportajı-1.html' target='main' title='".'bol sözlük ados röportajı'."'>".'bol sözlük ados röportajı'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
 
 echo "<hr>";
 
