@@ -1,4 +1,4 @@
-----------(bkz: sözlükle ilgili bazi istekler )-----------
+----------(bkz: sozlukle ilgili bazi istekler )-----------
 -gibicibicis; icerige iliskin metatag iyilestirmeleri.
 -gibicibicis; sarki basliklarinda info iceriklerine sag bolgede alan tasarimi.
 -venom, giz gvng; sarki sozleri vs. spoiler gizleme butonu.
@@ -198,7 +198,7 @@ mart 2023:
 -onayli hesap statuleri ile ilgili anket duzenlendi.
 -hashashi'nin istegi uzerine ozel mesaj gonderince yonlendirme gelistirmesi yapildi.
 -masaustu gorunum icin sol frame font buyuklugu 14px olarak belirlendi.
--masaustu gorunum için baslik icerigi font buyuklugu  14px olarak belirlendi.
+-masaustu gorunum icin baslik icerigi font buyuklugu  14px olarak belirlendi.
 -mobil gorunum icin sol frame font buyuklugu  1.13 em olarak belirlendi.
 -mobil gorunum icin baslik icerigi font buyuklugu  1.1 em olarak belirlendi.
 -anonim, buyuk ortaklar listesinden cikarilip istatistiklerde ayrica gosterilmeye baslandi.
@@ -222,7 +222,7 @@ kasim 2022:
 
 agustos 2022:
 -bir rap dinleyicisi'nin bildirimi uzerine en begenilenlerdeki hebe9 bug'i duzeltildi.
--anonim'in isteği üzerine entry anonimleştirmeden hesap kapatma fonksiyonu sözlüğe eklendi.
+-anonim'in istegi uzerine entry anonimlestirmeden hesap kapatma fonksiyonu sozluge eklendi.
 
 temmuz 2022:
 -ssl sertifikasi devreye alindi.
@@ -283,7 +283,7 @@ ekim 2021:
 -ucurulan hesaplar ve reddedilen caylaklarin login arayuzunde ban sebebini gorebilmesi kodlandi.
 -karma sistemi optimize edilerek tekrar kullanima acildi.
 
-eylül 2021:
+eylul 2021:
 -ihs telekom'un sozluk yayinini yogun kaynak kullanimi nedeniyle durdurmasi uzerine karma sistemi gecici olarak devredisi birakildi.
 -entry yedek modulu guncellendi, 650 gayme maas'in istegi uzerine entry numarasi da yedek ciktisina not dusuldu.
 -ustuste entry girme kisiti limiti guncellendi.
