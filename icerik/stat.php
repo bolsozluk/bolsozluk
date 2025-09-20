@@ -3,6 +3,35 @@
 {
 	overflow-y: hidden; /*for vertical scroll bar*/
 }
+
+	.menu-row {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 5px; /* butonlar arası boşluk */
+    justify-content: flex-start; /* sola hizala */
+    margin-bottom: 10px;
+}
+.menu-row .tab {
+    flex: 0 1 auto; /* genişlik içeriğe göre */
+    padding: 5px 10px;
+    background: #242b3a;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #3a4354;
+    white-space: nowrap;
+}
+
+.menu-row .tab a { color:white; text-decoration:none; display:block; }
+.menu-row .tab:hover { background: #3a4354; }
+@media(max-width:768px) {
+    .menu-row { justify-content: center; }
+    .menu-row .tab { flex: 1 1 45%; } /* tablet: 2 sütun */
+}
+@media(max-width:480px) {
+    .menu-row .tab { flex: 1 1 30%; } /* telefon: 3 sütun */
+}
+	
 </style>
 
 
@@ -37,10 +66,24 @@ if($isMobile == 1)
 		<?
 	}
 
-	echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='genel' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=neleroldu&ay=$cMon&yil=$cYea';\" value='bu ay neler oldu' class='butx'>  <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=ucay';\" value='ayın yazarları' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=ebe';\" value='en beğenilenler' class='butx'></center>";
-	echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=yazar';\" value='bol yazanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=oycu';\" value='oy kralları' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=aylik';\" value='bol geçmiş' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=pmsg';\" value='en arananlar' class='butx'></center>";
-	echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=arge';\" value='arge kasanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=modpower';\" value='moderasyon gücü' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=bekciler';\" value='gece bekçileri' class='butx'></center>";
+	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='genel' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=neleroldu&ay=$cMon&yil=$cYea';\" value='bu ay neler oldu' class='butx'>  <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=ucay';\" value='ayın yazarları' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=ebe';\" value='en beğenilenler' class='butx'></center>";
+	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=yazar';\" value='bol yazanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=oycu';\" value='oy kralları' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=aylik';\" value='bol geçmiş' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=pmsg';\" value='en arananlar' class='butx'></center>";
+	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=arge';\" value='arge kasanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=modpower';\" value='moderasyon gücü' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=bekciler';\" value='gece bekçileri' class='butx'></center>";
 
+echo "<div class='menu-row'>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\">genel</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=neleroldu&ay=$cMon&yil=$cYea';\">bu ay neler oldu</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=ucay';\">ayın yazarları</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=ebe';\">en beğenilenler</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=yazar';\">bol yazanlar</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=oycu';\">oy kralları</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=aylik';\">bol geçmiş</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=pmsg';\">en arananlar</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=arge';\">arge kasanlar</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=modpower';\">moderasyon gücü</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=bekciler';\">gece bekçileri</div>";
+echo "</div>";
+	
 	echo "<br>";
 
 }
