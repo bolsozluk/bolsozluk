@@ -3,6 +3,8 @@
 
 <?
 
+$kullaniciAdi = $_SESSION['kullaniciAdi'];
+$ayb = (int)($_GET['ayb'] ?? 0);
 $eskinick = $kullaniciAdi;
 $sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
 $reset=$sorset["reset"];
