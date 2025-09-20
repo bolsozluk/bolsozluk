@@ -29,7 +29,6 @@
             align-items: center;
             gap: 10px;
             padding: 10px;
-            background-color: #fff;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
