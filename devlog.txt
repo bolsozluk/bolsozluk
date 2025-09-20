@@ -40,6 +40,8 @@ eylul 2025:
 -bolchat anonimlere kapatildi.
 -bolgpt GPT‑4.1 mini'ye gecirildi.
 -karma fonksiyonunda dagilim iyilestirmesi yapildi.
+-istatistik sayfa butonlarinin mobil uyumu iyilestirildi.
+-bol malzeme sayfasindaki table yapisi flexboxla degistirilip mobil uyumlandirildi.
 
 agustos 2025:
 -otomatik secure sifre yenileme modulu moderasyon paneline eklendi.
@@ -47,7 +49,7 @@ agustos 2025:
 -kullanici duzenleme paneline mail bazli arama opsiyonu eklendi.
 -kullanici duzenleme panelindeki yetki secimi hatasi duzeltildi.
 -ozel mesajlarin mail ile bildirim sistemi SMTP ve PHPMailer altyapisina gecirilerek yeniden devreye alindi.
--uyelik kaydında mail gonderimi kodu guncellendi.
+-uyelik kaydinda mail gonderimi kodu guncellendi.
 -kafasesi'nin onerisi uzerine bolchat kodlandi ve ajax/jquery tabanli ui gelistirildi.
 -bolchat kullanici yonetimi ve moderasyon denetimleri gelistirildi.
 -bolchat icin xss korumasi, sql injection onlemleri, rate limit ve flood kontrolu gelistirildi.
@@ -92,7 +94,7 @@ eylul 2024:
 -entry idleri dropdown buton tasarima gomulerek yazar girisi yapanlara gorunur hale getirildi.
 -entry idlerinin cift tiklama ile kolay secilmesi fonksiyonu yazildi.
 -entry altinda nickname gosteren satira white-space nowrap style uygulandi.
--entry altındaki nickname nick altina linklendi.
+-entry altindaki nickname nick altina linklendi.
 -edit tarihleri entry tarihi ile birlikte yeni stilde gorunume alindi.
 -alche'nin talebi uzerine ozel mesaj modulu dropdown menuye linklendi.
 -bolgpt gpt-4o-mini modeline baglanarak tekrar kullanima acildi. 
@@ -114,8 +116,8 @@ haziran 2024:
 mayis 2024:
 -entry tasima modulunde islem sonrasi yonlendirme kodlandi.
 -google search console icin https migration konfigurasyonu yapildi.
--entry altındaki nickname nickaltina degil ozel mesaj modulune linklendi.
--gbt modulunde nicke tıklaninca mobilde yeni sekme acilma problemi giderildi.
+-entry altindaki nickname nickaltina degil ozel mesaj modulune linklendi.
+-gbt modulunde nicke tiklaninca mobilde yeni sekme acilma problemi giderildi.
 -anonim entrylerin moderasyona gorunurluk stili optimize edildi.
 -listLeftFrame list itemleri icin margin-bottom: 3px olarak degistirildi.
 
@@ -169,7 +171,7 @@ agustos 2023:
 -denemeler sonucu ezoic'ten tekrar google adsense'e ve eski nameserver adreslerine donuldu.
 -entry listeleme modulunde moderasyon gorunumundaki hatalar giderildi.
 -tarihte bugun (#tb) sekmesine gun girilerek arama ozelligi eklendi.
--dunun en begenılen entryleri (debe) sayfasinda satir boslugu problemi giderildi.
+-dunun en begenilen entryleri (debe) sayfasinda satir boslugu problemi giderildi.
 -kenar sekmesinde yazarin begendigi entrylerin kismi dokumu de gosterilmeye baslandi.
 
 temmuz 2023:
@@ -201,7 +203,7 @@ mart 2023:
 -mobil gorunum icin baslik icerigi font buyuklugu  1.1 em olarak belirlendi.
 -anonim, buyuk ortaklar listesinden cikarilip istatistiklerde ayrica gosterilmeye baslandi.
 -ebe, arge ve buyuk ortaklar istatistik sekmeleri icin table, p, tr, td etiketleri kaldirildi.
--"alakalı olabilir" ozelligi selectboxinin bos item gostermesi bugi iyilestirildi.
+-"alakali olabilir" ozelligi selectboxinin bos item gostermesi bugi iyilestirildi.
 -hashashi'nin istegi uzerine "arkadas cagir" fonksiyonu gelistirildi.
 -youtube'da 2500 takipci esigi gecildi.
 -sozlugun ip ban listesi sifirlandi.
@@ -223,7 +225,7 @@ agustos 2022:
 -anonim'in isteği üzerine entry anonimleştirmeden hesap kapatma fonksiyonu sözlüğe eklendi.
 
 temmuz 2022:
--ssl sertifikası devreye alindi.
+-ssl sertifikasi devreye alindi.
 -http/https gecisi icin tema cagirma kodlari duzenlendi.
 -sozlukle ilgili istekler modulunun, http/https gecisi icin kodlar uyumlandirildi.
 -650 gayme maas'in bildirimiyle; gbt, eid, haberler modul kodlari https gecisi icin uyumlandirildi.
@@ -268,7 +270,7 @@ aralik 2021:
 -basliga ayni yazarin ustuste entry girme kisiti kaldirildi.
 -bol yillik 2014,2015,2016,2017,2018,2019,2020 yayinlandi.
 
-kasım 2021:
+kasim 2021:
 -soru bolumu basliklari konudisina entegre edilerek yeniden gosterime girdi.
 -billymizi diliyor'un bildirimi uzerine entry okuma modulundeki soru bolumu artik kodlari kaldirildi.
 -ssl sertifikasi maliyetini cikarmak adina sozlukteki reklam yerlesimi artirildi.
