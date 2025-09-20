@@ -10,7 +10,6 @@
         body {
             margin: 0;
             padding: 20px;
-            background-color: #f0f0f0;
         }
         .container {
             display: flex;
