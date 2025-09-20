@@ -71,7 +71,6 @@ if($isMobile == 1)
 	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=arge';\" value='arge kasanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=modpower';\" value='moderasyon gücü' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=bekciler';\" value='gece bekçileri' class='butx'></center>";
 
 echo "<div class='menu-row'>";
-echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\">genel</div>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=neleroldu&ay=$cMon&yil=$cYea';\">bu ay neler oldu</div>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=ucay';\">ayın yazarları</div>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=ebe';\">en beğenilenler</div>";
@@ -82,7 +81,8 @@ echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=pms
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=arge';\">arge kasanlar</div>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=modpower';\">moderasyon gücü</div>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=bekciler';\">gece bekçileri</div>";
-echo "</div>";
+echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\">genel</div>";
+	echo "</div>";
 	
 	echo "<br>";
 
