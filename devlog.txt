@@ -3,7 +3,6 @@
 -gibicibicis; sarki basliklarinda info iceriklerine sag bolgede alan tasarimi.
 -venom, giz gvng; sarki sozleri vs. spoiler gizleme butonu.
 -gibicibicis; detayli arama sorgulari.
--650 gayme maas; silik yazarlarin oylanmasi problemi.
 -anonim; compilation parcalari sozluge/yazar profillerine gomulsun.
 -anonim; yazar engelleme ozelligi.
 -petroll; guncel parcalar eklentisi.
@@ -13,7 +12,6 @@
 -kobaysos; noktalama isaretlerinin baslikta kullanimi problemi.
 -sulh981; @li entryler yerine yorum ozelligi getirilmesi.
 -mertd; embed sistemlerinin ui/ux odakli gelistirilmesi.
--anonim; sozluk ici gelismis arama.
 -anonim; profillerde daha fazla kisisel bilgi
 -anonim; basliklardaki noktalama isareti kisitlari problemleri cozumu.
 
