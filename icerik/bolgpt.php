@@ -55,9 +55,8 @@ if (!$_SESSION['aktifTema_S']) {
 $currentPage = guvenlikKontrol($_REQUEST["sayfa"], "ultra");
 $list = guvenlikKontrol($_REQUEST["list"], "hard");
 
-$api_key = "HIDDEN_API_KEY";
-$api_base = "https://chimeragpt.adventblocks.cc/api/v1/chat/completions";
-$api_url = "https://api.openai.com/v1/chat/completions";
+$api_key = "API_KEY_HIDDEN";
+$api_url = "https://api.x.ai/v1/chat/completions";
 
 // Veritabanından ilgili mesajları çekme
 $firstEntry = "";
@@ -80,7 +79,7 @@ if ($entryCheckResult) {
 
 $sql = "SELECT * FROM mesajlar WHERE yazar = 'bolgpt' AND gun = '$gun' AND ay = '$ay' AND yil = '$yil' AND statu !='silindi' ORDER BY id";
 $result = mysql_query($sql);
-if (mysql_num_rows($result) > 2) { //normali 2
+if (mysql_num_rows($result) > 3) { //normali 2
   echo "bolgpt'nin günlük çağırma limiti dolmuş. yarın tekrar dene.";
   die();
 }
@@ -106,7 +105,7 @@ if ($lastYazar == "bolgpt")
 }
 
 
-$sql = "SELECT * FROM mesajlar WHERE sira = '$sira' AND yazar = 'bolgpt' AND statu !='silindi' ORDER BY id DESC LIMIT 1";
+$sql = "SELECT * FROM mesajlar WHERE sira = '$sira' AND yazar = 'bolgpt' ORDER BY id DESC LIMIT 1";
 $result = mysql_query($sql);
 if (mysql_num_rows($result) > 0) {
   $row = mysql_fetch_assoc($result);
@@ -204,12 +203,12 @@ if (mysql_num_rows($result9) > 0) {
 
 // Prompt oluşturma
 //$prompt = "$baslik hakkında daha önce $firstEntry, $secondEntry, $thirdEntry, $fourthEntry, $fifthEntry, $sixthEntry, $seventhEntry, $eighthEntry, $ninthEntry ve $lastEntry yorumlarından yola çıkarak ve başlıktaki ortalama üslubu taklit ederek, eğlenceli ve samimi bir dille; günceli sorgulayan, olumsuz yönleri varsa eleştirel olarak onu da belirten, tartışma çıkaracak derece biraz sivri bir yeni yorum yazabilir misin? ayrıca $baslik neyi refere ediyor ve literatürdeki karşılığı nedir onları da bizimle paylaş. çok ayrıntı elinde yoksa bile, bilgi havuzundan faydalan. yorumun 4 ya da 5 cümleyi geçmesin. yazının sonunda da yazdıklarınla ilgili olduğuna emin olduğun referans bir kavramı da (bkz: referanskavram) şeklinde belirt.";
-$prompt = "$baslik hakkında daha önce $firstEntry, $secondEntry, $thirdEntry, $fourthEntry, $fifthEntry ve $lastEntry yorumlarını dikkate alarak, onların cümlelerini tekrar etmeden yeni bir söylem kurarak, eğlenceli, samimi ve akıcı bir dille; günceli sorgulayan, olumsuz yönleri varsa eleştirel olarak onu da belirten, tartışma çıkaracak derece biraz sivri bir yeni yorum yazabilir misin? ayrıca $baslik neyi refere ediyor ve literatürdeki karşılığı nedir onları da bizimle paylaş. çok ayrıntı elinde yoksa bile, bilgi havuzundan faydalan. yazacaklarının toplamı 3 cümleyi geçmesin. yazının sonunda da yazdıklarınla ilgili olduğuna emin olduğun referans bir kavramı da (bkz: referanskavram) şeklinde belirt.";
+$prompt = "$baslik hakkında daha önce $firstEntry, $secondEntry, $thirdEntry, $fourthEntry, $fifthEntry ve $lastEntry yorumlarını dikkate alarak, onların cümlelerini tekrar etmeden yeni bir söylem kurarak, eğlenceli, samimi ve akıcı bir dille; günceli sorgulayan, olumsuz yönleri varsa eleştirel olarak onu da belirten, tartışma çıkaracak derece biraz sivri bir yeni yorum yazabilir misin? tüm yorumu küçük harflerle yaz, gerekirse küfür de kullan ancak şahıslara doğrudan küfür etme. ayrıca $baslik neyi refere ediyor ve literatürdeki karşılığı nedir onları da bizimle paylaş. çok ayrıntı elinde yoksa bile, bilgi havuzundan faydalan. yazacaklarının toplamı 3 cümleyi geçmesin. noktalı virgülle bağlı cümleler asla kullanma. net ifadelerde bulun. yazının sonunda da yazdıklarınla ilgili olduğuna emin olduğun referans bir kavramı da (bkz: referanskavram) şeklinde belirt.";
 
 // API'ye gönderme 
 
 $data = array( //Follow this list: ['gpt-4', 'gpt-3.5-turbo', gpt-4-1106-preview]
-  "model" => "gpt-4o-mini",
+  "model" => "grok-4-fast-non-reasoning",
   "messages" => array(
     array("role" => "user", "content" => $prompt),
   ),
@@ -217,31 +216,8 @@ $data = array( //Follow this list: ['gpt-4', 'gpt-3.5-turbo', gpt-4-1106-preview
 );
 
 
-/*
-$data = [
-    'prompt' => $prompt,  // Değiştirebilirsiniz
-    'max_tokens' => 50  // Maksimum token sayısı
-];
-*/
-
-//$ch = curl_init();
-
 $ch = curl_init($api_url);
 
-/*
-curl_setopt_array($ch, array(
-  CURLOPT_URL => $api_base,
-  CURLOPT_RETURNTRANSFER => 1,
-  CURLOPT_POST => 1,
-  CURLOPT_POSTFIELDS => json_encode($data),
-  CURLOPT_HTTPHEADER => array(
-    "Content-Type: application/json",
-    "Authorization: Bearer " . $api_key,
-  ),
-));
-*/
-
-// cURL seçenekleri
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -290,11 +266,6 @@ if ($response === false) {
         $mesaj = str_replace("<","&lt;",$mesaj); 
         $mesaj = str_replace(">","&gt;",$mesaj);
         $mesaj = preg_replace("'\@([0-9]{1,9})'","<b>@\\1</b>",$mesaj);        
-        //$mesaj = preg_replace("'\(bkz: ([\w öçşığüÖÇŞİĞÜ\-\.\´\`\:]+)\)'","(bkz: <a href=\"sozluk.php?process=word&q=\\1\">\\1</a>)",$mesaj);
-        //$mesaj = preg_replace("'\(gbkz: ([\w öçşığüÖÇŞİĞÜ\-\.\´\`\:]+)\)'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
-        //$mesaj = preg_replace("'\`([\w öçşığüÖÇŞİĞÜ\-\.\´\:]+)\`'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
-        //$mesaj = preg_replace("'\~([\w öçşığüÖÇŞİĞÜ]+)\~'","<a href=\"sozluk.php?process=word&q=\\1\" title=\"\\1\">*</a>",$mesaj);
-        //$mesaj = preg_replace("/#([0-9\/\.]{3,9})/", "<a href=sozluk.php?process=eid&eid=\\1>#\\1</a>",$mesaj);     
         $mesaj = str_replace("&#039;","'",$mesaj);  
         $mesaj = mysql_real_escape_string($mesaj);
 
@@ -312,18 +283,7 @@ if ($response === false) {
 
 if ($kullaniciAdi == "booyaka")
 {  
-    echo "<br><br>Veritabanı log bilgisi: " . mysql_error() . "<A href=\"https://chimeragpt.adventblocks.cc/api/v1/status\">Check API Status</A>";
-     /* 
-      echo "<small><br><br><b>sözlükten alınan ek data:</b> $firstEntry";      
-      if (!empty($secondEntry)) echo "<br><b>sözlükten alınan ek data:</b> $secondEntry";
-      if (!empty($thirdEntry))echo "<br><b>sözlükten alınan ek data:</b> $thirdEntry";
-      if (!empty($fourthEntry))echo "<br><b>sözlükten alınan ek data:</b> $fourthEntry";
-      if (!empty($fifthEntry))echo "<br><b>sözlükten alınan ek data:</b> $fifthEntry";
-      if (!empty($sixthEntry))echo "<b><br>sözlükten alınan ek data:</b> $sixthEntry";
-      if (!empty($seventhEntry))echo "<b><br>sözlükten alınan ek data:</b> $seventhEntry";
-      if (!empty($eighthEntry))echo "<b><br>sözlükten alınan ek data:</b> $eighthEntry";
-      if (!empty($lastEntry))echo "<b><br>sözlükten alınan ek data:</b> $lastEntry<br></small>";
-      */
+    echo "<br><br>Veritabanı log bilgisi: " . mysql_error();
       
 }
 
