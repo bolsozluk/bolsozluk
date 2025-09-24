@@ -36,7 +36,7 @@ eylul 2025:
 -tamu'nun talebi uzerine deaktif bulunan beni hatirla ozelligi iyilestirilerek devreye alindi.
 -kontrol paneli tasarimi responsive uyumlu hale getirildi.
 -bolchat anonimlere kapatildi.
--bolgpt gpt-4.1 mini'ye gecirildi.
+-bolgpt gpt-4.1 mini'ye ve sonrasinda grok-4-fast-non-reasoning'e gecirildi.
 -karma fonksiyonunda dagilim iyilestirmesi yapildi.
 -istatistik sayfa butonlarinin mobil uyumu iyilestirildi.
 -bol malzeme sayfasindaki table yapisi flexboxla degistirilip mobil uyumlandirildi.
