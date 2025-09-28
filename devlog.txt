@@ -40,6 +40,7 @@ eylul 2025:
 -karma fonksiyonunda dagilim iyilestirmesi yapildi.
 -istatistik sayfa butonlarinin mobil uyumu iyilestirildi.
 -bol malzeme sayfasindaki table yapisi flexboxla degistirilip mobil uyumlandirildi.
+-ahmetzapkinus ve atgba'nin bildirimi uzerine online listesine mukerrer kayit problemi giderildi.
 
 agustos 2025:
 -otomatik secure sifre yenileme modulu moderasyon paneline eklendi.
