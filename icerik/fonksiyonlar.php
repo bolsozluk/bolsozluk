@@ -97,7 +97,10 @@ function addMeOnlines() {
 		$selectF = $select["nick"];
 		
 		if (!$selectF) {
-			mysql_query("INSERT INTO online (nick,islem_zamani,ip,ondurum) VALUES ('$kullaniciAdi','$simdikizaman','$currentUserIP','$verifyStatus')");
+			//mysql_query("INSERT INTO online (nick,islem_zamani,ip,ondurum) VALUES ('$kullaniciAdi','$simdikizaman','$currentUserIP','$verifyStatus')");
+			mysql_query(" INSERT INTO online (nick, islem_zamani, ip, ondurum) VALUES ('$kullaniciAdi', '$simdikizaman', '$currentUserIP', '$verifyStatus')
+			ON DUPLICATE KEY UPDATE
+			islem_zamani = VALUES(islem_zamani), ip = VALUES(ip), ondurum = VALUES(ondurum)");
 		} else {
 			mysql_query("UPDATE online SET islem_zamani=$simdikizaman WHERE nick='$kullaniciAdi'");
 		}
