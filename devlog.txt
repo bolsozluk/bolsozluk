@@ -28,6 +28,9 @@
 -nativespot, facebook ve adwords uzerinden sponsorlu gonderi/reklam verilmesi
 
 ----------yapilanlar----------
+ekim 2025:
+-raple kelime havuzuna yeni sozcukler eklendi.
+
 eylul 2025:
 -bol anket icin ssl sertifikasi alindi.
 -bol anket kodundaki http/https mixed content uyumsuzluklari giderildi.
