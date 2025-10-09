@@ -583,8 +583,8 @@ echo "<hr>";
 //echo "<hr>";
 
 //vol 11//
-if($isMobile == 1) echo "<li>· <a href='bol+sozluk+compliation+vol+11-1.html' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
-if($isMobile == 0) echo "<li>· <a href='bol+sozluk+compliation+vol+11-1.html' target='main' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
+if($isMobile == 1) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
+if($isMobile == 0) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' target='main' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
 
 
 echo "<hr>";
