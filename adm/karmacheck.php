@@ -48,9 +48,11 @@ $caylak_ceza = 30;                // Arttırıldı (7 → 30)
 $sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
 $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
 $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
+$anon_carpani = 2;                 // İlk değeri (2)
 
 // Karma hesaplama
-$karmak0 = (($arti - $eksi - $anon) / $kactop) * 100 * $kalite_agirlik;
+$anon_ceza = $anon * $anon_carpani;
+$karmak0 = (($arti - $eksi - $anon_ceza) / $kactop) * 100 * $kalite_agirlik;
 $karmak1 = $kactop * $aktivite_carpani;
 $karmak2 = ($verarti / $kactop) * $topluluk_carpani;
 $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpani, 50) : 0;
