@@ -68,6 +68,7 @@ echo "<pre>";
 echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
 echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
 echo "eksi (Eksi Oy): " . htmlspecialchars($eksi) . "\n";
+echo "anon (anonim entry): " . htmlspecialchars($anon) . "\n";
 echo "verarti (Verilen Artı Oy): " . htmlspecialchars($verarti) . "\n";
 echo "saysil (Silinen Entry): " . htmlspecialchars($saysil) . "\n";
 echo "saycaylak (Çaylak Cezası): " . htmlspecialchars($saycaylak) . "\n\n";
