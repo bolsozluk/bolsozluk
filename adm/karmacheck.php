@@ -26,9 +26,6 @@ if ($kachamx <= $kachamy) $kacham = $kachamy;
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' ");
 $kac = mysql_num_rows($sor);
 
-$sor = mysql_query("select yazar,ilkyazar from mesajlar WHERE `ilkyazar`='$kim' and `yazar` = 'anonim' ");
-$anon = mysql_num_rows($sor);
-
 $sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '1'");
 $arti = mysql_num_rows($sor);
 
@@ -48,11 +45,9 @@ $caylak_ceza = 30;                // Arttırıldı (7 → 30)
 $sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
 $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
 $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
-$anon_carpani = 2;                 // İlk değeri (2)
 
 // Karma hesaplama
-$anon_ceza = $anon * $anon_carpani;
-$karmak0 = (($arti - $eksi - $anon_ceza) / $kactop) * 100 * $kalite_agirlik;
+$karmak0 = (($arti - $eksi) / $kactop) * 100 * $kalite_agirlik;
 $karmak1 = $kactop * $aktivite_carpani;
 $karmak2 = ($verarti / $kactop) * $topluluk_carpani;
 $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpani, 50) : 0;
@@ -70,7 +65,6 @@ echo "<pre>";
 echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
 echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
 echo "eksi (Eksi Oy): " . htmlspecialchars($eksi) . "\n";
-echo "anon (anonim entry): " . htmlspecialchars($anon) . "\n";
 echo "verarti (Verilen Artı Oy): " . htmlspecialchars($verarti) . "\n";
 echo "saysil (Silinen Entry): " . htmlspecialchars($saysil) . "\n";
 echo "saycaylak (Çaylak Cezası): " . htmlspecialchars($saycaylak) . "\n\n";
