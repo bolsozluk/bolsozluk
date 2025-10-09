@@ -26,6 +26,9 @@ if ($kachamx <= $kachamy) $kacham = $kachamy;
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' ");
 $kac = mysql_num_rows($sor);
 
+$sor = mysql_query("select yazar,ilkyazar from mesajlar WHERE `ilkyazar`='$kim' and `yazar` = 'anonim' ");
+$anon = mysql_num_rows($sor);
+
 $sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '1'");
 $arti = mysql_num_rows($sor);
 
@@ -47,7 +50,7 @@ $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
 $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
 
 // Karma hesaplama
-$karmak0 = (($arti - $eksi) / $kactop) * 100 * $kalite_agirlik;
+$karmak0 = (($arti - $eksi - $anon) / $kactop) * 100 * $kalite_agirlik;
 $karmak1 = $kactop * $aktivite_carpani;
 $karmak2 = ($verarti / $kactop) * $topluluk_carpani;
 $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpani, 50) : 0;
