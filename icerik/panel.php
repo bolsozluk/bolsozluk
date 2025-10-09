@@ -68,8 +68,7 @@ function mobara() {
         <div class="tab"><a href="sozluk.php?process=panel&islem=arkadaslarim">ilişkiler</a></div>
         <div class="tab"><a href="sozluk.php?process=panel&islem=cp">çöp / ayarlar</a></div>
         <div class="tab"><a href="sozluk.php?process=panel&islem=gorunum">temalar</a></div>
-        <div class="tab"><a href="sozluk.php?process=panel&islem=system">bol malzeme</a></div>
-        <div class="tab"><a href="sozluk.php?process=privmsg&islem=yenimsj&gkime=lord%20voldemort&gkonu=bol%20vol%2011">vol 11'e katıl</a></div>
+        <div class="tab"><a href="sozluk.php?process=panel&islem=system">bol malzeme</a></div>        
         <?php if ($kulYetki=="admin" || $kulYetki=="mod") { ?>
             <div class="tab"><a href="sozluk.php?process=panel&islem=modlog">modlog</a></div>
             <div class="tab"><a href="sozluk.php?process=panel&islem=oylog">oylog</a></div>
@@ -78,6 +77,7 @@ function mobara() {
     </div>
 </div>
         <?php 
+//<div class="tab"><a href="sozluk.php?process=privmsg&islem=yenimsj&gkime=lord%20voldemort&gkonu=bol%20vol%2011">vol 11'e katıl</a></div>
         if(file_exists("icerik/$yuklenecekSayfaSub.php")) 
             include "icerik/$yuklenecekSayfaSub.php"; 
         ?>
