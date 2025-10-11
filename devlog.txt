@@ -30,6 +30,8 @@
 ----------yapilanlar----------
 ekim 2025:
 -raple kelime havuzuna yeni sozcukler eklendi.
+-bol sozluk compilation vol 11 yayinlandi.
+-admin fonksiyonlarinin guvenlik kontrolleri iyilestirildi.
 
 eylul 2025:
 -bol anket icin ssl sertifikasi alindi.
