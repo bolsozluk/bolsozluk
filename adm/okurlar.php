@@ -8,11 +8,14 @@ input[type=checkbox]
 
 <?
 
-if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
-    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] != 'admin' && $_SESSION['kulYetki_S'] != 'mod')) {
+    $user = isset($_SESSION['kullaniciAdi_S']) ? $_SESSION['kullaniciAdi_S'] : 'Unknown';
+    $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Unknown';
+    error_log("Yetkisiz erişim girişimi: " . $user . " - IP: " . $ip);
     header("Location: /sozluk.php?process=refresh");
     die;
 }
+
 
 
 $toDo = guvenlikKontrol($_REQUEST["submit"],"hard");
