@@ -45,11 +45,15 @@ include "mobframe.php";
 
 echo "<b>$kullaniciAdi - yönetici paneli</b>";
 
-if (($kulYetki != "admin") and ($kulYetki != "mod")) {
-  echo "<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"0;URL=sozluk.php?process=refresh\">";
-  die;
+//if (($kulYetki != "admin") and ($kulYetki != "mod")) {
+//  echo "<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"0;URL=sozluk.php?process=refresh\">";
+//  die;
+//}
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
+    die;
 }
-
 
 $entry = 1;
 $ispit = 1;
