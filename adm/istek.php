@@ -2,6 +2,13 @@
 <SCRIPT src="inc/new.js" type=text/javascript></SCRIPT>
 <?
 
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
+    die;
+}
+
+
 $bid = guvenlikKontrol($_REQUEST["bid"],"hard");
 $a = guvenlikKontrol($_REQUEST["a"],"hard");
 $ybaslik = guvenlikKontrol($_REQUEST["ybaslik"],"hard");
