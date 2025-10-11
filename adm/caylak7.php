@@ -2,6 +2,14 @@
 <META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
 
 <?
+
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
+    die;
+}
+
+
 $cay7sebep= guvenlikKontrol($_REQUEST["cay7sebep"],"hard");
 $yazar = guvenlikKontrol($_REQUEST["yazar"],"hard");
 
