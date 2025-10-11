@@ -1,4 +1,11 @@
 <?php
+
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
+    die;
+}
+
 $sql = "
     SELECT ip, GROUP_CONCAT(DISTINCT yazar) AS yazarlar, COUNT(DISTINCT yazar) AS yazar_sayisi
     FROM iptables

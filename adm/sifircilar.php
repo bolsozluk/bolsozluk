@@ -1,4 +1,11 @@
 	<?
+
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
+    die;
+}
+
 	echo "SIFIR ENTRYLİLER<br>";
 $listele3 = mysql_query("SELECT nick, email from user left outer join mesajlar on (nick= yazar)
 where yazar is null and durum='on'

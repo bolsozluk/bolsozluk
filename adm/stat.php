@@ -1,5 +1,11 @@
 <?
 
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
+    die;
+}
+
 $sorgu = "SELECT entry_id,entry_sahibi,oy FROM oylar ORDER by oy desc";
 $sorgulama = mysql_query($sorgu);
 if (mysql_num_rows($sorgulama)>0){
