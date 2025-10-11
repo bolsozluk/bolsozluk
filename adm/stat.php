@@ -1,7 +1,8 @@
 <?
 
-if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) { 
-    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));    
+if (!isset($_SESSION['kulYetki_S']) || ($_SESSION['kulYetki_S'] !== 'admin' && $_SESSION['kulYetki_S'] !== 'mod')) {
+    error_log("Yetkisiz erişim girişimi: " . ($_SESSION['kullaniciAdi_S'] ?? 'Unknown') . " - IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'));
+    header("Location: /sozluk.php?process=refresh");
     die;
 }
 
