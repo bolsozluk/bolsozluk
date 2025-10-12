@@ -8,7 +8,6 @@
 <?
 session_start();
 ob_start();
-error_reporting(E_ALL ^ E_NOTICE);
 
 include "icerik/firstsettings.php";
 include "icerik/baglan.php";
@@ -34,7 +33,10 @@ if(!$currentPage) $currentPage=1;
 $limitFrom = ($currentPage - 1) * $maxTopicPage;
 ?>
 
-<? if($list=="today") { ?> <meta http-equiv="refresh" content="120;URL=left.php?list=today"><? } ?> 
+<? 
+/* if($list=="today") { ?> <meta http-equiv="refresh" content="120;URL=left.php?list=today"><? } */
+?> 
+
 <script src="inc/top.js" type="text/javascript"></script>
 <script src="inc/sozluk.js" type="text/javascript"></script>
 <link href="favicon.ico" rel="shortcut Icon">
@@ -91,7 +93,6 @@ function mobara() {
 
 
 <?
-//			echo "$kullaniciAdi";
 
 if ($kullaniciAdi=='admin') 
 { 
@@ -551,21 +552,12 @@ else
 {
 
 
-
-
-/*$sqlSyntax = "SELECT id,baslik,tarih, (SELECT count(id) FROM mesajlar WHERE sira=konular.id AND statu != 'silindi' AND statu!= 'wait' AND statu!= 'kenar'
-			  AND (gun='$cDay' OR gun='$dDay' OR gun='$eDay' OR gun='$fDay') AND (ay='$cMon') AND yil='$cYea') AS say FROM konular WHERE (gun='$cDay' OR gun='$dDay'  OR gun='$eDay'  OR gun='$fDay') AND (ay='$cMon')
-			  AND yil='$cYea' AND statu='' AND gds ='$gds' ORDER BY tarih DESC LIMIT $limitFrom,$maxTopicPage";	*/
-
 $sqlSyntax = "SELECT id,baslik,tarih, (SELECT count(id) FROM mesajlar WHERE sira=konular.id AND statu != 'silindi' AND statu!= 'wait' AND statu!= 'kenar'
 			  AND (gun='$cDay' OR gun='$dDay' OR gun='$eDay' OR gun='$fDay') AND (ay='$cMon') AND yil='$cYea') AS say FROM konular WHERE (gun='$cDay' OR gun='$dDay'  OR gun='$eDay'  OR gun='$fDay') AND (ay='$cMon')
 			  AND yil='$cYea' AND statu='' AND gds ='$gds' AND (baslik !='$baslik31' AND baslik !='$baslik32' AND baslik !='$baslik33') ORDER BY tarih DESC LIMIT $limitFrom,$maxTopicPage";	
 
 
 			}
-/*$sqlSyntax3 = "SELECT id,baslik,tarih, (SELECT count(id) FROM mesajlar WHERE statu != 'silindi' AND statu!= 'wait'
-			  AND (gun='$cDay' OR gun='$dDay' OR gun='$eDay' OR gun='$fDay') AND (ay='$cMon') AND yil='$cYea') AS say FROM konular WHERE (gun='$cDay' OR gun='$dDay'  OR gun='$eDay'  OR gun='$fDay') AND (ay='$cMon')
-			  AND yil='$cYea' AND statu='' AND gds ='$gds' GROUP BY sira ORDER BY COUNT(sira) DESC LIMIT 5";	*/
 
 
 $getkonular = mysql_query($sqlSyntax);
@@ -677,15 +669,6 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 
 			$id = $currenTopic['id'];
 		$link = str_replace(" ","+",$currenTopic['baslik']);
-		//if ($link == "bol+sözlük+scout+ekibi"){
-			// echo " <font color=\"blue\"><li>· <a href='sozluk.php?process=word&q=".$link."&sayfa=$goster' target='main' title='".$currenTopic['baslik']." (".$currenTopic['say'].")'>".$currenTopic['baslik']."</a></font>";
-			//else
-
-//				    $pattern = '/(\\p{L}+) (\\p{L}+) olan/u';
-//    $replacement = '$1 ($2)';
-//    $currenTopic['baslik'] = preg_replace($pattern, $replacement, $currenTopic['baslik']);
-
-
 
 					if($isMobile == 1)
 { 
@@ -791,13 +774,6 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 
 			$id = $currenTopic['id'];
 		$link = str_replace(" ","+",$currenTopic['baslik']);
-		//if ($link == "bol+sözlük+scout+ekibi"){
-			// echo " <font color=\"blue\"><li>· <a href='sozluk.php?process=word&q=".$link."&sayfa=$goster' target='main' title='".$currenTopic['baslik']." (".$currenTopic['say'].")'>".$currenTopic['baslik']."</a></font>";
-			//else
-
-//		    $pattern = '/(\\p{L}+) (\\p{L}+) olan/u';
-//    $replacement = '$1 ($2)';
-//    $currenTopic['baslik'] = preg_replace($pattern, $replacement, $currenTopic['baslik']);
 
 							if($isMobile == 1)
 { 
@@ -809,12 +785,6 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 			echo "<font size=2><li>· <a href='/".$link."-".$goster.".html' target='main' title='".$currenTopic['baslik']." (".$currenTopic['say'].")'>".$currenTopic['baslik']."</a></font>"; 
 		}
 
-
-  		// echo "<li>· <a href='/bol/".$link."/$goster' target='main' title='".$currenTopic['baslik']." (".$currenTopic['say'].")'>".$currenTopic['baslik']."</a>";
-  		//OLD
-  		 // echo "<li>· <a href=/b/".$link."/$goster target='main' title='".$currenTopic['baslik']." (".$currenTopic['say'].")'>".$currenTopic['baslik']."</a>";
-		//}
-	//	endif
 				if ($currenTopic['say']>1) {
 		  echo "(".$currenTopic['say'].")";
 		}
