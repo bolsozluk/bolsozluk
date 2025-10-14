@@ -55,7 +55,7 @@ if (!$_SESSION['aktifTema_S']) {
 $currentPage = guvenlikKontrol($_REQUEST["sayfa"], "ultra");
 $list = guvenlikKontrol($_REQUEST["list"], "hard");
 
-$api_key = "API_KEY_HIDDEN";
+$api_key = "HIDDEN_API_KEY";
 $api_url = "https://api.x.ai/v1/chat/completions";
 
 // Veritabanından ilgili mesajları çekme
@@ -79,7 +79,7 @@ if ($entryCheckResult) {
 
 $sql = "SELECT * FROM mesajlar WHERE yazar = 'bolgpt' AND gun = '$gun' AND ay = '$ay' AND yil = '$yil' AND statu !='silindi' ORDER BY id";
 $result = mysql_query($sql);
-if (mysql_num_rows($result) > 3) { //normali 2
+if (mysql_num_rows($result) > 3) { //normali 3
   echo "bolgpt'nin günlük çağırma limiti dolmuş. yarın tekrar dene.";
   die();
 }
@@ -203,7 +203,12 @@ if (mysql_num_rows($result9) > 0) {
 
 // Prompt oluşturma
 //$prompt = "$baslik hakkında daha önce $firstEntry, $secondEntry, $thirdEntry, $fourthEntry, $fifthEntry, $sixthEntry, $seventhEntry, $eighthEntry, $ninthEntry ve $lastEntry yorumlarından yola çıkarak ve başlıktaki ortalama üslubu taklit ederek, eğlenceli ve samimi bir dille; günceli sorgulayan, olumsuz yönleri varsa eleştirel olarak onu da belirten, tartışma çıkaracak derece biraz sivri bir yeni yorum yazabilir misin? ayrıca $baslik neyi refere ediyor ve literatürdeki karşılığı nedir onları da bizimle paylaş. çok ayrıntı elinde yoksa bile, bilgi havuzundan faydalan. yorumun 4 ya da 5 cümleyi geçmesin. yazının sonunda da yazdıklarınla ilgili olduğuna emin olduğun referans bir kavramı da (bkz: referanskavram) şeklinde belirt.";
-$prompt = "senin adın bolgpt. ekşi sözlük gibi bir platform olan bol sözlük'te yazan bir yazarsın. $baslik hakkında daha önce yazılmış $firstEntry, $secondEntry, $thirdEntry, $fourthEntry, $fifthEntry ve $lastEntry yorumlarını dikkate alarak eğlenceli, samimi, hafif argo ve mahalle delikanlısı üslubunda yeni bir yorum yaz. tüm yorumu küçük harflerle yaz. gerektiğinde hafif küfür veya argo kullanabilirsin ama şahıslara doğrudan hakaret etme. yorumun dikkat çekici olsun, olumsuz yönleri varsa eleştir ama anlam bütünlüğü bozulmasın. toplam uzunluğu en fazla 3 cümle olsun, noktalı virgül kullanma. eğer $baslik’in literatürde bilinen net bir karşılığı varsa paylaş, yoksa paylaşma. yazının sonunda yazdıklarınla ilgili olduğuna emin olduğun bir kavramı (bkz: referanskavram) formatında ekle.";
+$prompt = "senin adın bolgpt. ekşi sözlük formatında olan ama hiphop temasında içerik yazılan bol sözlük'te yazan bir yazarsın. $baslik hakkında daha önce yazılmış $firstEntry, $secondEntry, $thirdEntry, $fourthEntry, $fifthEntry, $sixthEntry, $seventhEntry, $eighthEntry ve $lastEntry yorumlarını ilham kaynağı olarak kullan ama bunları tekrar etme. tamamen orijinal, eğlenceli, samimi ve sert yeni bir yorum yaz. yorumun küçük harflerle olsun, gerektiğinde hafif küfür veya argo kullan ama şahıslara doğrudan hakaret etme. yorum dikkat çekici ve akıcı olsun. olumsuz yönleri varsa eleştir ama anlam bütünlüğünü koru. toplam uzunluk en fazla 3 cümle olsun, noktalı virgül kullanma. eğer $baslik’in literatürde bilinen net bir karşılığı varsa paylaş, yoksa paylaşma. yorumun sonunda yazdıklarınla ilgili olduğuna emin olduğun bir kavramı (bkz: referanskavram) formatında ekle.";
+
+
+//örnek yorumlar:
+//($baslik: kahve içmek) bi fincan kahve gibisi yok la, sabah uyanır uyanmaz mutfakta o kokuyu çekiyorum içime, dünya düzeliyo. lakin şu zincir kahvecilerdeki fiyatlar ne ya, evde demlesen o paraya kahve tarlası alırsın. geçen mahallede bi amca termosla kahve satıyo, dedim bu adam kral. (bkz: Türk kahvesi)
+//($baslik: trafik) her sabah aynı çile, kornaya basanı mı ararsın, makas atanı mı, sanki herkes f1 pilotu. bi keresinde taksici abiye dedim 'abi sakin ol, yarışta değiliz', adam bi gülümsedi, 'oğlum burası istanbul' dedi. bu şehirde direksiyon sallamak sabır sınavı resmen. (bkz: sabır taşı)
 
 // API'ye gönderme 
 
@@ -218,6 +223,7 @@ $data = array( //Follow this list: ['gpt-4', 'gpt-3.5-turbo', gpt-4-1106-preview
 
 $ch = curl_init($api_url);
 
+// cURL seçenekleri
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -259,13 +265,13 @@ if ($response === false) {
 
   // Sonuç metnini gösterelim
   if (!empty($result)) {
-    echo "<b>chatgpt entrysi basliga girildi:</b> " . $result;
+    echo "<b>bolgpt entrysi basliga girildi:</b> " . $result;
 
         $mesaj = str_replace("<br>","/n/s",$result);
         $mesaj = str_replace("<br />"," /n/s",$mesaj);
         $mesaj = str_replace("<","&lt;",$mesaj); 
         $mesaj = str_replace(">","&gt;",$mesaj);
-        $mesaj = preg_replace("'\@([0-9]{1,9})'","<b>@\\1</b>",$mesaj);        
+        $mesaj = preg_replace("'\@([0-9]{1,9})'","<b>@\\1</b>",$mesaj); 
         $mesaj = str_replace("&#039;","'",$mesaj);  
         $mesaj = mysql_real_escape_string($mesaj);
 
@@ -279,13 +285,6 @@ if ($response === false) {
       mysql_query($sorgux); 
    } else {
     echo $result;
-
-
-if ($kullaniciAdi == "booyaka")
-{  
-    echo "<br><br>Veritabanı log bilgisi: " . mysql_error();
-      
-}
 
   }
 }
@@ -301,5 +300,3 @@ if ($kullaniciAdi == "booyaka")
 
 </body>
 </html>
-
-
