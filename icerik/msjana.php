@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
@@ -36,6 +36,8 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
 
+$filter = isset($_GET['filter']) ? $_GET['filter'] : '';
+
 if(isset($_POST['sil1'])){
 foreach($id as $kayit)
 {
@@ -49,8 +51,23 @@ $sorgu = "DELETE FROM privmsg WHERE kime = '$kullaniciAdi'";
 mysql_query($sorgu);
 }
 
+$filterUnread = isset($_GET['filter']) && $_GET['filter'] == 'unread';
 
-$sorgu = "select id,konu,gonderen,gun,okundu,ay,yil,saat from privmsg WHERE kime = '$kullaniciAdi' ORDER BY tarih desc LIMIT 0,5000";
+
+
+if ($filterUnread) {
+    $sorgu = "SELECT id, konu, gonderen, gun, okundu, ay, yil, saat 
+              FROM privmsg 
+              WHERE kime = '$kullaniciAdi' AND okundu != 0 
+              ORDER BY tarih DESC LIMIT 0,5000";
+} else {
+    $sorgu = "SELECT id, konu, gonderen, gun, okundu, ay, yil, saat 
+              FROM privmsg 
+              WHERE kime = '$kullaniciAdi' 
+              ORDER BY tarih DESC LIMIT 0,5000";
+}
+
+
 $sorgulama = mysql_query($sorgu);
 $adeto = mysql_num_rows($sorgulama);
 if (mysql_num_rows($sorgulama)>0){
@@ -84,6 +101,7 @@ echo "
     
       <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
   <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg'\" accesskey=c>
+  <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
     <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
     ";
 }
@@ -100,9 +118,12 @@ echo "
      
       <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
   <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg'\" accesskey=c>
-    <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
+    <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
+    <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
       </TD>";
 }
+
+
 
   if ($isMobile == 0)
 {
@@ -202,7 +223,9 @@ echo "
 <input class=\"but\" type=\"submit\" name=\"sil1\" value=\"Seçilenleri Sil\" onclick=\"top.main.location.href='sozluk.php?process=privmsg'\" accesskey=v>
 <input class='but' type='submit' name='sil2' value='Tümünü Sil' onclick=\"top.main.location.href='sozluk.php?process=privmsg'\" accesskey=s>	
 <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg'\" accesskey=c>
+<input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
 <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
+
  </form>
       </FORM>";
 }
