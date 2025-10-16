@@ -108,19 +108,13 @@ echo "
 
   if ($isMobile == 1)
 {
- // echo "<a id=\"gundem\" href=\"left.php?list=today\" target=\"_top\" title=sol&nbsp;frame> <img src=inc/turuncu.png width=120 border=1></a>";
-  // <a id=\"gundem\" href=\"left.php?list=today\" target=\"_top\" title=sol&nbsp;frame> <img src=mobframe.png width=50 border=1></a>
-
-//<input class=\"but\" type=\"button\" name=\"gundem\" value=\"Gündem\" onclick=\"location.href='left.php?list=today'\" accesskey=x>
-
 echo "
-    <TD vAlign=top>
-     
-      <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
+  <TD vAlign=top>     
+  <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
   <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg'\" accesskey=c>
-    <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
-    <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
-      </TD>";
+  <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
+  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
+  </TD>";
 }
 
 
