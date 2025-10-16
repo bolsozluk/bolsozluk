@@ -405,7 +405,7 @@ $gururlist = [
 
 ];
 
-$randomgurur = rand(1, 36);
+$randomgurur = rand(1, 37);
 
 
 //eol size 
@@ -2831,7 +2831,7 @@ include "footer.php";
 echo "<br>";
 echo "<br>";
 if ($kullaniciAdi) {include "bolchat.php";}
-if (!$kullaniciAdi) {echo $gururlist[37];}
+if ($kullaniciAdi == "") {echo $gururlist[37];}
 	
 ?>
 </center>
