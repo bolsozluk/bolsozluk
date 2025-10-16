@@ -27,10 +27,6 @@ table td {
 
 </style>
 
-
-
-
-
 <?
 $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
@@ -67,6 +63,7 @@ if ($filterUnread) {
               ORDER BY tarih DESC LIMIT 0,5000";
 }
 
+include "mobframe.php";
 
 $sorgulama = mysql_query($sorgu);
 $adeto = mysql_num_rows($sorgulama);
@@ -90,10 +87,6 @@ if($isMobile == 1)
 </script>
 <?
 }
-
-include "mobframe.php";
-
-
 
   if ($isMobile == 0)
 {
@@ -207,6 +200,10 @@ echo "
 ";
 }
 }
+}
+
+//IF NO MSG
+else {
 echo "
       </tr>
     </table></td>
@@ -222,11 +219,8 @@ echo "
 
  </form>
       </FORM>";
-}
-else {
-echo "";
-echo "
-Yeni mesajınız yok.";
+
+echo "Yeni mesajınız yok.";
 }
 
 if($isMobile == 1)
