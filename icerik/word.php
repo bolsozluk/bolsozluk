@@ -2831,7 +2831,11 @@ include "footer.php";
 echo "<br>";
 echo "<br>";
 if ($kullaniciAdi) {include "bolchat.php";}
-if ($kullaniciAdi == "") {echo $gururlist[37];}
+if ($kullaniciAdi == "") {
+	echo "<center><br><br><b>bol sözlük on the mic:<br><br></b>"
+	echo $gururlist[37];
+	echo "</center>";
+}
 	
 ?>
 </center>
