@@ -33,6 +33,7 @@ ekim 2025:
 -bol sozluk compilation vol 11 yayinlandi.
 -admin fonksiyonlarinin guvenlik kontrolleri iyilestirildi.
 -sitemap kodu iyilesitirildi.
+-gelen mesaj kutusuna okunmamis mesaj filtresi eklendi.
 
 eylul 2025:
 -bol anket icin ssl sertifikasi alindi.
