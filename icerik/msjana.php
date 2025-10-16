@@ -65,6 +65,28 @@ if ($filterUnread) {
 
 include "mobframe.php";
 
+  if ($isMobile == 0)
+{
+echo "
+    
+      <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
+  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg'\" accesskey=c>
+  <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
+    <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
+    ";
+}
+
+  if ($isMobile == 1)
+{
+echo "
+  <TD vAlign=top>     
+  <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
+  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg'\" accesskey=c>
+  <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
+  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
+  </TD>";
+}
+
 $sorgulama = mysql_query($sorgu);
 $adeto = mysql_num_rows($sorgulama);
 if (mysql_num_rows($sorgulama)>0){
@@ -88,27 +110,7 @@ if($isMobile == 1)
 <?
 }
 
-  if ($isMobile == 0)
-{
-echo "
-    
-      <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
-  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg'\" accesskey=c>
-  <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
-    <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"top.main.location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
-    ";
-}
 
-  if ($isMobile == 1)
-{
-echo "
-  <TD vAlign=top>     
-  <input class=\"but\" type=\"button\" name=\"ymsj\" value=\"Yeni Mesaj\" onclick=\"location.href='sozluk.php?process=privmsg&islem=yenimsj'\" accesskey=x>
-  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Gelen mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg'\" accesskey=c>
-  <input class=\"but\" type=\"button\" name=\"filter\" value=\"Okunmamışlar\" onclick=\"location.href='sozluk.php?process=privmsg&filter=unread'\" accesskey=u>
-  <input class=\"but\" type=\"button\" name=\"gmsj\" value=\"Giden mesajlar\" onclick=\"location.href='sozluk.php?process=privmsg&islem=gidenler'\" accesskey=c>
-  </TD>";
-}
 
 
 
@@ -200,11 +202,7 @@ echo "
 ";
 }
 }
-}
-
-//IF NO MSG
-else {
-echo "
+    echo "
       </tr>
     </table></td>
   </tr>
@@ -219,6 +217,11 @@ echo "
 
  </form>
       </FORM>";
+}
+
+//IF NO MSG
+else {
+
 
 echo "Yeni mesajınız yok.";
 }
