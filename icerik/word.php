@@ -324,8 +324,6 @@ if($isMobile == 0) $iframe="<iframe width=\"560\" height=\"315\"";
 if($isMobile == 1) $iframe="<iframe width=\"100%\" height=\"200\"";
 
 
-
-
 $gururlist = [
     //necip
     1 => $iframe.'src="https://www.youtube.com/embed/STHy7LU4o-U?si=7EmKM53nztn_-6by" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
@@ -402,6 +400,8 @@ $gururlist = [
     35 => $iframe.'src="https://www.youtube.com/embed/0TU5C_OHLuY?si=QZSt5-3Bpklr5CEa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
     //şam
     36 => $iframe.'src="https://www.youtube.com/embed/ATalUfIuXqE?si=OJvZX3Hlkuq1Zd0h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+	//comp12
+	37 => $iframe.'src="https://www.youtube.com/embed/si4HFWYxiHM?si=MLZXAMpi6fKLILvN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
 
 ];
 
@@ -2718,19 +2718,7 @@ Bakmak için bakınız: (bkz: kelime)<br>
 
 
 function sendMessage($uid, $txt, $tok) {
-
-//echo "uid: ";
-//echo $uid;
-//echo " ";
-//echo "token:";
-//echo $tok;
-//echo " ";
 $url = 'https://api.telegram.org/bot' . $tok . '/sendMessage?chat_id='.$uid.'&text=BS';
-//echo "$url";
-//$result = file_get_contents($url);
-//$result = json_decode($result, true);
-//var_dump($result['result']);
-
 $ch = curl_init( );
 curl_setopt ( $ch, CURLOPT_URL, $url );
 curl_setopt ( $ch, CURLOPT_POST, 1 );
@@ -2843,6 +2831,8 @@ include "footer.php";
 echo "<br>";
 echo "<br>";
 if ($kullaniciAdi) {include "bolchat.php";}
+if (!$kullaniciAdi) {echo $gururlist[37];;}
+	
 ?>
 </center>
 </font>
