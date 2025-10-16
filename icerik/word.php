@@ -399,7 +399,7 @@ $gururlist = [
     //jefe
     35 => $iframe.'src="https://www.youtube.com/embed/0TU5C_OHLuY?si=QZSt5-3Bpklr5CEa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
     //şam
-    36 => $iframe.'src="https://www.youtube.com/embed/ATalUfIuXqE?si=OJvZX3Hlkuq1Zd0h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+    36 => $iframe.'src="https://www.youtube.com/embed/ATalUfIuXqE?si=OJvZX3Hlkuq1Zd0h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
 	//comp12
 	37 => $iframe.'src="https://www.youtube.com/embed/si4HFWYxiHM?si=MLZXAMpi6fKLILvN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
 
