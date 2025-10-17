@@ -34,6 +34,8 @@ ekim 2025:
 -admin fonksiyonlarinin guvenlik kontrolleri iyilestirildi.
 -sitemap kodu iyilesitirildi.
 -gelen mesaj kutusuna okunmamis mesaj filtresi eklendi.
+-sol frame yenileme fonksiyonu guncellendi.
+-sozlukle ilgili istekler basliginin admin takip modulu refactor edildi.
 
 eylul 2025:
 -bol anket icin ssl sertifikasi alindi.
