@@ -25,11 +25,11 @@ Bol Sözlük is a community-driven interactive social media platform focused on 
 
 | Metric | Number |
 | -------------- | ------- |
-| File | 296 |
-| Total Lines | 50,753 |
-| Blank Lines | 6,741 |
-| Comment Lines | 5,842 |
-| Lines of Code | 38,170 |
+| File | 295 |
+| Total Lines | 50,604 |
+| Blank Lines | 6,526 |
+| Comment Lines | 5,584 |
+| Lines of Code | 38,504 |
 
 ## Contribution
 
