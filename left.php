@@ -37,6 +37,50 @@ $limitFrom = ($currentPage - 1) * $maxTopicPage;
 /* if($list=="today") { ?> <meta http-equiv="refresh" content="120;URL=left.php?list=today"><? } */
 ?> 
 
+	<script>
+(function(){
+
+  var isToday = <?php echo ($list === "today") ? 'true' : 'false'; ?>;
+  if (!isToday) return;
+
+  var isMobile = <?php echo ($isMobile ? 'true' : 'false'); ?>;
+//  if (isMobile) return; // mobilde kapatmak istersen bu satırı bırak
+
+  var LIST_SELECTOR = '#listLeftFrame';
+  var INTERVAL_MS = 60000; // 60s
+
+  setInterval(refreshList, INTERVAL_MS);
+
+  async function refreshList() {
+    try {
+      var url = location.pathname + '?list=today';
+      var res = await fetch(url, { cache: 'no-store', credentials: 'same-origin' });
+      if (!res.ok) return;
+      var html = await res.text();
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var newList = doc.querySelector(LIST_SELECTOR);
+      var oldList = document.querySelector(LIST_SELECTOR);
+      if (!newList || !oldList) return;
+      var prevScrollTop = oldList.scrollTop;
+      var active = document.activeElement;
+      var activeId = active && active.id ? active.id : null;
+
+      oldList.innerHTML = newList.innerHTML;
+      oldList.scrollTop = prevScrollTop;
+
+      if (activeId) {
+        var el = document.getElementById(activeId);
+        if (el && typeof el.focus === 'function') el.focus();
+      }
+    } catch (err) {
+      console.error('refreshList error', err);
+    }
+  }
+})();
+</script>
+	
+
 <script src="inc/top.js" type="text/javascript"></script>
 <script src="inc/sozluk.js" type="text/javascript"></script>
 <link href="favicon.ico" rel="shortcut Icon">
