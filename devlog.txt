@@ -28,6 +28,9 @@
 -nativespot, facebook ve adwords uzerinden sponsorlu gonderi/reklam verilmesi
 
 ----------yapilanlar----------
+kasim 2025:
+-ay icerisinde hic entry girmemis yazarlara reklam gösterim fonksiyonu kodlandi.
+
 ekim 2025:
 -raple kelime havuzuna yeni sozcukler eklendi.
 -bol sozluk compilation vol 11 yayinlandi.
