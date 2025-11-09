@@ -38,8 +38,7 @@ $ok = guvenlikKontrol($_REQUEST["ok"],"hard");
 $kenar = guvenlikKontrol($_REQUEST["kenar"],"hard");
 $test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
 
-$sorgu = mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'");
-$aylikentry = mysql_fetch_assoc($sorgu);
+$aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
 if ($kullaniciAdi == "") $aylikentry = 0;
 
 ?>
