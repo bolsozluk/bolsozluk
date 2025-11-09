@@ -40,6 +40,8 @@ $test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
 
 $aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
 if ($kullaniciAdi == "") $aylikentry = 0;
+$entryBaraji = 1; 
+$pasifyazar = ($aylikentry < $entryBaraji);
 
 ?>
 
@@ -419,7 +421,7 @@ include "mobframe.php";
 
 
 
-if(($isMobile == 1) && (($kullaniciAdi == "") || ($aylikentry <1)))
+if(($isMobile == 1) && (($kullaniciAdi == "") || ($pasifyazar)))
 { 
 ?>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
@@ -2361,7 +2363,7 @@ if ($mod == "arabul")
 
 						//ENTRY ARASI REKLAM
 $rand=rand(00,100); 
-if (($rand > 80) && ($randrek < 2) && ($kullaniciAdi == "") && ($aylikentry < 1))  //if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
+if (($rand > 80) && ($randrek < 2) && ($kullaniciAdi == "") && ($pasifyazar))  //if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
 {
 	$randrek = $randrek + 1;
 //echo"<small><i>reklamlar</i></small>" ;
@@ -2802,7 +2804,7 @@ if ($baslik=="petrol")
 
 
 <?
-if (($kullaniciAdi == "") || ($aylikentry < 1))
+if (($kullaniciAdi == "") || ($pasifyazar))
 {
 ?>
 <div id=reklam>
