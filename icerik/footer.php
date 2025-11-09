@@ -1,4 +1,8 @@
 <?php
+
+$aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
+if ($kullaniciAdi == "") $aylikentry = 0;
+
 $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
@@ -57,6 +61,7 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
     }
 }
 </style>
+
 <div class="footer">
     <div class="footer-links">
         <a href="https://chat.bolsozluk.com" target="_blank">chat</a> |
@@ -73,6 +78,10 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
         hukuka aykırı olabileceğini düşündüğünüz içerikler titizlikle incelenip gereği düşünülmektedir. reklamsız görüntülemek isterseniz sözlüğe hemen kaydolup entry girmeye başlayabilirsiniz. soğuk içiniz. (2014-2026)
     </div>
 </div>
+
+<?php
+if (($kullaniciAdi == "") || ($aylikentry < 1)) {
+?>
 
 <div id="adblock-warning" style="display:none; background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:10px; margin:10px; border-radius:6px;">
   🙏 Merhaba! Görünüşe göre bir reklam engelleyici kullanıyorsun.<br>
@@ -93,3 +102,7 @@ setTimeout(function() {
   }
 }, 100);
 </script>
+
+<?php
+}
+?>
