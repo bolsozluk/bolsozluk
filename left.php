@@ -27,6 +27,7 @@ $araYil = $_REQUEST['yil'];
 
 $sorgu = mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'");
 $aylikentry = mysql_fetch_assoc($sorgu);
+if ($kullaniciAdi == "") $aylikentry = 0;
 
 
 
