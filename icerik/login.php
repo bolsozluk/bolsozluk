@@ -257,11 +257,7 @@ $sorgurozet = "UPDATE user SET rozet=$rozet WHERE nick='$kullaniciAdi'";
 mysql_query($sorgurozet);
 
 //ROZET SİSTEMİ SON
-
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kullaniciAdi' and `statu` = '' ");
-$kactop = mysql_num_rows($sor);
-$sorgukactop = "UPDATE user SET kactop=$kactop WHERE nick='$kullaniciAdi'";
-mysql_query($sorgukactop);				
+		
 
 				$sorgu2 = "UPDATE user SET sontarih='$tarih' WHERE nick='$girisNick'";
 				mysql_query($sorgu2);
@@ -276,6 +272,12 @@ mysql_query($sorgukactop);
 			$_SESSION['kulYetki_S'] = $kulYetki;
 			$_SESSION['verifyStatus_S']   = $verifyStatus;
 			$_SESSION['aktifTema_S']    = $aktifTema;
+
+//AYLIK ENTRY CHECK
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kullaniciAdi' and `statu` = '' ");
+$kactop = mysql_num_rows($sor);
+$sorgukactop = "UPDATE user SET aylikentry=$kactop WHERE nick='$kullaniciAdi'";
+mysql_query($sorgukactop);	
 			
 if($rememberMe=="on"){
     setcookie("bol", guvenlikKontrol($_REQUEST["gnick"],"hard"), time()+60*60*24*30, "/");
