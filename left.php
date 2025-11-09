@@ -25,8 +25,7 @@ $araGun = $_REQUEST['gun'];
 $araAy = $_REQUEST['ay'];
 $araYil = $_REQUEST['yil'];
 
-$sorgu = mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'");
-$aylikentry = mysql_fetch_assoc($sorgu);
+$aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
 if ($kullaniciAdi == "") $aylikentry = 0;
 
 
