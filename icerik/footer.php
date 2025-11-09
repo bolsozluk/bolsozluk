@@ -3,7 +3,13 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
 ?>
-<style>
+<style>  
+  #adblock-warning {
+  position:fixed; bottom:15px; left:15px; right:15px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  text-align:center;
+  z-index:9999;
+}  
 .footer {
     text-align: center;
     font-size: <?php echo $isMobile ? '11px' : '14px'; ?>;
@@ -67,3 +73,23 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
         hukuka aykırı olabileceğini düşündüğünüz içerikler titizlikle incelenip gereği düşünülmektedir. reklamsız görüntülemek isterseniz sözlüğe hemen kaydolup entry girmeye başlayabilirsiniz. soğuk içiniz. (2014-2026)
     </div>
 </div>
+
+<div id="adblock-warning" style="display:none; background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:10px; margin:10px; border-radius:6px;">
+  🙏 Merhaba! Görünüşe göre bir reklam engelleyici kullanıyorsun.<br>
+  Reklamlar sitemizin yaşaması için önemli. Lütfen bu siteyi beyaz listeye eklemeyi düşün. 💛
+</div>
+
+<script>
+// "reklam yemi" oluştur
+var ad = document.createElement('div');
+ad.className = 'ads banner ad-unit ad'; // adblock genelde bunu gizler
+ad.style.display = 'none';
+document.body.appendChild(ad);
+
+// 100ms sonra görünürlük kontrol et
+setTimeout(function() {
+  if (ad.offsetParent === null || ad.offsetHeight === 0) {
+    document.getElementById('adblock-warning').style.display = 'block';
+  }
+}, 100);
+</script>
