@@ -274,10 +274,12 @@ mysql_query($sorgurozet);
 			$_SESSION['aktifTema_S']    = $aktifTema;
 
 //AYLIK ENTRY CHECK
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kullaniciAdi' and `statu` = '' ");
-$kactop = mysql_num_rows($sor);
-$sorgukactop = "UPDATE user SET aylikentry=$kactop WHERE nick='$kullaniciAdi'";
-mysql_query($sorgukactop);	
+$yil = date("Y");
+$ay  = date("m") - 0;
+$sor = mysql_query("SELECT COUNT(*) AS adet FROM mesajlar WHERE yazar='$kullaniciAdi' AND statu!='silindi' AND yil='$yil' AND ay=$ay");
+$kactop = mysql_result($sor, 0, 'adet');
+mysql_query("UPDATE user SET aylikentry=$kactop WHERE nick='$kullaniciAdi'");
+
 			
 if($rememberMe=="on"){
     setcookie("bol", guvenlikKontrol($_REQUEST["gnick"],"hard"), time()+60*60*24*30, "/");
