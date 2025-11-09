@@ -27,6 +27,8 @@ $araYil = $_REQUEST['yil'];
 
 $aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
 if ($kullaniciAdi == "") $aylikentry = 0;
+$entryBaraji = 1; 
+$pasifyazar = ($aylikentry < $entryBaraji);
 
 
 
@@ -215,7 +217,7 @@ A {
 
 
 
-if( ($isMobile == 1) && ( ($kullaniciAdi == "" && $list != "") || ($aylikentry < 1) ) ) //if(($isMobile == 1) && ($kullaniciAdi == "") && ($list != ""))
+if( ($isMobile == 1) && ( ($kullaniciAdi == "" && $list != "") || ($pasifyazar) ) ) //if(($isMobile == 1) && ($kullaniciAdi == "") && ($list != ""))
 {
 ?>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
@@ -1807,7 +1809,7 @@ include "icerik/footer.php";
 echo "<br>";
 echo "<br>";
 if ($kullaniciAdi) {include "icerik/bolchat.php";}
-if (($kullaniciAdi == "") || ($aylikentry <1)) { ?> 
+if (($kullaniciAdi == "") || ($pasifyazar)) { ?> 
 </font>
 <br> 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
