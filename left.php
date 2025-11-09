@@ -25,6 +25,9 @@ $araGun = $_REQUEST['gun'];
 $araAy = $_REQUEST['ay'];
 $araYil = $_REQUEST['yil'];
 
+$sorgu = mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'");
+$aylikentry = mysql_fetch_assoc($sorgu);
+
 
 
 if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
@@ -212,18 +215,13 @@ A {
 
 
 
- if(($isMobile == 1) && ($kullaniciAdi == "") && ($list != ""))
+if( ($isMobile == 1) && ( ($kullaniciAdi == "" && $list != "") || ($aylikentry < 1) ) ) //if(($isMobile == 1) && ($kullaniciAdi == "") && ($list != ""))
 {
-
-
 ?>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
      crossorigin="anonymous"></script>
 
 <?
-
-
-
 }
 
 
@@ -1809,7 +1807,7 @@ include "icerik/footer.php";
 echo "<br>";
 echo "<br>";
 if ($kullaniciAdi) {include "icerik/bolchat.php";}
-if ($kullaniciAdi == "") { ?>
+if (($kullaniciAdi == "") || ($aylikentry <1)) { ?> 
 </font>
 <br> 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
