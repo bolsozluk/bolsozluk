@@ -38,6 +38,10 @@ $ok = guvenlikKontrol($_REQUEST["ok"],"hard");
 $kenar = guvenlikKontrol($_REQUEST["kenar"],"hard");
 $test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
 
+$sorgu = mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'");
+$aylikentry = mysql_fetch_assoc($sorgu);
+if ($kullaniciAdi == "") $aylikentry = 0;
+
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
@@ -416,7 +420,7 @@ include "mobframe.php";
 
 
 
-if(($isMobile == 1) && ($kullaniciAdi == ""))
+if(($isMobile == 1) && (($kullaniciAdi == "") || ($aylikentry <1)))
 { 
 ?>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
@@ -2358,7 +2362,7 @@ if ($mod == "arabul")
 
 						//ENTRY ARASI REKLAM
 $rand=rand(00,100); 
-if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
+if (($rand > 80) && ($randrek < 2) && ($kullaniciAdi == "") && ($aylikentry < 1))  //if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
 {
 	$randrek = $randrek + 1;
 //echo"<small><i>reklamlar</i></small>" ;
