@@ -2803,7 +2803,7 @@ if ($baslik=="petrol")
 
 
 <?
-if ($kullaniciAdi == "")
+if (($kullaniciAdi == "") || ($aylikentry < 1))
 {
 ?>
 <div id=reklam>
