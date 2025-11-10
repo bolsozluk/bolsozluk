@@ -1662,9 +1662,11 @@ exit;
 			if ($goster >1) {
 				$gostersayfa = "&sayfa=$goster";
 			}
+
+			mysql_query("UPDATE user SET aylikentry = aylikentry + 1 WHERE nick = '$kullaniciAdi'"); //AYLIK ENTRY ANLIK UPDATE
 			
 			if ($isMobile == 0)
-			{
+			{			
 			echo "
 			<p><center><b>Entry'niz kayıt edilmiştir!</b><br>
 			<a href=\"sozluk.php?process=word&q=$baslik$gostersayfa\">devam!</a>
