@@ -131,7 +131,7 @@ $kisi = $ksx['gonderen'];
 
 echo "<div class=dash><center><b>$id silinenler listesine eklendi.</div>";
 
-
+mysql_query("UPDATE user SET aylikentry = aylikentry + -1 WHERE nick = '$kullaniciAdi'"); //AYLIK ENTRY ANLIK UPDATE
 
 
 			if ($isMobile == 1)
