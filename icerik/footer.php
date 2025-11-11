@@ -2,6 +2,8 @@
 
 $aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
 if ($kullaniciAdi == "") $aylikentry = 0;
+$entryBaraji = 1; 
+$pasifyazar = ($aylikentry < $entryBaraji);
 
 $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
@@ -80,7 +82,7 @@ $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows
 </div>
 
 <?
-if (($kullaniciAdi == "") || ($aylikentry < 1))
+if (($kullaniciAdi == "") || ($pasifyazar))
 {
 ?>
 
