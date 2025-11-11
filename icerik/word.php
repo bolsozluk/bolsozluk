@@ -2204,9 +2204,6 @@ if ($isMobile ==1){
 
 				$mesaj = str_replace("<br>","/n/s",$mesaj);
 			    $mesaj = str_replace("<br />"," /n/s",$mesaj);
-			//  $mesaj = *reg_replace("/[^A-Za-z0-9\s\s+'<br>''<br />''/n''/cr']/","/n",$mesaj);
-			//	$mesaj = *reg_replace("<","&lt;",$mesaj);
-			//	$mesaj = *reg_replace(">","&gt;",$mesaj);
 				$mesaj = str_replace("<","&lt;",$mesaj); 
 				$mesaj = str_replace(">","&gt;",$mesaj);
 				$mesaj = preg_replace("'\@([0-9]{1,9})'","<b>@\\1</b>",$mesaj);
@@ -2215,36 +2212,22 @@ if ($isMobile ==1){
 				$mesaj = preg_replace("'\(gbkz: ([\w öçşığüÖÇŞİĞÜ\-\.\´\`\:]+)\)'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
 				$mesaj = preg_replace("'\`([\w öçşığüÖÇŞİĞÜ\-\.\´\:]+)\`'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
 				$mesaj = preg_replace("'\~([\w öçşığüÖÇŞİĞÜ]+)\~'","<a href=\"sozluk.php?process=word&q=\\1\" title=\"\\1\">*</a>",$mesaj);
-
-
 				$mesaj = str_replace("&#039;","'",$mesaj);
 $uzanti= '#^http+(s)?:\/\/(.*)\.(gif|png|jpg)$#i'; //|gif|png)
 if(preg_match($uzanti, $mesaj))
 {
 //resim gömme öncelikli kodu
-//$mesaj = preg_replace('#(http+(s)?://([^\s]*)\.(jpg|gif|png))#', '<a target=_blank href="$1"><img src="$1" alt="" title="" height="150" /></a>', $mesaj);
 $mesaj = preg_replace( "`((http)+(s)?:(//)|(www\.))((\w|\.|\-|_)+)(/)?(\S+)?`i", "<a target=_blank href=\"http\\3://\\5\\6\\8\\9\" title=\"\\0\">\\5\\6</a>", $mesaj); //ORJİNAL LİNK KODU
 } else {
 $mesaj = preg_replace( "`((http)+(s)?:(//)|(www\.))((\w|\.|\-|_)+)(/)?(\S+)?`i", "<a target=_blank href=\"http\\3://\\5\\6\\8\\9\" title=\"\\0\">\\5\\6</a>", $mesaj); //ORJİNAL LİNK KODU
 }
-
-
- //$mesaj = preg_replace("'\(foto: ([\w öçşığüÖÇŞİĞÜ]+)\)'","<a target=_blank href=\"$1\"><img src=\"http://www.imgelem.org/files/$1.jpg\" alt=\"\" title=\"\" height=\"200\" /></a>",$mesaj); 
- //$mesaj = preg_replace("'\(foto: ([\w öçşığüÖÇŞİĞÜ.]+)\)'","<a target=_blank href=http://eksiye.com/i/p/$1.jpg><img src=\"http://eksiye.com/i/p/$1.jpg\" alt=\"\" title=\"\" height=\"300\" /></a>",$mesaj); 
-        $mesaj = preg_replace("'\(soundcloud: ([\w öçşığüÖÇŞİĞÜ]+)\)'","<br><iframe width=\"50%\" height=\"120\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/\\1&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true\"></iframe>",$mesaj); 
+$mesaj = preg_replace("'\(soundcloud: ([\w öçşığüÖÇŞİĞÜ]+)\)'","<br><iframe width=\"50%\" height=\"120\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/\\1&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true\"></iframe>",$mesaj); 
 				$mesaj = str_replace("/n/s","<br>",$mesaj);
 			
 
 				$mesaj = str_replace("\\\'","'",$mesaj);
 				$mesaj = preg_replace("'\(kalin: ([\w öçşığüÖÇŞİĞÜ\-_`\']+)\)'","<b>\\1</b>",$mesaj); //ÇALIŞIYOR
-			
-			//  $youtubeid=  preg_match("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","\\1",$mesaj, $youtubeid); //TEST
-		
-				
-//$id = 'yyDUC1LUXSU'; //Video id goes here
-//echo $youtubeid;
-//if (yt_exists($youtubeid)) {
-//$mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br> <iframe width=\"320\" height=\"240\" src=\"http://www.youtube.com/embed/\\1\" frameborder=\"0\" allowfullscreen></iframe>",$mesaj); //ÇALIŞIYOR eski kod
+
 if ($isMobile ==0)
 {
 $mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br><br> <iframe width=\"320\" height=\"240\" src=\"https://www.youtube.com/embed/\\1\" frameborder=\"0\" allowfullscreen></iframe><br>",$mesaj); //ÇALIŞIYOR eski kod
@@ -2254,8 +2237,6 @@ if ($isMobile ==1)
 {
 $mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br><br> <iframe width=\"70%\" height=\"50%\" src=\"https://www.youtube.com/embed/\\1\" frameborder=\"0\" allowfullscreen></iframe><br>",$mesaj); //ÇALIŞIYOR eski kod
 }
-
-//$mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<div class=\"youtube\" id=\"$1\" style=\"width: 320px; height: 180px;\"></div> <script src=\"https://www.bolsozluk.com/youtube.js\"></script>",$mesaj); //ÇALIŞMIYOR labnol
 
 if ($isMobile ==0)
 {			
@@ -2270,8 +2251,6 @@ $mesaj = preg_replace("'\(spotrack: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br
 }
 
 $mesaj = preg_replace("'\(audius: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br><iframe src=\"https://audius.co/embed/track?id=\\1\"&flavor=card width=\"100%\" height=\"480\" allow=\"encrypted-media\" style=\"border: none;\"></iframe>",$mesaj);
-
-//$mesaj = preg_replace("'\(baklava\)'","<a target=_blank href=\"http://www.yemekye.net/2016/02/ev-baklavasi_21.html\" rel=\"dofollow\">http://www.yemekye.net/2016/02/ev-baklavasi_21.html</a>",$mesaj); 
  				
 if ($isMobile ==0)
 {	
@@ -2306,21 +2285,14 @@ if ($isMobile ==1)
 $mesaj = preg_replace("'\(killshot\)'","<br> <iframe src=\"https://audiomack.com/embed/song/eminem/killshot?background=1\" scrolling=\"no\" width=\"85%\" height=\"214\" scrollbars=\"no\" frameborder=\"0\"></iframe>",$mesaj); 
 $mesaj = preg_replace("'\(vol5kapak: \)'","<img src=https://s3.eksiup.com/1bb41ed8c26.jpg width=500>",$mesaj);
 $mesaj = preg_replace("'\(bolgraph: \)'","<a href=\"/img/bolgraph1.jpg\"><img border=\"0\" src=\"/img/bolgraph1.jpg\"  width=\"500\"></a>", $mesaj);
-$mesaj = preg_replace("'\(screhber: \)'","<a href=\"/img/soundcloud.png\"><img border=\"0\" src=\"/youtube.png\" width=\"400\" height=\"400\"></a>", $mesaj);
-$mesaj = preg_replace("'\(ytrehber: \)'","<a href=\"/img/youtube.png\"><img border=\"0\" src=\"/soundcloud.png\" width=\"400\" height=\"400\"></a>", $mesaj);
+$mesaj = preg_replace("'\(screhber: \)'","<a href=\"/img/soundcloud.png\"><img border=\"0\" src=\"/img/youtube.png\" width=\"400\" height=\"400\"></a>", $mesaj);
+$mesaj = preg_replace("'\(ytrehber: \)'","<a href=\"/img/youtube.png\"><img border=\"0\" src=\"/img/soundcloud.png\" width=\"400\" height=\"400\"></a>", $mesaj);
 $mesaj = preg_replace("'\(kuvvetmira: \)'","<blockquote class=\"twitter-tweet\"><p lang=\"tr\" dir=\"ltr\">Biz Türk Rap’in 4 kişilik temel taşıyız.<br>Görüşmesek de,buluşmasak da, atışsak da,herbirimizin ayrı ayrı hakkı vardır.Yaşasın Rap<a href=\"https://twitter.com/ceza_ed?ref_src=twsrc%5Etfw\">@ceza_ed</a> <a href=\"https://twitter.com/fuat_ergin?ref_src=twsrc%5Etfw\">@fuat_ergin</a> <a href=\"https://twitter.com/hashtag/drfuchsofficial?src=hash&amp;ref_src=twsrc%5Etfw\">#drfuchsofficial</a><a href=\"https://t.co/oSu8ddfNPZ\">https://t.co/oSu8ddfNPZ</a><a href=\"https://t.co/K8Hm3pMG4m\">https://t.co/K8Hm3pMG4m</a><a href=\"https://t.co/URMOc2OaHz\">https://t.co/URMOc2OaHz</a><a href=\"https://t.co/3hA9gp6xe9\">https://t.co/3hA9gp6xe9</a></p>&mdash; sagopa kajmer (@Sagopakajmerrap) <a href=\"https://twitter.com/Sagopakajmerrap/status/1356160771512795137?ref_src=twsrc%5Etfw\">February 1, 2021</a></blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",$mesaj);
 $mesaj = preg_replace("'\(evinedon: \)'","<br> <blockquote class=\"twitter-tweet\" lang=\"tr\"><p>Artık herkes evine dönmeli.</p>&mdash; Abdullah Gül (@cbabdullahgul) <a href=\"https://twitter.com/cbabdullahgul/statuses/345799286551891969\">15 Haziran 2013</a></blockquote> <script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",$mesaj);
-
 $mesaj = preg_replace("/#([0-9\/\.]{3,9})/", "<a href=sozluk.php?process=eid&eid=\\1>#\\1</a>",$mesaj);				
-  			//$mesaj = preg_replace("'\(#([\w öçşığüÖÇŞİĞÜ]+)\)'", "<a target=\"_new\" href=\"http://twitter.com/search?q=\\2\">#\\2</a>",$mesaj);				
-				//$mesaj = preg_replace("/#([A-Za-z\/\.]*)/", "<a target=\"_new\" href=\"http://twitter.com/search?q=$1\">#$1</a>",$mesaj);		
 	
-
-
 if ($mod == "arabul")
 {
-//$mesaj = renklendir($mesaj, $aranacak , $renk = '#800080');
-//$mesaj = highlight($mesaj, $aranacak);
 	$mesaj = highlight_word($mesaj, $aranacak , $renk = '#800080');
 }
 
@@ -2390,34 +2362,16 @@ if (($rand > 80) && ($randrek < 2) && ($kullaniciAdi == "") && ($pasifyazar))  /
 <?
 }
 }
-
 		echo "</font><li value=".$say." class='eol'  onMouseOut='javascript:hideEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' >$mesaj";
-				//$mesajcount = ($mesajcount + str_word_count($mesaj));
-				//echo str_word_count($mesaj);
-				//echo " ";
-				//echo $mesajcount;
-	//$sorgu = "UPDATE konular SET mesajcount='$mesajcount' WHERE id='$konuid'";
-	//mysql_query($sorgu);
-
 				}
-
-
-
-			
-
 				if ($updater == "admtem Administrator") {
 					$updater = "<img src=img/unlem.gif> $updater";
 				}
 					
 				if ($updater and $updater != "admin"){
-					//echo $update;
 					$result = substr($update, 0, 10);
 					$result2 = "$gun/$ay/$yil";
-					//echo $result;
-					//echo $result2;
 					if ($result == $result2) {$update =  substr($update, 10, 15); }
-					//if (substr('$update', 1, 2) === ':') { substr_replace($update, '0', 0, 0);}
-
 					$bastir = "~ $update";
                     $bastirnew = "~";
 				}else{
@@ -2432,53 +2386,18 @@ if (($rand > 80) && ($randrek < 2) && ($kullaniciAdi == "") && ($pasifyazar))  /
 				if ($yazstatu and $yazstatu == "wait") {
 					echo "<br><font color=white size=1><img src=img/unlem.gif>Bu entry'i bir çaylak yazmış.</font>";
 			}
-			
-		/*	if ($yazstatu and $yazstatu == "on" ) {
-				echo "<br><font color=white size=1><img src=img/unlem.gif>$yazstatu</font>";
-			}
-
-				if ($yazstatu and $yazstatu == "akillandim" ) {
-				echo "<br><font color=white size=1><img src=img/unlem.gif>$yazstatu</font>";
-			}*/
 
 			if ($yazstatu and $yazstatu != "wait") {
 				echo "<br><font color=white size=1><img src=img/unlem.gif>$yazstatu</font>";
 			}
 
-
-/*
-
-if ($gds=="s")
-{
-	// $yazar ="anonim";
-		$msg ="";
-}
-
-*/
 			echo "
 				<div align='right'>";
-
-				/*
-        if ($gds =="s"){
-echo "
-				<b><a href=\"\" title=\"anonim\"><font size=1>anonim</A>";
-}
-
-				if ($gds =="s" and $sahibi =="$yazar"){
-echo " | soruyu soran |";
-//echo "$yazar";
-}
-*/
 
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$yazar'"));
 $kimse = $kimse1["nick"];
 $verified = $kimse1["verified"];
-
-
-
-
-
-
+					
 if($gorunum=="1"){ 
 
 if($verified=="1"){ echo "<img src=\"https://cdn2.iconfinder.com/data/icons/essentials-volume-i/128/verified-gold-512.png\" title=\"onaylı hesap\" width=16 height=16> <font size=1>";}
@@ -2490,10 +2409,8 @@ echo "<font size=1><b>| $ilkyazar |</b></font>";
 
         if (($kulYetki == "admin" or $kulYetki == "mod") and ($yazar =="bolgpt")){
 echo "<font size=1><b>| $ilkyazar |</b></font>";
-//echo "$yazar";
 }
 
- // if ($gds !="s"){
 echo "
 				<b><a href=\"sozluk.php?process=word&q=$echoyazar\" title=\"$yazartitle\"><font size=1>$yazar</A> ";
 // }
@@ -2539,27 +2456,10 @@ echo "
 			}
 
 $onayli = "";
-
-
-
-/// "<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gmesaj=$id&gkime=$yazar&gkonu=$link\"><font size=1>[/mesaj]</font></a>"
-
 if($verified=="1"){ $onayli = "<img src=\"https://cdn2.iconfinder.com/data/icons/essentials-volume-i/128/verified-gold-512.png\" title=\"onaylı hesap\" width=16 height=16> <font size=1>";}
-
-//				<b><a href=\"sozluk.php?process=word&q=$echoyazar\" title=\"$yazartitle\"><font size=1>$yazar</A></B> | $gun.$ay.$yil $saat $bastir</font>
-				//if ($kulYetki == "admin")
-				//{
 				echo "
-                
-                
-                
                 </B> <div onMouseOut='javascript:showEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' align='right'>
 				<span class='entryDiv' id='".$id."' ><span class=\"oySonuc\" id='oySonuc".$id."'></span> </div>
-
-
-
-
-
 				<table>
 				<tbody>
 				<tr>
@@ -2587,19 +2487,12 @@ if($verified=="1"){ $onayli = "<img src=\"https://cdn2.iconfinder.com/data/icons
 
 <a id=\"hos".$id."\" href=\"javascript:oylama($id,'arti');\" title=Puanım&nbsp;9> <font color= green> <span class=\"material-symbols-outlined\"> heart_plus </span></font></a><font size=\"1\">$arti</font>          <a id=\"bos".$id."\" href=\"javascript:oylama($id,'eksi');\" title=Mix&nbsp;Olmamış> <font color= red> <span class=\"material-symbols-outlined\"> stat_minus_2 </span></font></a><font size=\"1\">$eksi</font>&nbsp;  
 
-				
-				
-
-				
 				</li>
 				</font></font>
                 <br><br>
 				";
 			//}
-        }
-
-
-			
+        }			
 		}
 	}else if ($statu != "silindi") {
 	}
