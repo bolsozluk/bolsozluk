@@ -118,7 +118,7 @@ function guvenlikKontrol($variable,$style){
 				break;
 		case "hard":
 				$before = array("'","<",">","\"","\\",Chr(255));
-				$after  = array("","","","","","\\","");
+				$after  = array("`","","","","","\\","");
 				$variable = str_replace($before, $after, $variable);
 				$variable = trim(strip_tags($variable));
 				break;
