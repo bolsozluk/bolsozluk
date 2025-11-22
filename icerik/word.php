@@ -437,13 +437,13 @@ $yazarlik= $caylaksin["durum"];
 //}
 $flood= mysql_fetch_array(mysql_query("SELECT flood FROM user WHERE `nick`='$kullaniciAdi'"));
 $flad=$flood["flood"];
-if ($flad >=4 AND $flad <7)
+if ($flad >=5 AND $flad <8)
 {
 echo "<center><b>sözlüğe bu kadar yüklenmeyiniz, makina ısınıyor. <br>(uyarıdan kurtulmak için daha yavaş oylayın/entry girin)</b></center>";
 
 }
 
-if ($flad >= 6)
+if ($flad >= 9)
 {
     $xgkime = "admin";
 
