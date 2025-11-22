@@ -13,7 +13,6 @@
 -sulh981; @li entryler yerine yorum ozelligi getirilmesi.
 -mertd; embed sistemlerinin ui/ux odakli gelistirilmesi.
 -anonim; profillerde daha fazla kisisel bilgi
--anonim; basliklardaki noktalama isareti kisitlari problemleri cozumu.
 
 ----------vazgecilenler - terkedilenler----------
 -bolshit: anket, liste, ve sozluk icerigini gorsel materyal destekli editoryal suzgecten geciren bir portal projesi;
@@ -29,7 +28,9 @@
 
 ----------yapilanlar----------
 kasim 2025:
--ay icerisinde hic entry girmemis yazarlara reklam gösterim fonksiyonu kodlandi.
+-ay icerisinde hic entry girmemis yazarlara reklam gosterim fonksiyonu kodlandi.
+-otomatik flood kontrolu limitleri yukseltildi.
+-baslik acarken kesme isaretlerinin otomatik olarak backticke donusumu kodlandi.
 
 ekim 2025:
 -raple kelime havuzuna yeni sozcukler eklendi.
