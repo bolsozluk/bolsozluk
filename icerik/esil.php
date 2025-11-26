@@ -12,12 +12,13 @@ if ($id and $sira) {
 	$kayit2=mysql_fetch_array($sorgu2);
 	$baslik=$kayit2["baslik"];
 	
-	$sorgu1 = "SELECT mesaj,id,yazar,tarih FROM mesajlar WHERE `id` = '$id'";
+	$sorgu1 = "SELECT mesaj,id,yazar,tarih,ilkyazar FROM mesajlar WHERE `id` = '$id'";
 	$sorgu2 = mysql_query($sorgu1);
 	$kayit2=mysql_fetch_array($sorgu2);
 	$mesaj=$kayit2["mesaj"];
 	$dbyazar=$kayit2["yazar"];
 	$mesajtarih=$kayit2["tarih"];
+	$ilkyazar=$kayit2["ilkyazar"];
 	
 	if ($dbyazar != $kullaniciAdi and $kulYetki != "admin" and $kulYetki != "mod")  {
 		$ip = getenv('REMOTE_ADDR');
@@ -57,6 +58,8 @@ if ($id and $sira) {
 		$sorgu = "UPDATE mesajlar SET `siltarih` = '$tarih' WHERE id='$id'";
 		mysql_query($sorgu);
 		$sorgu = "UPDATE mesajlar SET `praetornotu` = '$praetornotu' WHERE id='$id'";
+		mysql_query($sorgu);
+		$sorgu = "UPDATE mesajlar SET `yazar` = '$ilkyazar' WHERE id='$id'";
 		mysql_query($sorgu);
 
 		//BAŞLIK TARİHİ UPDATE
@@ -179,7 +182,7 @@ mysql_query("UPDATE user SET aylikentry = aylikentry + -1 WHERE nick = '$kullani
 <br>
 
 <?
-if ($ispitle != $kullaniciAdi)
+if ($kulYetki == "admin" or $kulYetki == "mod")) 
 {
 ?>
 
