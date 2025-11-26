@@ -182,7 +182,7 @@ mysql_query("UPDATE user SET aylikentry = aylikentry + -1 WHERE nick = '$kullani
 <br>
 
 <?
-if ($kulYetki == "admin" or $kulYetki == "mod")) 
+if ($kulYetki == "admin" or $kulYetki == "mod") 
 {
 ?>
 
