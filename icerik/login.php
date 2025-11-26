@@ -196,10 +196,26 @@ echo "<script>
     alert(message);
 </script>";
 */
-
-
 	$sorgukarma = "UPDATE user SET karma=$karma WHERE nick='$kullaniciAdi'";
 	mysql_query($sorgukarma);
+
+	$yil = date("Y");
+$ay = date("n"); // 'n' → 1-12 arası rakam (başında sıfır yok)
+
+$sql_check = "SELECT id FROM karma_log WHERE user='$kullaniciAdi' AND yil='$yil' AND ay='$ay'";
+$result = mysql_query($sql_check);
+
+if (mysql_num_rows($result) > 0) {
+    // O ay için kayıt varsa: Güncelle
+    $row = mysql_fetch_assoc($result);
+    $log_id = (int) $row['id'];
+    $sql_update = "UPDATE karma_log SET karma='$karma', created_at=NOW() WHERE id='$log_id'";
+    mysql_query($sql_update);
+} else {
+    // Kayıt yoksa, yeni kaydı ekle
+    $sql_insert = "INSERT INTO karma_log (user, karma, yil, ay) VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')";
+    mysql_query($sql_insert);
+}
 
 
 //KARMA UPDATE SİSTEMİ
