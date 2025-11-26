@@ -34,7 +34,8 @@ try {
         if (!$kullaniciAdi) {
             header('HTTP/1.1 401 Unauthorized');
             echo json_encode(array('error' => 'IP adresiniz loglandi.'));
-            exit;                        
+            exit;
+        }
             $result = mysql_query("SELECT * FROM chat_messages WHERE hidden = 0 ORDER BY id DESC LIMIT 30");
             if (!$result) {
                 throw new Exception('Sorgu hatası: ' . mysql_error());
