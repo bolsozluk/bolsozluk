@@ -99,32 +99,37 @@ if($yetki=="user")
 //KARMA UPDATE SİSTEMİ
 
 //entry id çek
-$kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kullaniciAdi'"));
+$kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
 $kimse = $kimse1["nick"];
 $saysil = $kimse1["saysil"];
 $saycaylak = $kimse1["saycaylak"];
 
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kullaniciAdi' and `statu` = '' ");
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
 $kactop = mysql_num_rows($sor);
 
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kullaniciAdi'");
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim'");
 $kachamx = mysql_num_rows($sor);
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `ilkyazar`='$kullaniciAdi'");
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `ilkyazar`='$kim'");
 $kachamy = mysql_num_rows($sor);
 
 if ($kachamx > $kachamy) $kacham = $kachamx;
 if ($kachamx <= $kachamy) $kacham = $kachamy;
 
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kullaniciAdi' and `statu` = 'silindi' ");
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' AND silen<>'$kim'"); //kendi sildiklerini dahil etme
 $kac = mysql_num_rows($sor);
 
-$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kullaniciAdi' and `oy` = '1'");
+$yil_ago = date("Y-m-d H:i:s", strtotime("-1 year"));
+$sorgu = "SELECT COUNT(*) FROM mesajlar WHERE yazar='anonim' AND ilkyazar='$kullaniciAdi' AND tarih >= '$yil_ago'";
+$res = mysql_query($sorgu);
+$anonimsayi = mysql_result($res, 0);
+
+$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '1'");
 $arti = mysql_num_rows($sor);
 
-$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kullaniciAdi' and `oy` = '0'");
+$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '0'");
 $eksi = mysql_num_rows($sor);
 
-$sor = mysql_query("select oy from oylar WHERE `nick`='$kullaniciAdi' and oy = 1");
+$sor = mysql_query("select oy from oylar WHERE `nick`='$kim' and oy = 1");
 $verarti = mysql_num_rows($sor);
 
 // Katsayıları ayarla
@@ -147,7 +152,7 @@ $kpi = min(max(($arti / $kactop) * $kpi_carpani, 0.8), $kpi_max);
 $karmaneg = $saysil * $silinen_ceza;
 $caylak_ceza = $saycaylak * $caylak_ceza;
 
-$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus) * $kpi;
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimsayi) * $kpi;
 $karma = $karma - $karmaneg - $caylak_ceza;
 $karma = round($karma);
 
