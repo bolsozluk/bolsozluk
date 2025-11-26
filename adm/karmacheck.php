@@ -23,8 +23,24 @@ $kachamy = mysql_num_rows($sor);
 if ($kachamx > $kachamy) $kacham = $kachamx;
 if ($kachamx <= $kachamy) $kacham = $kachamy;
 
-$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' ");
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' AND silen<>'$kim'"); //kendi sildiklerini dahil etme
 $kac = mysql_num_rows($sor);
+
+$yil = date("Y");
+$ay = date("n");
+
+if ($ay == 12) {
+    $ilkAy = 1;
+    $ilkYil = $yil;
+} else {
+    $ilkAy = $ay + 1;
+    $ilkYil = $yil - 1;
+}
+
+
+$sorgu = "SELECT COUNT(*) FROM mesajlar WHERE yazar='anonim' AND ilkyazar='$kim' AND ((yil='$ilkYil' AND ay>='$ilkAy') OR (yil='$yil' AND ay<='$ay'))";
+$res = mysql_query($sorgu);
+$anonimsayi = mysql_result($res, 0);
 
 $sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '1'");
 $arti = mysql_num_rows($sor);
@@ -45,6 +61,7 @@ $caylak_ceza = 30;                // Arttırıldı (7 → 30)
 $sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
 $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
 $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
+$anon_carpan = 0.5;			      // initial (0.5)
 
 // Karma hesaplama
 $karmak0 = (($arti - $eksi) / $kactop) * 100 * $kalite_agirlik;
@@ -54,8 +71,9 @@ $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpan
 $kpi = min(max(($arti / $kactop) * $kpi_carpani, 0.8), $kpi_max);
 $karmaneg = $saysil * $silinen_ceza;
 $caylak_ceza = $saycaylak * $caylak_ceza;
+$anonimsayi = $anonimsayi * $anon_carpan;
 
-$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus) * $kpi;
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimsayi) * $kpi;
 $karma = $karma - $karmaneg - $caylak_ceza;
 $karma = round($karma);
 
@@ -66,7 +84,7 @@ echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
 echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
 echo "eksi (Eksi Oy): " . htmlspecialchars($eksi) . "\n";
 echo "verarti (Verilen Artı Oy): " . htmlspecialchars($verarti) . "\n";
-echo "saysil (Silinen Entry): " . htmlspecialchars($saysil) . "\n";
+echo "saysil (moderasyonca Silinen Entry): " . htmlspecialchars($saysil) . "\n";
 echo "saycaylak (Çaylak Cezası): " . htmlspecialchars($saycaylak) . "\n\n";
 
 echo "HESAPLAMALAR:\n";
@@ -77,6 +95,7 @@ echo "deneyim_bonus: " . round($deneyim_bonus, 2) . "\n";
 echo "kpi (Kalite Çarpanı): " . round($kpi, 2) . "\n";
 echo "karmaneg (Silinen Ceza): " . round($karmaneg, 2) . "\n";
 echo "caylak_ceza: " . round($caylak_ceza, 2) . "\n";
+echo "anonimsayi:" . $anonimsayi . "\n";
 
 echo "SONUÇ:\n";
 echo "Karma Puanı: " . $karma . "\n";
