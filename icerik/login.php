@@ -97,7 +97,8 @@ if($yetki=="user")
 
 
 //KARMA UPDATE SİSTEMİ
-
+$kim = $kullaniciAdi;
+				
 //entry id çek
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
 $kimse = $kimse1["nick"];
@@ -209,7 +210,7 @@ if (mysql_num_rows($result) > 0) {
     // O ay için kayıt varsa: Güncelle
     $row = mysql_fetch_assoc($result);
     $log_id = (int) $row['id'];
-    $sql_update = "UPDATE karma_log SET karma='$karma', created_at=NOW() WHERE id='$log_id'";
+    $sql_update = "UPDATE karma_log SET karma='$karma' WHERE id='$log_id'";
     mysql_query($sql_update);
 } else {
     // Kayıt yoksa, yeni kaydı ekle
