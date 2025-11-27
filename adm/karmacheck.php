@@ -9,8 +9,7 @@ $kim = guvenlikKontrol($_REQUEST["kim"],"hard");
 //entry id çek
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
 $kimse = $kimse1["nick"];
-$saysil = $kimse1["saysil"];
-$saycaylak = $kimse1["saycaylak"];
+$saycaylak = $kimse1["saycaylak"]-1;
 
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
 $kactop = mysql_num_rows($sor);
@@ -24,7 +23,7 @@ if ($kachamx > $kachamy) $kacham = $kachamx;
 if ($kachamx <= $kachamy) $kacham = $kachamy;
 
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' AND silen<>'$kim'"); //kendi sildiklerini dahil etme
-$kac = mysql_num_rows($sor);
+$saysil = mysql_num_rows($sor);
 
 $yil = date("Y");
 $ay = date("n");
