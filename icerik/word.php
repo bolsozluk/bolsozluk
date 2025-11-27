@@ -6,7 +6,7 @@
     if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
+        header('Access-Control-Max-Age: 7200');    // cache 
     }
 
     // Access-Control headers are received during OPTIONS requests
@@ -21,9 +21,9 @@
         exit(0);
 
 
-// Oturum süresini uzatmak için her sayfa yüklenmesinde cookie'yi +15 dk güncelle
+// Oturum süresini uzatmak için her sayfa yüklenmesinde cookie'yi +5 dk güncelle
 if (isset($_COOKIE[session_name()])) {
-    setcookie(session_name(), $_COOKIE[session_name()], time() + 1500, "/");
+    setcookie(session_name(), $_COOKIE[session_name()], time() + 500, "/");
 }
     }
 
