@@ -10,10 +10,8 @@ $kim = guvenlikKontrol($_REQUEST["kim"],"hard");
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
 $kimse = $kimse1["nick"];
 $saycaylak = $kimse1["saycaylak";
-
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
 $kactop = mysql_num_rows($sor);
-
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim'");
 $kachamx = mysql_num_rows($sor);
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `ilkyazar`='$kim'");
@@ -35,7 +33,6 @@ if ($ay == 12) {
     $ilkAy = $ay + 1;
     $ilkYil = $yil - 1;
 }
-
 
 $sorgu = "SELECT COUNT(*) FROM mesajlar WHERE yazar='anonim' AND ilkyazar='$kim' AND ((yil='$ilkYil' AND ay>='$ilkAy') OR (yil='$yil' AND ay<='$ay'))";
 $res = mysql_query($sorgu);
