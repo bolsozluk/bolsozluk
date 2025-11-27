@@ -77,7 +77,12 @@ function kontrolEt(){
 	
 	$_SESSION['verifyStatus_S'] = $verifyStatus;
 	
-	if ($verifyStatus == "sus") header("Location: ban.php");
+	if ($verifyStatus == "sus")
+	{
+		header("Location: ban.php");
+		exit; 
+	}
+	
 	if ($userHaveMsg) getPrivateMessages();
 }
 
