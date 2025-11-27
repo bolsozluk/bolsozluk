@@ -432,7 +432,7 @@ if ($stat == "aylik") {
     </script>
 
     <?php
-    echo "<br>silinen entryler de hesaplamaya dahil edilmiştir.</center>";
+    //echo "<br>silinen entryler de hesaplamaya dahil edilmiştir.</center>";
     die();
 }
 
