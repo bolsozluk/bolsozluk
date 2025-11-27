@@ -9,7 +9,7 @@ $kim = guvenlikKontrol($_REQUEST["kim"],"hard");
 //entry id çek
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
 $kimse = $kimse1["nick"];
-$saycaylak = $kimse1["saycaylak]";
+$saycaylak = $kimse1["saycaylak"];
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
 $kactop = mysql_num_rows($sor);
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim'");
