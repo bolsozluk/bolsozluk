@@ -27,7 +27,7 @@ $yil = date("Y");
 $ay = date("n");
 
 if ($ay == 12) {
-    $ilkAy = 1;
+    $ilkAy = 1; 
     $ilkYil = $yil;
 } else {
     $ilkAy = $ay + 1;
@@ -69,13 +69,21 @@ $caylak_ceza = 25;                // Düşürüldü (30 → 25)
 $sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
 $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
 $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
-$anon_carpan = 0.4;			      // initial (0.4)
+$anon_carpan = 0.5;			      // initial (0.5)
 $bot_cezasi = 1.0; 
 
 if ($kactop > 1000) {
     $caylak_ceza = 15; // 15 puan
 } else {
     $caylak_ceza = 25; // 25 puan
+}
+
+if ($kactop > 1000) {
+    $anon_carpan = 0.4; 
+} else if ($kactop > 500) {
+    $anon_carpan = 0.45; 
+} else {
+    $anon_carpan = 0.5; 
 }
 
 if ($oy_verme_orani > 5 || $oy_alma_orani > 5) $bot_cezasi = 0.8; // %20 ceza
@@ -86,14 +94,28 @@ if ($oy_verme_orani > 30 || $oy_alma_orani > 30) $bot_cezasi = 0.01; // %99 ceza
 //karma hesaplama
 $karmak0 = min($net_oy_orani * 100 * $kalite_agirlik,500)*$bot_cezasi;
 $karmak1 = $kactop * $aktivite_carpani;
-$karmak2 = min(($verarti / max($kactop, 1)) * 8, 250)*$bot_cezasi; // Maksimum sınır
+$karmak2 = min(($verarti / max($kactop, 1)) * $topluluk_carpani, 250)*$bot_cezasi; // Maksimum sınır
 $deneyim_bonus = ($kactop > 1000) ? min(($kactop - 1000) * $deneyim_bonus_carpani, 50) : 0;
-$kpi = min(max(($arti / $kactop) * $kpi_carpani, 0.8), $kpi_max);
+
+$kalite_orani = $arti / max($kactop, 1);
+
+if ($kalite_orani <= 0.3) {
+    $kpi = 0.6; // Düşük kalite: %40 ceza
+} elseif ($kalite_orani <= 0.7) {
+    $kpi = 0.9; // Orta kalite: %10 ceza  
+} elseif ($kalite_orani <= 1.2) {
+    $kpi = 1.1; // İyi kalite: %10 bonus
+} elseif ($kalite_orani <= 2.0) {
+    $kpi = 1.3; // Çok iyi: %30 bonus
+} else {
+    $kpi = 1.5; // Mükemmel: %50 bonus
+}
+
 $karmaneg = $saysil * $silinen_ceza;
 $caylak_ceza = $saycaylak * $caylak_ceza;
-$anonimsayi = $anonimsayi * $anon_carpan;
+$anonimceza = $anonimsayi * $anon_carpan;
 
-$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimsayi) * $kpi;
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimceza) * $kpi;
 $karma = $karma - $karmaneg - $caylak_ceza;
 $karma = round($karma);
 
@@ -105,6 +127,7 @@ echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
 echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
 echo "eksi (Eksi Oy): " . htmlspecialchars($eksi) . "\n";
 echo "verarti (Verilen Artı Oy): " . htmlspecialchars($verarti) . "\n";
+echo "anonim entry sayisi:" . $anonimsayi . "\n";
 echo "saysil (moderasyonca Silinen Entry): " . htmlspecialchars($saysil) . "\n";
 echo "saycaylak (Çaylak Cezası): " . htmlspecialchars($saycaylak) . "\n\n";
 
@@ -113,35 +136,11 @@ echo "karmak0 (Kalite Puanı): " . round($karmak0, 2) . "\n";
 echo "karmak1 (Aktivite Puanı): " . round($karmak1, 2) . "\n";
 echo "karmak2 (Topluluk Katkısı): " . round($karmak2, 2) . "\n";
 echo "deneyim_bonus: " . round($deneyim_bonus, 2) . "\n";
+echo "kalite oranı: " . round($kalite_orani, 2) . "\n";
 echo "kpi (Kalite Çarpanı): " . round($kpi, 2) . "\n";
 echo "karmaneg (Silinen Ceza): " . round($karmaneg, 2) . "\n";
 echo "caylak_ceza: " . round($caylak_ceza, 2) . "\n";
-echo "anonimlik cezasi:" . $anonimsayi . "\n";
-
-echo "SONUÇ:\n";
-echo "Karma Puanı: " . $karma . "\n";
-echo "</pre>";
-
-echo "<b>$kim:</b>"; 
-echo "<pre>";
-echo "oy verme oranı: " . htmlspecialchars($oy_verme_orani) . "\n";
-echo "oy alma oranı: " . htmlspecialchars($oy_alma_orani) . "\n";
-echo "kactop (Onaylı Entry): " . htmlspecialchars($kactop) . "\n";
-echo "arti (Artı Oy): " . htmlspecialchars($arti) . "\n";
-echo "eksi (Eksi Oy): " . htmlspecialchars($eksi) . "\n";
-echo "verarti (Verilen Artı Oy): " . htmlspecialchars($verarti) . "\n";
-echo "saysil (moderasyonca Silinen Entry): " . htmlspecialchars($saysil) . "\n";
-echo "saycaylak (Çaylak Cezası): " . htmlspecialchars($saycaylak) . "\n\n";
-
-echo "HESAPLAMALAR:\n";
-echo "karmak0 (Kalite Puanı): " . round($karmak0, 2) . "\n";
-echo "karmak1 (Aktivite Puanı): " . round($karmak1, 2) . "\n";
-echo "karmak2 (Topluluk Katkısı): " . round($karmak2, 2) . "\n";
-echo "deneyim_bonus: " . round($deneyim_bonus, 2) . "\n";
-echo "kpi (Kalite Çarpanı): " . round($kpi, 2) . "\n";
-echo "karmaneg (Silinen Ceza): " . round($karmaneg, 2) . "\n";
-echo "caylak_ceza: " . round($caylak_ceza, 2) . "\n";
-echo "anonimsayi:" . $anonimsayi . "\n";
+echo "anonimlik cezasi:" . $anonimceza . "\n";
 
 echo "SONUÇ:\n";
 echo "Karma Puanı: " . $karma . "\n";
