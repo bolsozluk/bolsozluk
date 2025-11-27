@@ -213,6 +213,8 @@ $ay = date("n"); // 'n' → 1-12 arası rakam (başında sıfır yok)
 $sql_check = "SELECT id FROM karma_log WHERE user='$kullaniciAdi' AND yil='$yil' AND ay='$ay'";
 $result = mysql_query($sql_check);
 
+if ($kactop >300)
+{
 if (mysql_num_rows($result) > 0) {
     // O ay için kayıt varsa: Güncelle
     $row = mysql_fetch_assoc($result);
@@ -224,7 +226,7 @@ if (mysql_num_rows($result) > 0) {
     $sql_insert = "INSERT INTO karma_log (user, karma, yil, ay) VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')";
     mysql_query($sql_insert);
 }
-
+}
 
 //KARMA UPDATE SİSTEMİ
 
