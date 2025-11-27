@@ -164,7 +164,7 @@ $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
 $anon_carpan = 0.5;			      // initial (0.5)
 
 // Karma hesaplama
-$karmak0 = max($net_oy_orani * 100 * $kalite_agirlik,100);
+$karmak0 = min($net_oy_orani * 100 * $kalite_agirlik,100);
 $karmak1 = $kactop * $aktivite_carpani;
 $karmak2 = min(($verarti / max($kactop, 1)) * 8, 50); // Maksimum sınır
 $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpani, 50) : 0;
