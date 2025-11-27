@@ -226,11 +226,22 @@ if (mysql_num_rows($result) > 0) {
     $log_id = (int) $row['id'];
     $sql_update = "UPDATE karma_log SET karma='$karma' WHERE id='$log_id'";
     mysql_query($sql_update);
+     if (!mysql_query($sql_update)) {
+            error_log("Update Error: " . mysql_error());
+        } else {
+            error_log("Karma güncellendi: $karma");
+        }
 } else {
     // Kayıt yoksa, yeni kaydı ekle
     $sql_insert = "INSERT INTO karma_log (user, karma, yil, ay) VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')";
     mysql_query($sql_insert);
-}
+     if (!mysql_query($sql_insert)) {
+            error_log("Insert Error: " . mysql_error());
+        } else {
+            error_log("Yeni karma kaydı eklendi: $karma");
+        }
+    }
+
 }
 
 //KARMA UPDATE SİSTEMİ
