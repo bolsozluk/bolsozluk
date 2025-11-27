@@ -120,7 +120,7 @@ $yil = date("Y");
 $ay = date("n");
 
 if ($ay == 12) {
-    $ilkAy = 1;
+    $ilkAy = 1; 
     $ilkYil = $yil;
 } else {
     $ilkAy = $ay + 1;
@@ -162,13 +162,21 @@ $caylak_ceza = 25;                // Düşürüldü (30 → 25)
 $sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
 $kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
 $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
-$anon_carpan = 0.4;			      // initial (0.4)
+$anon_carpan = 0.5;			      // initial (0.5)
 $bot_cezasi = 1.0; 
 
 if ($kactop > 1000) {
     $caylak_ceza = 15; // 15 puan
 } else {
     $caylak_ceza = 25; // 25 puan
+}
+
+if ($kactop > 1000) {
+    $anon_carpan = 0.4; 
+} else if ($kactop > 500) {
+    $anon_carpan = 0.45; 
+} else {
+    $anon_carpan = 0.5; 
 }
 
 if ($oy_verme_orani > 5 || $oy_alma_orani > 5) $bot_cezasi = 0.8; // %20 ceza
@@ -179,14 +187,28 @@ if ($oy_verme_orani > 30 || $oy_alma_orani > 30) $bot_cezasi = 0.01; // %99 ceza
 //karma hesaplama
 $karmak0 = min($net_oy_orani * 100 * $kalite_agirlik,500)*$bot_cezasi;
 $karmak1 = $kactop * $aktivite_carpani;
-$karmak2 = min(($verarti / max($kactop, 1)) * 8, 250)*$bot_cezasi; // Maksimum sınır
+$karmak2 = min(($verarti / max($kactop, 1)) * $topluluk_carpani, 250)*$bot_cezasi; // Maksimum sınır
 $deneyim_bonus = ($kactop > 1000) ? min(($kactop - 1000) * $deneyim_bonus_carpani, 50) : 0;
-$kpi = min(max(($arti / $kactop) * $kpi_carpani, 0.8), $kpi_max);
+
+$kalite_orani = $arti / max($kactop, 1);
+
+if ($kalite_orani <= 0.3) {
+    $kpi = 0.6; // Düşük kalite: %40 ceza
+} elseif ($kalite_orani <= 0.7) {
+    $kpi = 0.9; // Orta kalite: %10 ceza  
+} elseif ($kalite_orani <= 1.2) {
+    $kpi = 1.1; // İyi kalite: %10 bonus
+} elseif ($kalite_orani <= 2.0) {
+    $kpi = 1.3; // Çok iyi: %30 bonus
+} else {
+    $kpi = 1.5; // Mükemmel: %50 bonus
+}
+
 $karmaneg = $saysil * $silinen_ceza;
 $caylak_ceza = $saycaylak * $caylak_ceza;
-$anonimsayi = $anonimsayi * $anon_carpan;
+$anonimceza = $anonimsayi * $anon_carpan;
 
-$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimsayi) * $kpi;
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimceza) * $kpi;
 $karma = $karma - $karmaneg - $caylak_ceza;
 $karma = round($karma);
 
