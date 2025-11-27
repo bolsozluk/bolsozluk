@@ -51,6 +51,14 @@ $eksi = mysql_num_rows($sor);
 $sor = mysql_query("select oy from oylar WHERE `nick`='$kim' and oy = 1");
 $verarti = mysql_num_rows($sor);
 
+// Kalite puanı hesaplamasından önce net oy oranını sınırla
+$net_oy_orani = ($arti - $eksi) / max($kactop, 1);
+$maksimum_oran = 2.0; // Entry başına maksimum 2 net oy
+
+if ($net_oy_orani > $maksimum_oran) {
+    $net_oy_orani = $maksimum_oran;
+}
+
 // Katsayıları ayarla
 $aktivite_carpani = 0.07;         // Düşürüldü (0.12 → 0.07)
 $kalite_agirlik = 0.59;           // Düşürüldü (0.65 → 0.59)
@@ -64,9 +72,9 @@ $kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
 $anon_carpan = 0.5;			      // initial (0.5)
 
 // Karma hesaplama
-$karmak0 = (($arti - $eksi) / $kactop) * 100 * $kalite_agirlik;
-$karmak1 = $kactop * $aktivite_carpani;
-$karmak2 = ($verarti / $kactop) * $topluluk_carpani;
+$karmak0 = $net_oy_orani * 100 * $kalite_agirlik;
+$karmak1 = $kactop * $aktivite_carpani
+$karmak2 = min(($verarti / max($kactop, 1)) * 8, 100); // Maksimum sınır
 $deneyim_bonus = ($kactop > 2000) ? min(($kactop - 2000) * $deneyim_bonus_carpani, 50) : 0;
 $kpi = min(max(($arti / $kactop) * $kpi_carpani, 0.8), $kpi_max);
 $karmaneg = $saysil * $silinen_ceza;
