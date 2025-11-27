@@ -15,7 +15,7 @@ session_set_cookie_params(
     86400, // 30 gün
     '/',     // path
     '',      // domain (boş = mevcut domain)
-    false,   // secure
+    true,   // secure
     true     // httponly
 );
 
