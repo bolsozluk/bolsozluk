@@ -1664,6 +1664,10 @@ exit;
 			}
 
 			mysql_query("UPDATE user SET aylikentry = aylikentry + 1 WHERE nick = '$kullaniciAdi'"); //AYLIK ENTRY ANLIK UPDATE
+
+			$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
+			$kactop = mysql_num_rows($sor);
+			if ($kactop > 300) karmaUpdate();
 			
 			if ($isMobile == 0)
 			{			
