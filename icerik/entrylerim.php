@@ -183,6 +183,8 @@ $kac = mysql_num_rows($sor);
 $sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kimdirbu' and `oy` = '1'");
 $arti = mysql_num_rows($sor);
 
+$sor = mysql_fetch_array(mysql_query("select karma from user WHERE `nick`='$kimdirbu'"));
+$karma = $sor["karma"];
 
 if ($kactop < 300) $karma = 0; 
 if ($karma < -300) $karma = -300; 
