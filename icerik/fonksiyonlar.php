@@ -154,6 +154,10 @@ if ($kactop > 300) {
     } else {
         error_log("Karma log hatası: " . mysql_error());
     }
+
+$user_karma_update = "UPDATE user SET karma = '$karma' WHERE nick = '$kullaniciAdi'";
+mysql_query($user_karma_update);
+	
 }
 
 //KARMA UPDATE SİSTEMİ
