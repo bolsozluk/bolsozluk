@@ -144,30 +144,16 @@ $ay = date("n"); // 'n' → 1-12 arası rakam (başında sıfır yok)
 $sql_check = "SELECT id FROM karma_log WHERE user='$kullaniciAdi' AND yil='$yil' AND ay='$ay'";
 $result = mysql_query($sql_check);
 
-if ($kactop >300)
-{
-if (mysql_num_rows($result) > 0) {
-    // O ay için kayıt varsa: Güncelle
-    $row = mysql_fetch_assoc($result);
-    $log_id = (int) $row['id'];
-    $sql_update = "UPDATE karma_log SET karma='$karma' WHERE id='$log_id'";
-    mysql_query($sql_update);
-     if (!mysql_query($sql_update)) {
-            error_log("Update Error: " . mysql_error());
-        } else {
-            error_log("Karma güncellendi: $karma");
-        }
-} else {
-    // Kayıt yoksa, yeni kaydı ekle
-    $sql_insert = "INSERT INTO karma_log (user, karma, yil, ay) VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')";
-    mysql_query($sql_insert);
-     if (!mysql_query($sql_insert)) {
-            error_log("Insert Error: " . mysql_error());
-        } else {
-            error_log("Yeni karma kaydı eklendi: $karma");
-        }
+if ($kactop > 300) {
+    $sql = "INSERT INTO karma_log (user, karma, yil, ay) 
+            VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')
+            ON DUPLICATE KEY UPDATE karma = VALUES(karma)";
+    
+    if (mysql_query($sql)) {
+        error_log("Karma log başarıyla işlendi: $kullaniciAdi - $karma");
+    } else {
+        error_log("Karma log hatası: " . mysql_error());
     }
-
 }
 
 //KARMA UPDATE SİSTEMİ
