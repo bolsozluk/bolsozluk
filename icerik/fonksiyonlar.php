@@ -21,9 +21,9 @@ function fonksiyonlartest()
 
 function karmaUpdate()
 	{
-
-		//KARMA UPDATE SİSTEMİ
-		$kim = $kullaniciAdi;
+	//KARMA UPDATE SİSTEMİ
+	kontrolEt();	
+	$kim = $kullaniciAdi;
 		
 //entry id çek
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
