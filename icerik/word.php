@@ -1663,7 +1663,12 @@ exit;
 				$gostersayfa = "&sayfa=$goster";
 			}
 
-			mysql_query("UPDATE user SET aylikentry = aylikentry + 1 WHERE nick = '$kullaniciAdi'"); //AYLIK ENTRY ANLIK UPDATE
+//AYLIK ENTRY CHECK
+$yil = date("Y");
+$ay  = date("m") - 0;
+$sor = mysql_query("SELECT COUNT(*) AS adet FROM mesajlar WHERE yazar='$kullaniciAdi' AND statu!='silindi' AND yil='$yil' AND ay=$ay");
+$kactop = mysql_result($sor, 0, 'adet');
+mysql_query("UPDATE user SET aylikentry=$kactop WHERE nick='$kullaniciAdi'");
 
 //KARMA UPDATE SİSTEMİ
 $kim = $kullaniciAdi;
