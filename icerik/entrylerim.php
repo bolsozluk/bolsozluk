@@ -177,6 +177,8 @@ $kachamy = mysql_num_rows($sor);
 if ($kachamx > $kachamy) $kacham = $kachamx;
 if ($kachamx <= $kachamy) $kacham = $kachamy;
 
+
+
 $sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kimdirbu' and `statu` = 'silindi' ");
 $kac = mysql_num_rows($sor);
 
@@ -185,6 +187,30 @@ $arti = mysql_num_rows($sor);
 
 $sor = mysql_fetch_array(mysql_query("select karma from user WHERE `nick`='$kimdirbu'"));
 $karma = $sor["karma"];
+
+if ($kulYetki == "allah") //KARMATEST
+{
+echo "--kH:";
+echo $kacham;
+
+echo "--k0:";
+echo $karmak0;
+echo "--k1:";
+echo $karmak1;
+echo "--k2:";
+echo $karmak2;
+
+echo "--kN:";
+echo $karmaneg;
+echo "--saysil:";
+echo $saysil;
+echo "--saycaylak:";
+echo $saycaylak;
+echo "--kpi:";
+echo $kpi;
+echo "--karma:";
+echo $karma;
+}
 
 if ($kactop < 300) $karma = 0; 
 if ($karma < -300) $karma = -300; 
