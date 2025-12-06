@@ -5,10 +5,7 @@ $kimdirbu = guvenlikKontrol(
 include "mobframe.php";
 echo "<br>";
 
-function showKarmaChart($kullaniciAdi) {
-    // Hata ayıklama için (Silebilirsiniz)
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+function showKarmaChart($kullaniciAdi) {    
 
     // Veritabanı bağlantısı kontrolü (Mysql extension yüklü mü?)
     if (!function_exists('mysql_query')) {
