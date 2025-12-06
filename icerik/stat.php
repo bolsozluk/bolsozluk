@@ -384,7 +384,34 @@ if ($stat == "aylik") {
         mysql_query("INSERT INTO aylikentry (yil, ay, sayi) VALUES ('$curr_yil', '$curr_ay', '$curr_sayi')");
     }
 
-    // 3. Grafik için, 2014'ten günümüze tüm verileri çekelim
+	// 3. Bir önceki yıl ve ayı hesaplayalım
+
+$prev_date = strtotime("-1 month", mktime(0, 0, 0, $cMon, 1, $cYea));
+$prev_yil = date("Y", $prev_date);
+$prev_ay  = date("n", $prev_date); // n: başı sıfırsız 1-12
+
+// 4. Bir önceki aya ait entry sayısını hesaplatalım
+
+$prev_yil_int = intval($prev_yil);
+$prev_ay_int  = intval($prev_ay);
+
+// Entry sayısı (silinenler dahil)
+$result_prev = mysql_query("SELECT COUNT(*) as toplam FROM mesajlar WHERE yil = '$prev_yil_int' AND ay = '$prev_ay_int'");
+$row_prev    = mysql_fetch_assoc($result_prev);
+$prev_sayi   = intval($row_prev["toplam"]);
+
+// 5. Bir önceki ay için kayıt var mı?
+$check_prev = mysql_query("SELECT id FROM aylikentry WHERE yil='$prev_yil_int' AND ay='$prev_ay_int'");
+
+if (mysql_num_rows($check_prev) > 0) {
+    // Güncelle
+    mysql_query("UPDATE aylikentry SET sayi='$prev_sayi' WHERE yil='$prev_yil_int' AND ay='$prev_ay_int'");
+} else {
+    // Kayıt yoksa ekle
+    mysql_query("INSERT INTO aylikentry (yil, ay, sayi) VALUES ('$prev_yil_int', '$prev_ay_int', '$prev_sayi')");
+}
+
+    // 5. Grafik için, 2014'ten günümüze tüm verileri çekelim
     $x_vals = array();
     $y_vals = array();
 
