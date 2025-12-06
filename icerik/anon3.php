@@ -20,7 +20,7 @@ $sorgulama = mysql_query($sorgu);
 
 
 	$nick = strtolower($nick);
-echo "anonimleştirilen entrylerinizniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere hiçbir şekilde yazarlık hesabınızla ilişkili olarak bol sözlük'te geçmişe dönük kaydı tutulmayacaktır. bu nedenle de anonimleştirdiğiniz entry üzerinde hiçbir sorumluluk taşıyamayacak olduğunuz gibi, entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz.  yazar hesabınız da isteğiniz üzerine otomatik olarak kapatılacaktır. onaylıyor musunuz?<br>";
+echo "anonimleştirilen entryleriniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere anonimleştirilecektir. sakıncalı görülen anonim entryler moderasyon incelemesi sonucu tekrar yazar hesabınıza kaydedilebilir, bu gibi durumlar haricinde entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz. onaylıyor musunuz?<br>";
 
 
 		    if ($eskinick and $ayb==146)
