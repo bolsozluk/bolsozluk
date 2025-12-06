@@ -345,10 +345,7 @@ while ($kayit2 = mysql_fetch_array($sorgu1)) {
 	$eniyilink  = ereg_replace(" ", "+", $eniyibaslik1);
     echo "$x. <a href=?process=word&q=$eniyilink target=main>$eniyibaslik1</a> - <a href=?process=eid&eid=$entry_id target=main>#$entry_id</a><br>";
 }
-
-
 	}
-
 	die();
 }
 
@@ -390,16 +387,9 @@ $prev_ay  = date("n", $prev_date); // n: başı sıfırsız 1-12
 
 $prev_yil_int = intval($prev_yil);
 $prev_ay_int  = intval($prev_ay);
-
-echo $prev_yil_int;
-echo $prev_ay_int;
-
-// Entry sayısı (silinenler dahil)
 $result_prev = mysql_query("SELECT COUNT(*) as toplam FROM mesajlar WHERE yil = '$prev_yil_int' AND ay = '$prev_ay_int'");
 $row_prev    = mysql_fetch_assoc($result_prev);
 $prev_sayi   = intval($row_prev["toplam"]);
-
-echo $prev_sayi;
 
 // 5. Bir önceki ay için kayıt var mı?
 $check_prev = mysql_query("SELECT id FROM aylikentry WHERE yil='$prev_yil_int' AND ay='$prev_ay_int'");
