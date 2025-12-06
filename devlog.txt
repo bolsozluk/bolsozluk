@@ -28,6 +28,11 @@
 
 ----------yapilanlar----------
 aralik 2025:
+-bolchat arayuzunde guvenlik gelistirmeleri yapildi.
+-anonim entrylerle ilgili guvenlik iyilestirmeleri yapildi.
+-karma hesabina yeni odul ve ceza parametreleri eklendi.
+-karma loglama sistemi kodlandi ve ben sayfasina kullanicinin karma grafigi eklendi.
+-bol gecmis istatistik kodu optimize edildi.
 
 kasim 2025:
 -ay icerisinde hic entry girmemis yazarlara reklam gosterim fonksiyonu kodlandi.
