@@ -59,9 +59,13 @@ if ($id and $sira) {
 		mysql_query($sorgu);
 		$sorgu = "UPDATE mesajlar SET `praetornotu` = '$praetornotu' WHERE id='$id'";
 		mysql_query($sorgu);
+		
+		if ($yazar == "anonim")
+		{
 		$sorgu = "UPDATE mesajlar SET `yazar` = '$ilkyazar' WHERE id='$id'";
 		mysql_query($sorgu);
-
+		}
+		
 		//BAŞLIK TARİHİ UPDATE
 		
 	$tarihcek = mysql_fetch_array(mysql_query("SELECT * FROM mesajlar WHERE `sira` = '$sira' AND statu = '' ORDER BY `id` DESC limit 0,1"));
