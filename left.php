@@ -517,13 +517,12 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		$gds = "g";
 
 				//KAR YAĞDIR
-/* 
+				
 		?>
  <script src="snow-background.js"></script>
 
 
 		<?
-*/
 		
 
 		if ($cDay==1)
