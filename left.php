@@ -522,7 +522,8 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
 		var currentMonth = new Date().getMonth();
-		if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+	    var day = now.getDate();      // 1–31
+		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
 		} else {
@@ -752,7 +753,8 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
 		var currentMonth = new Date().getMonth();
-		if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+	    var day = now.getDate();      // 1–31
+		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
 		} else {
@@ -964,7 +966,8 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
 		var currentMonth = new Date().getMonth();
-		if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+		var day = now.getDate();      // 1–31
+		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
 		} else {
