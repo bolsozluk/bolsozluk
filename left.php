@@ -517,13 +517,20 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		$gds = "g";
 
 				//KAR YAĞDIR
-/* 
 		?>
- <script src="snow-background.js"></script>
-
-
+		<script src="snow-background.js"></script>
+		<script>
+		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
+		var currentMonth = new Date().getMonth();
+		if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
+			snowStorm.freezeOnBlur = false;
+		} else {
+			// Kış değilse karı durdur
+			snowStorm.stop();
+		}
+		</script>
 		<?
-*/
 		
 
 		if ($cDay==1)
@@ -740,13 +747,20 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		case "konudisi":
 
 //KAR YAĞDIR
-/* 
 		?>
-<script src="snow-background.js"></script>
-
-
+		<script src="snow-background.js"></script>
+		<script>
+		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
+		var currentMonth = new Date().getMonth();
+		if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
+			snowStorm.freezeOnBlur = false;
+		} else {
+			// Kış değilse karı durdur
+			snowStorm.stop();
+		}
+		</script>
 		<?
-*/
 
 		$cDay = date("d");
 		$cMon = date("m");
@@ -945,13 +959,20 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		case "lobi":
 
 //KAR YAĞDIR
- /* 
 		?>
-<script src="snow-background.js"></script>
-
-
+		<script src="snow-background.js"></script>
+		<script>
+		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
+		var currentMonth = new Date().getMonth();
+		if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
+			snowStorm.freezeOnBlur = false;
+		} else {
+			// Kış değilse karı durdur
+			snowStorm.stop();
+		}
+		</script>
 		<?
- */
 
 		$cDay = date("d");
 		$cMon = date("m");
