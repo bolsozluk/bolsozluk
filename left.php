@@ -521,7 +521,8 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		<script src="snow-background.js"></script>
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
-		var currentMonth = new Date().getMonth();
+		var now = new Date();
+		var currentMonth = now.getMonth();			
 	    var day = now.getDate();      // 1–31
 		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
@@ -752,7 +753,8 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		<script src="snow-background.js"></script>
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
-		var currentMonth = new Date().getMonth();
+		var now = new Date();
+		var currentMonth = now.getMonth();			
 	    var day = now.getDate();      // 1–31
 		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
@@ -965,8 +967,9 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		<script src="snow-background.js"></script>
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
-		var currentMonth = new Date().getMonth();
-		var day = now.getDate();      // 1–31
+		var now = new Date();
+		var currentMonth = now.getMonth();			
+	    var day = now.getDate();      // 1–31
 		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
