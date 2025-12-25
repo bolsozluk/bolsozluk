@@ -17,7 +17,7 @@ $sorgulama = mysql_query($sorgu);
 
 
 	$nick = strtolower($nick);
-echo " kapatılan hesaplar tekrar açılamayacak olup bu işlemi gerçekleştirdiğiniz takdirde entrylerinizin tüm yasal haklarını bol sözlük'e devretmiş olacak ve kapatılan hesabınızla ilgili sözlükten herhangi bir talepte bulunamayacaksınız. onaylıyor musunuz?<br>";
+echo " kapatılan hesaplar tekrar açılamayacak olup bu işlemi gerçekleştirdiğiniz takdirde sözlükteki mevcut hak ve sorumluluklarınızı sözlüğe iade etmiş olacak ve kapatılan hesabınızla ilgili sözlükten herhangi bir talepte bulunamayacaksınız. onaylıyor musunuz?<br>";
 
 
 		    if ($eskinick and $ayb==146)

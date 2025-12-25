@@ -5,6 +5,279 @@ $kimdirbu = guvenlikKontrol(
 include "mobframe.php";
 echo "<br>";
 
+function showKarmaChart($kullaniciAdi) {    
+
+    // Veritabanı bağlantısı kontrolü (Mysql extension yüklü mü?)
+    if (!function_exists('mysql_query')) {
+        return '<div style="color:red; padding:10px; border:1px solid red;">HATA: mysql_ fonksiyonları sunucuda aktif değil.</div>';
+    }
+
+    // Türkçe ay isimleri
+    $turkce_aylar = array(
+        1 => 'Oca', 2 => 'Şub', 3 => 'Mar', 4 => 'Nis', 
+        5 => 'May', 6 => 'Haz', 7 => 'Tem', 8 => 'Ağu',
+        9 => 'Eyl', 10 => 'Eki', 11 => 'Kas', 12 => 'Ara'
+    );
+    
+    // --- VERİ HAZIRLAMA VE SORGULAMA KISMI ---
+    $current_year = date('Y');
+    $current_month = date('n');
+    
+    $months_to_show = array();
+    for ($i = 0; $i < 6; $i++) {
+        $month = $current_month - $i;
+        $year = $current_year;
+        
+        if ($month < 1) {
+            $month += 12;
+            $year--;
+        }
+        
+        $ay_ismi = isset($turkce_aylar[$month]) ? $turkce_aylar[$month] : 'Ay';
+        
+        $months_to_show[] = array(
+            'year' => $year,
+            'month' => $month,
+            'label' => $ay_ismi . ' ' . $year
+        );
+    }
+    
+    $months_to_show = array_reverse($months_to_show);
+    
+    $data = array();
+    $karma_values = array();
+    
+    $safe_user = @mysql_real_escape_string($kullaniciAdi);
+    if (empty($safe_user)) { $safe_user = addslashes($kullaniciAdi); }
+
+    foreach ($months_to_show as $period) {
+        $year = $period['year'];
+        $month = $period['month'];
+        
+        $query = "SELECT karma FROM karma_log WHERE user = '$safe_user' AND yil = '$year' AND ay = '$month' LIMIT 1";
+        $result = @mysql_query($query);
+        
+        if ($result && @mysql_num_rows($result) > 0) {
+            $row = @mysql_fetch_assoc($result);
+            $karma = (int)$row['karma'];
+            $data[] = array(
+                'karma' => $karma,
+                'label' => $period['label']
+            );
+            $karma_values[] = $karma;
+        }
+    }
+    
+    // Yetersiz veri kontrolü
+    if (count($karma_values) < 2) {
+        return '<div style="padding:20px; text-align:center; color:#999; font-family:sans-serif; border:1px dashed #ccc; border-radius:8px; margin:20px auto; max-width:450px; background: transparent;">Grafik için yeterli veri bulunamadı.</div>';
+    }
+    
+    // --- GRAFİK HESAPLAMALARI ---
+    $max_val = max($karma_values);
+    $min_val = min($karma_values);
+    
+    // Range hesaplama (0'a bölünme hatasını engellemek için)
+    $range = $max_val - $min_val;
+    if ($range <= 0) { 
+        $range = 10;
+        $min_val = $max_val - 5;
+        $max_val = $max_val + 5;
+        $range = 10;
+    }
+    
+    // Orta değeri hesapla
+    $mid_val = round(($min_val + $max_val) / 2);
+    
+    $width = 450;
+    $height = 200;
+    $padding = 30; 
+    $left_padding = 60; // Sol tarafa etiket için ek boşluk
+    $right_padding = 30;
+    
+    $draw_width = $width - ($left_padding + $right_padding);
+    $draw_height = $height - ($padding * 2);
+    
+    $points = array();
+    $point_count = count($data);
+    $polyline_points = "";
+    
+    $i = 0;
+    foreach ($data as $item) {
+        $x = $left_padding + ($i * ($draw_width / ($point_count - 1)));
+        $val_ratio = ($item['karma'] - $min_val) / $range;
+        $y = ($height - $padding) - ($val_ratio * $draw_height);
+        
+        $x = number_format($x, 2, '.', '');
+        $y = number_format($y, 2, '.', '');
+        
+        $points[] = array('x' => $x, 'y' => $y, 'karma' => $item['karma'], 'label' => $item['label']);
+        $polyline_points .= "$x,$y ";
+        $i++;
+    }
+    
+    // İstatistikler
+    $values_indexed = array_values($karma_values);
+    $count_vals = count($values_indexed);
+    $first_val = $values_indexed[0];
+    $last_val = $values_indexed[$count_vals - 1];
+    $diff = $last_val - $first_val;
+    $avg = round(array_sum($karma_values) / $count_vals);
+    
+    // Renkler
+    $color_primary = '#2563eb';
+    
+    // Y Eksenindeki ızgara konumları
+    $y_top = $padding;
+    $y_mid = $height / 2;
+    $y_bottom = $height - $padding;
+    
+    // --- HTML ÇIKTISI ---
+    $output = '
+    <style>
+        .k-chart-card {
+            background: transparent; 
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .k-header { margin-bottom: 15px; border-bottom: 1px solid #f3f4f6; padding-bottom: 10px; }
+        
+        /* Başlık puntosu büyütüldü */
+        .k-title { font-size: 17px; font-weight: 700; color: #1f2937; margin: 0; }
+        .k-container { position: relative; width: 100%; }
+        
+        .k-point { 
+            fill: #fff; 
+            stroke: '.$color_primary.'; 
+            stroke-width: 2; 
+            cursor: pointer; 
+            transition: r 0.2s; 
+        }
+        .k-point:hover { r: 6; stroke-width: 3; }
+        
+        /* Tooltip puntosu büyütüldü */
+        .k-tooltip-box {
+            position: absolute;
+            background: #111827;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px; 
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 999;
+            white-space: nowrap;
+            top: 0; left: 0;
+        }
+        
+        .k-stats-row { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 15px; border-top: 1px solid #f3f4f6; }
+        .k-stat { text-align: center; }
+        
+        /* Alt istatistik etiket ve değer puntoları büyütüldü */
+        .k-lbl { font-size: 12px; color: #6b7280; text-transform: uppercase; display: block; margin-bottom: 4px; }
+        .k-val { font-size: 20px; font-weight: 700; color: #111827; }
+        
+        .k-pos { color: #059669; }
+        .k-neg { color: #dc2626; }
+    </style>
+
+    <div class="k-chart-card">
+        <div class="k-header">
+            <div class="k-title">kaptanın seyir defteri</div>
+        </div>
+        
+        <div class="k-container" id="k-cont-'.md5($kullaniciAdi).'">
+            <div id="k-tooltip-'.md5($kullaniciAdi).'" class="k-tooltip-box"></div>
+            
+            <svg viewBox="0 0 '.$width.' '.$height.'" width="100%" height="200" style="display:block;">
+                
+                <text x="'.($left_padding - 5).'" y="'.($y_top + 4).'" font-size="12" fill="#6b7280" text-anchor="end" font-family="sans-serif">'.round($max_val).'</text>
+                <text x="'.($left_padding - 5).'" y="'.($y_mid + 4).'" font-size="12" fill="#6b7280" text-anchor="end" font-family="sans-serif">'.$mid_val.'</text>
+                <text x="'.($left_padding - 5).'" y="'.($y_bottom + 4).'" font-size="12" fill="#6b7280" text-anchor="end" font-family="sans-serif">'.round($min_val).'</text>
+                
+                <line x1="'.$left_padding.'" y1="'.$y_top.'" x2="'.($width-$right_padding).'" y2="'.$y_top.'" stroke="#f3f4f6" stroke-width="1" />
+                <line x1="'.$left_padding.'" y1="'.$y_mid.'" x2="'.($width-$right_padding).'" y2="'.$y_mid.'" stroke="#f3f4f6" stroke-width="1" />
+                <line x1="'.$left_padding.'" y1="'.$y_bottom.'" x2="'.($width-$right_padding).'" y2="'.$y_bottom.'" stroke="#f3f4f6" stroke-width="1" />
+                
+                <polyline points="'.$polyline_points.'" fill="none" stroke="'.$color_primary.'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                
+                ';
+                
+    foreach ($points as $p) {
+        $tooltipJS = "showTooltip_".md5($kullaniciAdi)."(this, '".$p['label']."', '".$p['karma']."')";
+        $tooltipHideJS = "hideTooltip_".md5($kullaniciAdi)."()";
+        
+        $output .= '<circle cx="'.$p['x'].'" cy="'.$p['y'].'" r="4" class="k-point" 
+                    onmouseover="'.$tooltipJS.'" 
+                    onmouseout="'.$tooltipHideJS.'" />';
+                    
+        // Ay İsimleri (SVG Text) (PUNTO BÜYÜTÜLDÜ: 10 -> 12)
+        $output .= '<text x="'.$p['x'].'" y="'.($height - 10).'" font-size="12" fill="#9ca3af" text-anchor="middle" font-family="sans-serif">'.$p['label'].'</text>';
+    }
+    
+    $trend_class = ($diff >= 0) ? 'k-pos' : 'k-neg';
+    $trend_sign = ($diff > 0) ? '+' : '';
+    
+    $output .= '
+            </svg>
+        </div>
+        
+        <div class="k-stats-row">
+            <div class="k-stat">
+                <span class="k-lbl">Güncel</span>
+                <span class="k-val">'.$last_val.'</span>
+            </div>
+            <div class="k-stat">
+                <span class="k-lbl">Değişim</span>
+                <span class="k-val '.$trend_class.'">'.$trend_sign.$diff.'</span>
+            </div>
+            <div class="k-stat">
+                <span class="k-lbl">Ortalama</span>
+                <span class="k-val">'.$avg.'</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    function showTooltip_'.md5($kullaniciAdi).'(el, label, val) {
+        var tooltip = document.getElementById("k-tooltip-'.md5($kullaniciAdi).'");
+        var cont = document.getElementById("k-cont-'.md5($kullaniciAdi).'");
+        
+        tooltip.innerHTML = label + "<br><strong>" + val + " Karma</strong>";
+        tooltip.style.opacity = "1";
+        
+        var cx = parseFloat(el.getAttribute("cx"));
+        var cy = parseFloat(el.getAttribute("cy"));
+        
+        var svg = cont.querySelector("svg");
+        var rect = svg.getBoundingClientRect();
+        var scaleX = rect.width / '.$width.';
+        
+        var realX = cx * scaleX;
+        var realY = cy * (rect.height / '.$height.');
+        
+        var tipW = 80; 
+        
+        tooltip.style.left = (realX - (tipW/2) + 10) + "px";
+        tooltip.style.top = (realY - 50) + "px";
+    }
+    
+    function hideTooltip_'.md5($kullaniciAdi).'() {
+        var tooltip = document.getElementById("k-tooltip-'.md5($kullaniciAdi).'");
+        tooltip.style.opacity = "0";
+    }
+    </script>
+    ';
+    
+    return $output;
+}
+
 
 if($isMobile == 1)
 { 
@@ -264,20 +537,20 @@ echo "<br><a class=link> <a href='sozluk.php?process=arkadasekle&n=$kimdirbu' ti
       
       
       $sorgu = "SELECT * FROM user WHERE `nick` = '$kimdirbu'";
-			$sorgulama = @mysql_query($sorgu);
-			
-			if (@mysql_num_rows($sorgulama)>0){
-			
-				while ($kayit=@mysql_fetch_array($sorgulama)){
-					
-					$avatar=$kayit["avatar"];
-					if ($avatar == "") $avatar = "https://ekstat.com/img/default-profile-picture-light.svg"; 
-				}}
+      $sorgulama = @mysql_query($sorgu);
+      
+      if (@mysql_num_rows($sorgulama)>0){
+      
+        while ($kayit=@mysql_fetch_array($sorgulama)){
+          
+          $avatar=$kayit["avatar"];
+          if ($avatar == "") $avatar = "https://ekstat.com/img/default-profile-picture-light.svg"; 
+        }}
       
       
       echo "<br><center><div style=\"width: 125px; height: 125px; border-radius: 50%; overflow: hidden;\">
-			<img src=\"$avatar\" alt=\"Avatar\" style=\"width: 100%; height: 100%; object-fit: cover;\">
-		  </div></center>";
+      <img src=\"$avatar\" alt=\"Avatar\" style=\"width: 100%; height: 100%; object-fit: cover;\">
+      </div></center>";
       ?>
 
       
@@ -343,6 +616,7 @@ $motto= $sor["motto"];
 $sontarih = date("m/Y", strtotime($sontarih));
 if ($sontarih == "01/1970") $sontarih = "uzun süredir görülmedi." ;
 echo"son görülme: $sontarih" ; 
+echo showKarmaChart($kimdirbu);
 
          ?></h2></i>
 
@@ -496,6 +770,7 @@ else{
 
 }
 }
+
 ?>
    </tr>
 
@@ -536,6 +811,7 @@ $yetki=$kayit["yetki"];
 //if ($yetki == "admin" or $kullaniciAdi == "$kimdirbu") //GBT YETKİSİ
 if ($kullaniciAdi)
 {
+
   //echo $yetki;
   ?>
 

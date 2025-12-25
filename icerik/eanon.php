@@ -47,7 +47,7 @@ if ($id and $sira) {
 ?>
 <form name="a" method="post" action="">
     <table width="564" height="52" border="0">
-    	anonimleştirilen entryniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere hiçbir şekilde yazarlık hesabınızla ilişkili olarak bol sözlük'te geçmişe dönük kaydı tutulmayacaktır. bu nedenle de anonimleştirdiğiniz entry üzerinde hiçbir sorumluluk taşıyamayacak olduğunuz gibi, entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz. kabul ediyor musunuz?
+    	anonimleştirilen entryleriniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere anonimleştirilecektir. sakıncalı görülen anonim entryler moderasyon incelemesi sonucu tekrar yazar hesabınıza kaydedilebilir, bu gibi durumlar haricinde entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz. onaylıyor musunuz?
       <tr>
         <td width="232"><input name="kabul" type="radio" value="kabul">kabul ediyorum</td>        
       </tr>     

@@ -19,6 +19,150 @@ function fonksiyonlartest()
 		echo"fonksiyonlar yüklendi.<br>";
 	}
 
+function karmaUpdate()
+	{
+	//KARMA UPDATE SİSTEMİ
+	kontrolEt();	
+	$kim = $kullaniciAdi;
+		
+//entry id çek
+$kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
+$kimse = $kimse1["nick"];
+$saycaylak = $kimse1["saycaylak"];
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
+$kactop = mysql_num_rows($sor);
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim'");
+$kachamx = mysql_num_rows($sor);
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `ilkyazar`='$kim'");
+$kachamy = mysql_num_rows($sor);
+
+if ($kachamx > $kachamy) $kacham = $kachamx;
+if ($kachamx <= $kachamy) $kacham = $kachamy;
+
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' AND silen<>'$kim'"); //kendi sildiklerini dahil etme
+$saysil = mysql_num_rows($sor);
+
+$yil = date("Y");
+$ay = date("n");
+
+if ($ay == 12) {
+    $ilkAy = 1; 
+    $ilkYil = $yil;
+} else {
+    $ilkAy = $ay + 1;
+    $ilkYil = $yil - 1;
+}
+
+$sorgu = "SELECT COUNT(*) FROM mesajlar WHERE yazar='anonim' AND ilkyazar='$kim' AND ((yil='$ilkYil' AND ay>='$ilkAy') OR (yil='$yil' AND ay<='$ay'))";
+$res = mysql_query($sorgu);
+$anonimsayi = mysql_result($res, 0);
+
+$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '1'");
+$arti = mysql_num_rows($sor);
+
+$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '0'");
+$eksi = mysql_num_rows($sor);
+
+$sor = mysql_query("select oy from oylar WHERE `nick`='$kim' and oy = 1");
+$verarti = mysql_num_rows($sor);
+
+// Şüpheli oy oranı tespiti
+$oy_verme_orani = $verarti / max($kactop, 1);
+$oy_alma_orani = $arti / max($kactop, 1);
+
+// Kalite puanı hesaplamasından önce net oy oranını sınırla
+$net_oy_orani = ($arti - $eksi) / max($kactop, 1);
+$maksimum_oran = 4; // Entry başına maksimum 2 net oy
+
+if ($net_oy_orani > $maksimum_oran) {
+    $net_oy_orani = $maksimum_oran;
+}
+
+// Katsayıları ayarla
+$aktivite_carpani = 0.07;         // Düşürüldü (0.12 → 0.07)
+$kalite_agirlik = 0.59;           // Düşürüldü (0.65 → 0.59)
+$topluluk_carpani = 25;           // Artirildi (18 → 25)
+$deneyim_bonus_carpani = 0.04;    // Düşürüldü (0.07 → 0.04)
+$silinen_ceza = 2.0;              // Düşürüldü (4 → 2)
+$caylak_ceza = 25;                // Düşürüldü (30 → 25)
+$sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
+$kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
+$kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
+$anon_carpan = 0.5;			      // initial (0.5)
+$bot_cezasi = 1.0; 
+
+if ($kactop > 1000) {
+    $caylak_ceza = 15; // 15 puan
+} else {
+    $caylak_ceza = 25; // 25 puan
+}
+
+if ($kactop > 1000) {
+    $anon_carpan = 0.4; 
+} else if ($kactop > 500) {
+    $anon_carpan = 0.45; 
+} else {
+    $anon_carpan = 0.5; 
+}
+
+if ($oy_verme_orani > 5 || $oy_alma_orani > 5) $bot_cezasi = 0.8; // %20 ceza
+if ($oy_verme_orani > 10 || $oy_alma_orani > 10) $bot_cezasi = 0.3; // %70 ceza
+if ($oy_verme_orani > 15 || $oy_alma_orani > 15) $bot_cezasi = 0.1; // %90 ceza
+if ($oy_verme_orani > 30 || $oy_alma_orani > 30) $bot_cezasi = 0.01; // %99 ceza
+
+//karma hesaplama
+$karmak0 = min($net_oy_orani * 100 * $kalite_agirlik,500)*$bot_cezasi;
+$karmak1 = $kactop * $aktivite_carpani;
+$karmak2 = min(($verarti / max($kactop, 1)) * $topluluk_carpani, 250)*$bot_cezasi; // Maksimum sınır
+$deneyim_bonus = ($kactop > 1000) ? min(($kactop - 1000) * $deneyim_bonus_carpani, 50) : 0;
+
+$kalite_orani = $arti / max($kactop, 1);
+
+if ($kalite_orani <= 0.3) {
+    $kpi = 0.6; // Düşük kalite: %40 ceza
+} elseif ($kalite_orani <= 0.7) {
+    $kpi = 0.9; // Orta kalite: %10 ceza  
+} elseif ($kalite_orani <= 1.2) {
+    $kpi = 1.1; // İyi kalite: %10 bonus
+} elseif ($kalite_orani <= 2.0) {
+    $kpi = 1.3; // Çok iyi: %30 bonus
+} else {
+    $kpi = 1.5; // Mükemmel: %50 bonus
+}
+
+$karmaneg = $saysil * $silinen_ceza;
+$caylak_ceza = $saycaylak * $caylak_ceza;
+$anonimceza = $anonimsayi * $anon_carpan;
+
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimceza) * $kpi;
+$karma = $karma - $karmaneg - $caylak_ceza;
+$karma = round($karma);
+
+$yil = date("Y");
+$ay = date("n"); // 'n' → 1-12 arası rakam (başında sıfır yok)
+
+$sql_check = "SELECT id FROM karma_log WHERE user='$kullaniciAdi' AND yil='$yil' AND ay='$ay'";
+$result = mysql_query($sql_check);
+
+if ($kactop > 300) {
+    $sql = "INSERT INTO karma_log (user, karma, yil, ay) 
+            VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')
+            ON DUPLICATE KEY UPDATE karma = VALUES(karma)";
+    
+    if (mysql_query($sql)) {
+        error_log("Karma log başarıyla işlendi: $kullaniciAdi - $karma");
+    } else {
+        error_log("Karma log hatası: " . mysql_error());
+    }
+
+$user_karma_update = "UPDATE user SET karma = '$karma' WHERE nick = '$kullaniciAdi'";
+mysql_query($user_karma_update);
+	
+}
+
+//KARMA UPDATE SİSTEMİ
+		
+	}
 // Otomatik Cookie'den Giriş Fonksiyonu (BENİ HATIRLA)
 function otomatikLogin() {
     if (!isset($_SESSION['kullaniciAdi_S']) && isset($_COOKIE['bol']) && isset($_COOKIE['shit'])) {
@@ -77,7 +221,12 @@ function kontrolEt(){
 	
 	$_SESSION['verifyStatus_S'] = $verifyStatus;
 	
-	if ($verifyStatus == "sus") header("Location: ban.php");
+	if ($verifyStatus == "sus")
+	{
+		header("Location: ban.php");
+		exit; 
+	}
+	
 	if ($userHaveMsg) getPrivateMessages();
 }
 
@@ -118,7 +267,7 @@ function guvenlikKontrol($variable,$style){
 				break;
 		case "hard":
 				$before = array("'","<",">","\"","\\",Chr(255));
-				$after  = array("","","","","","\\","");
+				$after  = array("`","","","","","\\","");
 				$variable = str_replace($before, $after, $variable);
 				$variable = trim(strip_tags($variable));
 				break;

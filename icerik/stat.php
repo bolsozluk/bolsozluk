@@ -66,10 +66,6 @@ if($isMobile == 1)
 		<?
 	}
 
-	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='genel' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=neleroldu&ay=$cMon&yil=$cYea';\" value='bu ay neler oldu' class='butx'>  <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=ucay';\" value='ayın yazarları' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=ebe';\" value='en beğenilenler' class='butx'></center>";
-	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=yazar';\" value='bol yazanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=oycu';\" value='oy kralları' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=aylik';\" value='bol geçmiş' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=pmsg';\" value='en arananlar' class='butx'></center>";
-	//echo "<center><input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=arge';\" value='arge kasanlar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=modpower';\" value='moderasyon gücü' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=bekciler';\" value='gece bekçileri' class='butx'></center>";
-
 echo "<div class='menu-row'>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=neleroldu&ay=$cMon&yil=$cYea';\">bu ay neler oldu</div>";
 echo "<div class='tab' onclick=\"location.href='sozluk.php?process=stat&stat=ucay';\">ayın yazarları</div>";
@@ -349,118 +345,115 @@ while ($kayit2 = mysql_fetch_array($sorgu1)) {
 	$eniyilink  = ereg_replace(" ", "+", $eniyibaslik1);
     echo "$x. <a href=?process=word&q=$eniyilink target=main>$eniyibaslik1</a> - <a href=?process=eid&eid=$entry_id target=main>#$entry_id</a><br>";
 }
-
-
 	}
-
 	die();
 }
 
-
 if ($stat == "aylik") {
-    //AYLIK ENTRY DÖKÜMÜ
-    //echo "test1";
-	?>
-	<center><td><strong>aylık entry geçmişi: </strong></td><br><br>
+    ?>
+    <center><td><strong>aylık entry geçmişi: </strong></td><br><br>
+    <?php
 
-		<?php
+    // Şu anki yıl ve ay
+    $cYea = date("Y");
+    $cMon = date("n"); // n: başı sıfırsız 1-12
 
-		$cDay = date("d");
-		$cMon = date("m");
-		$cYea = date("Y");
+    // 1. Sadece bugüne ait (bu yıl ve ay) entry sayısını hesaplatalım
+    $curr_yil = intval($cYea);
+    $curr_ay  = intval($cMon);
 
+    // Entry sayısı (silinenler dahil)
+    $result = mysql_query("SELECT COUNT(*) as toplam FROM mesajlar WHERE yil = '$curr_yil' AND ay = '$curr_ay'");
+    $row    = mysql_fetch_assoc($result);
+    $curr_sayi = intval($row["toplam"]);
 
-    //echo "cCombo: " . $cCombo;
-		$c = 0;
-		$x = "[";
-		$y = "[";
+    // 2. Bu ay için kayıt var mı?
+    $check = mysql_query("SELECT id FROM aylikentry WHERE yil='$curr_yil' AND ay='$curr_ay'");
+    if (mysql_num_rows($check) > 0) {
+        // Güncelle
+        mysql_query("UPDATE aylikentry SET entry='$curr_sayi' WHERE yil='$curr_yil' AND ay='$curr_ay'");
+    } else {
+        // Kayıt yoksa ekle
+        mysql_query("INSERT INTO aylikentry (yil, ay, entry) VALUES ('$curr_yil', '$curr_ay', '$curr_sayi')");
+    }
 
-		$yilfark = $cYea - 2014;
+	// 3. Bir önceki yıl ve ayı hesaplayalım
 
-		for ($i = 0; $i <= $yilfark; ++$i) {
-			$yillar[$i] = 2014 + $i;
-			$guncelyil = $yillar[$i];
+$prev_date = strtotime("-1 month", mktime(0, 0, 0, $cMon, 1, $cYea));
+$prev_yil = date("Y", $prev_date);
+$prev_ay  = date("n", $prev_date); // n: başı sıfırsız 1-12
 
-			for ($j = 1; $j <= 12; ++$j) {
-				$formattedMonth = str_pad($j, 2, '0', STR_PAD_LEFT);
-				$cCombo = $cYea . '.' . str_pad($cMon, 2, '0', STR_PAD_LEFT);
-				$cCheck = $guncelyil . '.' . $formattedMonth;
+// 4. Bir önceki aya ait entry sayısını hesaplatalım
 
-				if ($cCheck != $cCombo) {
-/*
-   echo "cCombo: " . $cCombo . "<br>";
-    echo "cCheck: " . $cCheck . "<br>";
-    echo "guncelyil: " . $guncelyil . "<br>";
-    echo "formattedMonth: " . $formattedMonth . "<br>";
+$prev_yil_int = intval($prev_yil);
+$prev_ay_int  = intval($prev_ay);
+$result_prev = mysql_query("SELECT COUNT(*) as toplam FROM mesajlar WHERE yil = '$prev_yil_int' AND ay = '$prev_ay_int'");
+$row_prev    = mysql_fetch_assoc($result_prev);
+$prev_sayi   = intval($row_prev["toplam"]);
 
-    $isEqual = ($cCheck === $cCombo);
-    echo "isEqual: " . ($isEqual ? 'true' : 'false') . "<br>";
-    var_dump($cCombo);
-var_dump($cCheck);
-*/
+// 5. Bir önceki ay için kayıt var mı?
+$check_prev = mysql_query("SELECT id FROM aylikentry WHERE yil='$prev_yil_int' AND ay='$prev_ay_int'");
 
-$sorgu1 = "SELECT id,ay,yil FROM mesajlar WHERE yil = '$guncelyil' AND ay = '$j' ";
-$sorgu2 = mysql_query($sorgu1);
-$aylikentry = mysql_num_rows($sorgu2);
-
-if ($aylikentry != 0) {
-                	//if ($formattedMonth = "1") $formattedMonth = "ocak";
-                	//if ($formattedMonth = "2") $formattedMonth = "şubat";
-	$xdata = $guncelyil . "_" . $formattedMonth;
-                    //echo $formattedMonth;
-	$ydata = $aylikentry;
-
-	$x = $x . $xdata . ",";                    
-	$y = $y . $ydata . ",";
-	$c++;
-}
-}
-}
+if (mysql_num_rows($check_prev) > 0) {
+    // Güncelle
+    mysql_query("UPDATE aylikentry SET entry='$prev_sayi' WHERE yil='$prev_yil_int' AND ay='$prev_ay_int'");
+} else {
+    // Kayıt yoksa ekle
+    mysql_query("INSERT INTO aylikentry (yil, ay, entry) VALUES ('$prev_yil_int', '$prev_ay_int', '$prev_sayi')");
 }
 
-$x = $x . "]";
-$y = $y . "]";
+    // 5. Grafik için, 2014'ten günümüze tüm verileri çekelim
+    $x_vals = array();
+    $y_vals = array();
 
-?>
-<div id="arrayContent"></div>
+    $istat_sorgu = mysql_query("SELECT yil, ay, entry FROM aylikentry WHERE (yil > 2013) ORDER BY yil, ay");
+    while ($row = mysql_fetch_assoc($istat_sorgu)) {
+        // Son güncel ayı gösterme (eski kod uyumluluğu!)
+        if ($row["yil"] == $curr_yil && $row["ay"] == $curr_ay) continue;
+        $x_vals[] = $row["yil"] . "_" . str_pad($row["ay"], 2, '0', STR_PAD_LEFT);
+        $y_vals[] = intval($row["entry"]);
+    }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    // Array'leri js'ye string olarak aktaralım
+    $x_js = "[" . implode(',', array_map(function($v) { return '"' . $v . '"'; }, $x_vals)) . "]";
+    $y_js = "[" . implode(',', $y_vals) . "]";
 
-<canvas id="myChart" style="background-color: #dfdfdf;width:100%;max-width:700px"></canvas>
+    ?>
+    <div id="arrayContent"></div>
 
-<script>
-        let xValues = <?php echo $x ?>; // [50,60,70,80,90,100,110,120,130,140,150];
-        let yValues = <?php echo $y ?>; // [7,8,8,9,9,9,10,11,14,14,15];
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <canvas id="myChart" style="background-color: #dfdfdf;width:100%;max-width:700px"></canvas>
+
+    <script>
+        let xValues = <?php echo $x_js; ?>;
+        let yValues = <?php echo $y_js; ?>;
 
         new Chart("myChart", {
-        	type: "line",
-        	data: {
-        		labels: xValues,
-        		datasets: [{
-        			fill: false,
-        			lineTension: 0,
-        			backgroundColor: "rgba(0,0,255,1.0)",
-        			borderColor: "rgba(0,0,255,0.1)",
-        			data: yValues
-        		}]
-        	},
-        	options: {
-        		legend: {display: false},
-        		scales: {
-        			yAxes: [{ticks: {min: 0, max: 15000}}],
-        		}
-        	}
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                scales: {
+                    yAxes: [{ticks: {min: 0, max: 15000}}],
+                }
+            }
         });
-        </script>
+    </script>
 
-        <?php
+    <?php
+    //echo "<br>silinen entryler de hesaplamaya dahil edilmiştir.</center>";
+    die();
+}
 
-        echo "<br>";
-        echo "silinen entryler de hesaplamaya dahil edilmiştir.</center>";
-
-        die();
-    }
 
     if ($stat == "neleroldu") {
 
@@ -1066,7 +1059,6 @@ $sorgu = "SELECT * FROM stat";
 		</table>
 
 		<?
-//  -- <a href="?process=stat&stat=arge" target="gostert">En çok arge kasanlar</a><br>
 		$sorgu = "SELECT tarih FROM stat";
 		$sorgulama = mysql_query($sorgu);
 		$kayit=mysql_fetch_array($sorgulama);

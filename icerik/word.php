@@ -6,7 +6,7 @@
     if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
+        header('Access-Control-Max-Age: 7200');    // cache 
     }
 
     // Access-Control headers are received during OPTIONS requests
@@ -21,9 +21,9 @@
         exit(0);
 
 
-// Oturum süresini uzatmak için her sayfa yüklenmesinde cookie'yi +15 dk güncelle
+// Oturum süresini uzatmak için her sayfa yüklenmesinde cookie'yi +5 dk güncelle
 if (isset($_COOKIE[session_name()])) {
-    setcookie(session_name(), $_COOKIE[session_name()], time() + 1500, "/");
+    setcookie(session_name(), $_COOKIE[session_name()], time() + 500, "/");
 }
     }
 
@@ -37,6 +37,11 @@ $mesaj = guvenlikKontrol($_REQUEST["mesaj"],"med");
 $ok = guvenlikKontrol($_REQUEST["ok"],"hard");
 $kenar = guvenlikKontrol($_REQUEST["kenar"],"hard");
 $test= mysql_query("SELECT * FROM online WHERE nick='$kullaniciAdi'");
+
+$aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
+if ($kullaniciAdi == "") $aylikentry = 0;
+$entryBaraji = 1; 
+$pasifyazar = ($aylikentry < $entryBaraji);
 
 ?>
 
@@ -416,7 +421,7 @@ include "mobframe.php";
 
 
 
-if(($isMobile == 1) && ($kullaniciAdi == ""))
+if(($isMobile == 1) && (($kullaniciAdi == "") || ($pasifyazar)))
 { 
 ?>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
@@ -432,13 +437,13 @@ $yazarlik= $caylaksin["durum"];
 //}
 $flood= mysql_fetch_array(mysql_query("SELECT flood FROM user WHERE `nick`='$kullaniciAdi'"));
 $flad=$flood["flood"];
-if ($flad >=4 AND $flad <7)
+if ($flad >=5 AND $flad <8)
 {
 echo "<center><b>sözlüğe bu kadar yüklenmeyiniz, makina ısınıyor. <br>(uyarıdan kurtulmak için daha yavaş oylayın/entry girin)</b></center>";
 
 }
 
-if ($flad >= 6)
+if ($flad >= 9)
 {
     $xgkime = "admin";
 
@@ -1657,9 +1662,152 @@ exit;
 			if ($goster >1) {
 				$gostersayfa = "&sayfa=$goster";
 			}
+
+//AYLIK ENTRY CHECK
+$yil = date("Y");
+$ay  = date("m") - 0;
+$sor = mysql_query("SELECT COUNT(*) AS adet FROM mesajlar WHERE yazar='$kullaniciAdi' AND statu!='silindi' AND yil='$yil' AND ay=$ay");
+$kactop = mysql_result($sor, 0, 'adet');
+mysql_query("UPDATE user SET aylikentry=$kactop WHERE nick='$kullaniciAdi'");
+
+//KARMA UPDATE SİSTEMİ
+$kim = $kullaniciAdi;
+				
+//entry id çek
+$kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$kim'"));
+$kimse = $kimse1["nick"];
+$saycaylak = $kimse1["saycaylak"];
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = '' ");
+$kactop = mysql_num_rows($sor);
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim'");
+$kachamx = mysql_num_rows($sor);
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `ilkyazar`='$kim'");
+$kachamy = mysql_num_rows($sor);
+
+if ($kachamx > $kachamy) $kacham = $kachamx;
+if ($kachamx <= $kachamy) $kacham = $kachamy;
+
+$sor = mysql_query("select yazar,statu from mesajlar WHERE `yazar`='$kim' and `statu` = 'silindi' AND silen<>'$kim'"); //kendi sildiklerini dahil etme
+$saysil = mysql_num_rows($sor);
+
+$yil = date("Y");
+$ay = date("n");
+
+if ($ay == 12) {
+    $ilkAy = 1; 
+    $ilkYil = $yil;
+} else {
+    $ilkAy = $ay + 1;
+    $ilkYil = $yil - 1;
+}
+
+$sorgu = "SELECT COUNT(*) FROM mesajlar WHERE yazar='anonim' AND ilkyazar='$kim' AND ((yil='$ilkYil' AND ay>='$ilkAy') OR (yil='$yil' AND ay<='$ay'))";
+$res = mysql_query($sorgu);
+$anonimsayi = mysql_result($res, 0);
+
+$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '1'");
+$arti = mysql_num_rows($sor);
+
+$sor = mysql_query("select oy from oylar WHERE `entry_sahibi`='$kim' and `oy` = '0'");
+$eksi = mysql_num_rows($sor);
+
+$sor = mysql_query("select oy from oylar WHERE `nick`='$kim' and oy = 1");
+$verarti = mysql_num_rows($sor);
+
+// Şüpheli oy oranı tespiti
+$oy_verme_orani = $verarti / max($kactop, 1);
+$oy_alma_orani = $arti / max($kactop, 1);
+
+// Kalite puanı hesaplamasından önce net oy oranını sınırla
+$net_oy_orani = ($arti - $eksi) / max($kactop, 1);
+$maksimum_oran = 4; // Entry başına maksimum 2 net oy
+
+if ($net_oy_orani > $maksimum_oran) {
+    $net_oy_orani = $maksimum_oran;
+}
+
+// Katsayıları ayarla
+$aktivite_carpani = 0.07;         // Düşürüldü (0.12 → 0.07)
+$kalite_agirlik = 0.59;           // Düşürüldü (0.65 → 0.59)
+$topluluk_carpani = 25;           // Artirildi (18 → 25)
+$deneyim_bonus_carpani = 0.04;    // Düşürüldü (0.07 → 0.04)
+$silinen_ceza = 2.0;              // Düşürüldü (4 → 2)
+$caylak_ceza = 25;                // Düşürüldü (30 → 25)
+$sadakat_indirim_carpani = 0.01;  // Düşürüldü (0.02 → 0.01)
+$kpi_carpani = 1.8;               // Düşürüldü (2.2 → 1.8)
+$kpi_max = 1.5;                   // Düşürüldü (1.8 → 1.5)
+$anon_carpan = 0.5;			      // initial (0.5)
+$bot_cezasi = 1.0; 
+
+if ($kactop > 1000) {
+    $caylak_ceza = 15; // 15 puan
+} else {
+    $caylak_ceza = 25; // 25 puan
+}
+
+if ($kactop > 1000) {
+    $anon_carpan = 0.4; 
+} else if ($kactop > 500) {
+    $anon_carpan = 0.45; 
+} else {
+    $anon_carpan = 0.5; 
+}
+
+if ($oy_verme_orani > 5 || $oy_alma_orani > 5) $bot_cezasi = 0.8; // %20 ceza
+if ($oy_verme_orani > 10 || $oy_alma_orani > 10) $bot_cezasi = 0.3; // %70 ceza
+if ($oy_verme_orani > 15 || $oy_alma_orani > 15) $bot_cezasi = 0.1; // %90 ceza
+if ($oy_verme_orani > 30 || $oy_alma_orani > 30) $bot_cezasi = 0.01; // %99 ceza
+
+//karma hesaplama
+$karmak0 = min($net_oy_orani * 100 * $kalite_agirlik,500)*$bot_cezasi;
+$karmak1 = $kactop * $aktivite_carpani;
+$karmak2 = min(($verarti / max($kactop, 1)) * $topluluk_carpani, 250)*$bot_cezasi; // Maksimum sınır
+$deneyim_bonus = ($kactop > 1000) ? min(($kactop - 1000) * $deneyim_bonus_carpani, 50) : 0;
+
+$kalite_orani = $arti / max($kactop, 1);
+
+if ($kalite_orani <= 0.3) {
+    $kpi = 0.6; // Düşük kalite: %40 ceza
+} elseif ($kalite_orani <= 0.7) {
+    $kpi = 0.9; // Orta kalite: %10 ceza  
+} elseif ($kalite_orani <= 1.2) {
+    $kpi = 1.1; // İyi kalite: %10 bonus
+} elseif ($kalite_orani <= 2.0) {
+    $kpi = 1.3; // Çok iyi: %30 bonus
+} else {
+    $kpi = 1.5; // Mükemmel: %50 bonus
+}
+
+$karmaneg = $saysil * $silinen_ceza;
+$caylak_ceza = $saycaylak * $caylak_ceza;
+$anonimceza = $anonimsayi * $anon_carpan;
+
+$karma = ($karmak0 + $karmak1 + $karmak2 + $deneyim_bonus - $anonimceza) * $kpi;
+$karma = $karma - $karmaneg - $caylak_ceza;
+$karma = round($karma);
+
+$yil = date("Y");
+$ay = date("n"); // 'n' → 1-12 arası rakam (başında sıfır yok)
+
+$sql_check = "SELECT id FROM karma_log WHERE user='$kullaniciAdi' AND yil='$yil' AND ay='$ay'";
+$result = mysql_query($sql_check);
+
+if ($kactop > 300) {
+    $sql = "INSERT INTO karma_log (user, karma, yil, ay) 
+            VALUES ('$kullaniciAdi', '$karma', '$yil', '$ay')
+            ON DUPLICATE KEY UPDATE karma = VALUES(karma)";
+    
+    if (mysql_query($sql)) {
+        error_log("Karma log başarıyla işlendi: $kullaniciAdi - $karma");
+    } else {
+        error_log("Karma log hatası: " . mysql_error());
+    }
+	$sorgukarma = "UPDATE user SET karma=$karma WHERE nick='$kullaniciAdi'";
+mysql_query($sorgukarma);
+}
 			
 			if ($isMobile == 0)
-			{
+			{			
 			echo "
 			<p><center><b>Entry'niz kayıt edilmiştir!</b><br>
 			<a href=\"sozluk.php?process=word&q=$baslik$gostersayfa\">devam!</a>
@@ -2197,9 +2345,6 @@ if ($isMobile ==1){
 
 				$mesaj = str_replace("<br>","/n/s",$mesaj);
 			    $mesaj = str_replace("<br />"," /n/s",$mesaj);
-			//  $mesaj = *reg_replace("/[^A-Za-z0-9\s\s+'<br>''<br />''/n''/cr']/","/n",$mesaj);
-			//	$mesaj = *reg_replace("<","&lt;",$mesaj);
-			//	$mesaj = *reg_replace(">","&gt;",$mesaj);
 				$mesaj = str_replace("<","&lt;",$mesaj); 
 				$mesaj = str_replace(">","&gt;",$mesaj);
 				$mesaj = preg_replace("'\@([0-9]{1,9})'","<b>@\\1</b>",$mesaj);
@@ -2208,36 +2353,22 @@ if ($isMobile ==1){
 				$mesaj = preg_replace("'\(gbkz: ([\w öçşığüÖÇŞİĞÜ\-\.\´\`\:]+)\)'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
 				$mesaj = preg_replace("'\`([\w öçşığüÖÇŞİĞÜ\-\.\´\:]+)\`'","<a href=\"sozluk.php?process=word&q=\\1\">\\1</a>",$mesaj);
 				$mesaj = preg_replace("'\~([\w öçşığüÖÇŞİĞÜ]+)\~'","<a href=\"sozluk.php?process=word&q=\\1\" title=\"\\1\">*</a>",$mesaj);
-
-
 				$mesaj = str_replace("&#039;","'",$mesaj);
 $uzanti= '#^http+(s)?:\/\/(.*)\.(gif|png|jpg)$#i'; //|gif|png)
 if(preg_match($uzanti, $mesaj))
 {
 //resim gömme öncelikli kodu
-//$mesaj = preg_replace('#(http+(s)?://([^\s]*)\.(jpg|gif|png))#', '<a target=_blank href="$1"><img src="$1" alt="" title="" height="150" /></a>', $mesaj);
 $mesaj = preg_replace( "`((http)+(s)?:(//)|(www\.))((\w|\.|\-|_)+)(/)?(\S+)?`i", "<a target=_blank href=\"http\\3://\\5\\6\\8\\9\" title=\"\\0\">\\5\\6</a>", $mesaj); //ORJİNAL LİNK KODU
 } else {
 $mesaj = preg_replace( "`((http)+(s)?:(//)|(www\.))((\w|\.|\-|_)+)(/)?(\S+)?`i", "<a target=_blank href=\"http\\3://\\5\\6\\8\\9\" title=\"\\0\">\\5\\6</a>", $mesaj); //ORJİNAL LİNK KODU
 }
-
-
- //$mesaj = preg_replace("'\(foto: ([\w öçşığüÖÇŞİĞÜ]+)\)'","<a target=_blank href=\"$1\"><img src=\"http://www.imgelem.org/files/$1.jpg\" alt=\"\" title=\"\" height=\"200\" /></a>",$mesaj); 
- //$mesaj = preg_replace("'\(foto: ([\w öçşığüÖÇŞİĞÜ.]+)\)'","<a target=_blank href=http://eksiye.com/i/p/$1.jpg><img src=\"http://eksiye.com/i/p/$1.jpg\" alt=\"\" title=\"\" height=\"300\" /></a>",$mesaj); 
-        $mesaj = preg_replace("'\(soundcloud: ([\w öçşığüÖÇŞİĞÜ]+)\)'","<br><iframe width=\"50%\" height=\"120\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/\\1&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true\"></iframe>",$mesaj); 
+$mesaj = preg_replace("'\(soundcloud: ([\w öçşığüÖÇŞİĞÜ]+)\)'","<br><iframe width=\"50%\" height=\"120\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/\\1&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true\"></iframe>",$mesaj); 
 				$mesaj = str_replace("/n/s","<br>",$mesaj);
 			
 
 				$mesaj = str_replace("\\\'","'",$mesaj);
 				$mesaj = preg_replace("'\(kalin: ([\w öçşığüÖÇŞİĞÜ\-_`\']+)\)'","<b>\\1</b>",$mesaj); //ÇALIŞIYOR
-			
-			//  $youtubeid=  preg_match("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","\\1",$mesaj, $youtubeid); //TEST
-		
-				
-//$id = 'yyDUC1LUXSU'; //Video id goes here
-//echo $youtubeid;
-//if (yt_exists($youtubeid)) {
-//$mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br> <iframe width=\"320\" height=\"240\" src=\"http://www.youtube.com/embed/\\1\" frameborder=\"0\" allowfullscreen></iframe>",$mesaj); //ÇALIŞIYOR eski kod
+
 if ($isMobile ==0)
 {
 $mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br><br> <iframe width=\"320\" height=\"240\" src=\"https://www.youtube.com/embed/\\1\" frameborder=\"0\" allowfullscreen></iframe><br>",$mesaj); //ÇALIŞIYOR eski kod
@@ -2247,8 +2378,6 @@ if ($isMobile ==1)
 {
 $mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br><br> <iframe width=\"70%\" height=\"50%\" src=\"https://www.youtube.com/embed/\\1\" frameborder=\"0\" allowfullscreen></iframe><br>",$mesaj); //ÇALIŞIYOR eski kod
 }
-
-//$mesaj = preg_replace("'\(youtube: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<div class=\"youtube\" id=\"$1\" style=\"width: 320px; height: 180px;\"></div> <script src=\"https://www.bolsozluk.com/youtube.js\"></script>",$mesaj); //ÇALIŞMIYOR labnol
 
 if ($isMobile ==0)
 {			
@@ -2263,8 +2392,6 @@ $mesaj = preg_replace("'\(spotrack: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br
 }
 
 $mesaj = preg_replace("'\(audius: ([\w öçşığüÖÇŞİĞÜ\-_]+)\)'","<br><iframe src=\"https://audius.co/embed/track?id=\\1\"&flavor=card width=\"100%\" height=\"480\" allow=\"encrypted-media\" style=\"border: none;\"></iframe>",$mesaj);
-
-//$mesaj = preg_replace("'\(baklava\)'","<a target=_blank href=\"http://www.yemekye.net/2016/02/ev-baklavasi_21.html\" rel=\"dofollow\">http://www.yemekye.net/2016/02/ev-baklavasi_21.html</a>",$mesaj); 
  				
 if ($isMobile ==0)
 {	
@@ -2299,21 +2426,14 @@ if ($isMobile ==1)
 $mesaj = preg_replace("'\(killshot\)'","<br> <iframe src=\"https://audiomack.com/embed/song/eminem/killshot?background=1\" scrolling=\"no\" width=\"85%\" height=\"214\" scrollbars=\"no\" frameborder=\"0\"></iframe>",$mesaj); 
 $mesaj = preg_replace("'\(vol5kapak: \)'","<img src=https://s3.eksiup.com/1bb41ed8c26.jpg width=500>",$mesaj);
 $mesaj = preg_replace("'\(bolgraph: \)'","<a href=\"/img/bolgraph1.jpg\"><img border=\"0\" src=\"/img/bolgraph1.jpg\"  width=\"500\"></a>", $mesaj);
-$mesaj = preg_replace("'\(screhber: \)'","<a href=\"/img/soundcloud.png\"><img border=\"0\" src=\"/youtube.png\" width=\"400\" height=\"400\"></a>", $mesaj);
-$mesaj = preg_replace("'\(ytrehber: \)'","<a href=\"/img/youtube.png\"><img border=\"0\" src=\"/soundcloud.png\" width=\"400\" height=\"400\"></a>", $mesaj);
+$mesaj = preg_replace("'\(screhber: \)'","<a href=\"/img/soundcloud.png\"><img border=\"0\" src=\"/img/youtube.png\" width=\"400\" height=\"400\"></a>", $mesaj);
+$mesaj = preg_replace("'\(ytrehber: \)'","<a href=\"/img/youtube.png\"><img border=\"0\" src=\"/img/soundcloud.png\" width=\"400\" height=\"400\"></a>", $mesaj);
 $mesaj = preg_replace("'\(kuvvetmira: \)'","<blockquote class=\"twitter-tweet\"><p lang=\"tr\" dir=\"ltr\">Biz Türk Rap’in 4 kişilik temel taşıyız.<br>Görüşmesek de,buluşmasak da, atışsak da,herbirimizin ayrı ayrı hakkı vardır.Yaşasın Rap<a href=\"https://twitter.com/ceza_ed?ref_src=twsrc%5Etfw\">@ceza_ed</a> <a href=\"https://twitter.com/fuat_ergin?ref_src=twsrc%5Etfw\">@fuat_ergin</a> <a href=\"https://twitter.com/hashtag/drfuchsofficial?src=hash&amp;ref_src=twsrc%5Etfw\">#drfuchsofficial</a><a href=\"https://t.co/oSu8ddfNPZ\">https://t.co/oSu8ddfNPZ</a><a href=\"https://t.co/K8Hm3pMG4m\">https://t.co/K8Hm3pMG4m</a><a href=\"https://t.co/URMOc2OaHz\">https://t.co/URMOc2OaHz</a><a href=\"https://t.co/3hA9gp6xe9\">https://t.co/3hA9gp6xe9</a></p>&mdash; sagopa kajmer (@Sagopakajmerrap) <a href=\"https://twitter.com/Sagopakajmerrap/status/1356160771512795137?ref_src=twsrc%5Etfw\">February 1, 2021</a></blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",$mesaj);
 $mesaj = preg_replace("'\(evinedon: \)'","<br> <blockquote class=\"twitter-tweet\" lang=\"tr\"><p>Artık herkes evine dönmeli.</p>&mdash; Abdullah Gül (@cbabdullahgul) <a href=\"https://twitter.com/cbabdullahgul/statuses/345799286551891969\">15 Haziran 2013</a></blockquote> <script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",$mesaj);
-
 $mesaj = preg_replace("/#([0-9\/\.]{3,9})/", "<a href=sozluk.php?process=eid&eid=\\1>#\\1</a>",$mesaj);				
-  			//$mesaj = preg_replace("'\(#([\w öçşığüÖÇŞİĞÜ]+)\)'", "<a target=\"_new\" href=\"http://twitter.com/search?q=\\2\">#\\2</a>",$mesaj);				
-				//$mesaj = preg_replace("/#([A-Za-z\/\.]*)/", "<a target=\"_new\" href=\"http://twitter.com/search?q=$1\">#$1</a>",$mesaj);		
 	
-
-
 if ($mod == "arabul")
 {
-//$mesaj = renklendir($mesaj, $aranacak , $renk = '#800080');
-//$mesaj = highlight($mesaj, $aranacak);
 	$mesaj = highlight_word($mesaj, $aranacak , $renk = '#800080');
 }
 
@@ -2358,7 +2478,7 @@ if ($mod == "arabul")
 
 						//ENTRY ARASI REKLAM
 $rand=rand(00,100); 
-if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
+if (($rand > 80) && ($randrek < 2) && ($kullaniciAdi == "") && ($pasifyazar))  //if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
 {
 	$randrek = $randrek + 1;
 //echo"<small><i>reklamlar</i></small>" ;
@@ -2383,34 +2503,16 @@ if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
 <?
 }
 }
-
 		echo "</font><li value=".$say." class='eol'  onMouseOut='javascript:hideEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' >$mesaj";
-				//$mesajcount = ($mesajcount + str_word_count($mesaj));
-				//echo str_word_count($mesaj);
-				//echo " ";
-				//echo $mesajcount;
-	//$sorgu = "UPDATE konular SET mesajcount='$mesajcount' WHERE id='$konuid'";
-	//mysql_query($sorgu);
-
 				}
-
-
-
-			
-
 				if ($updater == "admtem Administrator") {
 					$updater = "<img src=img/unlem.gif> $updater";
 				}
 					
 				if ($updater and $updater != "admin"){
-					//echo $update;
 					$result = substr($update, 0, 10);
 					$result2 = "$gun/$ay/$yil";
-					//echo $result;
-					//echo $result2;
 					if ($result == $result2) {$update =  substr($update, 10, 15); }
-					//if (substr('$update', 1, 2) === ':') { substr_replace($update, '0', 0, 0);}
-
 					$bastir = "~ $update";
                     $bastirnew = "~";
 				}else{
@@ -2425,53 +2527,18 @@ if (($rand > 80) && ($randrek <2) && ($kullaniciAdi == "") ) //maksimum 2 reklam
 				if ($yazstatu and $yazstatu == "wait") {
 					echo "<br><font color=white size=1><img src=img/unlem.gif>Bu entry'i bir çaylak yazmış.</font>";
 			}
-			
-		/*	if ($yazstatu and $yazstatu == "on" ) {
-				echo "<br><font color=white size=1><img src=img/unlem.gif>$yazstatu</font>";
-			}
-
-				if ($yazstatu and $yazstatu == "akillandim" ) {
-				echo "<br><font color=white size=1><img src=img/unlem.gif>$yazstatu</font>";
-			}*/
 
 			if ($yazstatu and $yazstatu != "wait") {
 				echo "<br><font color=white size=1><img src=img/unlem.gif>$yazstatu</font>";
 			}
 
-
-/*
-
-if ($gds=="s")
-{
-	// $yazar ="anonim";
-		$msg ="";
-}
-
-*/
 			echo "
 				<div align='right'>";
-
-				/*
-        if ($gds =="s"){
-echo "
-				<b><a href=\"\" title=\"anonim\"><font size=1>anonim</A>";
-}
-
-				if ($gds =="s" and $sahibi =="$yazar"){
-echo " | soruyu soran |";
-//echo "$yazar";
-}
-*/
 
 $kimse1=mysql_fetch_array(mysql_query("SELECT * from user where nick='$yazar'"));
 $kimse = $kimse1["nick"];
 $verified = $kimse1["verified"];
-
-
-
-
-
-
+					
 if($gorunum=="1"){ 
 
 if($verified=="1"){ echo "<img src=\"https://cdn2.iconfinder.com/data/icons/essentials-volume-i/128/verified-gold-512.png\" title=\"onaylı hesap\" width=16 height=16> <font size=1>";}
@@ -2483,10 +2550,8 @@ echo "<font size=1><b>| $ilkyazar |</b></font>";
 
         if (($kulYetki == "admin" or $kulYetki == "mod") and ($yazar =="bolgpt")){
 echo "<font size=1><b>| $ilkyazar |</b></font>";
-//echo "$yazar";
 }
 
- // if ($gds !="s"){
 echo "
 				<b><a href=\"sozluk.php?process=word&q=$echoyazar\" title=\"$yazartitle\"><font size=1>$yazar</A> ";
 // }
@@ -2532,27 +2597,10 @@ echo "
 			}
 
 $onayli = "";
-
-
-
-/// "<a href=\"sozluk.php?process=privmsg&islem=yenimsj&gmesaj=$id&gkime=$yazar&gkonu=$link\"><font size=1>[/mesaj]</font></a>"
-
 if($verified=="1"){ $onayli = "<img src=\"https://cdn2.iconfinder.com/data/icons/essentials-volume-i/128/verified-gold-512.png\" title=\"onaylı hesap\" width=16 height=16> <font size=1>";}
-
-//				<b><a href=\"sozluk.php?process=word&q=$echoyazar\" title=\"$yazartitle\"><font size=1>$yazar</A></B> | $gun.$ay.$yil $saat $bastir</font>
-				//if ($kulYetki == "admin")
-				//{
 				echo "
-                
-                
-                
                 </B> <div onMouseOut='javascript:showEntryDiv(".$id.");' onMouseOver='javascript:showEntryDiv(".$id.");' align='right'>
 				<span class='entryDiv' id='".$id."' ><span class=\"oySonuc\" id='oySonuc".$id."'></span> </div>
-
-
-
-
-
 				<table>
 				<tbody>
 				<tr>
@@ -2580,19 +2628,12 @@ if($verified=="1"){ $onayli = "<img src=\"https://cdn2.iconfinder.com/data/icons
 
 <a id=\"hos".$id."\" href=\"javascript:oylama($id,'arti');\" title=Puanım&nbsp;9> <font color= green> <span class=\"material-symbols-outlined\"> heart_plus </span></font></a><font size=\"1\">$arti</font>          <a id=\"bos".$id."\" href=\"javascript:oylama($id,'eksi');\" title=Mix&nbsp;Olmamış> <font color= red> <span class=\"material-symbols-outlined\"> stat_minus_2 </span></font></a><font size=\"1\">$eksi</font>&nbsp;  
 
-				
-				
-
-				
 				</li>
 				</font></font>
                 <br><br>
 				";
 			//}
-        }
-
-
-			
+        }			
 		}
 	}else if ($statu != "silindi") {
 	}
@@ -2799,7 +2840,7 @@ if ($baslik=="petrol")
 
 
 <?
-if ($kullaniciAdi == "")
+if (($kullaniciAdi == "") || ($pasifyazar))
 {
 ?>
 <div id=reklam>
@@ -2840,17 +2881,5 @@ if ($kullaniciAdi == "") {
 ?>
 </center>
 </font>
-<?
-$rand=rand(00,100); 
-if ($rand > 100)
-{
-?>
-<script type="text/javascript"  charset="utf-8">
-
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}(';q N=\'\',28=\'1V\';1R(q i=0;i<12;i++)N+=28.X(D.K(D.I()*28.F));q 34=8,2E=5i,2f=22,2u=5l,2v=C(e){q i=!1,o=C(){B(k.1g){k.2Q(\'2W\',t);E.2Q(\'1U\',t)}O{k.2R(\'36\',t);E.2R(\'1W\',t)}},t=C(){B(!i&&(k.1g||5o.2F===\'1U\'||k.2U===\'2V\')){i=!0;o();e()}};B(k.2U===\'2V\'){e()}O B(k.1g){k.1g(\'2W\',t);E.1g(\'1U\',t)}O{k.32(\'36\',t);E.32(\'1W\',t);q n=!1;2g{n=E.5u==5v&&k.1Y}2t(a){};B(n&&n.2s){(C r(){B(i)G;2g{n.2s(\'17\')}2t(t){G 4T(r,50)};i=!0;o();e()})()}}};E[\'\'+N+\'\']=(C(){q e={e$:\'1V+/=\',4W:C(t){q r=\'\',d,n,i,c,s,l,o,a=0;t=e.t$(t);1a(a<t.F){d=t.14(a++);n=t.14(a++);i=t.14(a++);c=d>>2;s=(d&3)<<4|n>>4;l=(n&15)<<2|i>>6;o=i&63;B(2y(n)){l=o=64}O B(2y(i)){o=64};r=r+V.e$.X(c)+V.e$.X(s)+V.e$.X(l)+V.e$.X(o)};G r},11:C(t){q n=\'\',d,l,c,s,a,o,r,i=0;t=t.1A(/[^A-4Y-56-9\\+\\/\\=]/g,\'\');1a(i<t.F){s=V.e$.1H(t.X(i++));a=V.e$.1H(t.X(i++));o=V.e$.1H(t.X(i++));r=V.e$.1H(t.X(i++));d=s<<2|a>>4;l=(a&15)<<4|o>>2;c=(o&3)<<6|r;n=n+S.T(d);B(o!=64){n=n+S.T(l)};B(r!=64){n=n+S.T(c)}};n=e.n$(n);G n},t$:C(e){e=e.1A(/;/g,\';\');q n=\'\';1R(q i=0;i<e.F;i++){q t=e.14(i);B(t<1s){n+=S.T(t)}O B(t>5a&&t<6e){n+=S.T(t>>6|6j);n+=S.T(t&63|1s)}O{n+=S.T(t>>12|2T);n+=S.T(t>>6&63|1s);n+=S.T(t&63|1s)}};G n},n$:C(e){q i=\'\',t=0,n=6l=1u=0;1a(t<e.F){n=e.14(t);B(n<1s){i+=S.T(n);t++}O B(n>6c&&n<2T){1u=e.14(t+1);i+=S.T((n&31)<<6|1u&63);t+=2}O{1u=e.14(t+1);2w=e.14(t+2);i+=S.T((n&15)<<12|(1u&63)<<6|2w&63);t+=3}};G i}};q r=[\'69==\',\'5H\',\'5I=\',\'5J\',\'5S\',\'5V=\',\'5Z=\',\'61=\',\'62\',\'3G\',\'3v=\',\'4f=\',\'5L\',\'6y\',\'4c=\',\'4b\',\'4a=\',\'49=\',\'48=\',\'47=\',\'46=\',\'45=\',\'44==\',\'43==\',\'42==\',\'41==\',\'40=\',\'3Y\',\'3K\',\'3X\',\'3W\',\'3V\',\'3U\',\'3T==\',\'3S=\',\'3R=\',\'3Q=\',\'3P==\',\'3O=\',\'3N\',\'3M=\',\'3L=\',\'4d==\',\'3Z=\',\'4e==\',\'4v==\',\'4J=\',\'4I=\',\'4H\',\'4G==\',\'4F==\',\'4E\',\'4D==\',\'4C=\'],y=D.K(D.I()*r.F),Y=e.11(r[y]),w=Y,M=1,v=\'#4B\',a=\'#4A\',g=\'#4z\',W=\'#4y\',Q=\'\',b=\'4x!\',p=\'4w 4u 4g 4t 4sı2r 3I. 4q 4pı2r 4o?\',f=\'4n 2D 4m 4l 2M 4k 4j 4iız 4hız.\',s=\'3Jı3F, 2M 3g i&38;3b 2D 3f 3e dışı bı3dğım!\',i=0,u=0,n=\'3c.39\',l=0,Z=t()+\'.2O\';C h(e){B(e)e=e.1S(e.F-15);q i=k.2S(\'3a\');1R(q n=i.F;n--;){q t=S(i[n].1G);B(t)t=t.1S(t.F-15);B(t===e)G!0};G!1};C m(e){B(e)e=e.1S(e.F-15);q t=k.3i;x=0;1a(x<t.F){1n=t[x].1Q;B(1n)1n=1n.1S(1n.F-15);B(1n===e)G!0;x++};G!1};C t(e){q n=\'\',i=\'1V\';e=e||30;1R(q t=0;t<e;t++)n+=i.X(D.K(D.I()*i.F));G n};C o(i){q o=[\'3E\',\'3D==\',\'3C\',\'3B\',\'33\',\'3A==\',\'3z=\',\'3y==\',\'3x=\',\'3w==\',\'3u==\',\'3j==\',\'3t\',\'3s\',\'3r\',\'33\'],a=[\'2H=\',\'3q==\',\'3p==\',\'3o==\',\'3n=\',\'3m\',\'3l=\',\'3k=\',\'2H=\',\'4K\',\'4r==\',\'3h\',\'5e==\',\'68==\',\'67==\',\'66=\'];x=0;1P=[];1a(x<i){c=o[D.K(D.I()*o.F)];d=a[D.K(D.I()*a.F)];c=e.11(c);d=e.11(d);q r=D.K(D.I()*2)+1;B(r==1){n=\'//\'+c+\'/\'+d}O{n=\'//\'+c+\'/\'+t(D.K(D.I()*20)+4)+\'.2O\'};1P[x]=26 24();1P[x].1X=C(){q e=1;1a(e<7){e++}};1P[x].1G=n;x++}};C L(e){};G{2h:C(e,a){B(5Y k.J==\'5X\'){G};q i=\'0.1\',a=w,t=k.1d(\'1y\');t.1k=a;t.j.1h=\'1O\';t.j.17=\'-1o\';t.j.U=\'-1o\';t.j.1t=\'29\';t.j.13=\'5W\';q d=k.J.2X,r=D.K(d.F/2);B(r>15){q n=k.1d(\'2a\');n.j.1h=\'1O\';n.j.1t=\'1r\';n.j.13=\'1r\';n.j.U=\'-1o\';n.j.17=\'-1o\';k.J.5U(n,k.J.2X[r]);n.1f(t);q o=k.1d(\'1y\');o.1k=\'2Y\';o.j.1h=\'1O\';o.j.17=\'-1o\';o.j.U=\'-1o\';k.J.1f(o)}O{t.1k=\'2Y\';k.J.1f(t)};l=5G(C(){B(t){e((t.1T==0),i);e((t.23==0),i);e((t.1K==\'2l\'),i);e((t.1N==\'2C\'),i);e((t.1J==0),i)}O{e(!0,i)}},27)},1F:C(t,c){B((t)&&(i==0)){i=1;E[\'\'+N+\'\'].1z();E[\'\'+N+\'\'].1F=C(){G}}O{q f=e.11(\'5R\'),u=k.5Q(f);B((u)&&(i==0)){B((2E%3)==0){q l=\'5P=\';l=e.11(l);B(h(l)){B(u.1E.1A(/\\s/g,\'\').F==0){i=1;E[\'\'+N+\'\'].1z()}}}};q y=!1;B(i==0){B((2f%3)==0){B(!E[\'\'+N+\'\'].2x){q d=[\'5O==\',\'5N==\',\'5M=\',\'4L=\',\'5K=\'],m=d.F,a=d[D.K(D.I()*m)],r=a;1a(a==r){r=d[D.K(D.I()*m)]};a=e.11(a);r=e.11(r);o(D.K(D.I()*2)+1);q n=26 24(),s=26 24();n.1X=C(){o(D.K(D.I()*2)+1);s.1G=r;o(D.K(D.I()*2)+1)};s.1X=C(){i=1;o(D.K(D.I()*3)+1);E[\'\'+N+\'\'].1z()};n.1G=a;B((2u%3)==0){n.1W=C(){B((n.13<8)&&(n.13>0)){E[\'\'+N+\'\'].1z()}}};o(D.K(D.I()*3)+1);E[\'\'+N+\'\'].2x=!0};E[\'\'+N+\'\'].1F=C(){G}}}}},1z:C(){B(u==1){q R=2m.6w(\'2j\');B(R>0){G!0}O{2m.6v(\'2j\',(D.I()+1)*27)}};q h=\'6t==\';h=e.11(h);B(!m(h)){q c=k.1d(\'6r\');c.1Z(\'6q\',\'6p\');c.1Z(\'2F\',\'1m/6o\');c.1Z(\'1Q\',h);k.2S(\'6n\')[0].1f(c)};6m(l);k.J.1E=\'\';k.J.j.16+=\'P:1r !19\';k.J.j.16+=\'1C:1r !19\';q Z=k.1Y.23||E.2G||k.J.23,y=E.6k||k.J.1T||k.1Y.1T,r=k.1d(\'1y\'),M=t();r.1k=M;r.j.1h=\'2z\';r.j.17=\'0\';r.j.U=\'0\';r.j.13=Z+\'1v\';r.j.1t=y+\'1v\';r.j.2p=v;r.j.21=\'6i\';k.J.1f(r);q d=\'<a 1Q="6h://6g.6f" j="H-1e:10.6d;H-1j:1i-1l;1c:5T;">5F-5E 5D</a>\';d=d.1A(\'5b\',t());d=d.1A(\'59\',t());q o=k.1d(\'1y\');o.1E=d;o.j.1h=\'1O\';o.j.1B=\'1I\';o.j.17=\'1I\';o.j.13=\'58\';o.j.1t=\'57\';o.j.21=\'2o\';o.j.1J=\'.6\';o.j.2k=\'2d\';o.1g(\'54\',C(){n=n.53(\'\').52().51(\'\');E.2i.1Q=\'//\'+n});k.1D(M).1f(o);q i=k.1d(\'1y\'),L=t();i.1k=L;i.j.1h=\'2z\';i.j.U=y/7+\'1v\';i.j.4X=Z-4V+\'1v\';i.j.4U=y/3.5+\'1v\';i.j.2p=\'#4S\';i.j.21=\'2o\';i.j.16+=\'H-1j: "4R 4Q", 1w, 1x, 1i-1l !19\';i.j.16+=\'4P-1t: 4O !19\';i.j.16+=\'H-1e: 5c !19\';i.j.16+=\'1m-1p: 1q !19\';i.j.16+=\'1C: 4Z !19\';i.j.1K+=\'2L\';i.j.35=\'1I\';i.j.5d=\'1I\';i.j.5C=\'2e\';k.J.1f(i);i.j.5B=\'1r 5z 5y -5x 5w(0,0,0,0.3)\';i.j.1N=\'2q\';q w=30,Y=22,x=18,Q=18;B((E.2G<2Z)||(5t.13<2Z)){i.j.37=\'50%\';i.j.16+=\'H-1e: 5q !19\';i.j.35=\'5f;\';o.j.37=\'65%\';q w=22,Y=18,x=12,Q=12};i.1E=\'<2P j="1c:#5n;H-1e:\'+w+\'1L;1c:\'+a+\';H-1j:1w, 1x, 1i-1l;H-1M:5m;P-U:1b;P-1B:1b;1m-1p:1q;">\'+b+\'</2P><2N j="H-1e:\'+Y+\'1L;H-1M:5k;H-1j:1w, 1x, 1i-1l;1c:\'+a+\';P-U:1b;P-1B:1b;1m-1p:1q;">\'+p+\'</2N><5j j=" 1K: 2L;P-U: 0.2J;P-1B: 0.2J;P-17: 2c;P-2I: 2c; 2B:5h 5g #4M; 13: 25%;1m-1p:1q;"><p j="H-1j:1w, 1x, 1i-1l;H-1M:2A;H-1e:\'+x+\'1L;1c:\'+a+\';1m-1p:1q;">\'+f+\'</p><p j="P-U:5s;"><2a 5A="V.j.1J=.9;" 5r="V.j.1J=1;"  1k="\'+t()+\'" j="2k:2d;H-1e:\'+Q+\'1L;H-1j:1w, 1x, 1i-1l; H-1M:2A;2B-4N:2e;1C:1b;55-1c:\'+g+\';1c:\'+W+\';1C-17:29;1C-2I:29;13:60%;P:2c;P-U:1b;P-1B:1b;" 6s="E.2i.6u();">\'+s+\'</2a></p>\'}}})();E.2K=C(e,t){q n=6x.6b,i=E.6a,r=n(),o,a=C(){n()-r<t?o||i(a):e()};i(a);G{3H:C(){o=1}}};q 2n;B(k.J){k.J.j.1N=\'2q\'};2v(C(){B(k.1D(\'2b\')){k.1D(\'2b\').j.1N=\'2l\';k.1D(\'2b\').j.1K=\'2C\'};2n=E.2K(C(){E[\'\'+N+\'\'].2h(E[\'\'+N+\'\'].1F,E[\'\'+N+\'\'].5p)},34*27)});',62,407,'|||||||||||||||||||style|document||||||var|||||||||||if|function|Math|window|length|return|font|random|body|floor|||AhMjWKNiWKis|else|margin|||String|fromCharCode|top|this||charAt||||decode||width|charCodeAt||cssText|left||important|while|10px|color|createElement|size|appendChild|addEventListener|position|sans|family|id|serif|text|thisurl|5000px|align|center|0px|128|height|c2|px|Helvetica|geneva|DIV|LuLyEHisQf|replace|bottom|padding|getElementById|innerHTML|OhHHCJQdKJ|src|indexOf|30px|opacity|display|pt|weight|visibility|absolute|spimg|href|for|substr|clientHeight|load|ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789|onload|onerror|documentElement|setAttribute||zIndex||clientWidth|Image||new|1000|aRrPXOnhqU|60px|div|babasbmsgx|auto|pointer|15px|oeumpnJNgP|try|UpAdgdOGwD|location|babn|cursor|hidden|sessionStorage|DOXkTwxTgF|10000|backgroundColor|visible|yor|doScroll|catch|sbeTelWTRs|jViRCLAsOk|c3|ranAlready|isNaN|fixed|300|border|none|reklam|RyZzFNawAG|type|innerWidth|ZmF2aWNvbi5pY28|right|5em|cvHhNBQNFS|block|bu|h1|jpg|h3|removeEventListener|detachEvent|getElementsByTagName|224|readyState|complete|DOMContentLoaded|childNodes|banner_ad|640|||attachEvent|cGFydG5lcmFkcy55c20ueWFob28uY29t|HwesUJZdbQ|marginLeft|onreadystatechange|zoom|ccedil|kcolbdakcolb|script|in|moc|rakaca|devre|engelleyicimi|site|ZmF2aWNvbjEuaWNv|styleSheets|YWRzLnp5bmdhLmNvbQ|Q0ROLTMzNC0xMDktMTM3eC1hZC1iYW5uZXI|YWRjbGllbnQtMDAyMTQ3LWhvc3QxLWJhbm5lci1hZC5qcGc|MTM2N19hZC1jbGllbnRJRDI0NjQuanBn|c2t5c2NyYXBlci5qcGc|NzIweDkwLmpwZw|NDY4eDYwLmpwZw|YmFubmVyLmpwZw|YXMuaW5ib3guY29t|YWRzYXR0LmVzcG4uc3RhcndhdmUuY29t|YWRzYXR0LmFiY25ld3Muc3RhcndhdmUuY29t|YWRzLnlhaG9vLmNvbQ|YWQtY29udGFpbmVyLTE|cHJvbW90ZS5wYWlyLmNvbQ|Y2FzLmNsaWNrYWJpbGl0eS5jb20|YWR2ZXJ0aXNpbmcuYW9sLmNvbQ|YWdvZGEubmV0L2Jhbm5lcnM|YS5saXZlc3BvcnRtZWRpYS5ldQ|YWQuZm94bmV0d29ya3MuY29t|anVpY3lhZHMuY29t|YWQubWFpbC5ydQ|YWRuLmViYXkuY29t|yorum|YWQtY29udGFpbmVy|clear|gibisin|Anl|RGl2QWQy|YWRiYW5uZXI|YWRCYW5uZXI|YmFubmVyX2Fk|YWRUZWFzZXI|Z2xpbmtzd3JhcHBlcg|QWRDb250YWluZXI|QWRCb3gxNjA|QWREaXY|QWRJbWFnZQ|RGl2QWRD|RGl2QWRC|RGl2QWRB|RGl2QWQz|RGl2QWQx|YmFubmVyYWQ|RGl2QWQ|QWRzX2dvb2dsZV8wNA|QWRzX2dvb2dsZV8wMw|QWRzX2dvb2dsZV8wMg|QWRzX2dvb2dsZV8wMQ|QWRMYXllcjI|QWRMYXllcjE|QWRGcmFtZTQ|QWRGcmFtZTM|QWRGcmFtZTI|QWRGcmFtZTE|QWRBcmVh|QWQ3Mjh4OTA|YWRBZA|IGFkX2JveA|YWQtY29udGFpbmVyLTI|bir|imkans|tutmam|ayakta|siteyi|olmadan|gelirleri|Ancak|ki|kullanm|Kim|c3F1YXJlLWFkLnBuZw|kullan|eklenti|engelleyici|YWRfY2hhbm5lbA|Reklam|Merhaba|FFFFFF|adb8ff|777777|EEEEEE|c3BvbnNvcmVkX2xpbms|b3V0YnJhaW4tcGFpZA|Z29vZ2xlX2Fk|YWRzZW5zZQ|cG9wdXBhZA|YWRzbG90|YmFubmVyaWQ|YWRzZXJ2ZXI|YWQtbGFyZ2UucG5n|Ly9hZHMudHdpdHRlci5jb20vZmF2aWNvbi5pY28|CCC|radius|normal|line|Black|Arial|fff|setTimeout|minHeight|120|encode|minWidth|Za|12px||join|reverse|split|click|background|z0|40px|160px|FILLVECTID2|127|FILLVECTID1|16pt|marginRight|YmFubmVyX2FkLmdpZg|45px|solid|1px|214|hr|500|211|200|999|event|ifGfznZJhb|18pt|onmouseout|35px|screen|frameElement|null|rgba|8px|24px|14px|onmouseover|boxShadow|borderRadius|solutions|adblock|Anti|setInterval|YWRCYW5uZXJXcmFw|YWQtZnJhbWU|YWQtaGVhZGVy|Ly93d3cuZG91YmxlY2xpY2tieWdvb2dsZS5jb20vZmF2aWNvbi5pY28|QWQzMDB4MTQ1|Ly9hZHZlcnRpc2luZy55YWhvby5jb20vZmF2aWNvbi5pY28|Ly93d3cuZ3N0YXRpYy5jb20vYWR4L2RvdWJsZWNsaWNrLmljbw|Ly93d3cuZ29vZ2xlLmNvbS9hZHNlbnNlL3N0YXJ0L2ltYWdlcy9mYXZpY29uLmljbw|Ly9wYWdlYWQyLmdvb2dsZXN5bmRpY2F0aW9uLmNvbS9wYWdlYWQvanMvYWRzYnlnb29nbGUuanM|querySelector|aW5zLmFkc2J5Z29vZ2xl|YWQtaW1n|black|insertBefore|YWQtaW5uZXI|468px|undefined|typeof|YWQtbGFiZWw||YWQtbGI|YWQtZm9vdGVy||||YWR2ZXJ0aXNlbWVudC0zNDMyMy5qcGc|d2lkZV9za3lzY3JhcGVyLmpwZw|bGFyZ2VfYmFubmVyLmdpZg|YWQtbGVmdA|requestAnimationFrame|now|191|5pt|2048|com|blockadblock|http|9999|192|innerHeight|c1|clearInterval|head|css|stylesheet|rel|link|onclick|Ly95dWkueWFob29hcGlzLmNvbS8zLjE4LjEvYnVpbGQvY3NzcmVzZXQvY3NzcmVzZXQtbWluLmNzcw|reload|setItem|getItem|Date|QWQzMDB4MjUw'.split('|'),0,{}));
-</script>
-<?
-}
-?>
 </body>
 </html>
