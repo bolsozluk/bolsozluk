@@ -12,7 +12,8 @@ $aktifTema = $_SESSION['aktifTema_S']; if(!$_SESSION['aktifTema_S']){$aktifTema=
 $currentPage = guvenlikKontrol($_REQUEST["sayfa"],"ultra");
 $list = guvenlikKontrol($_REQUEST["list"],"hard");
 
-if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
+// Fixed: Removed broken bitwise OR condition with empty statement
+// if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
 if(!$currentPage) $currentPage=1;
 
 $limitFrom = ($currentPage - 1) * $maxTopicPage;

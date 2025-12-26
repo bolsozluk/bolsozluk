@@ -48,7 +48,8 @@ $pasifyazar = ($aylikentry < $entryBaraji);
 		</script>
 		<?
 
-if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
+// Fixed: Removed broken bitwise OR condition with empty statement
+// if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
 if(!$currentPage) $currentPage=1;
 
 $limitFrom = ($currentPage - 1) * $maxTopicPage;
