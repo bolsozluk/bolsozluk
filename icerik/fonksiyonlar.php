@@ -122,8 +122,8 @@ function guvenlikKontrol($variable,$style){
 				$variable = str_replace($before, $after, $variable);
 				break;
 		case "hard":
-				$before = array("'","<",">","\"","\\",Chr(255));
-				$after  = array("´","","","","","\\","");
+				$before = array("`","'","<",">","\"","\\",Chr(255));
+				$after  = array("´","´","","","","","\\","");
 				$variable = str_replace($before, $after, $variable);
 				$variable = trim(strip_tags($variable));
 				break;
