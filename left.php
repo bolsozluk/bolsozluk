@@ -30,7 +30,23 @@ if ($kullaniciAdi == "") $aylikentry = 0;
 $entryBaraji = 1; 
 $pasifyazar = ($aylikentry < $entryBaraji);
 
-
+				//KAR YAĞDIR
+		?>
+		<script src="snow-background.js"></script>
+		<script>
+		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
+		var now = new Date();
+		var currentMonth = now.getMonth();			
+	    var day = now.getDate();      // 1–31
+		if (month === 11 && day >= 24 && day <= 31) {
+			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
+			snowStorm.freezeOnBlur = false;
+		} else {
+			// Kış değilse karı durdur
+			snowStorm.stop();
+		}
+		</script>
+		<?
 
 if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
 if(!$currentPage) $currentPage=1;
@@ -516,24 +532,7 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		$topicDate = "gündem";
 		$gds = "g";
 
-				//KAR YAĞDIR
-		?>
-		<script src="snow-background.js"></script>
-		<script>
-		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
-		var now = new Date();
-		var currentMonth = now.getMonth();			
-	    var day = now.getDate();      // 1–31
-		if (month === 11 && day >= 24 && day <= 31) {
-			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
-			snowStorm.freezeOnBlur = false;
-		} else {
-			// Kış değilse karı durdur
-			snowStorm.stop();
-		}
-		</script>
-		<?
-		
+	
 
 		if ($cDay==1)
 {
@@ -748,24 +747,6 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 
 		case "konudisi":
 
-//KAR YAĞDIR
-		?>
-		<script src="snow-background.js"></script>
-		<script>
-		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
-		var now = new Date();
-		var currentMonth = now.getMonth();			
-	    var day = now.getDate();      // 1–31
-		if (month === 11 && day >= 24 && day <= 31) {
-			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
-			snowStorm.freezeOnBlur = false;
-		} else {
-			// Kış değilse karı durdur
-			snowStorm.stop();
-		}
-		</script>
-		<?
-
 		$cDay = date("d");
 		$cMon = date("m");
 		$cYea = date("Y");
@@ -961,24 +942,6 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 
 	
 		case "lobi":
-
-//KAR YAĞDIR
-		?>
-		<script src="snow-background.js"></script>
-		<script>
-		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
-		var now = new Date();
-		var currentMonth = now.getMonth();			
-	    var day = now.getDate();      // 1–31
-		if (month === 11 && day >= 24 && day <= 31) {
-			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
-			snowStorm.freezeOnBlur = false;
-		} else {
-			// Kış değilse karı durdur
-			snowStorm.stop();
-		}
-		</script>
-		<?
 
 		$cDay = date("d");
 		$cMon = date("m");
