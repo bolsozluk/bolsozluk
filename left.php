@@ -36,9 +36,9 @@ $pasifyazar = ($aylikentry < $entryBaraji);
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
 		var now = new Date();
-		var currentMonth = now.getMonth();			
+		var currentMonth = now.getMonth();
 	    var day = now.getDate();      // 1–31
-		if (month === 11 && day >= 24 && day <= 31) {
+		if (currentMonth === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
 		} else {
