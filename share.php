@@ -14,7 +14,7 @@ $sayfa = guvenlikKontrol($_REQUEST["sayfa"],"ultra");
 $stat = guvenlikKontrol($_REQUEST["stat"],"hard");
 $q = guvenlikKontrol($_REQUEST["q"],"hard"); 
 $tid = guvenlikKontrol($_REQUEST["tid"],"hard"); 
-$baslik = ereg_replace(" ","+",$q);
+$baslik = preg_replace("/ /","+",$q);
 
 if ($tid > 0)
 {
@@ -24,7 +24,7 @@ if ($tid > 0)
 $tid1= mysql_fetch_array(mysql_query("SELECT baslik FROM konular WHERE id=$tid"));
 $tbaslik = $tid1["baslik"];
 $q=$tbaslik;
-$baslik = ereg_replace(" ","+",$q);
+$baslik = preg_replace("/ /","+",$q);
 
 //echo " tbaslik:";
 //echo $tbaslik;

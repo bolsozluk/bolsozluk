@@ -123,7 +123,7 @@ $ay=$kayit["ay"];
 $yil=$kayit["yil"];
 $baslik=$kayit["baslik"];
 
-$link = ereg_replace(" ","+",$baslik);
+$link = preg_replace("/ /","+",$baslik);
 
 echo "  <tr>
     <td><div align=\"center\">(<a href=sozluk.php?process=adm&islem=olubasliklar&canlandir=$id>Canlandir</a>)</div></td>

@@ -159,7 +159,7 @@ bol bol yazman dileğiyle.
 	hazırsan başlayalım.
 	";
 
-	$yazi = ereg_replace("\n","<br>",$yazi);
+	$yazi = preg_replace("/\n/","<br>",$yazi);
 	
 	$sorgu = "INSERT INTO privmsg ";
 	$sorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat)";

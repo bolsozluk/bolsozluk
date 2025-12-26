@@ -6,7 +6,7 @@ echo "<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"300;URL=sozluk.php?process=dsearch&
 if ($q)
 Header ("Location: sozluk.php?process=search&q=$q&sirala=$sirala");
 $eid =@$HTTP_POST_VARS["eid"];
-$eid = ereg_replace("#","",$eid);
+$eid = preg_replace("/#/","",$eid);
 if ($eid)
 Header ("Location: sozluk.php?process=eid&eid=$eid");
 if ($yazar)
