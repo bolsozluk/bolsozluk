@@ -12,19 +12,19 @@ echo "<br>hedef:$ybaslik baslik:$baslik bid:$bid<br>";
 if ($bid and $ybaslik and $baslik) {
 
 echo "<br>hedef:$ybaslik baslik:$baslik bid:$bid<br>";
-$ybaslik = ereg_replace("ş","s",$ybaslik);
-$ybaslik = ereg_replace("Ş","S",$ybaslik);
-$ybaslik = ereg_replace("ç","c",$ybaslik);
-$ybaslik = ereg_replace("Ç","C",$ybaslik);
-$ybaslik = ereg_replace("ı","i",$ybaslik);
-$ybaslik = ereg_replace("İ","I",$ybaslik);
-$ybaslik = ereg_replace("ğ","g",$ybaslik);
-$ybaslik = ereg_replace("Ğ","G",$ybaslik);
-$ybaslik = ereg_replace("ö","o",$ybaslik);
-$ybaslik = ereg_replace("Ö","O",$ybaslik);
-$ybaslik = ereg_replace("ü","u",$ybaslik);
-$ybaslik = ereg_replace("Ü","U",$ybaslik);
-$ybaslik = ereg_replace("Ö","O",$ybaslik);
+$ybaslik = preg_replace("/ş/","s",$ybaslik);
+$ybaslik = preg_replace("/Ş/","S",$ybaslik);
+$ybaslik = preg_replace("/ç/","c",$ybaslik);
+$ybaslik = preg_replace("/Ç/","C",$ybaslik);
+$ybaslik = preg_replace("/ı/","i",$ybaslik);
+$ybaslik = preg_replace("/İ/","I",$ybaslik);
+$ybaslik = preg_replace("/ğ/","g",$ybaslik);
+$ybaslik = preg_replace("/Ğ/","G",$ybaslik);
+$ybaslik = preg_replace("/ö/","o",$ybaslik);
+$ybaslik = preg_replace("/Ö/","O",$ybaslik);
+$ybaslik = preg_replace("/ü/","u",$ybaslik);
+$ybaslik = preg_replace("/Ü/","U",$ybaslik);
+$ybaslik = preg_replace("/Ö/","O",$ybaslik);
 
 $ybaslik = strtolower($ybaslik);
 

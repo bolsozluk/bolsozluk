@@ -133,7 +133,7 @@ switch($list) {
 			$getmesajlar1 = mysql_query("SELECT baslik FROM konular WHERE id=$sayi AND statu=''");
 			$getmesajlar2 = mysql_fetch_array($getmesajlar1);
 			$topic = $getmesajlar2["baslik"];
-			$link  = ereg_replace(" ","+",$topic);
+			$link  = preg_replace("/ /","+",$topic);
 		
 			if (!$topic) {
 				$i--;

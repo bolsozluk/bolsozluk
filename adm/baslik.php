@@ -36,7 +36,7 @@ $baslik=$kayit["baslik"];
 $tarih=$kayit["tarih"];
 
 $kesbaslik = substr ($baslik, 0, 75);
-$baslik = ereg_replace(" ","+",$baslik);
+$baslik = preg_replace("/ /","+",$baslik);
 
 echo "
   <tr>

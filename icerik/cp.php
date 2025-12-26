@@ -249,8 +249,8 @@ $silsebep=$kayit["silsebep"];
 $update=$kayit["update2"];
 $updatesebep=$kayit["updatesebep"];
 $ayazar = $yazar;
-$yazarlink = ereg_replace("&","",$yazar); // adminlerden ~ kaldırıyoruz
-$yazartitle = ereg_replace("&","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
+$yazarlink = preg_replace("/&/","",$yazar); // adminlerden ~ kaldırıyoruz
+$yazartitle = preg_replace("/&/","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
 
 // Türkçe karakterleri normal harfe çevirme
 $lower = array(

@@ -38,7 +38,7 @@ if ($statu == "wait" and $kulYetki != "admin") {
 
 if (($ok and $mesaj) and ($yazar == $kullaniciAdi or $kulYetki == "admin" or $kulYetki == "mod") and ($yazar !="" and $kullaniciAdi !="" and $kulYetki !="")) {
 
-	$mesaj = ereg_replace("\n","<br>",$mesaj);
+	$mesaj = preg_replace("/\n/","<br>",$mesaj);
 	$tarih = date("d/m/Y G:i");
 	$sorgu = "UPDATE mesajlar SET `update2` = '$tarih' WHERE id='$id'";
 	mysql_query($sorgu);
@@ -176,8 +176,8 @@ $edithistory = $edithistory.'---------------------END-------';
 	$sorgu = "UPDATE mesajlar SET edithistory = '$edithistory' WHERE id='$id'";
 	mysql_query($sorgu);
 	
-$mesaj = ereg_replace("<br>","\n",$mesaj);
-$mesaj = ereg_replace("<br />","",$mesaj);
+$mesaj = preg_replace("/<br>/","\n",$mesaj);
+$mesaj = preg_replace("/<br />/","",$mesaj);
 echo "
 <form method=\"post\" action=\"\">
   <table width=\"100%\" align=\"left\" class=\"dash\">

@@ -91,25 +91,25 @@ $sorgu2 = mysql_query($sorgu1);
 $kayit2=mysql_fetch_array($sorgu2);
 $baslik=$kayit2["baslik"];
 
-$baslik = ereg_replace("ş","s",$baslik);
-$baslik = ereg_replace("Ş","S",$baslik);
-$baslik = ereg_replace("ç","c",$baslik);
-$baslik = ereg_replace("Ç","C",$baslik);
-$baslik = ereg_replace("ı","i",$baslik);
-$baslik = ereg_replace("İ","I",$baslik);
-$baslik = ereg_replace("ğ","g",$baslik);
-$baslik = ereg_replace("Ğ","G",$baslik);
-$baslik = ereg_replace("ö","o",$baslik);
-$baslik = ereg_replace("Ö","O",$baslik);
-$baslik = ereg_replace("ü","u",$baslik);
-$baslik = ereg_replace("Ü","U",$baslik);
-$baslik = ereg_replace("Ö","O",$baslik);
+$baslik = preg_replace("/ş/","s",$baslik);
+$baslik = preg_replace("/Ş/","S",$baslik);
+$baslik = preg_replace("/ç/","c",$baslik);
+$baslik = preg_replace("/Ç/","C",$baslik);
+$baslik = preg_replace("/ı/","i",$baslik);
+$baslik = preg_replace("/İ/","I",$baslik);
+$baslik = preg_replace("/ğ/","g",$baslik);
+$baslik = preg_replace("/Ğ/","G",$baslik);
+$baslik = preg_replace("/ö/","o",$baslik);
+$baslik = preg_replace("/Ö/","O",$baslik);
+$baslik = preg_replace("/ü/","u",$baslik);
+$baslik = preg_replace("/Ü/","U",$baslik);
+$baslik = preg_replace("/Ö/","O",$baslik);
 
 $baslik = strtolower($baslik);
 
 $yazar = $kullaniciAdi;
 
-$link = ereg_replace(" ","+",$baslik);
+$link = preg_replace("/ /","+",$baslik);
 
 echo "
       <H3><FONT size=3><A href=\"sozluk.php?process=word&q=$link\">$baslik</A>$basliksil $baslikduzenle</FONT>
@@ -136,29 +136,29 @@ $update=$kayit["update2"];
 $updatesebep=$kayit["updatesebep"];
 $ayazar = $yazar;
 
-$yazarlink = ereg_replace("&","",$yazar); // adminlerden ~ kaldırıyoruz
-$yazartitle = ereg_replace("&","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
+$yazarlink = preg_replace("/&/","",$yazar); // adminlerden ~ kaldırıyoruz
+$yazartitle = preg_replace("/&/","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
 
-$link = ereg_replace("ş","s",$link);
-$link = ereg_replace("Ş","S",$link);
-$link = ereg_replace("ç","c",$link);
-$link = ereg_replace("Ç","C",$link);
-$link = ereg_replace("ı","i",$link);
-$link = ereg_replace("İ","I",$link);
-$link = ereg_replace("ğ","g",$link);
-$link = ereg_replace("Ğ","G",$link);
-$link = ereg_replace("ö","o",$link);
-$link = ereg_replace("Ö","O",$link);
-$link = ereg_replace("ü","u",$link);
-$link = ereg_replace("Ü","U",$link);
-$link = ereg_replace("Ö","O",$link);
+$link = preg_replace("/ş/","s",$link);
+$link = preg_replace("/Ş/","S",$link);
+$link = preg_replace("/ç/","c",$link);
+$link = preg_replace("/Ç/","C",$link);
+$link = preg_replace("/ı/","i",$link);
+$link = preg_replace("/İ/","I",$link);
+$link = preg_replace("/ğ/","g",$link);
+$link = preg_replace("/Ğ/","G",$link);
+$link = preg_replace("/ö/","o",$link);
+$link = preg_replace("/Ö/","O",$link);
+$link = preg_replace("/ü/","u",$link);
+$link = preg_replace("/Ü/","U",$link);
+$link = preg_replace("/Ö/","O",$link);
 
-$mesaj = ereg_replace("Ş","ş",$mesaj);
-$mesaj = ereg_replace("Ç","ç",$mesaj);
-$mesaj = ereg_replace("İ","i",$mesaj);
-$mesaj = ereg_replace("Ğ","ğ",$mesaj);
-$mesaj = ereg_replace("Ö","ö",$mesaj);
-$mesaj = ereg_replace("Ü","ü",$mesaj);
+$mesaj = preg_replace("/Ş/","ş",$mesaj);
+$mesaj = preg_replace("/Ç/","ç",$mesaj);
+$mesaj = preg_replace("/İ/","i",$mesaj);
+$mesaj = preg_replace("/Ğ/","ğ",$mesaj);
+$mesaj = preg_replace("/Ö/","ö",$mesaj);
+$mesaj = preg_replace("/Ü/","ü",$mesaj);
 
 $mesaj = strtolower($mesaj);
 
