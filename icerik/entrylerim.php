@@ -148,7 +148,7 @@ function showKarmaChart($kullaniciAdi) {
         .k-header { margin-bottom: 15px; border-bottom: 1px solid #f3f4f6; padding-bottom: 10px; }
         
         /* Başlık puntosu büyütüldü */
-        .k-title { font-size: 17px; font-weight: 700; color: #1f2937; margin: 0; }
+        .k-title { font-size: 17px; font-weight: 700; margin: 0; }
         .k-container { position: relative; width: 100%; }
         
         .k-point { 
