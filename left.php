@@ -377,7 +377,7 @@ $xbase11 = $xlistele11["sira"];
 $xsonbaslik11=mysql_fetch_array(mysql_query("SELECT baslik,gds from konular where id='$xbase11'"));
 $xsonbaslik1 = $xsonbaslik11["baslik"];
 $gds = $xsonbaslik11["gds"];
-$xsonbaslik2 = ereg_replace(" ","+",$xsonbaslik1);
+$xsonbaslik2 = preg_replace("/ /","+",$xsonbaslik1);
 
 if($isMobile == 1)   echo "$sayiecho. <a href=sozluk.php?process=word&q=$xsonbaslik2 target=blank>$xsonbaslik1</a> - <a href=sozluk.php?process=eid&eid=$xbase1 target=main>#$xbase1</a><br>"; //
 if($isMobile == 0)   echo "$sayiecho. <a href=sozluk.php?process=word&q=$xsonbaslik2 target=blank>$xsonbaslik1</a> - <a href=sozluk.php?process=eid&eid=$xbase1 target=top>#$xbase1</a><br>"; //
@@ -410,7 +410,7 @@ echo "";
 			$getmesajlar1 = mysql_query("SELECT baslik FROM konular WHERE id=$sayi AND statu=''");
 			$getmesajlar2 = mysql_fetch_array($getmesajlar1);
 			$topic = $getmesajlar2["baslik"];
-			$link  = ereg_replace(" ","+",$topic);
+			$link  = preg_replace("/ /","+",$topic);
 		
 //		    $pattern = '/(\\p{L}+) (\\p{L}+) olan/u';
 //    $replacement = '$1 ($2)';
@@ -1268,11 +1268,11 @@ $sorgu2 = mysql_query($sorgu1);
 	$eniyibaslik4=$kayit2["eniyibaslik4"];
 	$eniyibaslik5=$kayit2["eniyibaslik5"];
 
-$eniyibaslikl1 = ereg_replace(" ","+",$eniyibaslik1);
-$eniyibaslikl2 = ereg_replace(" ","+",$eniyibaslik2);
-$eniyibaslikl3 = ereg_replace(" ","+",$eniyibaslik3);
-$eniyibaslikl4 = ereg_replace(" ","+",$eniyibaslik4);
-$eniyibaslikl5 = ereg_replace(" ","+",$eniyibaslik5);
+$eniyibaslikl1 = preg_replace("/ /","+",$eniyibaslik1);
+$eniyibaslikl2 = preg_replace("/ /","+",$eniyibaslik2);
+$eniyibaslikl3 = preg_replace("/ /","+",$eniyibaslik3);
+$eniyibaslikl4 = preg_replace("/ /","+",$eniyibaslik4);
+$eniyibaslikl5 = preg_replace("/ /","+",$eniyibaslik5);
 
 	echo "
 <strong>dünün en beğenilenleri:</strong>
@@ -1335,16 +1335,16 @@ $sorgu2 = mysql_query($sorgu1);
 
 
 
-$eniyibaslikl1 = ereg_replace(" ","+",$eniyibaslik1);
-$eniyibaslikl2 = ereg_replace(" ","+",$eniyibaslik2);
-$eniyibaslikl3 = ereg_replace(" ","+",$eniyibaslik3);
-$eniyibaslikl4 = ereg_replace(" ","+",$eniyibaslik4);
-$eniyibaslikl5 = ereg_replace(" ","+",$eniyibaslik5);
-$eniyibaslikl6 = ereg_replace(" ","+",$eniyibaslik6);
-$eniyibaslikl7 = ereg_replace(" ","+",$eniyibaslik7);
-$eniyibaslikl8 = ereg_replace(" ","+",$eniyibaslik8);
-$eniyibaslikl9 = ereg_replace(" ","+",$eniyibaslik9);
-$eniyibaslikl10 = ereg_replace(" ","+",$eniyibaslik10);
+$eniyibaslikl1 = preg_replace("/ /","+",$eniyibaslik1);
+$eniyibaslikl2 = preg_replace("/ /","+",$eniyibaslik2);
+$eniyibaslikl3 = preg_replace("/ /","+",$eniyibaslik3);
+$eniyibaslikl4 = preg_replace("/ /","+",$eniyibaslik4);
+$eniyibaslikl5 = preg_replace("/ /","+",$eniyibaslik5);
+$eniyibaslikl6 = preg_replace("/ /","+",$eniyibaslik6);
+$eniyibaslikl7 = preg_replace("/ /","+",$eniyibaslik7);
+$eniyibaslikl8 = preg_replace("/ /","+",$eniyibaslik8);
+$eniyibaslikl9 = preg_replace("/ /","+",$eniyibaslik9);
+$eniyibaslikl10 = preg_replace("/ /","+",$eniyibaslik10);
 
 	echo "<br>
 <font size=2><strong>son 7 günün en beğenilenleri:</strong></font><br>";
@@ -1434,27 +1434,27 @@ echo "10. <a href=sozluk.php?process=eid&eid=$eniyientry10 target='main'>#$eniyi
 	$eniyibaslik19=$kayit2["eniyibaslik19"];
 	$eniyibaslik20=$kayit2["eniyibaslik20"];
 
-$eniyibaslikl1 = ereg_replace(" ","+",$eniyibaslik1);
-$eniyibaslikl2 = ereg_replace(" ","+",$eniyibaslik2);
-$eniyibaslikl3 = ereg_replace(" ","+",$eniyibaslik3);
-$eniyibaslikl4 = ereg_replace(" ","+",$eniyibaslik4);
-$eniyibaslikl5 = ereg_replace(" ","+",$eniyibaslik5);
-$eniyibaslikl6 = ereg_replace(" ","+",$eniyibaslik6);
-$eniyibaslikl7 = ereg_replace(" ","+",$eniyibaslik7);
-$eniyibaslikl8 = ereg_replace(" ","+",$eniyibaslik8);
-$eniyibaslikl9 = ereg_replace(" ","+",$eniyibaslik9);
-$eniyibaslikl10 = ereg_replace(" ","+",$eniyibaslik10);
-$eniyibaslikl11 = ereg_replace(" ","+",$eniyibaslik11);
-$eniyibaslikl12 = ereg_replace(" ","+",$eniyibaslik12);
-$eniyibaslikl13 = ereg_replace(" ","+",$eniyibaslik13);
-$eniyibaslikl14 = ereg_replace(" ","+",$eniyibaslik14);
-$eniyibaslikl15 = ereg_replace(" ","+",$eniyibaslik15);
+$eniyibaslikl1 = preg_replace("/ /","+",$eniyibaslik1);
+$eniyibaslikl2 = preg_replace("/ /","+",$eniyibaslik2);
+$eniyibaslikl3 = preg_replace("/ /","+",$eniyibaslik3);
+$eniyibaslikl4 = preg_replace("/ /","+",$eniyibaslik4);
+$eniyibaslikl5 = preg_replace("/ /","+",$eniyibaslik5);
+$eniyibaslikl6 = preg_replace("/ /","+",$eniyibaslik6);
+$eniyibaslikl7 = preg_replace("/ /","+",$eniyibaslik7);
+$eniyibaslikl8 = preg_replace("/ /","+",$eniyibaslik8);
+$eniyibaslikl9 = preg_replace("/ /","+",$eniyibaslik9);
+$eniyibaslikl10 = preg_replace("/ /","+",$eniyibaslik10);
+$eniyibaslikl11 = preg_replace("/ /","+",$eniyibaslik11);
+$eniyibaslikl12 = preg_replace("/ /","+",$eniyibaslik12);
+$eniyibaslikl13 = preg_replace("/ /","+",$eniyibaslik13);
+$eniyibaslikl14 = preg_replace("/ /","+",$eniyibaslik14);
+$eniyibaslikl15 = preg_replace("/ /","+",$eniyibaslik15);
 
-$eniyibaslikl16 = ereg_replace(" ","+",$eniyibaslik16);
-$eniyibaslikl17 = ereg_replace(" ","+",$eniyibaslik17);
-$eniyibaslikl18 = ereg_replace(" ","+",$eniyibaslik18);
-$eniyibaslikl19 = ereg_replace(" ","+",$eniyibaslik19);
-$eniyibaslikl20 = ereg_replace(" ","+",$eniyibaslik20);
+$eniyibaslikl16 = preg_replace("/ /","+",$eniyibaslik16);
+$eniyibaslikl17 = preg_replace("/ /","+",$eniyibaslik17);
+$eniyibaslikl18 = preg_replace("/ /","+",$eniyibaslik18);
+$eniyibaslikl19 = preg_replace("/ /","+",$eniyibaslik19);
+$eniyibaslikl20 = preg_replace("/ /","+",$eniyibaslik20);
 	
 	
 		echo "<br>
