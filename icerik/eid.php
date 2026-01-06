@@ -52,7 +52,7 @@ if($isMobile == 1)
 
 if ($eid) {
 
-$eid = preg_replace("/#/","",$eid);
+$eid = ereg_replace("#","",$eid);
 
 
 $sorgu1 = "SELECT id,sira FROM mesajlar WHERE (`id` = '$eid' and statu != 'silindi' and statu != 'wait')";
@@ -85,7 +85,7 @@ $baslik = strtolower($baslik);
 
 $yazar = $kullaniciAdi;
 
-$link = preg_replace("/ /","+",$baslik);
+$link = ereg_replace(" ","+",$baslik);
 
 if ($kulYetki == "admin" or $kulYetki == "mod")
 $baslikduzenle = "<a class=link> - </a><a class=div href=sozluk.php?process=adm&islem=baslikduzenle&id=$id><font color=green size=2 face=verdana>Düzenle</font></a>";
@@ -146,16 +146,16 @@ $update=$kayit["update2"];
 $updatesebep=$kayit["updatesebep"];
 $ayazar = $yazar;
 
-$yazarlink = preg_replace("/&/","",$yazar); // adminlerden ~ kaldırıyoruz
-$yazartitle = preg_replace("/&/","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
+$yazarlink = ereg_replace("&","",$yazar); // adminlerden ~ kaldırıyoruz
+$yazartitle = ereg_replace("&","Administrator / ",$yazar); // adminlerden ~ kaldırıyoruz
 
 //$mesaj = strtolower($mesaj);
 
-$mesaj = preg_replace("/<br>/","/n",$mesaj);
-$mesaj = preg_replace("/<br />/","/n",$mesaj);
-$mesaj = preg_replace("/</","&lt;",$mesaj);
-$mesaj = preg_replace("/>/","&gt;",$mesaj);
-$mesaj = preg_replace("//n/","<br>",$mesaj);
+$mesaj = ereg_replace("<br>","/n",$mesaj);
+$mesaj = ereg_replace("<br />","/n",$mesaj);
+$mesaj = ereg_replace("<","&lt;",$mesaj);
+$mesaj = ereg_replace(">","&gt;",$mesaj);
+$mesaj = ereg_replace("/n","<br>",$mesaj);
 $mesaj = preg_replace("'\@([0-9]{1,9})'","<b>@\\1</b>",$mesaj);
 
 $mesaj = preg_replace("'\:\)'","~swh~", $mesaj);

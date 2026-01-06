@@ -9,7 +9,7 @@ die;
 if ($ok) {
 
 
-$aciklama = preg_replace("/\n/","<br>",$aciklama);
+$aciklama = ereg_replace("\n","<br>",$aciklama);
 
 $tarih = date("YmdHi");
 $gun = date("d");

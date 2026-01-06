@@ -667,7 +667,7 @@ $base11 = $listele11["sira"];
 $sonbaslik11=mysql_fetch_array(mysql_query("SELECT baslik,gds from konular where id='$base11'"));
 $sonbaslik1 = $sonbaslik11["baslik"];
 $gds = $sonbaslik11["gds"];
-$ssonbaslik2 = preg_replace("/ /","+",$sonbaslik1);
+$ssonbaslik2 = ereg_replace(" ","+",$sonbaslik1);
 if ($gds !='s') {
   ++$sayi;
 echo "<font size=1>$sayi. <a href=?process=word&q=$ssonbaslik2 target=blank>$sonbaslik1</a> - <a href=?process=eid&eid=$base1 target=blank>#$base1</a><br>"; }
@@ -692,7 +692,7 @@ $bbase11 = $blistele11["sira"];
 $bsonbaslik11=mysql_fetch_array(mysql_query("SELECT baslik,gds from konular where id='$bbase11'"));
 $bsonbaslik1 = $bsonbaslik11["baslik"];
 $gds = $bsonbaslik11["gds"];
-$bsonbaslik2 = preg_replace("/ /","+",$bsonbaslik1);
+$bsonbaslik2 = ereg_replace(" ","+",$bsonbaslik1);
 if ($gds !='s') {
     ++$sayi;
 echo "<font size=1>$sayi. <a href=?process=word&q=$bsonbaslik2 target=blank>$bsonbaslik1</a> - <a href=?process=eid&eid=$bentry target=blank>#$bentry</a> - $bentryt oy<br>";
@@ -721,7 +721,7 @@ $xbase11 = $xlistele11["sira"];
 $xsonbaslik11=mysql_fetch_array(mysql_query("SELECT baslik,gds from konular where id='$xbase11'"));
 $xsonbaslik1 = $xsonbaslik11["baslik"];
 $gds = $xsonbaslik11["gds"];
-$xsonbaslik2 = preg_replace("/ /","+",$xsonbaslik1);
+$xsonbaslik2 = ereg_replace(" ","+",$xsonbaslik1);
 if ($gds !='s') {
     --$sayi;
   echo "<font size=1>$sayiecho. <a href=?process=word&q=$xsonbaslik2 target=blank>$xsonbaslik1</a> - <a href=?process=eid&eid=$xbase1 target=blank>#$xbase1</a> - @$ybase1<br>"; //
@@ -758,7 +758,7 @@ $xbase11 = $xlistele11["sira"];
 $xsonbaslik11=mysql_fetch_array(mysql_query("SELECT baslik,gds from konular where id='$xbase11'"));
 $xsonbaslik1 = $xsonbaslik11["baslik"];
 $gds = $xsonbaslik11["gds"];
-$xsonbaslik2 = preg_replace("/ /","+",$xsonbaslik1);
+$xsonbaslik2 = ereg_replace(" ","+",$xsonbaslik1);
 if ($gds !='s') {
     --$sayi;
 echo "<font size=1>$sayiecho. <a href=?process=word&q=$xsonbaslik2 target=blank>$xsonbaslik1</a> - <a href=?process=eid&eid=$xbase1 target=blank>#$xbase1</a> - @$ybase1 <br>";

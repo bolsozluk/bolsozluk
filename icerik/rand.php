@@ -22,7 +22,7 @@ if (mysql_num_rows($sorgulama)>0){
 while ($kayit=mysql_fetch_array($sorgulama)){
 ###################### var ##############################################
 $baslik=$kayit["baslik"];
-$link = preg_replace("/ /","+",$baslik);
+$link = ereg_replace(" ","+",$baslik);
 //header ("Location: sozluk.php?process=word&q=$link");
 header ("Location: /sozluk.php?process=word&q=$link");
 }

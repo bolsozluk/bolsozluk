@@ -45,7 +45,7 @@ $listele = mysql_query("SELECT id,baslik,hit FROM konular WHERE statu='' ORDER B
 while ($kayit=mysql_fetch_array($listele)) {
 $baslik=$kayit["baslik"];
 $hit=$kayit["hit"];
-$link = preg_replace("/ /","+",$baslik);
+$link = ereg_replace(" ","+",$baslik);
 echo "
   <TR onmouseover=\"vi('m0',true)\" onmouseout=\"vi('m0',false)\">
     <TD>·&nbsp;</TD>

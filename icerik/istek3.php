@@ -39,8 +39,8 @@ $baslik=$kayit2["baslik"];
 
 $kesbaslik = substr ($baslik, 0, 60);
 $titlebaslik = $baslik;
-$baslik = preg_replace("/ /","+",$baslik);
-$mesaj = preg_replace("/<br>/","",$mesaj);
+$baslik = ereg_replace(" ","+",$baslik);
+$mesaj = ereg_replace("<br>","",$mesaj);
 
 $mesaj = substr ($mesaj, 0, 250);
 $mesaj = "$mesaj...";
