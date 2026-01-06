@@ -1184,7 +1184,6 @@ if (($kullaniciAdi != "") && ($gds =="g") && (!$pasifyazar)) {
     $kanallar = array(
         "#mc",
         "#album",
-        "#turkcerap",
         "#yabancirap",
         "#graffiti",
         "#turntablism",
