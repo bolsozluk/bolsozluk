@@ -1,49 +1,64 @@
-<?
+<?php
 session_start();
 ob_start();
+
 include("baglan.php");
 include("fonksiyonlar.php");
+
 vtBaglan();
 kontrolEt();
-$dakika = date("i");
-$id = guvenlikKontrol($_REQUEST["id"],"ultra");
-$oy = guvenlikKontrol($_REQUEST["kanal2"],"hard");
 
-if ($oy=="track") {
-	$oyKayit = "track";
-	$kanal = "kanal2";
-}else if ($oy=="album") { 
-	$oyKayit = "album";
-	$kanal = "kanal3";
-}else{
-	die();
+$id = guvenlikKontrol($_REQUEST["id"], "ultra");
+$deger = guvenlikKontrol($_REQUEST["kanal2"], "hard"); // gelen her şey serbest
+
+if (!$id || !$deger) {
+    die("gecersiz istek");
 }
 
-if ($id) {
-
-	$sorgu1 = "SELECT yazar FROM mesajlar WHERE `id` = '$id'";
-	$sorgu2 = mysql_query($sorgu1);
-	mysql_num_rows($sorgu2);
-	$kayit2=mysql_fetch_array($sorgu2);
-	$yazar=$kayit2["yazar"];
-		
-	if (!$kullaniciAdi) {
-		echo "tekrar giris yapin..";
-		die();
-		} 
-		
-		 $gun = date("d");
-    $ay = date("m");
-    $yil = date("Y");
-		$julyen = GregorianToJD($ay, $gun, $yil);
-  
-  mysql_query("UPDATE konular SET $kanal='$oyKayit' WHERE id=$id");
-		echo "$id numarali basliga $kanal icin $oyKayit degeri tercihiniz kaydedildi..";
-
-
-
-	
+if (!$kullaniciAdi) {
+    echo "tekrar giris yapin..";
+    die();
 }
+
+/* Başlığı çek */
+$sorgu = mysql_query("
+    SELECT kanal1, kanal2, kanal3 
+    FROM konular 
+    WHERE id = '$id'
+");
+
+if (mysql_num_rows($sorgu) == 0) {
+    die("baslik bulunamadi");
+}
+
+$kayit = mysql_fetch_array($sorgu);
+
+/* Slot belirle */
+$hedefKanal = '';
+
+if ($kayit['kanal1'] == '' || $kayit['kanal1'] == 'NULL') {
+    $hedefKanal = 'kanal1';
+}
+elseif ($kayit['kanal2'] == '' || $kayit['kanal2'] == 'NULL') {
+    $hedefKanal = 'kanal2';
+}
+elseif ($kayit['kanal3'] == '' || $kayit['kanal3'] == 'NULL') {
+    $hedefKanal = 'kanal3';
+}
+else {
+    echo "Bu baslik icin tum kanal slotlari dolu.";
+    die();
+}
+
+/* Yaz */
+mysql_query("
+    UPDATE konular 
+    SET $hedefKanal = '$deger'
+    WHERE id = '$id'
+");
+
+echo "$id numarali basliga $hedefKanal slotuna '$deger' yazildi.";
+
 mysql_close($databaseConnection);
 ob_end_flush();
 ?>
