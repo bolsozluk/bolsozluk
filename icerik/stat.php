@@ -155,7 +155,7 @@ if($stat=="genel"){
 	$ucyaz=$kayit2["ucyaz"];
 	$gammaz=@mysql_num_rows(mysql_query("select * from user where yetki='gammaz'"));
 	
-	$basliklink = ereg_replace(" ","+",$enhitbaslik);
+	$basliklink = preg_replace("/ /","+",$enhitbaslik);
 
 	$sonid = mysql_fetch_assoc(mysql_query("SELECT * FROM user ORDER BY id DESC LIMIT 1"));
 	$son = $sonid['id'];  
@@ -319,7 +319,7 @@ if($stat=="entri"){
 		for ($i = 1; $i <= 20; $i++) {
 			$entries[$i] = $kayit["eniyientry" . $i];
 			$basliklar[$i] = $kayit["eniyibaslik" . $i];
-			$basliklink[$i] = ereg_replace(" ", "+", $basliklar[$i]);
+			$basliklink[$i] = preg_replace("/ /", "+", $basliklar[$i]);
 		}
 
 		echo "<br><font size=2><strong>en babalar:</strong></font><br><br>";
@@ -342,7 +342,7 @@ while ($kayit2 = mysql_fetch_array($sorgu1)) {
     $sira1 = $sira11["sira"];
     $eniyibaslik11 = mysql_fetch_array(mysql_query("SELECT baslik from konular where id='$sira1'"));
     $eniyibaslik1 = $eniyibaslik11["baslik"];
-	$eniyilink  = ereg_replace(" ", "+", $eniyibaslik1);
+	$eniyilink  = preg_replace("/ /", "+", $eniyibaslik1);
     echo "$x. <a href=?process=word&q=$eniyilink target=main>$eniyibaslik1</a> - <a href=?process=eid&eid=$entry_id target=main>#$entry_id</a><br>";
 }
 	}
@@ -488,7 +488,7 @@ while ($kayit2=mysql_fetch_array($sorgu2))
 	$x++;
 	$nobaslik=$kayit2["baslik"];
 	$notoplam=$kayit2["toplam"];
-	$basliklink = ereg_replace(" ","+",$nobaslik);
+	$basliklink = preg_replace("/ /","+",$nobaslik);
 	echo "$x. <a href=?process=word&q=$basliklink  target=main>$nobaslik</a> ($notoplam)<br>";
 }
 
@@ -525,7 +525,7 @@ if ($stat == "bekciler") {
 		$gonderen=$kayit2["gonderen"];
 		if ($gonderen == "") $gonderen = "anonim";
 		$notoplam=$kayit2["toplam_sikayet"];
-		$basliklink = ereg_replace(" ","+",$gonderen);
+		$basliklink = preg_replace("/ /","+",$gonderen);
 		echo "$x. <a href=?process=word&q=$basliklink  target=main>$gonderen</a> - $notoplam<br>";
 	}	
 
@@ -689,7 +689,7 @@ if($stat=="pmsg"){
 	$padet10=$kayit2["padet10"];
 
 
-	$basliklink = ereg_replace(" ","+",$enhitbaslik);
+	$basliklink = preg_replace("/ /","+",$enhitbaslik);
 
 	echo "
 	<table width=\"516\" height=\"279\" border=\"0\">
@@ -767,11 +767,11 @@ if($stat=="debe"){
 	$eniyibaslik4=$kayit2["eniyibaslik4"];
 	$eniyibaslik5=$kayit2["eniyibaslik5"];
 
-	$eniyibaslikl1 = ereg_replace(" ","+",$eniyibaslik1);
-	$eniyibaslikl2 = ereg_replace(" ","+",$eniyibaslik2);
-	$eniyibaslikl3 = ereg_replace(" ","+",$eniyibaslik3);
-	$eniyibaslikl4 = ereg_replace(" ","+",$eniyibaslik4);
-	$eniyibaslikl5 = ereg_replace(" ","+",$eniyibaslik5);
+	$eniyibaslikl1 = preg_replace("/ /","+",$eniyibaslik1);
+	$eniyibaslikl2 = preg_replace("/ /","+",$eniyibaslik2);
+	$eniyibaslikl3 = preg_replace("/ /","+",$eniyibaslik3);
+	$eniyibaslikl4 = preg_replace("/ /","+",$eniyibaslik4);
+	$eniyibaslikl5 = preg_replace("/ /","+",$eniyibaslik5);
 
 
 	echo "
@@ -808,7 +808,7 @@ if($stat=="hebe"){
 
 	for ($i = 1; $i <= 10; $i++) {
 		$eniyiBasliklar[] = $kayit2["hebeb$i"];
-		$eniyiLinkler[] = ereg_replace(" ", "+", $kayit2["hebeb$i"]);
+		$eniyiLinkler[] = preg_replace("/ /", "+", $kayit2["hebeb$i"]);
 		$eniyiEntryler[] = $kayit2["hebe$i"];
 	}
 
@@ -934,7 +934,7 @@ if($stat=="ebe"){
 		for ($i = 1; $i <= 3; $i++) {
 			$eniyientryler[$i] = $kayit2["eniyientry" . $i];
 			$eniyibasliklar[$i] = $kayit2["eniyibaslik" . $i];
-			$eniyiLinkler[$i] =  ereg_replace(" ", "+", $eniyibasliklar[$i]);
+			$eniyiLinkler[$i] =  preg_replace("/ /", "+", $eniyibasliklar[$i]);
 			echo "$i. <a href=?process=eid&eid={$eniyientryler[$i]} target=main>#{$eniyientryler[$i]}</a> - <a href=?process=word&q={$eniyiLinkler[$i]} target=main>{$eniyibasliklar[$i]}</a><br>";
 
 
@@ -957,7 +957,7 @@ if($stat=="ebe"){
 		for ($i = 1; $i <= 10; $i++) {
 			$entryler[$i] = $kayit2["hebe" . $i];
 			$basliklar[$i] = $kayit2["hebeb" . $i];
-			$linkler[$i] = ereg_replace(" ", "+", $basliklar[$i]);
+			$linkler[$i] = preg_replace("/ /", "+", $basliklar[$i]);
 			echo "$i. <a href=?process=eid&eid={$entryler[$i]} target=main>#{$entryler[$i]} - <a href=?process=word&q={$linkler[$i]} target=main>{$basliklar[$i]}</a></a><br>";
 
 		}
@@ -974,7 +974,7 @@ $sorgu = "SELECT * FROM stat";
 		for ($i = 1; $i <= 20; $i++) {
 			$entries[$i] = $kayit["eniyientry" . $i];
 			$basliklar[$i] = $kayit["eniyibaslik" . $i];
-			$basliklink[$i] = ereg_replace(" ", "+", $basliklar[$i]);
+			$basliklink[$i] = preg_replace("/ /", "+", $basliklar[$i]);
 		}
 
 		echo "<br><font size=2><strong>en babalar:</strong></font><br><br>";

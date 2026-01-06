@@ -31,7 +31,7 @@ $haber_id = $link["baslik"];
   $date = date("20y-m-d");
 
 $haber_id = strtrlower($haber_id);
-$haber_id = ereg_replace(" ","+",$haber_id); //xml
+$haber_id = preg_replace("/ /","+",$haber_id); //xml
 
 $xml_ciktisi .= "<url>
                           <loc>https://www.bolsozluk.com/$haber_id-1.html</loc>

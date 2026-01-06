@@ -15,7 +15,7 @@ die;
 if ($ok) {
   $sorgu = "UPDATE haberler SET konu = '$konu' WHERE id='$id'";
   mysql_query($sorgu);
-  $aciklama = ereg_replace("\n","<br>",$aciklama);
+  $aciklama = preg_replace("/\n/","<br>",$aciklama);
   $sorgu = "UPDATE haberler SET aciklama = '$aciklama' WHERE id='$id'";
   mysql_query($sorgu);
   $sorgu = "UPDATE haberler SET yazar = '$yazar' WHERE id='$id'";
@@ -35,7 +35,7 @@ $konu=$kayit["konu"];
 $aciklama=$kayit["aciklama"];
 $tarih=$kayit["tarih"];
 $yazar=$kayit["yazar"];
-$aciklama = ereg_replace("<br>","\n",$aciklama);
+$aciklama = preg_replace("/<br>/","\n",$aciklama);
 echo "
 <form METHOD=post action=>
 <table width=\"600\" border=\"0\">
