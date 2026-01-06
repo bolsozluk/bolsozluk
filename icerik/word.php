@@ -74,6 +74,33 @@ $pasifyazar = ($aylikentry < $entryBaraji);
 
 
  <style>
+
+	  .kanal-wrap {
+    margin-top: 6px;
+}
+
+.kanal-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    margin: 0 4px 4px 0;
+    font-size: 11px;
+    background: #f2f2f2;
+    color: #555;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.kanal-badge:hover {
+    background: #ddd;
+    color: #000;
+}
+
+/*hafif renk farkı */
+.k1 { background:#e8f0ff; }
+.k2 { background:#e8ffe8; }
+.k3 { background:#fff3e0; }
+	 
 .dropdown {
   position: relative;
   display: inline-block;
@@ -707,9 +734,45 @@ $istekbuton = "<input type='button' onclick=\"location.href='/sozluk.php?process
 
 }
 
-if ($baslik == "bolchat")  
+if ($baslik != "sözlükle ilgili istekler")  
 {
-$istekbuton = "<small><a href='https://chat.bolsozluk.com' target=\"_blank\">bolchat - underground'ta kim var diye her gece düşünülen yer </a><br><br></small>";
+
+$sorgu = mysql_query("
+    SELECT kanal1, kanal2, kanal3
+    FROM konular
+    WHERE baslik='$baslik'
+");
+$kayit = mysql_fetch_array($sorgu);
+$kanal1 = $kayit['kanal1'];
+$kanal2 = $kayit['kanal2'];
+$kanal3 = $kayit['kanal3'];
+
+
+$istekbuton = "";
+
+if ($kanal1 || $kanal2 || $kanal3) {
+    $istekbuton .= "<div class='kanal-wrap'>";
+}
+
+if ($kanal1 != "") {
+    $k = ltrim($kanal1, "#");
+    $istekbuton .= "<a class='kanal-badge k1' title='kanal1' href='left.php?list=kanal&kanal=$k'>#$k</a>";
+}
+
+if ($kanal2 != "") {
+    $k = ltrim($kanal2, "#");
+    $istekbuton .= "<a class='kanal-badge k2' title='kanal2' href='left.php?list=kanal&kanal=$k'>#$k</a>";
+}
+
+if ($kanal3 != "") {
+    $k = ltrim($kanal3, "#");
+    $istekbuton .= "<a class='kanal-badge k3' title='kanal3' href='left.php?list=kanal&kanal=$k'>#$k</a>";
+}
+
+if ($kanal1 || $kanal2 || $kanal3) {
+    $istekbuton .= "</div><br>";
+}
+
 
 }
 
@@ -752,59 +815,6 @@ if (($kullaniciAdi == "admin") or ($kullaniciAdi == "booyaka") or ($kullaniciAdi
 	
 }
 
-//<a class=link> </a> <a class=div href=\"/icerik/gds.php?id=$id&gds=s\" target=main><font color=yellow size=2 face=verdana>[soru] </font></a>
-/*$sorgu2r= "SELECT kanal2, kanal3 FROM konular WHERE `id` = '$id'";
-				$sorgur3 = mysql_query($sorgu2r);
-				mysql_num_rows($sorgur3);
-				$kayitr3=mysql_fetch_array($sorgur3);
-				$kanal2=$kayitr3["kanal2"];
-				$kanal3=$kayitr3["kanal3"];*/
-
-/*$puanham = mysql_query("SELECT AVG(oy) AS port FROM puanlar WHERE baslik_id='$id'");
-mysql_num_rows($puanham);
-	$puan2=mysql_fetch_array($puanham);
-		$puan=$puan2["port"];*/
-
-		$kanaatham = mysql_query("SELECT AVG(kanaat) AS kh FROM mesajlar WHERE statu !='silindi' and sira='$id'");
-mysql_num_rows($kanaatham);
-	$kp2=mysql_fetch_array($kanaatham);
-		$kp=$kp2["kh"];
-
-		$ksx = mysql_fetch_array(mysql_query("SELECT COUNT(kanaat) AS ks FROM `mesajlar` WHERE sira='$id' and statu !='silindi' and (kanaat ='0' or kanaat ='1')"));
-		$ks = $ksx['ks'];
-
-
-
-        
-
-	
-
-				if ($kanal2 || $kanal3 )				{
-						if ($kulYetki){
-							
-					
-					$skor = <<<EOD
-					<form method=post action=>
-					  <input type="hidden" name="okupdate" value="ok">
-						<select name="puankayit" id="puankayit">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-					</select>
-					<input type="submit" name="Submit" value="puanla" class=but>
-					</form>
-EOD;
-					
-					//$bolpuan = "bolpuan: $puan/9"; 		
-				}
-
-}
 
 ?>
 <script>
@@ -845,25 +855,6 @@ $sorgu = "INSERT INTO puanlar ";
 	echo "<center><b>daha önce puan vermişsiniz.</center></b>";
 }
 }
-
-	/*$sorgu1 = "SELECT id,mesajcount FROM konular WHERE `id` = '$konuid'";
-	$sorgu2 = mysql_query($sorgu1);
-	$kayit2=mysql_fetch_array($sorgu2);
-	$mesajcount=$kayit2["mesajcount"];
-
-	$sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' ");
-			$w = mysql_num_rows($sor);
-			$max = 20;
-			$goster = $w/$max;
-			$goster=ceil($goster);
-
-		$mesajcount=(($mesajcount/150)*$goster);
-		$mesajcount = floor($mesajcount * 2) / 2;*/
-
-
-  //  $pattern = '/(\\p{L}+) (\\p{L}+) olan/u';
-  //  $replacement = '$1 ($2)';
-  //  $baslik = preg_replace($pattern, $replacement, $baslik);
 
 $link = str_replace(" ","+",$link);
 $link = str_replace("%20","+",$link);
@@ -1181,6 +1172,51 @@ echo "<option value='" . $urlBaslik . "'>" . 'bolgpt (yeni başlık)' . "</optio
 echo "</select>";
 }
 
+// KANAL ATA
+//----------------------------------------------------
+if (($kullaniciAdi != "") && ($gds =="g") && (!$pasifyazar)) {
+    echo "<br>";
+    echo "<b>kanal ata: </b>";
+    echo "<select name='kanal' onchange='if(this.value) location=this.value;'>";
+
+    $baseUrl = "sozluk.php?process=kanal&id=$konuid&kanal2=";
+
+    $kanallar = array(
+        "#mc",
+        "#album",
+        "#turkcerap",
+        "#yabancirap",
+        "#graffiti",
+        "#turntablism",
+        "#instrumental",
+        "#produktor",
+        "#polemik",
+        "#magazin",
+        "#lyrics",
+        "#konser",
+        "#kultur"
+    );
+
+    echo "<option value=''>seçiniz</option>";
+
+    foreach ($kanallar as $kanal) {
+        echo "<option value='".$baseUrl.urlencode($kanal)."'>$kanal</option>";
+    }
+
+    if ($kulYetki == "admin" || ($kulYetki == "mod"))
+{
+echo "<option value='#'>---</option>";
+echo "<option value='sozluk.php?process=kanal&id=$konuid&kanal2=kanal1sil'>kanal1 sil</option>";
+echo "<option value='sozluk.php?process=kanal&id=$konuid&kanal2=kanal2sil'>kanal2 sil</option>";
+echo "<option value='sozluk.php?process=kanal&id=$konuid&kanal2=kanal3sil'>kanal3 sil</option>";
+echo "<option value='sozluk.php?process=kanal&id=$konuid&kanal2=reset'>reset</option>";
+}
+
+
+    echo "</select>";
+}
+//----------------------------------------------------
+	
 ?>
 </tr>
 

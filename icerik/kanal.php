@@ -1,41 +1,81 @@
 <?php
-session_start();
-ob_start();
+// Hata göster
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-include("baglan.php");
-include("fonksiyonlar.php");
+// Güvenli ID ve değer al
+$id = isset($_REQUEST["id"]) ? guvenlikKontrol($_REQUEST["id"], "ultra") : '';
+$deger = isset($_REQUEST["kanal2"]) ? mysql_real_escape_string($_REQUEST["kanal2"]) : '';
 
-vtBaglan();
-kontrolEt();
-
-$id = guvenlikKontrol($_REQUEST["id"], "ultra");
-$deger = guvenlikKontrol($_REQUEST["kanal2"], "hard"); // gelen her şey serbest
-
-if (!$id || !$deger) {
-    die("gecersiz istek");
+if (!$id || $deger == '') {
+    die("gecersiz istek: id veya kanal2 yok");
 }
 
-if (!$kullaniciAdi) {
-    echo "tekrar giris yapin..";
-    die();
+// --------------------
+// KANAL SİLME (ADMIN / MOD)
+// --------------------
+if ($kulYetki == "admin" || $kulYetki == "mod") {
+
+    $silme = false; // flag
+
+    if (isset($_GET['kanal2'])) {
+
+        if ($_GET['kanal2'] == 'kanal1sil') {
+            mysql_query("UPDATE konular SET kanal1='' WHERE id='$id'");
+            echo "$id numarali basligin kanal1 slotu silindi.";
+            $silme = true;
+        }
+
+        if ($_GET['kanal2'] == 'kanal2sil') {
+            mysql_query("UPDATE konular SET kanal2='' WHERE id='$id'");
+            echo "$id numarali basligin kanal2 slotu silindi.";
+            $silme = true;
+        }
+
+        if ($_GET['kanal2'] == 'kanal3sil') {
+            mysql_query("UPDATE konular SET kanal3='' WHERE id='$id'");
+            echo "$id numarali basligin kanal3 slotu silindi.";
+            $silme = true;
+        }
+
+        if ($_GET['kanal2'] == 'reset') {
+        mysql_query("UPDATE konular SET kanal1='' WHERE id='$id'");
+        mysql_query("UPDATE konular SET kanal2='' WHERE id='$id'");
+        mysql_query("UPDATE konular SET kanal3='' WHERE id='$id'");
+        echo "$id numarali basligin kanal bilgileri silindi.";
+        $silme = true;
+        }
+
+        // Sadece silme işlemi yapıldıysa geri dön
+        if ($silme) {
+            ?>
+            <script type="text/javascript">
+                setTimeout(function () {
+                    window.history.go(-2);
+                }, 500);
+            </script>
+            <?php
+            exit;
+        }
+
+    }
 }
 
-/* Başlığı çek */
-$sorgu = mysql_query("
-    SELECT kanal1, kanal2, kanal3 
-    FROM konular 
-    WHERE id = '$id'
-");
-
-if (mysql_num_rows($sorgu) == 0) {
-    die("baslik bulunamadi");
+/* Sorgu kontrolü */
+$sorgu = mysql_query("SELECT kanal1, kanal2, kanal3 FROM konular WHERE id='$id'");
+if (!$sorgu) {
+    die("SQL hatasi: ".mysql_error());
 }
 
 $kayit = mysql_fetch_array($sorgu);
 
-/* Slot belirle */
-$hedefKanal = '';
+// Önce kontrol et: değer zaten herhangi bir slotta varsa tekrar yazma
+if ($kayit['kanal1'] === $deger || $kayit['kanal2'] === $deger || $kayit['kanal3'] === $deger) {
+    die("Bu değer zaten bir slotta mevcut, tekrar eklenemez.");
+}
 
+/* Slot mantığı */
+$hedefKanal = '';
 if ($kayit['kanal1'] == '' || $kayit['kanal1'] == 'NULL') {
     $hedefKanal = 'kanal1';
 }
@@ -46,19 +86,18 @@ elseif ($kayit['kanal3'] == '' || $kayit['kanal3'] == 'NULL') {
     $hedefKanal = 'kanal3';
 }
 else {
-    echo "Bu baslik icin tum kanal slotlari dolu.";
-    die();
+    die("Bu baslik icin tum kanal slotlari dolu.");
 }
 
-/* Yaz */
-mysql_query("
-    UPDATE konular 
-    SET $hedefKanal = '$deger'
-    WHERE id = '$id'
-");
+/* Slotu güncelle */
+if (!mysql_query("UPDATE konular SET $hedefKanal='$deger' WHERE id='$id'")) {
+    die("SQL update hatasi: ".mysql_error());
+}
 
 echo "$id numarali basliga $hedefKanal slotuna '$deger' yazildi.";
 
-mysql_close($databaseConnection);
-ob_end_flush();
 ?>
+
+<script language="JavaScript" type="text/javascript">
+        setTimeout("window.history.go(-1)",500);
+</script>
