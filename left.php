@@ -568,7 +568,6 @@ if (!$pasifyazar)
 $kanallar = array(
         "#mc",
         "#album",
-        "#turkcerap",
         "#yabancirap",
         "#graffiti",
         "#turntablism",
@@ -1848,7 +1847,7 @@ if ($kulYetki == "admin")
 {
 $kanallar = array(
     "#mc",
-    "#turkcerap",
+	"#album",
     "#yabancirap",
     "#graffiti",
     "#turntablism",
@@ -1858,6 +1857,7 @@ $kanallar = array(
     "#magazin",
     "#lyrics",
     "#konser"
+	"#kultur",
 );
 
 echo "<center>";
