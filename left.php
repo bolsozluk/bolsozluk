@@ -1858,8 +1858,8 @@ $kanallar = array(
     "#polemik",
     "#magazin",
     "#lyrics",
-    "#konser"
-	"#kultur",
+    "#konser",
+	"#kultur"
 );
 
 echo "<center>";
