@@ -561,6 +561,52 @@ if ($topicDate=='gündem' or $topicDate=='konu dışı' or $topicDate=='soru' or
 echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center>  ";
 	}
 
+	//-----------------------------------------
+	// KANAL FİLTRE (GÜNDEM)
+if (!$pasifyazar)
+{
+$kanallar = array(
+        "#mc",
+        "#album",
+        "#turkcerap",
+        "#yabancirap",
+        "#graffiti",
+        "#turntablism",
+        "#instrumental",
+        "#produktor",
+        "#polemik",
+        "#magazin",
+        "#lyrics",
+        "#konser",
+        "#kultur"
+);
+
+echo "<center>";
+echo "<select class='ksel' onchange='goKanal(this.value)'>";
+echo "<option value=''>kanal seç</option>";
+
+foreach ($kanallar as $k) {
+	$kanalUrl = ltrim($k, '#'); // #mc → mc
+    $url = "left.php?list=kanal&kanal=" . urlencode($kanalUrl);
+    echo "<option value='$url'>$k</option>";
+}
+
+echo "</select>";
+echo "</center>";
+
+?>
+<script>
+function goKanal(url) {
+    if (url !== '') {
+        location.href = url;
+    }
+}
+</script>
+<?
+}
+
+//-----------------------------------------
+	
 //100.YIL
 // <img src="/img/100.png" alt="nice yüzyıllara!" class="responsive">
 
@@ -1790,6 +1836,142 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 		echo "</li>\n";
 	}
 	break;	
+
+
+case "kanal":
+echo "<br>";
+echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center>  ";
+
+//-----------------------------------------
+	// KANAL FİLTRE (GÜNDEM)
+if ($kulYetki == "admin")
+{
+$kanallar = array(
+    "#mc",
+    "#turkcerap",
+    "#yabancirap",
+    "#graffiti",
+    "#turntablism",
+    "#instrumental",
+    "#produktor",
+    "#polemik",
+    "#magazin",
+    "#lyrics",
+    "#konser"
+);
+
+echo "<center>";
+echo "<select class='ksel' onchange='goKanal(this.value)'>";
+echo "<option value=''>kanal seç</option>";
+
+foreach ($kanallar as $k) {
+	$kanalUrl = ltrim($k, '#'); // #mc → mc
+    $url = "left.php?list=kanal&kanal=" . urlencode($kanalUrl);
+    echo "<option value='$url'>$k</option>";
+}
+
+echo "</select>";
+echo "</center>";
+
+
+?>
+<script>
+function goKanal(url) {
+    if (url !== '') {
+        location.href = url;
+    }
+}
+</script>
+<?
+}
+
+//-----------------------------------------
+
+
+    // GET parametresi
+    $kanal = isset($_GET['kanal']) ? mysql_real_escape_string($_GET['kanal']) : '';
+    if ($kanal == '') {
+        die("Geçersiz kanal isteği");
+    }
+
+    // Mobil kontrol (senin sistemde $isMobile var)
+    if ($isMobile == 1) {
+        echo "<center>
+            <input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> 
+            <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> 
+            <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'>  
+            $ekmobile
+        </center>";
+    }
+
+    echo "<div class='pagi'>#$kanal başlıkları</div>";
+
+    // Kanal filtreli sayfa sorgusu
+    $getPage = mysql_query("
+        SELECT id FROM konular 
+        WHERE statu='' 
+        AND ('#$kanal' IN (kanal1, kanal2, kanal3)) 
+        ORDER BY tarih DESC
+    ");
+
+    if (!$getPage) {
+        die("SQL hatası: ".mysql_error());
+    }
+
+    $topicNum = mysql_num_rows($getPage);
+    $pageNum = ceil($topicNum/$maxTopicPage);
+
+    echo "<div class='pagi'>#$kanal başlıkları: ($topicNum başlık)<br />";
+    if ($pageNum>1) navigatePage('kanal',$currentPage,$pageNum);
+    echo "</div>\n";
+
+    // Başlıkları listele
+    echo "<ul id='listLeftFrame'>";
+    $sqlSyntax = "
+        SELECT id, baslik, tarih,
+            (SELECT count(id) FROM mesajlar 
+             WHERE sira=konular.id 
+             AND statu != 'silindi' AND statu!= 'wait' AND statu!= 'kenar') AS say
+        FROM konular
+        WHERE ('#$kanal' IN (kanal1, kanal2, kanal3)) 
+        AND statu=''
+        AND gds='g'
+        ORDER BY tarih DESC 
+        LIMIT $limitFrom,$maxTopicPage
+    ";
+    $getkonular = mysql_query($sqlSyntax);
+    while ($currenTopic = mysql_fetch_array($getkonular)) {
+        $baslik2 = $currenTopic['baslik'];
+        $gid = $currenTopic['id'];
+
+        if ($kulYetki=='admin' || $kulYetki=='mod') {
+            $sor = mysql_query("SELECT id FROM mesajlar WHERE sira=$gid");    
+        } else {
+            $sor = mysql_query("SELECT id FROM mesajlar WHERE sira=$gid AND statu=''");
+        }
+
+        $w = mysql_num_rows($sor);
+        $max = 20;
+        $goster = ceil($w/$max);
+
+        $link = str_replace(" ","+",$baslik2);
+
+        if ($isMobile == 0) {
+            echo "<font size=2><li>· <a href='/".$link."-".$goster.".html' target='main' title='".$baslik2." (".$currenTopic['say'].")'>".$baslik2."</a></font>";
+        } else {
+            echo "<font size=2><li>· <a href='/".$link."-".$goster.".html' title='".$baslik2." (".$currenTopic['say'].")'>".$baslik2."</a></font>";
+        }
+
+        if ($currenTopic['say']>1) {
+            echo " (".$currenTopic['say'].")";
+        }
+
+        echo "</li>\n";
+    }
+    echo "</ul>";
+
+    break;
+	
 	//SON
 }
 ?>
