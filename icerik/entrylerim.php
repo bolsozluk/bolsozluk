@@ -148,7 +148,7 @@ function showKarmaChart($kullaniciAdi) {
         .k-header { margin-bottom: 15px; border-bottom: 1px solid #f3f4f6; padding-bottom: 10px; }
         
         /* Başlık puntosu büyütüldü */
-        .k-title { font-size: 17px; font-weight: 700; color: #1f2937; margin: 0; }
+        .k-title { font-size: 17px; font-weight: 700; margin: 0; }
         .k-container { position: relative; width: 100%; }
         
         .k-point { 
@@ -180,8 +180,8 @@ function showKarmaChart($kullaniciAdi) {
         .k-stat { text-align: center; }
         
         /* Alt istatistik etiket ve değer puntoları büyütüldü */
-        .k-lbl { font-size: 12px; color: #6b7280; text-transform: uppercase; display: block; margin-bottom: 4px; }
-        .k-val { font-size: 20px; font-weight: 700; color: #111827; }
+        .k-lbl { font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 4px; }
+        .k-val { font-size: 20px; font-weight: 700; }
         
         .k-pos { color: #059669; }
         .k-neg { color: #dc2626; }

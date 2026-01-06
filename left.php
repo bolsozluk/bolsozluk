@@ -30,15 +30,16 @@ if ($kullaniciAdi == "") $aylikentry = 0;
 $entryBaraji = 1; 
 $pasifyazar = ($aylikentry < $entryBaraji);
 
+/*
 				//KAR YAĞDIR
 		?>
 		<script src="snow-background.js"></script>
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
 		var now = new Date();
-		var currentMonth = now.getMonth();			
+		var currentMonth = now.getMonth();
 	    var day = now.getDate();      // 1–31
-		if (month === 11 && day >= 24 && day <= 31) {
+		if (currentMonth === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
 		} else {
@@ -48,16 +49,15 @@ $pasifyazar = ($aylikentry < $entryBaraji);
 		</script>
 		<?
 
+
 // Fixed: Removed broken bitwise OR condition with empty statement
 // if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
+*/
+
+
 if(!$currentPage) $currentPage=1;
-
 $limitFrom = ($currentPage - 1) * $maxTopicPage;
-?>
 
-<? 
-/* if($list=="today") { ?> <meta http-equiv="refresh" content="120;URL=left.php?list=today"><? } */
-?> 
 
 	<script>
 (function(){
@@ -628,11 +628,11 @@ echo "<hr>";
 //echo "<hr>";
 
 //vol 11//
-if($isMobile == 1) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
-if($isMobile == 0) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' target='main' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
+//if($isMobile == 1) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
+//if($isMobile == 0) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' target='main' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
 
-
-echo "<hr>";
+//GENERIC
+//echo "<hr>";
 
 ///
 ///BURAYA GÜNDEMDEKİ 3 TOP BAŞLIK EKLENECEK
