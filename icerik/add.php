@@ -42,8 +42,8 @@ $test3=$test2['ondurum'];
 }
 
 //BAŞLIKTA TIRNAK
-//$q = preg_replace("/\'/","\`",$q); 
-$q = preg_replace("/\./"," ",$q);
+//$q = ereg_replace("\'","\`",$q); 
+$q = ereg_replace("\."," ",$q);
 //$q = trim(preg_replace("'[^0-9a-zA-ZüÜşŞiİöÖçÇığĞ`\s]'", "", $q));
 $q = trim(preg_replace('/[^A-Za-z0-9\-]/', '', $q)); 
 

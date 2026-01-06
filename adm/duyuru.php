@@ -26,9 +26,9 @@ $yil = date("Y");
 $saat = date("H:i");
 $ip = getenv('REMOTE_ADDR');
 
-$aciklama = preg_replace("/</","(",$aciklama);
-$aciklama = preg_replace("/>/",")",$aciklama);
-$aciklama = preg_replace("/\n/","<br>",$aciklama);
+$aciklama = ereg_replace("<","(",$aciklama);
+$aciklama = ereg_replace(">",")",$aciklama);
+$aciklama = ereg_replace("\n","<br>",$aciklama);
 
 $konu = "DUYURU!";
 $aciklama = strtolower($aciklama);
@@ -53,7 +53,7 @@ $email=$kayit["email"];
 //
 $gmesaj = mysql_real_escape_string($aciklama);
   $gkonu = mysql_real_escape_string($konu);
-  $gmesaj = preg_replace("/&#039;/","\'",$gmesaj);
+  $gmesaj = ereg_replace("&#039;","\'",$gmesaj);
   $sorgu = "INSERT INTO privmsg ";
   $sorgu .= "(kime,konu,mesaj,gonderen,tarih,okundu,gun,ay,yil,saat,ip)";
   $sorgu .= " VALUES ";

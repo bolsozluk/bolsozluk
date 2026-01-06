@@ -36,19 +36,19 @@ echo "Alti üstü sifreyi 2 yere birden yazican onuda beceremiyosun..Gencligine 
 exit;
 }
 
-$ysifre = preg_replace("/ş/","s",$ysifre);
-$ysifre = preg_replace("/Ş/","S",$ysifre);
-$ysifre = preg_replace("/ç/","c",$ysifre);
-$ysifre = preg_replace("/Ç/","C",$ysifre);
-$ysifre = preg_replace("/ı/","i",$ysifre);
-$ysifre = preg_replace("/İ/","I",$ysifre);
-$ysifre = preg_replace("/ğ/","g",$ysifre);
-$ysifre = preg_replace("/Ğ/","G",$ysifre);
-$ysifre = preg_replace("/ö/","o",$ysifre);
-$ysifre = preg_replace("/Ö/","O",$ysifre);
-$ysifre = preg_replace("/ü/","u",$ysifre);
-$ysifre = preg_replace("/Ü/","U",$ysifre);
-$ysifre = preg_replace("/Ö/","O",$ysifre);
+$ysifre = ereg_replace("ş","s",$ysifre);
+$ysifre = ereg_replace("Ş","S",$ysifre);
+$ysifre = ereg_replace("ç","c",$ysifre);
+$ysifre = ereg_replace("Ç","C",$ysifre);
+$ysifre = ereg_replace("ı","i",$ysifre);
+$ysifre = ereg_replace("İ","I",$ysifre);
+$ysifre = ereg_replace("ğ","g",$ysifre);
+$ysifre = ereg_replace("Ğ","G",$ysifre);
+$ysifre = ereg_replace("ö","o",$ysifre);
+$ysifre = ereg_replace("Ö","O",$ysifre);
+$ysifre = ereg_replace("ü","u",$ysifre);
+$ysifre = ereg_replace("Ü","U",$ysifre);
+$ysifre = ereg_replace("Ö","O",$ysifre);
 
 
 
