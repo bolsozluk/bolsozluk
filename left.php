@@ -37,9 +37,9 @@ $pasifyazar = ($aylikentry < $entryBaraji);
 		<script>
 		// Kış aylarında kar yağdır (Aralık=11, Ocak=0, Şubat=1)
 		var now = new Date();
-		var currentMonth = now.getMonth();
+		var currentMonth = now.getMonth();			
 	    var day = now.getDate();      // 1–31
-		if (currentMonth === 11 && day >= 24 && day <= 31) {
+		if (month === 11 && day >= 24 && day <= 31) {
 			// Entry yazarken kar dursun istenmiyorsa freezeOnBlur'u kapat
 			snowStorm.freezeOnBlur = false;
 		} else {
@@ -49,14 +49,11 @@ $pasifyazar = ($aylikentry < $entryBaraji);
 		</script>
 		<?
 
-
 */
 
-// Fixed: Removed broken bitwise OR condition with empty statement
-//if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
-
-
+if($list != "today" | "yesterday" | "lastmonth" | "oneday" );
 if(!$currentPage) $currentPage=1;
+
 $limitFrom = ($currentPage - 1) * $maxTopicPage;
 ?>
 
@@ -532,6 +529,9 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 //GÜNDEM
 
 	case "today":
+
+
+
 		$cDay = date("d");
 		$cMon = date("m");
 		$cYea = date("Y");
@@ -561,13 +561,15 @@ if ($topicDate=='gündem' or $topicDate=='konu dışı' or $topicDate=='soru' or
 echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center>  ";
 	}
 
-	//-----------------------------------------
+
+//-----------------------------------------
 	// KANAL FİLTRE (GÜNDEM)
 if (!$pasifyazar)
 {
 $kanallar = array(
         "#mc",
         "#album",
+        "#turkcerap",
         "#yabancirap",
         "#graffiti",
         "#turntablism",
@@ -605,7 +607,7 @@ function goKanal(url) {
 }
 
 //-----------------------------------------
-	
+
 //100.YIL
 // <img src="/img/100.png" alt="nice yüzyıllara!" class="responsive">
 
@@ -1837,6 +1839,7 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 	break;	
 
 
+
 case "kanal":
 echo "<br>";
 echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center>  ";
@@ -1847,7 +1850,7 @@ if ($kulYetki == "admin")
 {
 $kanallar = array(
     "#mc",
-	"#album",
+    "#turkcerap",
     "#yabancirap",
     "#graffiti",
     "#turntablism",
@@ -1857,7 +1860,6 @@ $kanallar = array(
     "#magazin",
     "#lyrics",
     "#konser"
-	"#kultur",
 );
 
 echo "<center>";
@@ -1971,10 +1973,16 @@ function goKanal(url) {
     echo "</ul>";
 
     break;
-	
+
+
+
+
 	//SON
 }
 ?>
+
+
+
 </ul>
 <?php
 //echo "<div class='pagi'>$topicDate başlıkları: ($topicNum başlık)";
