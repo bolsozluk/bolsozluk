@@ -59,63 +59,63 @@ $year =@$HTTP_POST_VARS["year"];
 $cinsiyet =@$HTTP_POST_VARS["cinsiyet"];
 $sehir =@$HTTP_POST_VARS["sehir"];
 
-$userNickName = ereg_replace("ş","s",$userNickName);
-$userNickName = ereg_replace("Ş","S",$userNickName);
-$userNickName = ereg_replace("ç","c",$userNickName);
-$userNickName = ereg_replace("Ç","C",$userNickName);
-$userNickName = ereg_replace("ı","i",$userNickName);
-$userNickName = ereg_replace("İ","I",$userNickName);
-$userNickName = ereg_replace("ğ","g",$userNickName);
-$userNickName = ereg_replace("Ğ","G",$userNickName);
-$userNickName = ereg_replace("ö","o",$userNickName);
-$userNickName = ereg_replace("Ö","O",$userNickName);
-$userNickName = ereg_replace("ü","u",$userNickName);
-$userNickName = ereg_replace("Ü","U",$userNickName);
-$userNickName = ereg_replace("Ö","O",$userNickName);
+$userNickName = preg_replace("/ş/","s",$userNickName);
+$userNickName = preg_replace("/Ş/","S",$userNickName);
+$userNickName = preg_replace("/ç/","c",$userNickName);
+$userNickName = preg_replace("/Ç/","C",$userNickName);
+$userNickName = preg_replace("/ı/","i",$userNickName);
+$userNickName = preg_replace("/İ/","I",$userNickName);
+$userNickName = preg_replace("/ğ/","g",$userNickName);
+$userNickName = preg_replace("/Ğ/","G",$userNickName);
+$userNickName = preg_replace("/ö/","o",$userNickName);
+$userNickName = preg_replace("/Ö/","O",$userNickName);
+$userNickName = preg_replace("/ü/","u",$userNickName);
+$userNickName = preg_replace("/Ü/","U",$userNickName);
+$userNickName = preg_replace("/Ö/","O",$userNickName);
 
-$email = ereg_replace("ş","s",$email);
-$email = ereg_replace("Ş","S",$email);
-$email = ereg_replace("ç","c",$email);
-$email = ereg_replace("Ç","C",$email);
-$email = ereg_replace("ı","i",$email);
-$email = ereg_replace("İ","I",$email);
-$email = ereg_replace("ğ","g",$email);
-$email = ereg_replace("Ğ","G",$email);
-$email = ereg_replace("ö","o",$email);
-$email = ereg_replace("Ö","O",$email);
-$email = ereg_replace("ü","u",$email);
-$email = ereg_replace("Ü","U",$email);
-$email = ereg_replace("Ö","O",$email);
-
-
-$sehir = ereg_replace("ş","s",$sehir);
-$sehir = ereg_replace("Ş","S",$sehir);
-$sehir = ereg_replace("ç","c",$sehir);
-$sehir = ereg_replace("Ç","C",$sehir);
-$sehir = ereg_replace("ı","i",$sehir);
-$sehir = ereg_replace("İ","I",$sehir);
-$sehir = ereg_replace("ğ","g",$sehir);
-$sehir = ereg_replace("Ğ","G",$sehir);
-$sehir = ereg_replace("ö","o",$sehir);
-$sehir = ereg_replace("Ö","O",$sehir);
-$sehir = ereg_replace("ü","u",$sehir);
-$sehir = ereg_replace("Ü","U",$sehir);
-$sehir = ereg_replace("Ö","O",$sehir);
+$email = preg_replace("/ş/","s",$email);
+$email = preg_replace("/Ş/","S",$email);
+$email = preg_replace("/ç/","c",$email);
+$email = preg_replace("/Ç/","C",$email);
+$email = preg_replace("/ı/","i",$email);
+$email = preg_replace("/İ/","I",$email);
+$email = preg_replace("/ğ/","g",$email);
+$email = preg_replace("/Ğ/","G",$email);
+$email = preg_replace("/ö/","o",$email);
+$email = preg_replace("/Ö/","O",$email);
+$email = preg_replace("/ü/","u",$email);
+$email = preg_replace("/Ü/","U",$email);
+$email = preg_replace("/Ö/","O",$email);
 
 
-$isim = ereg_replace("ş","s",$isim);
-$isim = ereg_replace("Ş","S",$isim);
-$isim = ereg_replace("ç","c",$isim);
-$isim = ereg_replace("Ç","C",$isim);
-$isim = ereg_replace("ı","i",$isim);
-$isim = ereg_replace("İ","I",$isim);
-$isim = ereg_replace("ğ","g",$isim);
-$isim = ereg_replace("Ğ","G",$isim);
-$isim = ereg_replace("ö","o",$isim);
-$isim = ereg_replace("Ö","O",$isim);
-$isim = ereg_replace("ü","u",$isim);
-$isim = ereg_replace("Ü","U",$isim);
-$isim = ereg_replace("Ö","O",$isim);
+$sehir = preg_replace("/ş/","s",$sehir);
+$sehir = preg_replace("/Ş/","S",$sehir);
+$sehir = preg_replace("/ç/","c",$sehir);
+$sehir = preg_replace("/Ç/","C",$sehir);
+$sehir = preg_replace("/ı/","i",$sehir);
+$sehir = preg_replace("/İ/","I",$sehir);
+$sehir = preg_replace("/ğ/","g",$sehir);
+$sehir = preg_replace("/Ğ/","G",$sehir);
+$sehir = preg_replace("/ö/","o",$sehir);
+$sehir = preg_replace("/Ö/","O",$sehir);
+$sehir = preg_replace("/ü/","u",$sehir);
+$sehir = preg_replace("/Ü/","U",$sehir);
+$sehir = preg_replace("/Ö/","O",$sehir);
+
+
+$isim = preg_replace("/ş/","s",$isim);
+$isim = preg_replace("/Ş/","S",$isim);
+$isim = preg_replace("/ç/","c",$isim);
+$isim = preg_replace("/Ç/","C",$isim);
+$isim = preg_replace("/ı/","i",$isim);
+$isim = preg_replace("/İ/","I",$isim);
+$isim = preg_replace("/ğ/","g",$isim);
+$isim = preg_replace("/Ğ/","G",$isim);
+$isim = preg_replace("/ö/","o",$isim);
+$isim = preg_replace("/Ö/","O",$isim);
+$isim = preg_replace("/ü/","u",$isim);
+$isim = preg_replace("/Ü/","U",$isim);
+$isim = preg_replace("/Ö/","O",$isim);
 
 $userNickName = strtolower($userNickName);
 $email = strtolower($email);
@@ -175,7 +175,7 @@ $yazi = "
 ";
 
 
-$yazi = ereg_replace("\n","<br>",$yazi);
+$yazi = preg_replace("/\n/","<br>",$yazi);
 
 $konu = mysql_real_escape_string($konu);
 $mesaj = mysql_real_escape_string($mesaj);

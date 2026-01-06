@@ -92,7 +92,7 @@ $email=$sorset["email"];
 
 
 if ($ok and $gkime and $gmesaj) {
-	$gmesaj = ereg_replace("\n","<br>",$gmesaj);
+	$gmesaj = preg_replace("/\n/","<br>",$gmesaj);
 	$tarih = date("YmdHi");
 	$gun = date("d");
 	$ay = date("m");
@@ -123,7 +123,7 @@ if ($ok and $gkime and $gmesaj) {
 
 	$gmesaj = mysql_real_escape_string($gmesaj);
 	$gkonu = mysql_real_escape_string($gkonu);
-	$gmesaj = ereg_replace("&#039;","\'",$gmesaj);
+	$gmesaj = preg_replace("/&#039;/","\'",$gmesaj);
 
 
 	if ($summon > 0)
@@ -382,7 +382,7 @@ if ($cevap) {
 	}
 }
 
-$mmesaj = ereg_replace("<br>","\n",$mmesaj);
+$mmesaj = preg_replace("/<br>/","\n",$mmesaj);
 //echo $verifyStatus;
 //echo "a";
 echo "<FORM name=ok method=post action=>
