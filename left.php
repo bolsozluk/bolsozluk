@@ -1842,7 +1842,16 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 case "kanal":
 echo "<br>";
 
-if ($isMobile == 0) echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center>  ";
+
+    // Mobil kontrol (senin sistemde $isMobile var)
+  
+        echo "<center>
+            <input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> 
+            <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> 
+            <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'>  
+            $ekmobile
+        </center>";
+ 
 
 //-----------------------------------------
 	// KANAL FİLTRE (GÜNDEM)
@@ -1897,15 +1906,6 @@ function goKanal(url) {
         die("Geçersiz kanal isteği");
     }
 
-    // Mobil kontrol (senin sistemde $isMobile var)
-    if ($isMobile == 1) {
-        echo "<center>
-            <input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> 
-            <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> 
-            <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'>  
-            $ekmobile
-        </center>";
-    }
 
     echo "<div class='pagi'>#$kanal başlıkları</div>";
 
