@@ -756,17 +756,17 @@ if ($kanal1 || $kanal2 || $kanal3) {
 
 if ($kanal1 != "") {
     $k = ltrim($kanal1, "#");
-    $istekbuton .= "<a class='kanal-badge k1' title='kanal1' href='left.php?list=kanal&kanal=$k'>#$k</a>";
+    $istekbuton .= "<a class='kanal-badge k1' title='kanal1' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
 }
 
 if ($kanal2 != "") {
     $k = ltrim($kanal2, "#");
-    $istekbuton .= "<a class='kanal-badge k2' title='kanal2' href='left.php?list=kanal&kanal=$k'>#$k</a>";
+    $istekbuton .= "<a class='kanal-badge k2' title='kanal2' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
 }
 
 if ($kanal3 != "") {
     $k = ltrim($kanal3, "#");
-    $istekbuton .= "<a class='kanal-badge k3' title='kanal3' href='left.php?list=kanal&kanal=$k'>#$k</a>";
+    $istekbuton .= "<a class='kanal-badge k3' title='kanal3' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
 }
 
 if ($kanal1 || $kanal2 || $kanal3) {
