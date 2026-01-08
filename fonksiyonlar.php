@@ -195,20 +195,20 @@ function navigatePage($list,$currentPage,$totalPage){
 function navigateKanal($list,$kanal,$currentPage,$totalPage){
 	if ($currentPage > 1) {
 		$pageLink = $currentPage - 1;
-		echo "<a class='but' href='left.php?list=".$list."&kanal=".kanal."&sayfa=".$pageLink."'><<</a>";
+		echo "<a class='but' href='left.php?list=".$list."&kanal=".$kanal."&sayfa=".$pageLink."'><<</a>";
 	}
 	echo "<select class='pagis' onchange=\"jm('self',this,0);\" name='sayfa'>";
 	for ($i=1;$i<=$totalPage;$i++) {
 		if ($currentPage == $i) {
-			echo "<option value='left.php?list=".$list."&kanal=".kanal."&sayfa=".$i."' selected>$i</option>";
+			echo "<option value='left.php?list=".$list."&kanal=".$kanal."&sayfa=".$i."' selected>$i</option>";
 		}else{
-			echo "<option value='left.php?list=".$list."&kanal=".kanal."&sayfa=".$i."'>$i</option>";
+			echo "<option value='left.php?list=".$list."&kanal=".$kanal."&sayfa=".$i."'>$i</option>";
 		}
 	}
 	echo "</select> / $totalPage ";
 	$pageLink = $currentPage + 1;
 	if ($pageLink <= $totalPage) {
-		echo "<a class='but' href='left.php?list=".$list."&kanal=".kanal."&sayfa=".$pageLink."'>>></a>";
+		echo "<a class='but' href='left.php?list=".$list."&kanal=".$kanal."&sayfa=".$pageLink."'>>></a>";
 	}
 }
 
