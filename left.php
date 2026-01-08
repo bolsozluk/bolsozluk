@@ -1925,7 +1925,7 @@ function goKanal(url) {
     $pageNum = ceil($topicNum/$maxTopicPage);
 
     echo "<div class='pagi'>#$kanal başlıkları: ($topicNum başlık)<br />";
-    if ($pageNum>1) navigatePage('kanal',$currentPage,$pageNum);
+    if ($pageNum>1) navigateKanal('kanal',$kanal,$currentPage,$pageNum);
     echo "</div>\n";
 
     // Başlıkları listele
