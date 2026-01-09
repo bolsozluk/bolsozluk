@@ -16,7 +16,6 @@ include "mobframe.php";
 <br>
 sosyal medya/içerik ekibi<br>
 <a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=fikirsiz&gkonu=">fikirsiz</a> - <a href="mailto:fikirsiz@bolsozluk.com">fikirsiz@bolsozluk.com</a><br>
-<a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=lord voldemort&gkonu=">lord voldemort</a> - <a href="mailto:voldemort@bolsozluk.com">voldemort@bolsozluk.com</a><br>
 <a href="/sozluk.php?process=privmsg&islem=yenimsj&gmesaj=&gkime=pek&gkonu=">pek</a> - <a href="mailto:pek@bolsozluk.com">pek@bolsozluk.com</a><br>
 <br>
 emektarlar<br>
