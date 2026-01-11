@@ -1,21 +1,27 @@
-<style>
-.butx {
-        border-right: #a6b4d4 2px outset; border-TOP: #a6b4d4 2px outset; font: 10pt Arial,sans-serif; border-left: #a6b4d4 2px outset; CURSOR: default; color: white; border-BOTTOM: #a6b4d4 2px outset; WHITE-SPACE: nowrap; background-color: #242b3a; text-align: center
-}
-</style>
-<script>
-function mobgetir(){
-    var kelime = document.getElementById('q').value.toLowerCase();
-    self.location.href='sozluk.php?process=word&q='+kelime;
-}
-function mobara() {
-    var kelime = document.getElementById('q').value;
-    self.location.href='sozluk.php?process=search&q='+kelime;
-}
-</script>
-
 <?php
 session_start();
+
+// navigateSearch fonksiyonunu tanımla
+function navigateSearch($q, $currentPage, $totalPage){
+    if ($currentPage > 1) {
+        $pageLink = $currentPage - 1;
+        echo "<a class='but' href='sozluk.php?process=search&q=".urlencode($q)."&sayfa=".$pageLink."'><<</a>";
+    }
+    
+    echo "<select class='pagis' onchange=\"jm('self',this,0);\" name='sayfa'>";
+    
+    for ($i = 1; $i <= $totalPage; $i++) {
+        $selected = ($currentPage == $i) ? "selected" : "";
+        echo "<option value='sozluk.php?process=search&q=".urlencode($q)."&sayfa=".$i."' $selected>$i</option>";
+    }
+    
+    echo "</select> / $totalPage ";
+    
+    $pageLink = $currentPage + 1;
+    if ($pageLink <= $totalPage) {
+        echo "<a class='but' href='sozluk.php?process=search&q=".urlencode($q)."&sayfa=".$pageLink."'>>></a>";
+    }
+}
 
 function strtrlower($text)
 {
@@ -25,168 +31,211 @@ function strtrlower($text)
     $text=strtolower($text);
     return $text;
 }
+
 $sonuc ="";
-$q = guvenlikKontrol($_REQUEST["q"],"hard");
+$q = isset($_REQUEST["q"]) ? guvenlikKontrol($_REQUEST["q"],"hard") : '';
 
-if ($q) {
-$string=$_GET['q'];
+// SAYFALAMA DEĞİŞKENLERİ
+$currentPage = isset($_GET['sayfa']) ? (int)$_GET['sayfa'] : 1;
+if ($currentPage < 1) $currentPage = 1;
+$limitFrom = ($currentPage - 1) * $maxTopicPage;
 
-if (!$q) {
-echo "<div class=dash><center><b><img src=img/unlem.gif> Müneccim miyim ben ?";
-die;
-}
-
-$isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
-                    '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
-                    '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
-$aramobile = "<center> <b> </b>başlık <input maxLength=55 class=\"input\" style=\"height:12px\" onkeyup=\"araFocus()\" accesskey=\"b\" id=\"q\" name=\"q\" size=\"25\"  placeholder=\"aramaya inanın\"> <input type='button' onClick=\"javascript:mobgetir();\" value='getir' id='getir' class='butx'> <input type='button' onClick=\"javascript:mobara();\" value='ara' class='butx'></center>  <br>";                
-if($isMobile == 0)
-{ 
 ?>
-<style>
-A {
-    font-size: 1.1em;
-    line-height: 13pt;
-}
-</style>
-<?
-}
-if($isMobile == 1)
-{ 
-            getPrivateMessages();
-            if ($kullaniciAdi)
-            {
-                    if ($notice)
-        echo "<SCRIPT>alert('$notice okunmayan mesajınız var.');</SCRIPT>";
-            }
-            ?>
 <style>
 .butx {
-        border-right: #a6b4d4 1px outset; border-TOP: #a6b4d4 1px outset; font: 10pt Arial,sans-serif; border-left: #a6b4d4 1px outset; display: inline-block; CURSOR: default; color: white; border-BOTTOM: #a6b4d4 2px outset; WHITE-SPACE: nowrap; background-color: #242b3a; text-align: center
+    border-right: #a6b4d4 2px outset; border-TOP: #a6b4d4 2px outset; 
+    font: 10pt Arial,sans-serif; border-left: #a6b4d4 2px outset; 
+    CURSOR: default; color: white; border-BOTTOM: #a6b4d4 2px outset; 
+    WHITE-SPACE: nowrap; background-color: #242b3a; text-align: center
 }
-.responsive {
-  width: 100%;
-  height: auto;
-}
-input {
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-    padding: 4px;
-    display: inline-block;
+
+.but {
+    font-size: 11px;
+    padding: 1px 4px;
+    background: #242b3a;
+    color: white;
+    text-decoration: none;
+    border: 1px solid #a6b4d4;
 }
 </style>
-<center>
-<a id="gundem" href="left.php?list=today" target="_top" title=sol&nbsp;frame> <img src=inc/turuncu.png width=150 border=1></a></center><br><br>
- <?
-    //echo "<center><td style=\"white-space:nowrap;\" onClick=\"location.href='/sozluk.php?process=staff'\" class=\"logo\"><img id=\"logopic\" alt=\"bol sözlük\" src=\"img/1.gif\" width=\"197\" height=\"56\" /></center>";
- echo $aramobile;
- if(($isMobile == 1) && ($kullaniciAdi == "") && ($adet > 1))
-{
-?>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
-     crossorigin="anonymous"></script>
-<?
-}
-/*
- if($isMobile == 1) //and $kullaniciAdi == ""
-{ 
-?>
-<div style="max-width: 728px;">
-  <iframe src="https://www.bolsozluk.com/nezaman.html" width="100%" height="90" frameborder="0" scrolling="no"></iframe>
-</div>
-<?
-}
-*/
-echo "<br>";
-    $ekmobile = "<input type='button' onclick=\"location.href='left.php?list=tb';\" value='#tb' class='butx'> <input type='button' onclick=\"location.href='left.php?list=ebe';\" value='#ebe' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=iletisim';\" value='iletişim' class='butx'> <br><br>";
-if ($kullaniciAdi)
-{
- echo "<center> <input type='button' onclick=\"location.href='sozluk.php?process=privmsg';\" value='mesaj' class='butx'> <input type='button' onclick=\"location.href='left.php?list=mix';\" value='rast' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=panel&islem=onlines';\" value='kontrol' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='istatistik' class='butx'> <input type='button' onclick=\"location.href='left.php?list=kenar';\" value='kenar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=entrylerim&kimdirbu=$kullaniciAdi';\" value='ben' class='butx'> <input type='button' onclick=\"location.href='logout.php';\" value='çık' class='butx'></center>"  ; 
-}
-else
-{
-echo "<center> <input type='button' onclick=\"location.href='sozluk.php?process=master&login=onair';\" value='giriş yap' class='butx'> <input type='button' onclick=\"location.href='left.php?list=mix';\" value='rast' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='istatistik' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=word&q=gururlarımız';\" value='⭐gururlarımız⭐' class='butx'> </center> "; 
-}
-}
-if($isMobile == 1)
-{ 
-?>
+
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-53237593-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-</script>
-<?
-echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center>  ";
+function mobgetir(){
+    var kelime = document.getElementById('q').value.toLowerCase();
+    self.location.href='sozluk.php?process=word&q='+kelime;
 }
-//   echo "<small><font class=link>en az 4 harfle aramanız önerilir.</font></small><br><br>"; 
-//$SQL = "SELECT baslik,id FROM konular WHERE (statu != 'silindi' and tasi = '') and baslik LIKE '%$q%' ORDER BY CHAR_LENGTH(baslik) LIMIT 0,150";
-$SQL = "SELECT baslik, id 
-FROM konular 
-WHERE (statu != 'silindi' and tasi = '') 
-  AND LOWER(baslik) LIKE LOWER('%$q%')
-ORDER BY 
-  CASE 
-    WHEN baslik LIKE '$q' THEN 1  -- Tam eşleşme
-    WHEN baslik LIKE '$q%' THEN 2 -- Başında eşleşme
-    WHEN baslik LIKE '%$q' THEN 3 -- Sonunda eşleşme
-    ELSE 4                        -- İçinde eşleşme
-  END,
-  CHAR_LENGTH(baslik)
-LIMIT 0,250";
+function mobara() {
+    var kelime = document.getElementById('q').value;
+    self.location.href='sozluk.php?process=search&q='+kelime;
+}
+
+// left.php'deki jm fonksiyonunu kopyala
+function jm(target, obj, flag){
+    if (flag==0) {
+        if (target=='self') {
+            location.href=obj.options[obj.selectedIndex].value;
+        }
+        if (target=='main') {
+            parent.main.location.href=obj.options[obj.selectedIndex].value;
+        }
+        if (target=='top') {
+            parent.location.href=obj.options[obj.selectedIndex].value;
+        }
     }
-    $sorgu=mysql_query($SQL) ;
-    if (!$sorgu)
-        {
-            header('Location: '."left.php?list=today"); 
-            //echo "<div class=dash><center><b><img src=img/unlem.gif> başlık ismini gir.";  exit();
+    if (flag==1) {
+        if (target=='self') {
+            location.href=obj.value;
         }
+        if (target=='main') {
+            parent.main.location.href=obj.value;
+        }
+        if (target=='top') {
+            parent.location.href=obj.value;
+        }
+    }
+}
+</script>
 
-        if($q)
-        $arguman=0;
-        $adet=0;
+<?php
+if ($q) {
+    $string=$_GET['q'];
 
-        while($sira=mysql_fetch_array($sorgu))
-            {
-                $sonuc[$arguman]=$sira["id"];
-                $arguman++;
+    if (!$q) {
+        echo "<div class=dash><center><b><img src=img/unlem.gif> Müneccim miyim ben ?";
+        die;
+    }
 
+    $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
+                        '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
+                        '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
+    
+    // left.php'deki arama formunu kopyala
+    $aramobile = "<center> <b> </b>başlık <input maxLength=55 class=\"input\" style=\"height:12px\" onkeyup=\"araFocus()\" accesskey=\"b\" id=\"q\" name=\"q\" size=\"25\"  placeholder=\"aramaya inanın\"> <input type='button' onClick=\"javascript:mobgetir();\" value='getir' id='getir' class='butx'> <input type='button' onClick=\"javascript:mobara();\" value='ara' class='butx'></center>  <br>";                
+    
+    if($isMobile == 1) { 
+        // left.php'deki mobile header'ı kopyala
+        echo "<center><a id='gundem' href='left.php?list=today' target='_top' title='sol frame'> <img src=inc/turuncu.png width=150 border=1></a></center><br>";
+        echo $aramobile;
+        
+        // left.php'deki butonları kopyala
+        $ekmobile = "<input type='button' onclick=\"location.href='left.php?list=tb';\" value='#tb' class='butx'> <input type='button' onclick=\"location.href='left.php?list=ebe';\" value='#ebe' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=iletisim';\" value='iletişim' class='butx'> <br><br>";
+        
+        if ($kullaniciAdi) {
+            echo "<center> <input type='button' onclick=\"location.href='sozluk.php?process=privmsg';\" value='mesaj' class='butx'> <input type='button' onclick=\"location.href='left.php?list=mix';\" value='rast' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=panel&islem=onlines';\" value='kontrol' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='istatistik' class='butx'> <input type='button' onclick=\"location.href='left.php?list=kenar';\" value='kenar' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=entrylerim&kimdirbu=$kullaniciAdi';\" value='ben' class='butx'> <input type='button' onclick=\"location.href='logout.php';\" value='çık' class='butx'></center>"; 
+        } else {
+            echo "<center> <input type='button' onclick=\"location.href='sozluk.php?process=master&login=onair';\" value='giriş yap' class='butx'> <input type='button' onclick=\"location.href='left.php?list=mix';\" value='rast' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=stat&stat=genel';\" value='istatistik' class='butx'> <input type='button' onclick=\"location.href='sozluk.php?process=word&q=gururlarımız';\" value='⭐gururlarımız⭐' class='butx'> </center> "; 
+        }
+        
+        echo "<br>";
+    }
+    
+    // left.php'deki gibi buton bar'ını göster
+    if ($isMobile == 1) {
+        echo "<center><input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'> $ekmobile </center><br>";
+    }
+    
+    // TOPLAM KAYIT SAYISI
+    $countSQL = "SELECT COUNT(id) as total FROM konular 
+                WHERE (statu != 'silindi' and tasi = '') 
+                AND LOWER(baslik) LIKE LOWER('%$q%')";
+    
+    $countQuery = mysql_query($countSQL);
+    $countRow = mysql_fetch_assoc($countQuery);
+    $totalTopics = $countRow['total'];
+    $totalPages = ceil($totalTopics / $maxTopicPage);
+    
+    // left.php STİLİNDE SAYFALAMA (navigateSearch kullanarak)
+    echo "<div class='pagi'>\"$q\" için arama sonuçları: ($totalTopics başlık)<br />";
+    
+    if ($totalPages > 1) {
+        // navigateSearch fonksiyonunu çağır
+        navigateSearch($q, $currentPage, $totalPages);
+    }
+    
+    echo "</div>\n";
+    
+    // left.php STİLİNDE BAŞLIK LİSTESİ
+    echo "<ul id='listLeftFrame' style='list-style:none; padding-left:10px; margin-top:5px;'>";
+    
+    // ARAMA SORGUSU
+    $SQL = "SELECT baslik, id 
+            FROM konular 
+            WHERE (statu != 'silindi' and tasi = '') 
+              AND LOWER(baslik) LIKE LOWER('%$q%')
+            ORDER BY 
+              CASE 
+                WHEN baslik LIKE '$q' THEN 1
+                WHEN baslik LIKE '$q%' THEN 2
+                WHEN baslik LIKE '%$q' THEN 3
+                ELSE 4
+              END,
+              CHAR_LENGTH(baslik)
+            LIMIT $limitFrom, $maxTopicPage";
+    
+    $sorgu = mysql_query($SQL);
+    
+    if (!$sorgu) {
+        echo "</ul>";
+        header('Location: '."left.php?list=today"); 
+    }
+
+    $arguman = 0;
+    $adet = 0;
+    $sonuc = array();
+
+    while($sira = mysql_fetch_array($sorgu)) {
+        $sonuc[$arguman] = $sira["id"];
+        $arguman++;
+    }
+    
+    $adet = $arguman;
+    
+    // left.php'deki gibi başlıkları listele
+    for($i = 0; $i < $adet; $i++) {
+        $SQLx = "SELECT * FROM konular WHERE id='$sonuc[$i]' and statu=''";
+        $sorgu2 = mysql_query($SQLx);
+        
+        while($sira = mysql_fetch_array($sorgu2)) {
+            $baslik = $sira["baslik"];
+            $baslik_lower = strtolower($baslik);
+            
+            // Mesaj sayısını al (left.php'deki gibi)
+            $gid = $sira["id"];
+            if ($kulYetki == 'admin' or $kulYetki == 'mod') { 
+                $sor = mysql_query("SELECT id FROM mesajlar WHERE sira=$gid");
+            } else {
+                $sor = mysql_query("SELECT id FROM mesajlar WHERE sira=$gid AND statu=''");
             }
-        $adet = $arguman;      
-        //echo "<div class=div1>";
-        for($i=0;$i<(count($sonuc));$i++)
-        {
-        $SQLx="SELECT * FROM konular WHERE id='$sonuc[$i]' and statu=''";
-        $sorgu=mysql_query($SQLx) ;
-        while($sira=mysql_fetch_array($sorgu))
-        {
-        $baslik = $sira["baslik"];
-        $baslik = strtolower($baslik);
-
-if($isMobile == 0)
-{ 
-        echo "* <a target=\"main\" href=\"sozluk.php?process=word&q=$baslik\"><font size=2>$baslik</font></a><br>";
-}
-if($isMobile == 1)
-{ 
-        echo "* <a href=\"sozluk.php?process=word&q=$baslik\"><font size=2>$baslik</font></a><br>";
-}
+            
+            $w = mysql_num_rows($sor);
+            $max = 20;
+            $goster = ceil($w / $max);
+            if ($goster < 1) $goster = 1;
+            
+            $link = str_replace(" ", "+", $baslik_lower);
+            
+            // left.php'deki gibi link oluştur
+            if($isMobile == 1) { 
+                echo "<font size=2><li>· <a href='/$link-$goster.html' target=\"_top\" title='$baslik ($w)'>$baslik</a>";
+            } else { 
+                echo "<font size=2><li>· <a href='/$link-$goster.html' target='main' title='$baslik ($w)'>$baslik</a>";
+            }
+            
+            // Mesaj sayısını göster (left.php'deki gibi)
+            if ($w > 1) {
+                echo " ($w)";
+            }
+            
+            echo "</li></font>\n";
         }
-        }
-        $SQL="SELECT id FROM konular WHERE baslik='$q' and statu=''";
-        $sorgu=mysql_query($SQL);
-              ?>
-<br>
-<?
-if ($adet == 0) echo "bulunamadı...";
-if ($adet > 1) {
+    }
+    
+    echo "</ul>";
+    
+    // Reklam (left.php'deki gibi)
+    if ($adet > 1) {
 ?>
+<br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7994669731946359"
      crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
@@ -196,6 +245,33 @@ if ($adet > 1) {
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-<?
+<?php
+    }
+    
+} else {
+    // ARAMA FORMU (q yoksa) - left.php stili
+    ?>
+    <center>
+    <?php
+    // Mobil kontrol
+    $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
+                    '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
+                    '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
+    
+    if($isMobile == 1) {
+        echo "<a id='gundem' href='left.php?list=today' target='_top' title='sol frame'> <img src=inc/turuncu.png width=150 border=1></a><br><br>";
+    }
+    ?>
+    <form method="get" action="sozluk.php">
+    <input type="hidden" name="process" value="search">
+    <input type="text" name="q" size="25" placeholder="aramaya inanın">
+    <input type="submit" value="Ara" class="butx">
+    </form>
+    </center>
+    
+    <div style='text-align:center; color:#666; margin-top:20px;'>
+    Bir kelime yazıp arama yapın.
+    </div>
+    <?php
 }
 ?>
