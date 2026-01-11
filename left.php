@@ -564,7 +564,8 @@ echo "<center><input type='button' onclick=\"location.href='left.php?list=today'
 
 //-----------------------------------------
 	// KANAL FİLTRE (GÜNDEM)
-if (!$pasifyazar)
+//if (!$pasifyazar)
+if ($kulYetki=='admin' or $kulYetki=='mod') 
 {
 $kanallar = array(
         "#mc",
@@ -1840,139 +1841,160 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 
 
 case "kanal":
-echo "<br>";
-
-
-    // Mobil kontrol (senin sistemde $isMobile var)
-  
-        echo "<center>
-            <input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> 
-            <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> 
-            <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'>  
-            $ekmobile
-        </center>";
- 
-
-//-----------------------------------------
-	// KANAL FİLTRE (GÜNDEM)
-if ($kulYetki == "admin")
-{
-$kanallar = array(
-    "#mc",
-    "#album",
-    "#yabancirap",
-    "#graffiti",
-    "#turntablism",
-    "#instrumental",
-    "#produktor",
-    "#polemik",
-    "#magazin",
-    "#lyrics",
-    "#konser",
-	"#kultur"
-);
-
-echo "<center>";
-echo "<select class='ksel' onchange='goKanal(this.value)'>";
-echo "<option value=''>kanal seç</option>";
-
-foreach ($kanallar as $k) {
-	$kanalUrl = ltrim($k, '#'); // #mc → mc
-    $url = "left.php?list=kanal&kanal=" . urlencode($kanalUrl);
-    echo "<option value='$url'>$k</option>";
-}
-
-echo "</select>";
-echo "</center>";
-
-
-?>
-<script>
-function goKanal(url) {
-    if (url !== '') {
-        location.href = url;
+    // Tarih değişkenleri
+    $cDay = date("d");
+    $cMon = date("m");
+    $cYea = date("Y");
+    $gds = "g";
+    
+    // 1. SAYFALAMA DEĞİŞKENLERİ (EN ÖNEMLİ KISIM!)
+    // Sayfa başına konu sayısı - diğer case'lerdeki gibi olmalı
+    $maxTopicPage = 20; // Bu değer diğer case'lerde de kullanılıyor
+    
+    // Mevcut sayfa numarasını al (konudisi'ndeki gibi "sayfa" parametresi)
+    $currentPage = isset($_GET['sayfa']) ? (int)$_GET['sayfa'] : 1;
+    if ($currentPage < 1) $currentPage = 1;
+    
+    // LIMIT için başlangıç noktası
+    $limitFrom = ($currentPage - 1) * $maxTopicPage;
+    
+    // 2. KANAL DEĞİŞKENİ
+    $kanal = '';
+    if (isset($_GET['kanal'])) {
+        $kanal = mysql_real_escape_string($_GET['kanal']);
+        $kanal = strtolower(trim($kanal));
     }
-}
-</script>
-<?
-}
-
-//-----------------------------------------
-
-
-    // GET parametresi
-    $kanal = isset($_GET['kanal']) ? mysql_real_escape_string($_GET['kanal']) : '';
-    if ($kanal == '') {
-        die("Geçersiz kanal isteği");
+    
+    if (empty($kanal)) {
+        echo "<center><div style='color:red;padding:10px;'>Lütfen bir kanal seçin!</div></center>";
+        break;
     }
-
-
-    echo "<div class='pagi'>#$kanal başlıkları</div>";
-
-    // Kanal filtreli sayfa sorgusu
+    
+    $topicDate = "#" . $kanal;
+    
+    // 3. BUTONLAR (konudisi'ndeki gibi)
+    echo "<center>
+        <input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> 
+        <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> 
+        <input type='button' onclick=\"location.href='left.php?list=lobi';\" value='#lobi' class='butx'>  
+        $ekmobile 
+    </center>";
+    
+    // 4. KANAL SEÇİMİ (sadece admin)
+    if ($kulYetki == "admin") {
+        $kanallar = array(
+            "mc", "album", "yabancirap", "graffiti", "turntablism",
+            "instrumental", "produktor", "polemik", "magazin",
+            "lyrics", "konser", "kultur"
+        );
+        
+        echo "<center>";
+        echo "<select class='ksel' onchange='goKanal(this.value)'>";
+        echo "<option value=''>kanal seç</option>";
+        
+        foreach ($kanallar as $k) {
+            $kanalUrl = ltrim($k, '#');
+            $selected = ($kanal == $kanalUrl) ? "selected" : "";
+            $url = "left.php?list=kanal&kanal=" . urlencode($kanalUrl);
+            echo "<option value='$url' $selected>#$k</option>";
+        }
+        
+        echo "</select>";
+        echo "</center>";
+        
+        ?>
+        <script>
+        function goKanal(url) {
+            if (url !== '') {
+                location.href = url;
+            }
+        }
+        </script>
+        <?php
+    }
+    
+    // 5. TOPLAM KONU SAYISI (sayfalama için)
     $getPage = mysql_query("
-        SELECT id FROM konular 
-        WHERE statu='' 
-        AND ('#$kanal' IN (kanal1, kanal2, kanal3)) 
-        ORDER BY tarih DESC
+        SELECT COUNT(id) as total FROM konular 
+        WHERE statu = '' 
+        AND gds = 'g'
+        AND (
+            LOWER(kanal1) = '#" . $kanal . "' OR 
+            LOWER(kanal2) = '#" . $kanal . "' OR 
+            LOWER(kanal3) = '#" . $kanal . "'
+        )
     ");
-
+    
     if (!$getPage) {
-        die("SQL hatası: ".mysql_error());
+        die("SQL hatası: " . mysql_error());
     }
-
-    $topicNum = mysql_num_rows($getPage);
-    $pageNum = ceil($topicNum/$maxTopicPage);
-
+    
+    $row = mysql_fetch_assoc($getPage);
+    $topicNum = $row['total'];
+    $totalPage = ceil($topicNum / $maxTopicPage);
+    
+    // 6. SAYFALAMA NAVİGASYONU (navigateKanal fonksiyonunu kullan)
     echo "<div class='pagi'>#$kanal başlıkları: ($topicNum başlık)<br />";
-    if ($pageNum>1) navigateKanal('kanal',$kanal,$currentPage,$pageNum);
-    echo "</div>\n";
-
-    // Başlıkları listele
-    echo "<ul id='listLeftFrame'>";
-    $sqlSyntax = "
-        SELECT id, baslik, tarih,
-            (SELECT count(id) FROM mesajlar 
-             WHERE sira=konular.id 
-             AND statu != 'silindi' AND statu!= 'wait' AND statu!= 'kenar') AS say
-        FROM konular
-        WHERE ('#$kanal' IN (kanal1, kanal2, kanal3)) 
-        AND statu=''
-        AND gds='g'
-        ORDER BY tarih DESC 
-        LIMIT $limitFrom,$maxTopicPage
-    ";
-    $getkonular = mysql_query($sqlSyntax);
-    while ($currenTopic = mysql_fetch_array($getkonular)) {
-        $baslik2 = $currenTopic['baslik'];
-        $gid = $currenTopic['id'];
-
-        if ($kulYetki=='admin' || $kulYetki=='mod') {
-            $sor = mysql_query("SELECT id FROM mesajlar WHERE sira=$gid");    
-        } else {
-            $sor = mysql_query("SELECT id FROM mesajlar WHERE sira=$gid AND statu=''");
-        }
-
-        $w = mysql_num_rows($sor);
-        $max = 20;
-        $goster = ceil($w/$max);
-
-        $link = str_replace(" ","+",$baslik2);
-
-        if ($isMobile == 0) {
-            echo "<font size=2><li>· <a href='/".$link."-".$goster.".html' target='main' title='".$baslik2." (".$currenTopic['say'].")'>".$baslik2."</a></font>";
-        } else {
-            echo "<font size=2><li>· <a href='/".$link."-".$goster.".html' title='".$baslik2." (".$currenTopic['say'].")'>".$baslik2."</a></font>";
-        }
-
-        if ($currenTopic['say']>1) {
-            echo " (".$currenTopic['say'].")";
-        }
-
-        echo "</li>\n";
+    if ($totalPage > 1) {
+        navigateKanal('kanal', $kanal, $currentPage, $totalPage);
     }
+    echo "</div>\n";
+    
+    // 7. KONULARI LİSTELE (LIMIT ile sayfalama yap!)
+    echo "<ul id='listLeftFrame'>";
+    
+    $sqlSyntax = "
+        SELECT k.id, k.baslik, k.tarih,
+            (SELECT COUNT(m.id) FROM mesajlar m 
+             WHERE m.sira = k.id 
+             AND m.statu NOT IN ('silindi', 'wait', 'kenar')
+             AND m.yil != '') AS say
+        FROM konular k
+        WHERE k.statu = '' 
+        AND k.gds = 'g'
+        AND (
+            LOWER(k.kanal1) = '#" . $kanal . "' OR 
+            LOWER(k.kanal2) = '#" . $kanal . "' OR 
+            LOWER(k.kanal3) = '#" . $kanal . "'
+        )
+        ORDER BY k.tarih DESC 
+        LIMIT $limitFrom, $maxTopicPage
+    ";
+    
+    $getkonular = mysql_query($sqlSyntax);
+    
+    if (!$getkonular) {
+        die("SQL Hatası: " . mysql_error());
+    }
+    
+    while ($currenTopic = mysql_fetch_array($getkonular)) {
+        $baslik = htmlspecialchars($currenTopic['baslik'], ENT_QUOTES, 'UTF-8');
+        $id = $currenTopic['id'];
+        $say = $currenTopic['say'];
+        
+        // Sayfa hesaplama (konudisi'ndeki gibi)
+        $w = $say;
+        $max = 20;
+        $goster = ceil($w / $max);
+        if ($goster < 1) $goster = 1;
+        
+        $link = str_replace(" ", "+", $currenTopic['baslik']);
+        
+        // Mobil kontrol (konudisi'ndeki gibi)
+        if ($isMobile == 1) {
+            echo "<font size=2><li>· <a href='/" . $link . "-" . $goster . ".html' target=\"_top\" title='" . $baslik . " (" . $say . ")'>" . $baslik . "</a>";
+        } else {
+            echo "<font size=2><li>· <a href='/" . $link . "-" . $goster . ".html' target='main' title='" . $baslik . " (" . $say . ")'>" . $baslik . "</a>";
+        }
+        
+        if ($say > 1) {
+            echo " (" . $say . ")";
+        }
+        
+        echo "</li></font>\n";
+    }
+    
     echo "</ul>";
-
     break;
 
 
