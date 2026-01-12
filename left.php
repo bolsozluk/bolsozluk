@@ -1840,76 +1840,31 @@ $sor = mysql_query("select id from mesajlar WHERE `sira`=$gid and `statu` = '' "
 
 
 case "kanal":
-    // DEBUG: Tüm GET parametrelerini görelim
-    echo "<!-- DEBUG GET params: ";
-    print_r($_GET);
-    echo " -->\n";
-    
     // Tarih değişkenleri
     $cDay = date("d");
     $cMon = date("m");
     $cYea = date("Y");
     $gds = "g";
     
-    // 1. Sayfalama değişkenleri - KONUDİSİ CASE'İNDEKİ GİBİ AYNI
-    // Önce konudisi case'inde nasıl tanımlanmış kontrol edelim
-    //$maxTopicPage = 20; // Konudisi'ndekiyle aynı olmalı
-    
+    // Sayfalama değişkenleri
     $currentPage = isset($_GET['sayfa']) ? (int)$_GET['sayfa'] : 1;
     if ($currentPage < 1) $currentPage = 1;
     
     $limitFrom = ($currentPage - 1) * $maxTopicPage;
     
-    echo "<!-- DEBUG: currentPage=$currentPage, limitFrom=$limitFrom, maxTopicPage=$maxTopicPage -->\n";
-    
-    // 2. Kanal değişkeni
+    // Kanal değişkeni
     $kanal = '';
     if (isset($_GET['kanal'])) {
         $kanal = mysql_real_escape_string($_GET['kanal']);
         $kanal = strtolower(trim($kanal));
     }
     
-    echo "<!-- DEBUG: Kanal değişkeni: $kanal -->\n";
-    
     if (empty($kanal)) {
         echo "<center><div style='color:red;padding:10px;'>Lütfen bir kanal seçin!</div></center>";
         break;
     }
     
-    // 3. ÖNCE VERİTABANINDA GERÇEKTEN BU KANALDA KAYIT VAR MI KONTROL EDELİM
-    echo "<!-- DEBUG: Veritabanında kanal kontrolü -->\n";
-    
-    // Test sorgusu 1: Tüm kayıtları görelim
-    $testQuery1 = "SELECT kanal1, kanal2, kanal3, baslik FROM konular 
-                  WHERE (LOWER(kanal1) LIKE '%#yabancirap%' OR 
-                         LOWER(kanal2) LIKE '%#yabancirap%' OR 
-                         LOWER(kanal3) LIKE '%#yabancirap%')
-                  LIMIT 5";
-    $testResult1 = mysql_query($testQuery1);
-    
-    if ($testResult1) {
-        echo "<!-- DEBUG: #yabancirap test sorgusu sonucu -->\n";
-        while ($row = mysql_fetch_assoc($testResult1)) {
-            echo "<!-- K1: " . $row['kanal1'] . " | K2: " . $row['kanal2'] . " | K3: " . $row['kanal3'] . " | Baslik: " . $row['baslik'] . " -->\n";
-        }
-    }
-    
-    // Test sorgusu 2: graffiti için
-    $testQuery2 = "SELECT kanal1, kanal2, kanal3, baslik FROM konular 
-                  WHERE (LOWER(kanal1) LIKE '%#graffiti%' OR 
-                         LOWER(kanal2) LIKE '%#graffiti%' OR 
-                         LOWER(kanal3) LIKE '%#graffiti%')
-                  LIMIT 5";
-    $testResult2 = mysql_query($testQuery2);
-    
-    if ($testResult2) {
-        echo "<!-- DEBUG: #graffiti test sorgusu sonucu -->\n";
-        while ($row = mysql_fetch_assoc($testResult2)) {
-            echo "<!-- K1: " . $row['kanal1'] . " | K2: " . $row['kanal2'] . " | K3: " . $row['kanal3'] . " | Baslik: " . $row['baslik'] . " -->\n";
-        }
-    }
-    
-    // 4. TOPLAM KAYIT SAYISI
+    // TOPLAM KAYIT SAYISI
     $countQuery = "SELECT COUNT(id) as total FROM konular 
                   WHERE statu = '' 
                   AND gds = 'g'
@@ -1919,11 +1874,8 @@ case "kanal":
                       LOWER(kanal3) = '#" . $kanal . "'
                   )";
     
-    echo "<!-- DEBUG Count Query: $countQuery -->\n";
-    
     $countResult = mysql_query($countQuery);
     if (!$countResult) {
-        echo "<!-- DEBUG: Count query error: " . mysql_error() . " -->\n";
         die("Sorgu hatası: " . mysql_error());
     }
     
@@ -1931,17 +1883,7 @@ case "kanal":
     $topicNum = $countRow['total'];
     $totalPage = ceil($topicNum / $maxTopicPage);
     
-    echo "<!-- DEBUG: topicNum=$topicNum, totalPage=$totalPage -->\n";
-   // Debug için
-error_log("KANAL DEBUG: currentPage=" . $currentPage . ", maxTopicPage=" . $maxTopicPage . ", limitFrom=" . $limitFrom);
-echo "<!-- KANAL DEBUG: currentPage=$currentPage, maxTopicPage=$maxTopicPage, limitFrom=$limitFrom -->\n";
-
-// Ve konudisi için de aynısını ekleyin:
-case "konudisi":
-    // ...
-    echo "<!-- KONUDISI DEBUG: currentPage=$currentPage, maxTopicPage=$maxTopicPage, limitFrom=$limitFrom -->\n";
-
-    // 5. Butonlar
+    // Butonlar
     echo "<center>
         <input type='button' onclick=\"location.href='left.php?list=today';\" value='gündem' class='butx'> 
         <input type='button' onclick=\"location.href='left.php?list=konudisi';\" value='konudışı' class='butx'> 
@@ -1949,7 +1891,7 @@ case "konudisi":
         $ekmobile 
     </center>";
     
-    // 6. Kanal seçimi
+    // Kanal seçimi (sadece admin)
     if ($kulYetki == "admin") {
         $kanallar = array(
             "mc", "album", "yabancirap", "graffiti", "turntablism",
@@ -1971,14 +1913,14 @@ case "konudisi":
         echo "</center>";
     }
     
-    // 7. Sayfalama
+    // Sayfalama
     echo "<div class='pagi'>#$kanal başlıkları: ($topicNum başlık)<br />";
     if ($totalPage > 1) {
         navigateKanal('kanal', $kanal, $currentPage, $totalPage);
     }
     echo "</div>\n";
     
-    // 8. ASIL SORGUMUZ
+    // ASIL SORGUMUZ
     $mainQuery = "
         SELECT k.id, k.baslik, k.tarih,
             (SELECT COUNT(m.id) FROM mesajlar m 
@@ -1997,19 +1939,15 @@ case "konudisi":
         LIMIT $limitFrom, $maxTopicPage
     ";
     
-    echo "<!-- DEBUG Main Query: $mainQuery -->\n";
-    
     $result = mysql_query($mainQuery);
     
     if (!$result) {
-        echo "<!-- DEBUG: Main query error: " . mysql_error() . " -->\n";
         die("SQL Hatası: " . mysql_error());
     }
     
     $numRows = mysql_num_rows($result);
-    echo "<!-- DEBUG: Sorgudan dönen satır sayısı: $numRows -->\n";
     
-    // 9. Sonuçları listele
+    // Sonuçları listele
     if ($numRows > 0) {
         echo "<ul id='listLeftFrame'>";
         
