@@ -27,6 +27,11 @@
 -nativespot, facebook ve adwords uzerinden sponsorlu gonderi/reklam verilmesi
 
 ----------yapilanlar----------
+ocak 2026:
+-bol kanal sistemi test icin devreye alindi.
+-arama sonuclarinda 250 baslik getiren fonskiyon tedavulden kaldirildi.
+-arama sonuclarinin sayfalandirilmasi kodlandi.
+
 aralik 2025:
 -bolchat arayuzunde guvenlik gelistirmeleri yapildi.
 -anonim entrylerle ilgili guvenlik iyilestirmeleri yapildi.
