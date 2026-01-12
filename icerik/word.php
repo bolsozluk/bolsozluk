@@ -763,12 +763,14 @@ if ($kanal1 != "") {
 
 if ($kanal2 != "") {
     $k = ltrim($kanal2, "#");
-    $istekbuton .= "<a class='kanal-badge k2' title='kanal2' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
+	if($isMobile == 1)	$istekbuton .= "<a class='kanal-badge k2' title='kanal2' href='left.php?list=kanal&kanal=$k' target='main'>#$k</a>";
+    if($isMobile == 0)	$istekbuton .= "<a class='kanal-badge k2' title='kanal2' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
 }
 
 if ($kanal3 != "") {
     $k = ltrim($kanal3, "#");
-    $istekbuton .= "<a class='kanal-badge k3' title='kanal3' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
+	if($isMobile == 1)	$istekbuton .= "<a class='kanal-badge k3' title='kanal3' href='left.php?list=kanal&kanal=$k' target='main'>#$k</a>";
+    if($isMobile == 0)  $istekbuton .= "<a class='kanal-badge k3' title='kanal3' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
 }
 
 if ($kanal1 || $kanal2 || $kanal3) {
@@ -1012,22 +1014,6 @@ echo"
 				if ($gds=="d") {echo"<small><br>şu an <a href=\"left.php?list=konudisi\" target=\"left\">konu dışı</a> kategorisindeki bir başlıktasınız.</b></small>" ;}
 				if ($gds=="s") {echo"<small><br><a href=\"left.php?list=soru\" target=\"left\">soru</a> başlıklarında entry sahipleri anonim olarak görünmekteydi, bu başlıklar artık konu dışında yer almaktadır.</b></small>";}
 				if ($gds=="l") {echo"<small><br><a href=\"left.php?list=lobi\" target=\"left\">lobi</a> bölümü yazar nickaltlarına ve önceden konudışına alınmış bazı meta başlıklara ayrılan bir alandır.</b></small>";}
-				/*if ($kanal2 || $kanal3 )
-				{
-				$puan = round($puan, 1);
-				echo " <b>bolpuan</b>: $puan/9"; 		
-				}*/
-
-			/*	if ($kp)
-				{
-				$kp = round($kp, 2);
-		   		$kp = ($kp*10);
-				$kp = round($kp,1);
-			//	echo $kp;				
-				//	echo $ks[0];
-			//	if ($kulYetki == 'admin'){echo " <b>bolpuan</b>:$kp/10"; 		}
-				if ($ks >= '10'){echo " <b>bolpuan</b>:$kp/10"; 		}
-				}*/
  				
 ?>
 <script>
