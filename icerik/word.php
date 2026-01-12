@@ -754,9 +754,11 @@ if ($kanal1 || $kanal2 || $kanal3) {
     $istekbuton .= "<div class='kanal-wrap'>";
 }
 
+
 if ($kanal1 != "") {
     $k = ltrim($kanal1, "#");
-    $istekbuton .= "<a class='kanal-badge k1' title='kanal1' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
+    if($isMobile == 1)    $istekbuton .= "<a class='kanal-badge k1' title='kanal1' href='left.php?list=kanal&kanal=$k' target='main'>#$k</a>";
+    if($isMobile == 0)    $istekbuton .= "<a class='kanal-badge k1' title='kanal1' href='left.php?list=kanal&kanal=$k' target='left'>#$k</a>";
 }
 
 if ($kanal2 != "") {
