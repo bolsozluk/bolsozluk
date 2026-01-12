@@ -1997,7 +1997,8 @@ case "kanal":
 <?php
 //echo "<div class='pagi'>$topicDate başlıkları: ($topicNum başlık)";
 echo "<br /><center>";
-if ($totalPage>1) navigatePage($list,$currentPage,$totalPage);
+if (($totalPage>1)&& ($list!="kanal"))navigatePage($list,$currentPage,$totalPage);
+if (($totalPage>1)&& ($list=="kanal"))navigateKanal($list,$kanal,$currentPage,$totalPage);
 echo "</center>";
 echo "<br>";
 if ($isMobile == 1) {
