@@ -669,15 +669,6 @@ $totalTopic = mysql_num_rows($getkonular);
 
 echo "<hr>";
 
-//if($isMobile == 1) echo "<li>· <a href='her+sey+cok+guzel+olacak-1.html' title='".'her şey çok güzel olacak'."'>".'her şey çok güzel olacak'."</a> (<font color='red'>!</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='her+sey+cok+guzel+olacak-1.html' target='main' title='".'her şey çok güzel olacak'."'>".'her şey çok güzel olacak'."</a> (<font color='red'>!</font>)"; 
-
-
-//VOL 10 haz//
-//if($isMobile == 1) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+on+birinci+alb%C3%BCm-1.html' title='".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."</a> (<font color='red'>!</font>)"; 
-//if($isMobile == 0) echo "<li>· <a href='https://www.bolsozluk.com/s%C3%B6zl%C3%BCk+yazarlar%C4%B1n%C4%B1n+eme%C4%9Fiyle+yap%C4%B1lacak+on+birinci+alb%C3%BCm-1.html' target='main' title='".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."'>".'sözlük yazarlarının emeğiyle yapılacak on birinci albüm'."</a> (<font color='red'>!</font>)"; 
-//echo "<hr>";
-
 //vol 11//
 //if($isMobile == 1) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
 //if($isMobile == 0) echo "<li>· <a href='bol+sozluk+compilation+vol+11-1.html' target='main' title='".'bol sözlük compilation vol 11'."'>".'bol sözlük compilation vol 11'."</a> (<font color='red'>!</font>)"; 
@@ -1891,8 +1882,7 @@ case "kanal":
         $ekmobile 
     </center>";
     
-    // Kanal seçimi (sadece admin)
-    if ($kulYetki == "admin") {
+if (!$pasifyazar){
         $kanallar = array(
             "mc", "album", "yabancirap", "graffiti", "turntablism",
             "instrumental", "produktor", "polemik", "magazin",
