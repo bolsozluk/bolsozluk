@@ -33,7 +33,18 @@ function strtrlower($text)
 }
 
 $sonuc ="";
+$flag ="";
+
 $q = isset($_REQUEST["q"]) ? guvenlikKontrol($_REQUEST["q"],"hard") : '';
+
+// 3 HARFTEN AZ KONTROLÜ - SADECE BURAYI EKLE
+if ($q && strlen($q) < 3) {
+    $q = ''; // q'yu boşalt ki normal arama formu gözüksün
+    $flag ="1";
+}
+
+
+
 
 // SAYFALAMA DEĞİŞKENLERİ
 $currentPage = isset($_GET['sayfa']) ? (int)$_GET['sayfa'] : 1;
@@ -41,23 +52,7 @@ if ($currentPage < 1) $currentPage = 1;
 $limitFrom = ($currentPage - 1) * $maxTopicPage;
 
 ?>
-<style>
-.butx {
-    border-right: #a6b4d4 2px outset; border-TOP: #a6b4d4 2px outset; 
-    font: 10pt Arial,sans-serif; border-left: #a6b4d4 2px outset; 
-    CURSOR: default; color: white; border-BOTTOM: #a6b4d4 2px outset; 
-    WHITE-SPACE: nowrap; background-color: #242b3a; text-align: center
-}
 
-.but {
-    font-size: 11px;
-    padding: 1px 4px;
-    background: #242b3a;
-    color: white;
-    text-decoration: none;
-    border: 1px solid #a6b4d4;
-}
-</style>
 
 <script>
 function mobgetir(){
@@ -259,7 +254,7 @@ if ($q) {
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
     
     if($isMobile == 1) {
-        echo "<a id='gundem' href='left.php?list=today' target='_top' title='sol frame'> <img src=inc/turuncu.png width=150 border=1></a><br><br>";
+    //    echo "<a id='gundem' href='left.php?list=today' target='_top' title='sol frame'> <img src=inc/turuncu.png width=150 border=1></a><br><br>";
     }
     ?>
     <form method="get" action="sozluk.php">
@@ -273,5 +268,12 @@ if ($q) {
     Bir kelime yazıp arama yapın.
     </div>
     <?php
+
+    if ($flag == 1) {
+    echo "<div class='pagi' style='text-align:center; color:red;'>";
+    echo "<b>En az 3 harf ile arama yapmalısınız!</b><br>";
+    echo "</div>";
+}
+
 }
 ?>
