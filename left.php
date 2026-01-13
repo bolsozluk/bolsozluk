@@ -27,7 +27,7 @@ $araYil = $_REQUEST['yil'];
 
 $aylikentry = mysql_result(mysql_query("SELECT aylikentry FROM user WHERE nick='$kullaniciAdi'"), 0);
 if ($kullaniciAdi == "") $aylikentry = 0;
-$entryBaraji = 1; 
+$entryBaraji = 2; 
 $pasifyazar = ($aylikentry < $entryBaraji);
 
 /*
