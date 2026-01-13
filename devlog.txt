@@ -29,8 +29,7 @@
 ----------yapilanlar----------
 ocak 2026:
 -bol kanal sistemi test icin devreye alindi.
--arama sonuclarinda 250 baslik getiren fonskiyon tedavulden kaldirildi.
--arama sonuclarinin sayfalandirilmasi kodlandi.
+-arama sonuclarini limitli listeleme kodu sayfalandirilma sistemiyle degistirildi.
 
 aralik 2025:
 -bolchat arayuzunde guvenlik gelistirmeleri yapildi.
@@ -40,7 +39,7 @@ aralik 2025:
 -bol gecmis istatistik kodu optimize edildi.
 -patronun verdigi silah sozlugun ilk kod katkisini kar yagisi guncellemesiyle yapti, githubdan actigi pr merge edildi.
 -arama sistemindeki tirnak karakteri uyusmazliklari giderildi.
--tum basliklardaki tirnak ve tick karakterleri gecmise donuk "´" olarak duzeltildi.
+-tum basliklardaki tirnak ve tick karakterleri gecmise donuk ´ olarak duzeltildi.
 
 kasim 2025:
 -ay icerisinde hic entry girmemis yazarlara reklam gosterim fonksiyonu kodlandi.
