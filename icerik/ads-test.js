@@ -1,1 +1,1 @@
-
+window.adBlockerCheck = false;
