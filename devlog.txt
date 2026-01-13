@@ -30,6 +30,7 @@
 ocak 2026:
 -bol kanal sistemi test icin devreye alindi.
 -arama sonuclarini limitli listeleme kodu sayfalandirilma sistemiyle degistirildi.
+-reklam gosterimini etkileyen aktif yazar entry baraji aylik 2 entry'e yukseltildi.
 
 aralik 2025:
 -bolchat arayuzunde guvenlik gelistirmeleri yapildi.
