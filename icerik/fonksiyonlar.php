@@ -128,8 +128,8 @@ function guvenlikKontrol($variable,$style){
 				$variable = trim(strip_tags($variable));
 				break;
 		case "med":
-				$before = array("'","<",">","\"");
-				$after  = array("´","&lt;","&gt;","&quot;");
+				$before = array("`","'","<",">","\"");
+				$after  = array("´","´","&lt;","&gt;","&quot;");
 				$variable = str_replace($before, $after, $variable);
 				$variable = trim(strip_tags($variable));
 				break;
