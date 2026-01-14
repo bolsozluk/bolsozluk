@@ -11,6 +11,25 @@ if (!$id || $deger == '') {
     die("gecersiz istek: id veya kanal2 yok");
 }
 
+$allowed = array(
+    "mc",
+    "album",
+    "yabancirap",
+    "graffiti",
+    "turntablism",
+    "produktor",
+    "polemik",
+    "magazin",
+    "lyrics",
+    "konser",
+    "kultur"
+);
+
+if (!$id || $deger === '' || !in_array($deger, $allowed, true)) {
+    die("geçersiz istekler istiyorsunuz.");
+}
+
+
 // --------------------
 // KANAL SİLME (ADMIN / MOD)
 // --------------------
