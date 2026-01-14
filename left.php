@@ -572,7 +572,6 @@ $kanallar = array(
         "#yabancirap",
         "#graffiti",
         "#turntablism",
-        "#instrumental",
         "#produktor",
         "#polemik",
         "#magazin",
