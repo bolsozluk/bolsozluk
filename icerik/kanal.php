@@ -22,7 +22,11 @@ $allowed = array(
     "magazin",
     "lyrics",
     "konser",
-    "kultur"
+    "kultur",
+    "reset",
+    "kanal1sil",
+    "kanal2sil",
+    "kanal3sil"
 );
 
 if (!$id || $deger === '' || !in_array($deger, $allowed, true)) {
