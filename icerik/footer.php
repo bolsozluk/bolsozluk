@@ -49,11 +49,16 @@ $isMobile = (bool)preg_match(
     <div class="footer-links">
         <a href="https://chat.bolsozluk.com" target="_blank">chat</a> |
         <a href="https://www.youtube.com/BolSozluk" target="_blank">youtube</a> |
+        <a href="https://open.spotify.com/artist/6cbqsKLbEyJZ7LhiuIqe7z" target="_blank">spotify</a> |
+        <a href="https://anket.bolsozluk.com" target="_blank">anket</a> |
+        <a href="https://www.bolsozluk.com/raple" target="_blank">raple</a> |
         <a href="https://github.com/bolsozluk/" target="_blank">source</a> |
-        <a href="/sozlesme.html" target="_blank">uyarı</a>
+        <a href="/sozlesme.html" target="_blank">uyarı</a> |
+        <a href="/devlog.txt" target="_blank">devlog</a>
     </div>
     <div class="footer-info">
-        bol'da yer alan içeriğin doğru veya güncel olduğu hiçbir şekilde iddia veya garanti edilmemektedir. (2014–2026)
+        bol'da yer alan içeriğin edilmemektedir. burada okuduklarınız sizi dehşete düşürürse türkçe rap ansiklopedisine de göz atmayı deneyebilirsiniz.<?php if (!$isMobile) echo "<br>"; ?>
+        hukuka aykırı olabileceğini düşündüğünüz içerikler titizlikle incelenip gereği düşünülmektedir. reklamsız görüntülemek isterseniz sözlüğe hemen kaydolup entry girmeye başlayabilirsiniz. soğuk içiniz. (2014-2026)
     </div>
 </div>
 
