@@ -1175,7 +1175,6 @@ if (($kullaniciAdi != "") && ($gds =="g") && (!$pasifyazar)) {
         "#yabancirap",
         "#graffiti",
         "#turntablism",
-        "#instrumental",
         "#produktor",
         "#polemik",
         "#magazin",
