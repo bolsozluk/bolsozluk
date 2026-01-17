@@ -1,70 +1,83 @@
-<SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
-<META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
+<?php
+// 1. Hata Raporlama
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-<?
+// 2. Session Başlat
+if (session_id() == "") { session_start(); }
 
-$kullaniciAdi = $_SESSION['kullaniciAdi'];
-$ayb = (int)($_GET['ayb'] ?? 0);
+// 3. Değişkenleri Tanımla
 $eskinick = $kullaniciAdi;
-$sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
-$reset=$sorset["reset"];
 
+// Sayı kontrolü (POST ve GET destekli)
+$ayb = 0;
+if (isset($_POST['ayb'])) {
+    $ayb = (int)$_POST['ayb'];
+} elseif (isset($_GET['ayb'])) {
+    $ayb = (int)$_GET['ayb'];
+}
 
-if ($ayb != 146)
-		{
-		$ayb = 0;
-		}
+// --- HATA AYIKLAMA PANELİ ---
+if (isset($_POST['send'])) {
+    if (empty($eskinick)) {
+        echo "<div style='color:red; background:#fee; padding:10px; border:1px solid red;'>Hata: Oturumunuz kapalı veya sistem kullanıcı adınızı (SESSION) okuyamıyor.</div>";
+    }
+    if ($ayb !== 146) {
+        echo "<div style='color:red; background:#fee; padding:10px; border:1px solid red;'>Hata: Doğrulama sayısı (146) hatalı girildi.</div>";
+    }
+}
 
-$sorgu = "SELECT nick,id FROM user WHERE `nick`='$nick'";
-$sorgulama = mysql_query($sorgu);
+// Bilgilendirme metni
+if ($ayb !== 146) {
+    echo "Anonimleştirilen entryleriniz yazar kimliğinizden ayrıştırılacak ve hesabınız kapatılacaktır. Onaylıyor musunuz?<br>";
+}
 
+// --- İŞLEM KISMI ---
+if ($eskinick && $ayb === 146) {
+    echo "<strong>Hesabınız kapatılıyor ve entryleriniz anonimleştiriliyor...</strong>";
+    
+    $tarih = date("YmdHi");
+    $hatavar = false;
 
-	$nick = strtolower($nick);
-echo "anonimleştirilen entryleriniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere anonimleştirilecektir. sakıncalı görülen anonim entryler moderasyon incelemesi sonucu tekrar yazar hesabınıza kaydedilebilir, bu gibi durumlar haricinde entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz. onaylıyor musunuz?<br>";
+    // Sorgu listesi
+    $sorgular = array(
+        "UPDATE mesajlar SET yazar='anonim' WHERE yazar='$eskinick'",
+        "UPDATE user SET silsebep='kendini anonimleştirdi' WHERE nick='$eskinick'",
+        "UPDATE oylar SET entry_sahibi='anonim' WHERE entry_sahibi='$eskinick'",
+        "UPDATE user SET durum='sus' WHERE nick='$eskinick'",
+        "UPDATE user SET silen='$eskinick' WHERE nick='$eskinick'",
+        "UPDATE user SET bantarih='$tarih' WHERE nick='$eskinick'"
+    );
 
+    foreach ($sorgular as $sql) {
+        if (!mysql_query($sql)) {
+            $hatavar = mysql_error();
+            break; 
+        }
+    }
 
-		    if ($eskinick and $ayb==146)
-		    {
-					echo "değiştiriliyor"; 
-
-  $tarih = date("YmdHi");
-
-	$sorgu1 = "UPDATE mesajlar SET yazar='anonim' WHERE yazar='$eskinick'";
-	mysql_query($sorgu1);
-	$sorgu2 = "UPDATE user SET silsebep='kendini anonimleştirdi' WHERE nick='$eskinick'";
-	mysql_query($sorgu2);
-	$sorgu3 = "UPDATE oylar SET entry_sahibi='anonim' WHERE entry_sahibi='$eskinick'";
-	mysql_query($sorgu3);	
-	$sorgu4 = "UPDATE user SET durum='sus' WHERE nick='$eskinick'";
-	mysql_query($sorgu4);
-	$sorgu5 = "UPDATE user SET silen='$eskinick' WHERE nick='$eskinick'";
-	mysql_query($sorgu5);
-	$sorgu6 = "UPDATE user SET bantarih='$tarih' WHERE nick='$eskinick'";
-	mysql_query($sorgu6);
-//HELALDE BU SATIR BOŞTUR FAKAT SİLMEK ÇÖP TÜR
-
-$msg = "entryleriniz anonimleştirildi. hesabınız kapatıldı. yeni hesabınızla, yine bekleriz.";
- echo '<script type="text/javascript">alert("' . $msg . '"); window.location="http://www.bolsozluk.com/logout.php"; </script>';
-
-			exit;
-			}
-	
+    if (!$hatavar) {
+        $msg = "Entryleriniz anonimlestirildi. Hesabiniz kapatildi.";
+        echo '<script type="text/javascript">alert("' . $msg . '"); window.location="logout.php"; </script>';
+        exit;
+    } else {
+        echo "<div style='color:red;'>Veritabanı hatası oluştu: " . $hatavar . "</div>";
+        exit;
+    }
+}
 ?>
 
-
-
-
 <form method="POST" action="sozluk.php?process=anon3">
-<table cellpadding="10px" border="0">
-<tr>
-<td align="right">sayıyla 145+1: </td>
-<td> <div align="left"><input name="ayb"  size="30"  type="text"></div></td>
-</tr>
-<tr>
-<td colspan="2" align="">
-<input class=but value="onaylıyorum" name="send" type="submit" id="send">
-</td>
-</tr>
-</table>
+    <table cellpadding="10px" border="0">
+        <tr>
+            <td align="right">Sayıyla 145+1: </td>
+            <td><input name="ayb" size="30" type="text" autocomplete="off" value=""></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input value="Onaylıyorum" name="send" type="submit" style="cursor:pointer;">
+            </td>
+        </tr>
+    </table>
 </form>
-
