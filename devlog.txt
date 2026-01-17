@@ -28,9 +28,11 @@
 
 ----------yapilanlar----------
 ocak 2026:
--bol kanal sistemi test icin devreye alindi.
+-bol kanal sistemi ve moderasyon fonksiyonlari devreye alindi.
 -arama sonuclarini limitli listeleme kodu sayfalandirilma sistemiyle degistirildi.
 -reklam gosterimini etkileyen aktif yazar entry baraji aylik 2 entry'e yukseltildi.
+-entry anonimlestirme ve hesap kapatma modullerindeki hatalar giderildi.
+-kanal sisteminde yapilan islemler loglanmaya baslandi.
 
 aralik 2025:
 -bolchat arayuzunde guvenlik gelistirmeleri yapildi.
