@@ -1,58 +1,73 @@
-<SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
-<META http-equiv=Content-Type content="text/html; charset=iso-8859-9">
+<?php
+// 1. Hata Raporlama
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-<?
+// 2. Session Başlat
+if (session_id() == "") { session_start(); }
 
-$kullaniciAdi = $_SESSION['kullaniciAdi'];
-$ayb = (int)($_GET['ayb'] ?? 0);
+// 3. Değişkenleri Yakala (Hibrit Yaklaşım)
+//$kullaniciAdi = isset($_SESSION['kullaniciAdi']) ? $_SESSION['kullaniciAdi'] : '';
 $eskinick = $kullaniciAdi;
-$sorset= mysql_fetch_array(mysql_query("SELECT reset FROM user WHERE `nick`='$kullaniciAdi'"));
-$reset=$sorset["reset"];
 
-if ($ayb != 146)
-		{
-		$ayb = 0;
-		}
+// Veriyi hem POST hem REQUEST içinden yakalıyoruz
+$ayb = 0;
+if (isset($_POST['ayb'])) {
+    $ayb = (int)$_POST['ayb'];
+} elseif (isset($_GET['ayb'])) {
+    $ayb = (int)$_GET['ayb'];
+}
 
-$sorgu = "SELECT nick,id FROM user WHERE `nick`='$nick'";
-$sorgulama = mysql_query($sorgu);
+// --- HATA AYIKLAMA (Eğer işlem gerçekleşmezse nedenini ekrana basar) ---
+if (isset($_POST['send']) && ($ayb !== 146 || empty($eskinick))) {
+    echo "<div style='color:red; background:#ffeded; padding:10px; border:1px solid red;'>";
+    if (empty($eskinick)) echo "Hata: Oturumunuz kapalı görünüyor. Lütfen giriş yapın.<br>";
+    if ($ayb !== 146) echo "Hata: Girdiğiniz sayı ($ayb) hatalı. Lütfen 146 yazın.";
+    echo "</div>";
+}
 
+// 4. İŞLEM BAŞLATMA ŞARTI
+if ($eskinick && $ayb === 146) {
+    
+    // SQL Sorguları (mysql_ bağlantısı aktif olmalıdır)
+    $sorgu1 = "UPDATE mesajlar SET yazar='anonim' WHERE yazar='$eskinick'";
+    $islem1 = mysql_query($sorgu1);
 
-	$nick = strtolower($nick);
-echo "anonimleştirilen entryleriniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere anonimleştirilecektir. sakıncalı görülen anonim entryler moderasyon incelemesi sonucu tekrar yazar hesabınıza kaydedilebilir, bu gibi durumlar haricinde entry'nin tekrar yazar hesabınızla ilişkilendirilmesi gibi bir hak da iddia edemeyeceksiniz. onaylıyor musunuz?<br>";
+    $sorgu3 = "UPDATE oylar SET entry_sahibi='anonim' WHERE entry_sahibi='$eskinick'";
+    $islem3 = mysql_query($sorgu3);
 
-
-		    if ($eskinick and $ayb==146)
-		    {
-					echo "değiştiriliyor"; 
-	$sorgu1 = "UPDATE mesajlar SET yazar='anonim' WHERE yazar='$eskinick'";
-	mysql_query($sorgu1);
-	$sorgu3 = "UPDATE oylar SET entry_sahibi='anonim' WHERE entry_sahibi='$eskinick'";
-	mysql_query($sorgu3);	
-//HELALDE BU SATIR BOŞTUR FAKAT SİLMEK ÇÖP TÜR
-
-$msg = "işlem başarılı. lütfen yeniden sözlüğe giriş yapın.";
- echo '<script type="text/javascript">alert("' . $msg . '"); window.location="http://www.bolsozluk.com/logout.php"; </script>';
-
-			exit;
-			}
-	
+    if ($islem1 && $islem3) {
+        $msg = "Islem basarili. Entryleriniz anonimlestirildi.";
+        echo '<script type="text/javascript">alert("' . $msg . '"); window.location="logout.php"; </script>';
+        exit;
+    } else {
+        die("Veritabanı Hatası: " . mysql_error());
+    }
+}
 ?>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9">
+    <title>Anonimleştirme Onayı</title>
+</head>
+<body>
 
+<p>Anonimleştirilen entryleriniz yazar kimliğinizden ayrıştırılacak ve üzerindeki geçmiş oylamalar dahil olmak üzere anonimleştirilecektir. Onaylıyor musunuz?</p>
 
-
-
-<form method="POST" action="sozluk.php?process=anon2">
-<table cellpadding="10px" border="0">
-<tr>
-<td align="right">sayıyla 145+1: </td>
-<td> <div align="left"><input name="ayb"  size="30"  type="text"></div></td>
-</tr>
-<tr>
-<td colspan="2" align="">
-<input class=but value="onaylıyorum" name="send" type="submit" id="send">
-</td>
-</tr>
-</table>
+<form method="POST" action="sozluk.php?process=anon2"> 
+    <table cellpadding="10px" border="0">
+        <tr>
+            <td align="right">Sayıyla 145+1: </td>
+            <td><input name="ayb" size="10" type="text" autocomplete="off" value=""></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input value="Onaylıyorum" name="send" type="submit" style="cursor:pointer;">
+            </td>
+        </tr>
+    </table>
 </form>
 
+</body>
+</html>
