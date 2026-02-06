@@ -1,6 +1,16 @@
-﻿<SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
+<SCRIPT src="inc/sozluk.js" type=text/javascript></SCRIPT>
 
 <?
+// Yaş kontrolü için mantık eklemesi
+if (isset($_POST["dogum_yili"])) {
+    $dogum_yili = intval($_POST["dogum_yili"]);
+    $guncel_yil = date("Y");
+    if (($guncel_yil - $dogum_yili) < 15) {
+        echo "Üzgünüz, 5651 sayılı yasa gereği 15 yaşından küçükler yazar olamazlar. Büyüyünce gel. ($ip logged)";
+        exit;
+    }
+}
+
 $okmu = guvenlikKontrol($_REQUEST["okmu"],"hard");
 
 $ip = getenv('REMOTE_ADDR');
@@ -14,9 +24,6 @@ echo "Adam gibi form doldur adamin canını sıkma!($ip logged)";
 else {
 ?>
 <style type="text/css">
-<!--
-.style2 {color: #CCCCCC}
--->
 </style>
 <body>
 <span class="link"><B>Yazarlik basvurunuzun tamamlanmasi için asagidakileri doldurunuz. </B>:<BR>
@@ -175,14 +182,27 @@ echo "
       <td colspan="3">E-mail adresiniz.<br></td>
     </tr>
     <tr>
+      <td><strong>doğum yılınız</strong></td>
+      <td>:</td>
+      <td>
+        <select name="dogum_yili">
+          <?php
+          $guncel_yil = date("Y");
+          for($i = $guncel_yil; $i >= 1930; $i--) {
+            echo "<option value='$i'>$i</option>";
+          }
+          ?>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">Siteye kayıt olabilmek için 15 yaşından büyük olmalısınız.</td>
+    </tr>
+    <tr>
      <td width=\"91\"><strong>doğrulama kodu:</strong></td>
     <td><img src="captcha.php"></td><td><input type="text" name="dogKodu" /></td>
      <tr>
-     <!-- <td width=\"91\"><strong>  yeraltı operasyonu albümünün çıkış yılı?:</strong></td> -->
-<!--       <? $_SESSION["dogKodu2"] = '1999'; ?>-->
- <!--    <td><td><input type="text" name="dogKodu2" /></td>-->
-
-  </table>
+     </table>
   <p>Evet eminim :
     <input type=submit class=but value="Yazar Olayim Artik">
 </FORM>
